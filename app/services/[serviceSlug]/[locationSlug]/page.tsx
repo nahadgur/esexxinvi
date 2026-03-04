@@ -123,6 +123,9 @@ export default function ServiceLocationPage({ params }: { params: { serviceSlug:
                 </div>
               </section>
 
+              {/* Nearby Areas - show coverage early */}
+              <NearbyAreasGrid cityName={cityName} serviceSlug={service.slug} serviceName={service.title} />
+
               {/* Treatment Steps */}
               <section className="mb-12">
                 <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">How {service.title} Works in {cityName}</h2>
@@ -156,9 +159,6 @@ export default function ServiceLocationPage({ params }: { params: { serviceSlug:
                   ))}
                 </div>
               </section>
-
-              {/* Nearby Areas */}
-              <NearbyAreasGrid cityName={cityName} serviceSlug={service.slug} serviceName={service.title} />
 
               {/* FAQs */}
               {service.faqs.length > 0 && (
