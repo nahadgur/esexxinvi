@@ -57,13 +57,13 @@ export default function HomePage() {
                   Invisalign is a clear aligner system that straightens teeth without metal braces. Instead of brackets and wires, you wear a series of custom-made, nearly invisible plastic trays that gradually shift your teeth into the correct position. Each set of aligners is worn for 1 to 2 weeks before moving to the next in the sequence.
                 </p>
                 <p>
-                  Treatment starts with a 3D digital scan using an iTero scanner. Your dentist then uses ClinCheck software to map every tooth movement from start to finish, producing a digital animation of your projected result before you commit. This precision planning is what separates Invisalign from cheaper direct-to-consumer alternatives that skip in-person clinical assessment.
+                  Treatment starts with a 3D digital scan using an iTero scanner. Your Essex dentist then uses ClinCheck software to map every tooth movement from start to finish, producing a digital animation of your projected result before you commit. This precision planning is what separates Invisalign from cheaper direct-to-consumer alternatives that skip in-person clinical assessment.
                 </p>
                 <p>
-                  Invisalign is manufactured by Align Technology, who have treated over 14 million patients globally since 1997 with over 900 patents on their SmartTrack material and SmartForce attachment designs. It is the most clinically researched clear aligner system in the world.
+                  Invisalign is manufactured by Align Technology, who have treated over 14 million patients globally since 1997 with over 900 patents on their SmartTrack material and SmartForce attachment designs. It is the most clinically researched clear aligner system in the world — and Essex has some of the highest-rated providers in the South East.
                 </p>
                 <p>
-                  Not all dentists are equally experienced with Invisalign. Align Technology ranks providers into tiers based on annual case volume. A provider doing 10 cases a year will not deliver the same result as one doing 150. <strong>Our network only includes Platinum (80+ cases/year) and Diamond (150+ cases/year) providers</strong> because the clinical difference is significant.
+                  Not all dentists are equally experienced with Invisalign. Align Technology ranks providers into tiers based on annual case volume. A provider doing 10 cases a year will not deliver the same result as one doing 150. <strong>Our Essex network only includes Platinum (80+ cases/year) and Diamond (150+ cases/year) providers</strong> because the clinical difference is significant.
                 </p>
               </div>
               <div className="space-y-4">
@@ -98,9 +98,9 @@ export default function HomePage() {
         <section className="section-padding bg-gray-50">
           <div className="container-width">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">Why Thousands of UK Adults Are Choosing Invisalign Over Braces</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">Why Essex Adults Are Choosing Invisalign Over Braces</h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                Demand for adult orthodontics in the UK has increased by over 80% since 2010, with Invisalign accounting for the majority of that growth. Adults are choosing clear aligners because they fit around their existing lifestyle in ways fixed braces cannot.
+                Demand for adult orthodontics across Essex and the South East has surged in recent years, with Invisalign accounting for the majority of that growth. Adults are choosing clear aligners because they fit around their existing lifestyle in ways fixed braces cannot.
               </p>
             </div>
 
@@ -128,9 +128,9 @@ export default function HomePage() {
         {/* Pricing — table-led, text supports */}
         <section className="section-padding bg-white">
           <div className="container-width">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-3">How Much Does Invisalign Cost in the UK in 2025?</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-3">How Much Does Invisalign Cost in Essex?</h2>
             <p className="text-gray-600 mb-8 max-w-3xl">
-              Pricing depends on case complexity, Invisalign product type, and your provider's tier. Below are current costs from Platinum and Diamond providers. London and the South East tend toward the higher end; Midlands, North, Scotland and Wales sit lower.
+              Pricing depends on case complexity, Invisalign product type, and your provider's tier. Below are current costs from Platinum and Diamond providers across Essex. As a South East county, Essex prices tend to sit in the mid-to-upper range nationally.
             </p>
 
             <div className="overflow-x-auto mb-8">
@@ -193,7 +193,7 @@ export default function HomePage() {
             <div className="text-center mb-10">
               <h2 className="text-3xl md:text-4xl font-display font-bold text-gray-900 mb-4">Conditions Invisalign Can Treat</h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Our Platinum providers routinely treat complex bite and alignment issues that previously required fixed braces, using advanced features like SmartForce attachments and Precision Wings. Select a condition to find specialists near you.
+                Our Platinum providers across Essex routinely treat complex bite and alignment issues that previously required fixed braces, using advanced features like SmartForce attachments and Precision Wings. Select a condition to find specialists near you.
               </p>
             </div>
 
@@ -237,7 +237,7 @@ export default function HomePage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
               {[
                 { step: 1, title: "Submit Your Details", desc: "60-second form with your location and treatment type. No account needed. Your details are only shared with matched providers." },
-                { step: 2, title: "We Find Your Matches", desc: "We search 350+ Platinum and Diamond providers and shortlist the best fit based on case type, location, reviews, and availability." },
+                { step: 2, title: "We Find Your Matches", desc: "We search our network of Platinum and Diamond providers across Essex and shortlist the best fit based on case type, location, reviews, and availability." },
                 { step: 3, title: "Get Up to 3 Free Quotes", desc: "Matched providers contact you within 2 hours. Each offers a free consultation with an iTero 3D scan and personalised treatment plan." },
               ].map(item => (
                 <div key={item.step} className="text-center">
@@ -258,7 +258,7 @@ export default function HomePage() {
                     Finding a genuinely experienced Invisalign provider is harder than it should be. Any general dentist can offer Invisalign after a short training course, but the quality of your result depends heavily on case experience. Our vetting ensures you only see providers with a proven track record across hundreds of cases.
                   </p>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    Our network covers over 350 clinics across England, Scotland, Wales, and Northern Ireland. There is no catch. We earn a referral fee from the provider only if you choose to proceed with treatment, so the service is always free for you.
+                    Our network covers clinics across Essex — from Chelmsford and Colchester to Southend and Brentwood. There is no catch. We earn a referral fee from the provider only if you choose to proceed with treatment, so the service is always free for you.
                   </p>
                 </div>
                 <div className="text-center">
@@ -359,9 +359,9 @@ export default function HomePage() {
             <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2000&auto=format&fit=crop" alt="" className="w-full h-full object-cover" loading="lazy" />
           </div>
           <div className="container-width text-center relative z-10">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">Ready to Find Your Invisalign Dentist?</h2>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-white mb-4">Ready to Find Your Essex Invisalign Dentist?</h2>
             <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-              60-second form. Up to 3 free quotes from Platinum providers. Free consultation and 3D scan included. No obligation.
+              60-second form. Up to 3 free quotes from Platinum providers across Essex. Free consultation and 3D scan included. No obligation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button onClick={() => setIsModalOpen(true)} className="btn-primary text-lg !px-10 !py-4">Compare Providers Free</button>
