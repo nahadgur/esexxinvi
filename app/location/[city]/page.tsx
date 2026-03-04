@@ -62,7 +62,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-4">
                   Top-Rated Invisalign Providers in {cityName}
                 </h2>
-                <div className="prose prose-gray max-w-none text-gray-600">
+                <div className="prose prose-gray max-w-none text-gray-600 space-y-4">
                   <p>
                     If you are considering Invisalign in {cityName}, you have come to the right place. We work exclusively with Platinum and Diamond tier providers, which means every dentist we recommend completes at least 80 Invisalign cases per year. That volume of experience translates into better treatment plans, fewer refinement rounds, and consistently superior results compared to general dentists who only fit a handful of cases annually.
                   </p>
