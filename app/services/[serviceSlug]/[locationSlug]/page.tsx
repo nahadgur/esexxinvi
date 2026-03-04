@@ -113,7 +113,7 @@ export default function ServiceLocationPage({ params }: { params: { serviceSlug:
                 <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-4">
                   What to Expect From {service.title} in {cityName}
                 </h2>
-                <div className="prose prose-gray max-w-none text-gray-600">
+                <div className="prose prose-gray max-w-none text-gray-600 space-y-4">
                   <p>
                     {service.title} is one of the most commonly requested Invisalign treatments at {cityName} clinics. Our Platinum providers in the area have treated hundreds of similar cases and understand exactly how to plan the aligner sequence for your specific situation. They use ClinCheck 3D software to map every millimetre of tooth movement before your first tray is even manufactured, so there are no surprises along the way.
                   </p>
