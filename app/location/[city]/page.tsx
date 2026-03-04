@@ -36,13 +36,13 @@ export default function CityPage({ params }: { params: { city: string } }) {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-6">
               <div>
                 <div className="inline-flex items-center gap-2 bg-brand-500/20 text-brand-300 px-3 py-1 rounded-full text-sm font-medium mb-6 border border-brand-500/30">
-                  <MapPin className="w-4 h-4" /> Elite Platinum Providers Available
+                  <MapPin className="w-4 h-4" /> Verified Platinum Providers in {cityName}
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6">
                   Invisalign in <span className="text-brand-400">{cityName}</span>
                 </h1>
                 <p className="text-xl text-gray-300 leading-relaxed">
-                  Access {cityName}&apos;s most experienced Invisalign specialists. Choose from our comprehensive treatment options below.
+                  Compare the highest-rated Invisalign dentists in {cityName}. Every provider in our network is Platinum or Diamond tier, meaning they complete 80 or more cases per year. Get matched for free below.
                 </p>
               </div>
               <div>
@@ -60,21 +60,21 @@ export default function CityPage({ params }: { params: { city: string } }) {
               {/* SEO Intro */}
               <section className="mb-12">
                 <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-4">
-                  Find the Best Invisalign Dentist in {cityName}
+                  Top-Rated Invisalign Providers in {cityName}
                 </h2>
                 <div className="prose prose-gray max-w-none text-gray-600">
                   <p>
-                    Looking for Invisalign treatment in {cityName}? Our Essex network connects you directly with Platinum and Diamond tier Invisalign providers — the top 5% of dentists by case volume and clinical outcomes. Whether you need treatment for crowded teeth, gaps, an overbite, underbite, or crossbite, our {cityName} partners have the advanced training and technology to deliver predictable results.
+                    If you are considering Invisalign in {cityName}, you have come to the right place. We work exclusively with Platinum and Diamond tier providers, which means every dentist we recommend completes at least 80 Invisalign cases per year. That volume of experience translates into better treatment plans, fewer refinement rounds, and consistently superior results compared to general dentists who only fit a handful of cases annually.
                   </p>
                   <p>
-                    Every provider in our {cityName} network uses iTero 3D scanning and ClinCheck digital treatment planning, so you can see your projected results before committing to treatment. Initial consultations are free, with no obligation to proceed.
+                    Our {cityName} partners use iTero 3D scanning and ClinCheck digital planning as standard. You will see a full animated preview of your smile transformation before committing to anything. Initial consultations are free across our entire {cityName} network, with no obligation to proceed.
                   </p>
                 </div>
               </section>
 
               {/* Services Grid */}
               <section className="mb-16">
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">Available Treatments in {cityName}</h2>
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">Treatments Available in {cityName}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {services.map(service => (
                     <Link key={service.id} href={`/services/${service.slug}/${params.city}/`} className="block group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100">
@@ -97,13 +97,13 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
               {/* Why Choose */}
               <section className="mb-16">
-                <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-6">Why Choose Our {cityName} Invisalign Network?</h2>
+                <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-6">Why {cityName} Patients Use Our Service</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {[
-                    { icon: <Star className="w-5 h-5" />, title: '4.95 Average Rating', desc: `Our ${cityName} providers maintain exceptional patient satisfaction scores across thousands of verified reviews.` },
-                    { icon: <Shield className="w-5 h-5" />, title: 'Platinum & Diamond Only', desc: `We only list the highest-tier providers in ${cityName} — dentists who complete 50+ Invisalign cases per year.` },
-                    { icon: <Clock className="w-5 h-5" />, title: 'Same-Week Consultations', desc: `Most ${cityName} partners offer free consultation slots within 7 days, including evenings and weekends.` },
-                    { icon: <CheckCircle className="w-5 h-5" />, title: 'Free 3D Scan Included', desc: `Every initial consultation includes a complimentary iTero 3D scan worth £150–£300 at partnered ${cityName} clinics.` },
+                    { icon: <Star className="w-5 h-5" />, title: 'Consistently High Ratings', desc: `Every ${cityName} provider in our network maintains exceptional patient satisfaction scores. We monitor reviews continuously and remove any clinic that falls below our standards.` },
+                    { icon: <Shield className="w-5 h-5" />, title: 'Only the Top 5%', desc: `We do not list general dentists who dabble in Invisalign. Every ${cityName} provider holds Platinum or Diamond status, meaning they have the training and case volume to handle complex work.` },
+                    { icon: <Clock className="w-5 h-5" />, title: 'Appointments Within Days', desc: `Most ${cityName} clinics in our network can see you within 7 days. Many offer evening and weekend slots for patients who cannot take time off during the week.` },
+                    { icon: <CheckCircle className="w-5 h-5" />, title: 'Free Scan Worth Up to £300', desc: `Your free initial consultation at any ${cityName} partner clinic includes a full iTero 3D scan. This would normally cost £150 to £300 as a standalone appointment.` },
                   ].map((item, i) => (
                     <div key={i} className="flex gap-4 p-5 bg-gray-50 rounded-xl border border-gray-100">
                       <div className="bg-brand-100 p-2 rounded-lg text-brand-600 flex-shrink-0 h-fit">{item.icon}</div>
@@ -120,11 +120,11 @@ export default function CityPage({ params }: { params: { city: string } }) {
               <NearbyAreasGrid cityName={cityName} />
 
               {/* FAQs */}
-              <div className="mb-12"><FAQ faqs={[...FAQS_LOCATION, ...FAQS_SERVICES]} title={`Invisalign in ${cityName} — FAQs`} /></div>
+              <div className="mb-12"><FAQ faqs={[...FAQS_LOCATION, ...FAQS_SERVICES]} title={`Invisalign in ${cityName}: Common Questions`} /></div>
 
               {/* Reviews */}
               <section className="mb-16">
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">Patient Reviews</h2>
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">What Patients Are Saying</h2>
                 <Testimonials limit={3} />
               </section>
             </div>
@@ -134,13 +134,13 @@ export default function CityPage({ params }: { params: { city: string } }) {
               <div className="sticky top-28 space-y-8">
                 <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
                   <h3 className="text-lg font-display font-bold text-gray-900 mb-4">Get Matched in {cityName}</h3>
-                  <p className="text-gray-600 text-sm mb-6">Free, no-obligation match with Platinum providers in {cityName}.</p>
+                  <p className="text-gray-600 text-sm mb-6">Tell us what you need and we will connect you with up to 3 Platinum providers near {cityName}. Completely free, no strings attached.</p>
                   <button onClick={() => setIsModalOpen(true)} className="block w-full btn-primary text-center">Find a Provider</button>
                   <div className="mt-6 pt-6 border-t border-gray-100 space-y-4">
                     {[
                       { icon: <Clock className="w-4 h-4 text-brand-500" />, text: "Consultations available this week" },
-                      { icon: <Shield className="w-4 h-4 text-brand-500" />, text: "Platinum & Diamond providers only" },
-                      { icon: <Star className="w-4 h-4 text-brand-500" />, text: "4.95 average rating" },
+                      { icon: <Shield className="w-4 h-4 text-brand-500" />, text: "Platinum and Diamond providers only" },
+                      { icon: <Star className="w-4 h-4 text-brand-500" />, text: "Free iTero 3D scan included" },
                     ].map((item, i) => (
                       <div key={i} className="flex items-center gap-3">
                         <div className="bg-brand-100 p-1.5 rounded-full">{item.icon}</div>
@@ -151,7 +151,7 @@ export default function CityPage({ params }: { params: { city: string } }) {
                 </div>
                 <div className="bg-brand-900 text-white p-6 rounded-2xl shadow-lg">
                   <h3 className="text-lg font-display font-bold mb-3">From £50/month</h3>
-                  <p className="text-brand-100 text-sm mb-4">0% finance available at most {cityName} clinics. Spread the cost over 12–60 months.</p>
+                  <p className="text-brand-100 text-sm mb-4">0% finance available at most {cityName} clinics. Spread the cost over 12 to 60 months with nothing to pay upfront at many providers.</p>
                   <button onClick={() => setIsModalOpen(true)} className="block w-full bg-white text-brand-900 text-center font-bold py-3 px-6 rounded-xl hover:bg-brand-50 transition-colors text-sm">Check Eligibility</button>
                 </div>
               </div>
@@ -160,9 +160,9 @@ export default function CityPage({ params }: { params: { city: string } }) {
 
           {/* Bottom CTA */}
           <div className="bg-brand-50 rounded-2xl p-8 md:p-12 text-center mt-12">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-900 mb-4">Live in {cityName}?</h2>
-            <p className="text-brand-700 mb-8 max-w-2xl mx-auto">Get matched with Platinum Invisalign providers in the {cityName} area. Free consultations, no obligation.</p>
-            <button onClick={() => setIsModalOpen(true)} className="btn-primary text-lg !px-8 !py-4">Find Local Providers</button>
+            <h2 className="text-2xl md:text-3xl font-display font-bold text-brand-900 mb-4">Ready to Start Your Invisalign Journey in {cityName}?</h2>
+            <p className="text-brand-700 mb-8 max-w-2xl mx-auto">Fill in our 60-second form and let {cityName}&apos;s top Invisalign clinics come to you. Free consultations, free 3D scans, zero obligation.</p>
+            <button onClick={() => setIsModalOpen(true)} className="btn-primary text-lg !px-8 !py-4">Get Your Free Quotes</button>
           </div>
         </div>
       </main>
