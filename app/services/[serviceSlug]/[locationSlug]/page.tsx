@@ -25,18 +25,19 @@ export default function ServiceLocationPage({ params }: { params: { serviceSlug:
   const allCities = Object.values(LOCATIONS).flat();
 
   const benefits = [
-    { icon: <Award className="w-6 h-6" />, title: 'Platinum Providers', desc: 'Only the top 1% of UK Invisalign specialists' },
-    { icon: <Clock className="w-6 h-6" />, title: 'Fast Track Consultations', desc: 'Priority appointments available within 7 days' },
-    { icon: <Shield className="w-6 h-6" />, title: 'Guaranteed Results', desc: 'Treatment backed by thousands of successful cases' },
-    { icon: <Users className="w-6 h-6" />, title: 'Expert Matching', desc: 'Personalised provider selection for your case' },
+    { icon: <Award className="w-6 h-6" />, title: 'Verified High-Tier Providers', desc: `Every ${cityName} dentist in our network completes 80 or more Invisalign cases per year. That experience shows in the results.` },
+    { icon: <Clock className="w-6 h-6" />, title: 'Seen Within a Week', desc: `Most ${cityName} clinics offer free consultation slots within 7 days, including evenings and weekends.` },
+    { icon: <Shield className="w-6 h-6" />, title: 'Advanced Technology Included', desc: 'Every consultation includes a free iTero 3D scan and full ClinCheck digital treatment plan at no extra charge.' },
+    { icon: <Users className="w-6 h-6" />, title: 'Matched to Your Case', desc: `We do not send you a random list. We match you with ${cityName} providers who have specific experience with your condition.` },
   ];
 
   const treatmentSteps = [
-    'Free initial consultation with a vetted specialist',
-    '3D digital scan and personalised treatment planning',
-    'Receive your custom aligners manufactured to precision',
-    'Regular progress monitoring and refinement if needed',
-    'Achieve your perfect smile with permanent retention',
+    `Book a free consultation at a vetted ${cityName} clinic through our matching form`,
+    'Get a full 3D iTero scan of your teeth and a digital treatment simulation',
+    'Review your ClinCheck plan and see exactly how your teeth will move, week by week',
+    'Receive your custom aligners and begin wearing them, switching every 1 to 2 weeks',
+    'Attend brief check-ups every 6 to 8 weeks until treatment is complete',
+    'Get fitted with retainers to keep your results permanent',
   ];
 
   return (
@@ -61,16 +62,16 @@ export default function ServiceLocationPage({ params }: { params: { serviceSlug:
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-6">
               <div>
                 <div className="inline-flex items-center gap-2 bg-brand-500/20 text-brand-300 px-3 py-1 rounded-full text-sm font-medium mb-6 border border-brand-500/30">
-                  <MapPin className="w-4 h-4" /> Elite Providers in {cityName}
+                  <MapPin className="w-4 h-4" /> Platinum Providers in {cityName}
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6">
                   {service.title} in <span className="text-brand-400">{cityName}</span>
                 </h1>
                 <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                  {service.description} Connect with {cityName}&apos;s most experienced Platinum-tier Invisalign specialists.
+                  Get matched with {cityName}&apos;s most experienced Invisalign providers for {service.title.toLowerCase()}. Free consultation, free 3D scan, and up to 3 quotes at no cost.
                 </p>
                 <div className="space-y-4 mb-8">
-                  {[`Local ${cityName} experts`, 'Compare up to 3 free quotes', 'Platinum and Diamond providers only'].map((item, i) => (
+                  {[`Specialists in ${cityName} who treat this daily`, 'Compare up to 3 free quotes side by side', 'Only Platinum and Diamond tier providers listed'].map((item, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <CheckCircle className="w-6 h-6 text-brand-400 flex-shrink-0" />
                       <span className="text-lg">{item}</span>
@@ -79,7 +80,7 @@ export default function ServiceLocationPage({ params }: { params: { serviceSlug:
                 </div>
                 <div className="flex items-center gap-4 text-sm text-gray-400">
                   <div className="flex text-yellow-400">{[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-current" />)}</div>
-                  <span>Trusted by patients in {cityName}</span>
+                  <span>Highly rated by {cityName} patients</span>
                 </div>
               </div>
               <div>
@@ -110,21 +111,21 @@ export default function ServiceLocationPage({ params }: { params: { serviceSlug:
               {/* SEO Intro */}
               <section className="mb-12">
                 <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-4">
-                  {service.title} in {cityName} — What You Need to Know
+                  What to Expect From {service.title} in {cityName}
                 </h2>
                 <div className="prose prose-gray max-w-none text-gray-600">
                   <p>
-                    {service.description} If you&apos;re in {cityName} and considering this treatment, our Platinum providers have completed hundreds of similar cases with consistently excellent outcomes. They use the latest ClinCheck 3D planning software to map every tooth movement before your first aligner is manufactured.
+                    {service.title} is one of the most commonly requested Invisalign treatments at {cityName} clinics. Our Platinum providers in the area have treated hundreds of similar cases and understand exactly how to plan the aligner sequence for your specific situation. They use ClinCheck 3D software to map every millimetre of tooth movement before your first tray is even manufactured, so there are no surprises along the way.
                   </p>
                   <p>
-                    {cityName} patients benefit from flexible appointment scheduling, state-of-the-art iTero scanning, and access to advanced Invisalign features like SmartForce attachments and Precision Wings — techniques only available to high-tier providers.
+                    {cityName} patients also benefit from access to advanced Invisalign features that are only available to high-tier providers. These include SmartForce attachments for complex tooth movements, Precision Wings for bite correction, and optimised staging protocols that reduce overall treatment time. If you have been told by a general dentist that your case is too difficult for Invisalign, it is worth getting a second opinion from one of our {cityName} specialists.
                   </p>
                 </div>
               </section>
 
               {/* Treatment Steps */}
               <section className="mb-12">
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">Your Treatment Journey in {cityName}</h2>
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">How {service.title} Works in {cityName}</h2>
                 <div className="space-y-4">
                   {treatmentSteps.map((step, i) => (
                     <div key={i} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
@@ -135,18 +136,18 @@ export default function ServiceLocationPage({ params }: { params: { serviceSlug:
                 </div>
               </section>
 
-              {/* Pricing — specific to this service */}
+              {/* Pricing */}
               <PricingSection cityName={cityName} serviceId={service.id} serviceName={service.title} />
 
               {/* Why Choose */}
               <section className="mb-12">
-                <h3 className="text-2xl font-display font-bold text-gray-900 mb-4">Why Choose {service.title} in {cityName}?</h3>
+                <h3 className="text-2xl font-display font-bold text-gray-900 mb-4">Why Get {service.title} in {cityName} Through Us?</h3>
                 <div className="space-y-3">
                   {[
-                    'Access to Platinum-certified providers with proven track records',
-                    'State-of-the-art 3D scanning and ClinCheck visualisation technology',
-                    `Convenient ${cityName} locations with flexible appointment times`,
-                    'Comprehensive aftercare and retention planning included',
+                    `Every ${cityName} provider we list has been independently verified as Platinum or Diamond tier by Align Technology`,
+                    'You get a full 3D preview of your finished result before agreeing to treatment',
+                    `${cityName} clinics in our network offer flexible scheduling including evenings and weekends`,
+                    'Aftercare and retention planning is included in every treatment quote with no hidden extras',
                   ].map((point, i) => (
                     <div key={i} className="flex items-start gap-3 bg-brand-50 p-4 rounded-xl border border-brand-100">
                       <CheckCircle className="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" />
@@ -162,13 +163,13 @@ export default function ServiceLocationPage({ params }: { params: { serviceSlug:
               {/* FAQs */}
               {service.faqs.length > 0 && (
                 <div className="mb-12">
-                  <FAQ faqs={service.faqs} title={`${service.title} FAQs`} />
+                  <FAQ faqs={service.faqs} title={`${service.title} in ${cityName}: Common Questions`} />
                 </div>
               )}
 
               {/* Reviews */}
               <section className="mt-12 mb-12">
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">Patient Reviews</h2>
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">What Patients Are Saying</h2>
                 <Testimonials limit={2} />
               </section>
             </div>
@@ -187,7 +188,7 @@ export default function ServiceLocationPage({ params }: { params: { serviceSlug:
                       </li>
                     ))}
                   </ul>
-                  <h3 className="text-lg font-display font-bold text-gray-900 mb-4">{service.title} Elsewhere</h3>
+                  <h3 className="text-lg font-display font-bold text-gray-900 mb-4">{service.title} Elsewhere in Essex</h3>
                   <ul className="space-y-2">
                     {allCities.filter(c => c !== cityName).slice(0, 5).map(city => {
                       const slug = city.toLowerCase().replace(/\s+/g, '-');
@@ -203,7 +204,7 @@ export default function ServiceLocationPage({ params }: { params: { serviceSlug:
                 </div>
                 <div className="bg-brand-900 text-white p-6 rounded-2xl shadow-lg">
                   <h3 className="text-lg font-display font-bold mb-3">From £50/month</h3>
-                  <p className="text-brand-100 text-sm mb-4">0% finance available. Spread the cost of {service.title.toLowerCase()} over 12–60 months.</p>
+                  <p className="text-brand-100 text-sm mb-4">0% finance available at most {cityName} clinics. Spread the cost of {service.title.toLowerCase()} over 12 to 60 months with nothing to pay upfront.</p>
                   <button onClick={() => setIsModalOpen(true)} className="block w-full bg-white text-brand-900 text-center font-bold py-3 px-6 rounded-xl hover:bg-brand-50 transition-colors text-sm">Get Free Quotes</button>
                 </div>
               </div>
