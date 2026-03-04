@@ -21,9 +21,9 @@ import { PricingSection } from '@/components/PricingSection';
 const serviceContent: Record<string, { intro: string[]; benefits: { title: string; desc: string }[]; candidateIntro: string; candidates: string[]; process: { title: string; desc: string }[] }> = {
   crowded: {
     intro: [
-      "Crowded teeth are the most common orthodontic issue in UK adults. They occur when there is not enough space in the jaw for all your teeth to fit in their natural position, causing them to overlap, twist, or push forward. Beyond the cosmetic impact, crowding makes proper brushing and flossing difficult, increasing your risk of decay, gum disease, and bad breath.",
+      "Crowded teeth are the most common orthodontic issue among Essex adults. They occur when there is not enough space in the jaw for all your teeth to fit in their natural position, causing them to overlap, twist, or push forward. Beyond the cosmetic impact, crowding makes proper brushing and flossing difficult, increasing your risk of decay, gum disease, and bad breath.",
       "Invisalign treats crowded teeth by using a sequence of clear aligners that apply controlled pressure to gradually create space and guide each tooth into alignment. For mild crowding, Invisalign Lite (up to 14 aligners) is often sufficient and can be completed in 6 to 12 months. Moderate to severe crowding typically requires Invisalign Comprehensive with unlimited aligners over 12 to 18 months.",
-      "Platinum and Diamond providers are particularly important for crowding cases because they understand how to use interproximal reduction (IPR), sequential distalization, and SmartForce attachments to create space without extracting teeth. Less experienced providers may default to extractions when a skilled clinician could achieve the same result with advanced aligner techniques.",
+      "Platinum and Diamond providers are particularly important for crowding cases because they understand how to use interproximal reduction (IPR), sequential distalization, and SmartForce attachments to create space without extracting teeth. Our Essex providers routinely achieve extraction-free results that less experienced clinicians might not attempt.",
     ],
     benefits: [
       { title: 'Easier to Clean', desc: 'Straightening crowded teeth makes brushing and flossing significantly more effective, reducing your long-term risk of cavities and periodontal disease.' },
@@ -75,9 +75,9 @@ const serviceContent: Record<string, { intro: string[]; benefits: { title: strin
   },
   overbite: {
     intro: [
-      "An overbite occurs when the upper front teeth overlap the lower front teeth by more than the normal 2 to 3 millimetres. A deep overbite can cause the lower teeth to bite into the roof of the mouth, leading to wear on the front teeth, jaw pain, and difficulty eating. It is one of the most common bite issues in UK adults and is often accompanied by crowding.",
+      "An overbite occurs when the upper front teeth overlap the lower front teeth by more than the normal 2 to 3 millimetres. A deep overbite can cause the lower teeth to bite into the roof of the mouth, leading to wear on the front teeth, jaw pain, and difficulty eating. It is one of the most common bite issues treated by our Essex Platinum providers and is often accompanied by crowding.",
       "Invisalign corrects overbites using a combination of aligner pressure and, in many cases, Precision Wings. These are built-in features that encourage the lower jaw to move forward while the aligners simultaneously adjust tooth positions. This dual-action approach means Invisalign can now treat overbites that were previously considered braces-only cases.",
-      "Overbite correction is one of the most technically demanding Invisalign treatments, which is why provider experience matters enormously. Platinum and Diamond providers have the clinical hours and ClinCheck expertise to plan complex vertical and horizontal tooth movements that resolve the overbite without creating new problems elsewhere in the bite.",
+      "Overbite correction is one of the most technically demanding Invisalign treatments, which is why provider experience matters enormously. Our Essex Platinum and Diamond providers have the clinical hours and ClinCheck expertise to plan complex vertical and horizontal tooth movements that resolve the overbite without creating new problems elsewhere in the bite.",
     ],
     benefits: [
       { title: 'Reduces Tooth Wear', desc: 'Correcting the overbite prevents the lower teeth from grinding against the upper teeth or the palate, preserving enamel long-term.' },
@@ -156,9 +156,9 @@ const serviceContent: Record<string, { intro: string[]; benefits: { title: strin
   },
   adults: {
     intro: [
-      "Invisalign for adults is the most popular clear aligner treatment in the UK, suitable for patients of any age who want to straighten their teeth without visible braces. Whether you missed out on orthodontic treatment as a teenager, your teeth have shifted over the years, or you had braces as a child and your teeth have relapsed, Invisalign offers a discreet and effective solution.",
-      "Adults make up the fastest-growing segment of orthodontic patients in the UK. According to the British Orthodontic Society, one in five orthodontic patients is now an adult. The primary drivers are the availability of invisible treatment options, shorter treatment times, and the ability to preview results digitally before committing.",
-      "Our network specialises in connecting adults with Platinum and Diamond providers because adult treatment has specific clinical considerations. Adult bone is denser than adolescent bone, which affects how teeth move. Root resorption risk needs to be monitored. Existing dental work like crowns, bridges, or implants may need to be accounted for in the treatment plan. High-tier providers manage these factors routinely.",
+      "Invisalign for adults is the most popular clear aligner treatment across Essex, suitable for patients of any age who want to straighten their teeth without visible braces. Whether you missed out on orthodontic treatment as a teenager, your teeth have shifted over the years, or you had braces as a child and your teeth have relapsed, Invisalign offers a discreet and effective solution that fits around your lifestyle.",
+      "Adults make up the fastest-growing segment of orthodontic patients across Essex and the wider South East. The primary drivers are the availability of invisible treatment options, shorter treatment times, and the ability to preview results digitally before committing. For busy Essex professionals and commuters, the convenience of removable aligners is a major advantage over fixed braces.",
+      "Our Essex network specialises in connecting adults with Platinum and Diamond providers because adult treatment has specific clinical considerations. Adult bone is denser than adolescent bone, which affects how teeth move. Root resorption risk needs to be monitored. Existing dental work like crowns, bridges, or implants may need to be accounted for in the treatment plan. High-tier Essex providers manage these factors routinely.",
     ],
     benefits: [
       { title: 'No Age Limit', desc: 'Invisalign works for adults of all ages provided your teeth and gums are healthy. We have providers treating patients well into their 60s and 70s.' },
@@ -232,7 +232,7 @@ export default function ServicePage({ params }: { params: { serviceSlug: string 
                 </h1>
                 <p className="text-xl text-gray-300 mb-8 leading-relaxed">{service.description}</p>
                 <div className="space-y-3">
-                  {['Compare up to 3 free quotes', 'Platinum and Diamond providers only', `${totalCities}+ UK locations available`].map((item, i) => (
+                  {['Compare up to 3 free quotes', 'Platinum and Diamond providers only', `${totalCities}+ Essex locations available`].map((item, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <CheckCircle className="w-5 h-5 text-brand-400 flex-shrink-0" />
                       <span className="text-lg">{item}</span>
@@ -278,6 +278,69 @@ export default function ServicePage({ params }: { params: { serviceSlug: string 
                     </div>
                   ))}
                 </div>
+              </section>
+
+              {/* Locations - find providers for this treatment */}
+              <section className="mb-14">
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
+                  <div>
+                    <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-2">Find {service.title} Providers Across Essex</h2>
+                    <p className="text-gray-600">
+                      We have Platinum and Diamond providers for {service.title.toLowerCase()} in over {totalCities} towns across Essex.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setShowLocations(!showLocations)}
+                    className="flex items-center gap-2 text-brand-600 font-bold text-sm hover:underline self-start md:self-auto whitespace-nowrap"
+                  >
+                    {showLocations ? 'Hide locations' : `Show all ${totalCities}+ locations`}
+                    <ChevronDown className={`w-4 h-4 transition-transform ${showLocations ? 'rotate-180' : ''}`} />
+                  </button>
+                </div>
+
+                <div className="mb-6 max-w-md">
+                  <div className="relative">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <input
+                      type="text"
+                      placeholder="Search your town..."
+                      value={searchQuery}
+                      onChange={(e) => { setSearchQuery(e.target.value); if (!showLocations) setShowLocations(true); }}
+                      className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
+                    />
+                  </div>
+                </div>
+
+                <div
+                  className={`transition-all duration-500 overflow-hidden ${showLocations ? 'max-h-[9999px] opacity-100' : 'max-h-0 opacity-0'}`}
+                  aria-hidden={!showLocations}
+                >
+                  <div className="space-y-8 pb-4">
+                    {Object.entries(filteredLocations).map(([region, cities]) => (
+                      <div key={region}>
+                        <h3 className="text-lg font-display font-bold text-gray-900 mb-3">{region}</h3>
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+                          {cities.map(city => (
+                            <Link
+                              key={city}
+                              href={`/services/${service.slug}/${toSlug(city)}/`}
+                              className="group flex items-center gap-2 p-2.5 bg-gray-50 rounded-lg hover:bg-brand-50 transition-all border border-gray-100 hover:border-brand-200"
+                            >
+                              <MapPin className="w-3 h-3 text-brand-400 flex-shrink-0" />
+                              <span className="text-gray-700 group-hover:text-brand-700 text-xs font-medium truncate">{city}</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {!showLocations && (
+                  <p className="text-sm text-gray-500">
+                    Search for your town above or <button onClick={() => setShowLocations(true)} className="text-brand-600 font-medium hover:underline">browse all locations</button> to find {service.title.toLowerCase()} providers near you.
+                  </p>
+                )}
               </section>
 
               {/* Am I a candidate? */}
@@ -372,73 +435,6 @@ export default function ServicePage({ params }: { params: { serviceSlug: string 
             </aside>
           </div>
 
-          {/* Locations — at the bottom, collapsed by default */}
-          <section className="mt-16 pt-12 border-t border-gray-200">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6">
-              <div>
-                <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-2">Find {service.title} Providers Near You</h2>
-                <p className="text-gray-600">
-                  We have Platinum and Diamond providers for {service.title.toLowerCase()} in over {totalCities} towns across Essex.
-                </p>
-              </div>
-              <button
-                onClick={() => setShowLocations(!showLocations)}
-                className="flex items-center gap-2 text-brand-600 font-bold text-sm hover:underline self-start md:self-auto whitespace-nowrap"
-              >
-                {showLocations ? 'Hide locations' : `Show all ${totalCities}+ locations`}
-                <ChevronDown className={`w-4 h-4 transition-transform ${showLocations ? 'rotate-180' : ''}`} />
-              </button>
-            </div>
-
-            {/* Search always visible */}
-            <div className="mb-6 max-w-md">
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <input
-                  type="text"
-                  placeholder="Search your city or town..."
-                  value={searchQuery}
-                  onChange={(e) => { setSearchQuery(e.target.value); if (!showLocations) setShowLocations(true); }}
-                  className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition"
-                />
-              </div>
-            </div>
-
-            {/* 
-              City grid: always in the DOM for Googlebot (aria-hidden false, links crawlable).
-              CSS hides overflow when collapsed. No JS removal from DOM.
-            */}
-            <div
-              className={`transition-all duration-500 overflow-hidden ${showLocations ? 'max-h-[9999px] opacity-100' : 'max-h-0 opacity-0'}`}
-              aria-hidden={!showLocations}
-            >
-              <div className="space-y-8 pb-4">
-                {Object.entries(filteredLocations).map(([region, cities]) => (
-                  <div key={region}>
-                    <h3 className="text-lg font-display font-bold text-gray-900 mb-3">{region}</h3>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
-                      {cities.map(city => (
-                        <Link
-                          key={city}
-                          href={`/services/${service.slug}/${toSlug(city)}/`}
-                          className="group flex items-center gap-2 p-2.5 bg-gray-50 rounded-lg hover:bg-brand-50 transition-all border border-gray-100 hover:border-brand-200"
-                        >
-                          <MapPin className="w-3 h-3 text-brand-400 flex-shrink-0" />
-                          <span className="text-gray-700 group-hover:text-brand-700 text-xs font-medium truncate">{city}</span>
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {!showLocations && (
-              <p className="text-sm text-gray-500">
-                Search for your city above or <button onClick={() => setShowLocations(true)} className="text-brand-600 font-medium hover:underline">browse all locations</button> to find {service.title.toLowerCase()} providers near you.
-              </p>
-            )}
-          </section>
         </div>
       </main>
       <Footer />
