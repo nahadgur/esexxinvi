@@ -1,7 +1,7 @@
 export const siteConfig = {
-  name: 'Invisalign Essex',
+  name: 'Invisalign Dentists Essex',
   domain: 'invisalignessex.co.uk',
-  url: 'https://www.invisalignessex.co.uk',
+  url: 'https://www.invisaligndentistsessex.uk',
   phone: '01245 000 000',
   phoneHref: 'tel:+441245000000',
   email: 'hello@invisalignessex.co.uk',
