@@ -2,9 +2,6 @@ export const siteConfig = {
   name: 'Invisalign Dentists Essex',
   domain: 'invisalignessex.co.uk',
   url: 'https://www.invisaligndentistsessex.uk',
-  phone: '01245 000 000',
-  phoneHref: 'tel:+441245000000',
-  email: 'hello@invisalignessex.co.uk',
   description: 'Find the top-rated Invisalign providers across Essex. Compare Platinum and Diamond tier dentists in Chelmsford, Southend, Colchester, Basildon, Brentwood and more.',
   tagline: 'Essex\'s Top Invisalign Providers',
 };
