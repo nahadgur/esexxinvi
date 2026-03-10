@@ -61,7 +61,6 @@ export function Footer() {
                 <MapPin className="w-4 h-4 text-brand-500" /> Essex, United Kingdom
               </li>
             </ul>
-            <p className="text-brand-400 mt-4 font-bold">hello@invisalignessex.co.uk</p>
           </div>
         </div>
 
