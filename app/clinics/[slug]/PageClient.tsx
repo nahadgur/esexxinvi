@@ -108,7 +108,7 @@ export default function ClinicProfilePageClient({ clinic, priceRangeLow, priceRa
 
   return (
     <>
-      <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} clinicName={clinic.name} />
+      <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} city={clinic.town} />
 
       <main>
 
