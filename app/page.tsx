@@ -55,21 +55,6 @@ const topCities = ['Chelmsford', 'Southend-on-Sea', 'Colchester', 'Basildon', 'B
 // Sub-components
 // ─────────────────────────────────────────────────────────────────────────────
 
-function SecLabel({ n, tag, dark }: { n: number; tag: string; dark?: boolean }) {
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
-      <div style={{
-        width: '22px', height: '22px', borderRadius: '50%',
-        background: dark ? 'rgba(255,255,255,0.2)' : 'var(--sage)',
-        color: '#fff', fontSize: '10px', fontWeight: 600,
-        display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-      }}>{n}</div>
-      <span style={{ fontSize: '10px', color: dark ? 'rgba(255,255,255,0.55)' : 'var(--sage-mid)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
-        {tag}
-      </span>
-    </div>
-  );
-}
 
 function SectionH({ children }: { children: React.ReactNode }) {
   return (
@@ -130,7 +115,6 @@ export default function HomePage() {
 
             {/* 1 — Headline */}
             <div style={{ marginBottom: '20px' }}>
-              <SecLabel n={1} tag="Headline" />
               <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem,5vw,3rem)', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.1 }}>
                 Essex&apos;s Finest<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>Invisalign</em>
               </h1>
@@ -141,7 +125,6 @@ export default function HomePage() {
 
             {/* 2 — Subtitle */}
             <div style={{ marginBottom: '28px' }}>
-              <SecLabel n={2} tag="Subtitle" />
               <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '320px' }}>
                 We vet every provider so you do not have to. Get matched with Platinum and Diamond Invisalign specialists near you — free consultation, free 3D scan, zero cost.
               </p>
@@ -149,7 +132,6 @@ export default function HomePage() {
 
             {/* 3 — CTA */}
             <div style={{ marginBottom: '24px' }}>
-              <SecLabel n={3} tag="CTA" />
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
                 <button onClick={() => setIsModalOpen(true)} className="btn-primary" style={{ padding: '13px 28px', borderRadius: '40px', fontSize: '13px' }}>
                   Get Free Quotes
@@ -162,7 +144,6 @@ export default function HomePage() {
 
             {/* 4 — Social proof */}
             <div>
-              <SecLabel n={4} tag="Social Proof" />
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
                   <span style={{ color: '#C9A96E', fontSize: '13px', letterSpacing: '1px' }}>★★★★★</span>
@@ -220,8 +201,6 @@ export default function HomePage() {
             2×2 feature cards + objections row + comparison table
             ══════════════════════════════════════════════════════════════ */}
         <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', borderBottom: '1px solid var(--border)', background: 'var(--cream)' }}>
-
-          <SecLabel n={6} tag="Features, Objections & Benefits" />
           <SectionH>Why tier matters.<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>And why we only list the top 5%.</em></SectionH>
           <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '500px', marginBottom: '36px' }}>
             Any dentist can call themselves an Invisalign provider after a weekend course. The difference between someone doing 10 cases a year and 150 is enormous in skill, troubleshooting, and your final result.
@@ -290,8 +269,6 @@ export default function HomePage() {
             Sage-pale background, serif italic quote style
             ══════════════════════════════════════════════════════════════ */}
         <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', background: 'var(--sage-pale)', borderBottom: '1px solid var(--border)' }}>
-
-          <SecLabel n={7} tag="Social Proof" />
           <SectionH>What Essex patients say<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>after using our service</em></SectionH>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginTop: '32px' }} className="two-col-sm-grid">
@@ -348,8 +325,6 @@ export default function HomePage() {
             Accordion, clean borders
             ══════════════════════════════════════════════════════════════ */}
         <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', borderBottom: '1px solid var(--border)', background: 'var(--cream)' }}>
-
-          <SecLabel n={8} tag="FAQ" />
           <SectionH>Your questions,<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>answered honestly</em></SectionH>
           <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '480px', marginBottom: '32px' }}>
             No vague answers. No upselling. Just what you need to know before booking.
@@ -367,8 +342,6 @@ export default function HomePage() {
             Sage background, white headline, ghost secondary button
             ══════════════════════════════════════════════════════════════ */}
         <section style={{ padding: 'clamp(56px,8vw,96px) clamp(24px,5vw,56px)', background: 'var(--sage)', textAlign: 'center' }}>
-
-          <SecLabel n={9} tag="CTA" dark />
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,4vw,2.8rem)', fontWeight: 600, color: '#fff', lineHeight: 1.15, marginBottom: '12px', marginTop: '10px' }}>
             Your perfect smile starts<br /><em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.65)' }}>with the right provider.</em>
           </h2>
@@ -397,8 +370,6 @@ export default function HomePage() {
             Cream background, serif italic quote, avatar sig
             ══════════════════════════════════════════════════════════════ */}
         <section style={{ padding: 'clamp(44px,6vw,64px) clamp(24px,5vw,56px)', borderTop: '1px solid var(--border)', background: 'var(--cream)' }}>
-
-          <SecLabel n={10} tag="Founder's Note" />
           <div style={{ maxWidth: '520px', marginTop: '16px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
               <div style={{ width: '28px', height: '1px', background: 'var(--sage-mid)' }} />
