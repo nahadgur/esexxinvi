@@ -1,5 +1,10 @@
 'use client';
 
+import { useState } from 'react';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { LeadFormModal } from '@/components/LeadFormModal';
+
 // app/advisory-board/AdvisoryBoardClient.tsx
 import Link from 'next/link';
 import { ExternalLink, ShieldCheck, BookOpen } from 'lucide-react';
@@ -8,10 +13,14 @@ import { getActiveBoardMembers } from '@/data/advisory/board-members';
 const gdcCheckUrl = 'https://www.gdc-uk.org/registration/your-registration/check-a-dental-professionals-registration';
 
 export default function AdvisoryBoardClient() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const members = getActiveBoardMembers();
 
   return (
-    <main className="bg-white">
+    <>
+      <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Header onOpenModal={() => setIsModalOpen(true)} />
+      <main className="bg-white">
 
       <section className="bg-gray-900 text-white py-16">
         <div className="container-width max-w-3xl">
@@ -127,5 +136,7 @@ export default function AdvisoryBoardClient() {
       </section>
 
     </main>
+      <Footer />
+    </>
   );
 }

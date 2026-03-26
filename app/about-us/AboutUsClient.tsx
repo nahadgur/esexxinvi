@@ -1,5 +1,10 @@
 'use client';
 
+import { useState } from 'react';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { LeadFormModal } from '@/components/LeadFormModal';
+
 // app/about-us/AboutUsClient.tsx
 // All interactive / JSX rendering for the About Us page.
 // Kept as client component so Link, icons, and state work correctly.
@@ -27,8 +32,12 @@ const stats = [
 ];
 
 export default function AboutUsClient() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <main className="bg-white">
+    <>
+      <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Header onOpenModal={() => setIsModalOpen(true)} />
+      <main className="bg-white">
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
       <section className="bg-gray-900 text-white py-20">
@@ -257,5 +266,7 @@ export default function AboutUsClient() {
 
       </div>
     </main>
+      <Footer />
+    </>
   );
 }

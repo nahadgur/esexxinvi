@@ -1,12 +1,21 @@
 'use client';
 
+import { useState } from 'react';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { LeadFormModal } from '@/components/LeadFormModal';
+
 // app/editorial-policy/EditorialPolicyClient.tsx
 import Link from 'next/link';
 import { FileText, RefreshCw, UserCheck, AlertTriangle, BookOpen, Scale } from 'lucide-react';
 
 export default function EditorialPolicyClient() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <main className="bg-white">
+    <>
+      <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Header onOpenModal={() => setIsModalOpen(true)} />
+      <main className="bg-white">
 
       <section className="bg-gray-900 text-white py-16">
         <div className="container-width max-w-3xl">
@@ -140,5 +149,7 @@ export default function EditorialPolicyClient() {
 
       </div>
     </main>
+      <Footer />
+    </>
   );
 }

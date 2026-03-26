@@ -1,5 +1,10 @@
 'use client';
 
+import { useState } from 'react';
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { LeadFormModal } from '@/components/LeadFormModal';
+
 // app/share-your-story/page.tsx
 //
 // Patient story submission form.
@@ -45,6 +50,7 @@ const treatments = [
 ];
 
 export default function ShareYourStoryPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -80,7 +86,10 @@ export default function ShareYourStoryPage() {
   }
 
   return (
-    <main className="bg-white py-16">
+    <>
+      <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Header onOpenModal={() => setIsModalOpen(true)} />
+      <main className="bg-white py-16">
       <div className="container-width max-w-2xl">
 
         {/* Header */}
@@ -239,5 +248,7 @@ export default function ShareYourStoryPage() {
         </form>
       </div>
     </main>
+      <Footer />
+    </>
   );
 }
