@@ -169,8 +169,8 @@ export default function HomePage() {
             />
             <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {[
-                { name: 'Chelmsford Dental Studio', tier: 'Diamond', sub: '150+ cases per year · Free 3D scan', badgeBg: '#EDE9F8', badgeColor: '#5B42A8' },
-                { name: 'Brentwood Smile Clinic',   tier: 'Platinum', sub: '80+ cases per year · 0% finance', badgeBg: 'var(--sage-pale)', badgeColor: 'var(--sage)' },
+                { name: 'Diamond Provider · Harlow', tier: 'Diamond', sub: '150+ cases per year · Free 3D scan', badgeBg: '#EDE9F8', badgeColor: '#5B42A8' },
+                { name: 'Platinum Provider · Chelmsford', tier: 'Platinum', sub: '80+ cases per year · 0% finance', badgeBg: 'var(--sage-pale)', badgeColor: 'var(--sage)' },
               ].map(card => (
                 <div key={card.name} style={{ background: 'rgba(250,250,247,0.92)', border: '1px solid rgba(61,92,66,0.15)', borderRadius: '8px', padding: '10px 14px', backdropFilter: 'blur(4px)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '3px' }}>
@@ -192,7 +192,7 @@ export default function HomePage() {
             ══════════════════════════════════════════════════════════════ */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '14px clamp(24px,5vw,56px)', background: 'var(--sage-light)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
           <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
-          <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.1em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}></span>
+          <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.1em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Below the fold</span>
           <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
         </div>
 

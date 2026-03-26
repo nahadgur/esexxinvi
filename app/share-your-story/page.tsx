@@ -29,9 +29,7 @@ import { ShieldCheck, AlertCircle, CheckCircle2 } from 'lucide-react';
 // export const metadata: Metadata = { ... }
 
 const clinics = [
-  { slug: 'nuffield-dental-chelmsford',    name: 'Nuffield Dental — Chelmsford' },
   { slug: 'church-langley-dental-harlow',  name: 'Church Langley Dental — Harlow' },
-  { slug: 'southend-clear-aligners',       name: 'Southend Clear Aligners — Southend-on-Sea' },
   // Add all listed clinics here
 ];
 

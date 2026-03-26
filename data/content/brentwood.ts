@@ -19,15 +19,6 @@ export const brentwoodContent: TownContent = {
   priceRangeHigh: 6200,
   financeMinMonthly: 65,
   waitTimeDays: 5,
-  clinic1: {
-    name: 'Brentwood Smile Clinic',
-    slug: 'brentwood-smile-clinic',
-    tier: 'Platinum',
-    address: 'Brentwood, Essex',
-    googleRating: 4.8,
-    reviewCount: 167,
-    caseVolume: '450+',
-  },
   services: {
     crowded: {
       conditionVariant: 'C',
