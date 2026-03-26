@@ -22,6 +22,7 @@
 
 @layer base {
   html {
+    font-size: 17.5px; /* Base scale — was 16px default. Increase to grow ALL text proportionally. */
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
