@@ -141,6 +141,7 @@ export function Header({ onOpenModal }: HeaderProps) {
             <Link href="/locations/" style={navLink}>Locations</Link>
             <Link href="/clinics/"   style={navLink}>Clinics</Link>
             <Link href="/blog/"      style={navLink}>Blog</Link>
+            <Link href="/guides/"    style={navLink}>Guides</Link>
 
             {/* About dropdown */}
             <div ref={aboutRef} style={{ position: 'relative' }}>
@@ -219,6 +220,7 @@ export function Header({ onOpenModal }: HeaderProps) {
             <Link href="/locations/" style={mobileLink}>Locations</Link>
             <Link href="/clinics/"   style={mobileLink}>Clinics</Link>
             <Link href="/blog/"      style={mobileLink}>Blog</Link>
+            <Link href="/guides/"    style={mobileLink}>Guides</Link>
 
             {/* About & Trust */}
             <div style={{ padding: '10px 0 4px', borderTop: '1px solid var(--border)', marginTop: '8px' }}>
