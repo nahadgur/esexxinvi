@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 interface HeroLeadFormProps {
   city?: string;
@@ -34,42 +34,39 @@ const inputStyle: React.CSSProperties = {
 
 export function HeroLeadForm({ city, service }: HeroLeadFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    location: city || '',
-    treatment: service || '',
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const [isSuccess, setIsSuccess]       = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+
+    // Read directly from the form DOM — no state mapping can go wrong
+    const form = formRef.current!;
+    const fullName  = (form.querySelector<HTMLInputElement>('[name="fullName"]')?.value  || '').trim();
+    const phone     = (form.querySelector<HTMLInputElement>('[name="phone"]')?.value      || '').trim();
+    const email     = (form.querySelector<HTMLInputElement>('[name="email"]')?.value      || '').trim();
+    const treatment = (form.querySelector<HTMLSelectElement>('[name="treatment"]')?.value || '').trim();
+    const location  = (form.querySelector<HTMLInputElement>('[name="location"]')?.value  || city || '').trim();
+
+    const payload = {
+      fullName,
+      phone,
+      email,
+      treatment,
+      location,
+      page:   typeof window !== 'undefined' ? window.location.href : '',
+      source: 'Invisalign Essex',
+    };
+
     try {
-      const payload = {
-        fullName: formData.fullName,
-        email: formData.email,
-        phone: formData.phone,
-        location: formData.location || city || '',
-        treatment: formData.treatment || service || '',
-        page: window.location.href,
-        source: 'Invisalign Essex',
-      };
-
-      const res = await fetch(GOOGLE_SCRIPT_URL, {
+      const res  = await fetch(GOOGLE_SCRIPT_URL, {
         method: 'POST',
-        body: JSON.stringify(payload),
+        body:   JSON.stringify(payload),
       });
-
       const text = await res.text();
       let data: { ok?: boolean; error?: string } = {};
       try { data = JSON.parse(text); } catch {}
-
       if (data && data.ok === false) throw new Error(data.error || 'Submission failed');
 
       setIsSubmitting(false);
@@ -94,9 +91,7 @@ export function HeroLeadForm({ city, service }: HeroLeadFormProps) {
           background: 'var(--sage-pale)', border: '2px solid var(--sage-mid)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: '22px', color: 'var(--sage)',
-        }}>
-          ✓
-        </div>
+        }}>✓</div>
         <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: 600, color: 'var(--ink)' }}>
           Request Received
         </h3>
@@ -112,7 +107,6 @@ export function HeroLeadForm({ city, service }: HeroLeadFormProps) {
       background: '#fff', borderRadius: '12px',
       border: '1px solid var(--border)', padding: '24px 26px',
     }}>
-      {/* Header */}
       <div style={{ marginBottom: '20px' }}>
         <div style={{
           display: 'inline-block', background: 'var(--sage-pale)',
@@ -130,29 +124,26 @@ export function HeroLeadForm({ city, service }: HeroLeadFormProps) {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <form ref={formRef} onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <input
           required name="fullName" type="text"
-          value={formData.fullName} onChange={handleChange}
           placeholder="Full Name *" style={inputStyle}
         />
 
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
           <input
             required name="phone" type="tel"
-            value={formData.phone} onChange={handleChange}
             placeholder="Phone Number *" style={inputStyle}
           />
           <input
             required name="email" type="email"
-            value={formData.email} onChange={handleChange}
             placeholder="Email Address *" style={inputStyle}
           />
         </div>
 
         <select
           required name="treatment"
-          value={formData.treatment} onChange={handleChange}
+          defaultValue=""
           style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}
         >
           <option value="" disabled>Select Treatment *</option>
@@ -164,8 +155,7 @@ export function HeroLeadForm({ city, service }: HeroLeadFormProps) {
         {!city && (
           <input
             required name="location" type="text"
-            value={formData.location} onChange={handleChange}
-            placeholder="Your City / Location *" style={inputStyle}
+            placeholder="Your Essex Town *" style={inputStyle}
           />
         )}
 
