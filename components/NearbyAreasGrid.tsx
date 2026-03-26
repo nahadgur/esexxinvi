@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { MapPin, ChevronDown } from 'lucide-react';
 import { getNearbyAreas } from '@/data/nearby-areas';
 
 interface NearbyAreasGridProps {
@@ -25,29 +24,36 @@ export function NearbyAreasGrid({ cityName, serviceSlug, serviceName, initialVis
     : `Areas We Cover Around ${cityName}`;
 
   const description = serviceName
-    ? `Looking for ${serviceName.toLowerCase()} near ${cityName}? Our Platinum providers serve patients across ${cityName} and the surrounding areas listed below. Whether you are based in the town centre or a nearby suburb, we will match you with the closest specialist.`
-    : `Our Platinum Invisalign providers in ${cityName} serve patients from across the wider Essex area. If you live in any of the neighbourhoods, suburbs, or nearby towns listed below, you are within reach of expert Invisalign treatment. Get matched with a local specialist today.`;
+    ? `Looking for ${serviceName.toLowerCase()} near ${cityName}? Our Platinum providers serve patients across ${cityName} and the surrounding areas listed below.`
+    : `Our Platinum Invisalign providers in ${cityName} serve patients from across the wider Essex area. If you live in any of the neighbourhoods or nearby towns below, you are within reach of expert Invisalign treatment.`;
 
   return (
-    <section className="mb-16">
-      <div className="flex items-center gap-3 mb-2">
-        <div className="bg-brand-100 p-2 rounded-lg">
-          <MapPin className="w-5 h-5 text-brand-600" />
-        </div>
-        <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900">{heading}</h2>
+    <section style={{ marginBottom: '56px' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+        <div style={{ width: '3px', height: '28px', background: 'var(--sage)', borderRadius: '2px' }} />
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,3vw,2.2rem)', fontWeight: 600, color: 'var(--ink)' }}>
+          {heading}
+        </h2>
       </div>
-      <p className="text-gray-600 mb-6 leading-relaxed">{description}</p>
+      <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '20px', maxWidth: '640px' }}>
+        {description}
+      </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '8px' }}>
         {visibleAreas.map(area => (
           <div
             key={area}
-            className="flex items-center gap-2 px-3 py-2.5 bg-gray-50 border border-gray-100 rounded-lg text-sm text-gray-700 hover:bg-brand-50 hover:border-brand-200 hover:text-brand-700 transition-colors"
+            style={{
+              padding: '9px 14px',
+              background: 'var(--sage-pale)',
+              border: '1px solid #d4dfd5',
+              borderRadius: '6px',
+              fontSize: '13px',
+              color: 'var(--ink)',
+              fontWeight: 400,
+            }}
           >
-            <MapPin className="w-3 h-3 text-brand-400 flex-shrink-0" />
-            <span className="font-medium truncate">
-              {serviceName ? area : `Invisalign ${area}`}
-            </span>
+            {serviceName ? area : `Invisalign ${area}`}
           </div>
         ))}
       </div>
@@ -55,25 +61,32 @@ export function NearbyAreasGrid({ cityName, serviceSlug, serviceName, initialVis
       {hiddenCount > 0 && !showAll && (
         <button
           onClick={() => setShowAll(true)}
-          className="mt-4 flex items-center gap-2 text-brand-600 font-bold text-sm hover:underline"
+          style={{
+            marginTop: '14px', background: 'none', border: 'none',
+            color: 'var(--sage)', fontWeight: 500, fontSize: '13px',
+            cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px',
+            fontFamily: 'var(--font-sans)',
+          }}
         >
           Show all {areas.length} areas around {cityName}
-          <ChevronDown className="w-4 h-4" />
         </button>
       )}
 
       {showAll && hiddenCount > 0 && (
         <button
           onClick={() => setShowAll(false)}
-          className="mt-4 flex items-center gap-2 text-brand-600 font-bold text-sm hover:underline"
+          style={{
+            marginTop: '14px', background: 'none', border: 'none',
+            color: 'var(--sage)', fontWeight: 500, fontSize: '13px',
+            cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px',
+            fontFamily: 'var(--font-sans)',
+          }}
         >
           Show fewer
-          <ChevronDown className="w-4 h-4 rotate-180" />
         </button>
       )}
 
-      {/* SEO paragraph - always in DOM for crawlability */}
-      <div className="mt-6 prose prose-sm max-w-none text-gray-500">
+      <div style={{ marginTop: '20px', fontSize: '13px', color: 'var(--muted)', lineHeight: 1.7 }}>
         <p>
           Patients from {areas.slice(0, 5).join(', ')}, and other areas around {cityName} regularly travel to our partnered clinics for Invisalign consultations.{' '}
           {serviceName

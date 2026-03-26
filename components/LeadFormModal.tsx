@@ -1,141 +1,67 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { CheckCircle, X } from 'lucide-react';
+import { useEffect } from 'react';
+import { X } from 'lucide-react';
+import { HeroLeadForm } from './HeroLeadForm';
 
 interface LeadFormModalProps {
   isOpen: boolean;
   onClose: () => void;
+  city?: string;
+  service?: string;
 }
 
-const GOOGLE_SCRIPT_URL =
-  'https://script.google.com/macros/s/AKfycbw0QaLFaG-XujztIC0ZyJ_DXbvlP9BHc7F2wbwOq0D9bRYijhYq8Dje_l4enKWfoUVvfg/exec';
-
-export function LeadFormModal({ isOpen, onClose }: LeadFormModalProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [shouldRender, setShouldRender] = useState(isOpen);
-  const [animationState, setAnimationState] = useState<'idle' | 'entering' | 'exiting'>('idle');
-
+export function LeadFormModal({ isOpen, onClose, city, service }: LeadFormModalProps) {
   useEffect(() => {
     if (isOpen) {
-      setShouldRender(true);
-      setAnimationState('entering');
-    } else if (shouldRender) {
-      setAnimationState('exiting');
-      const timer = setTimeout(() => {
-        setShouldRender(false);
-        setAnimationState('idle');
-      }, 300);
-      return () => clearTimeout(timer);
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
     }
-  }, [isOpen, shouldRender]);
+    return () => { document.body.style.overflow = ''; };
+  }, [isOpen]);
 
-  if (!shouldRender) return null;
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    try {
-      const form = e.currentTarget;
-      const fullName = (form.elements[0] as HTMLInputElement).value;
-      const email = (form.elements[1] as HTMLInputElement).value;
-      const location = (form.elements[2] as HTMLInputElement).value;
-
-      const payload = {
-        fullName,
-        email,
-        location,
-        page: window.location.href,
-        source: 'Invisalign Essex',
-      };
-
-      const res = await fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        body: JSON.stringify(payload),
-      });
-
-      const text = await res.text();
-      let data: any = {};
-      try { data = JSON.parse(text); } catch {}
-
-      if (data && data.ok === false) throw new Error(data.error || 'Submission failed');
-
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      setTimeout(() => { setIsSuccess(false); onClose(); }, 3000);
-    } catch (err) {
-      console.error(err);
-      setIsSubmitting(false);
-      alert('Something went wrong. Please try again.');
-    }
-  };
-
-  const handleBackdropClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) onClose();
-  };
-
-  const inputClass =
-    "w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition";
+  if (!isOpen) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm
-        ${animationState === 'entering' ? 'animate-backdrop-in' : animationState === 'exiting' ? 'animate-backdrop-out' : 'opacity-100'}`}
-      onClick={handleBackdropClick}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 100,
+        background: 'rgba(30,36,32,0.55)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        padding: '20px',
+        backdropFilter: 'blur(2px)',
+      }}
+      onClick={e => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div
-        className={`relative w-full max-w-lg overflow-hidden bg-white rounded-2xl shadow-2xl
-          ${animationState === 'entering' ? 'animate-modal-in' : 'animate-modal-out'}`}
-      >
+      <div style={{
+        position: 'relative', width: '100%', maxWidth: '460px',
+        animation: 'modalIn 0.25s ease-out',
+      }}>
+        {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-full transition-all z-10"
-          aria-label="Close modal"
+          style={{
+            position: 'absolute', top: '-12px', right: '-12px',
+            width: '32px', height: '32px', borderRadius: '50%',
+            background: 'var(--ink)', border: 'none',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer', zIndex: 10,
+          }}
+          aria-label="Close"
         >
-          <X className="w-5 h-5" />
+          <X style={{ width: '15px', height: '15px', color: '#fff' }} />
         </button>
 
-        <div className="p-8">
-          {isSuccess ? (
-            <div className="flex flex-col items-center text-center py-8 space-y-4">
-              <div className="w-16 h-16 bg-green-50 text-green-500 rounded-full flex items-center justify-center">
-                <CheckCircle className="w-10 h-10" />
-              </div>
-              <h2 className="text-2xl font-display font-bold text-gray-900">Request Received!</h2>
-              <p className="text-gray-600">We&apos;ve matched you with a Platinum Partner. Check your email for next steps.</p>
-            </div>
-          ) : (
-            <>
-              <div className="mb-6">
-                <span className="inline-block px-3 py-1 bg-brand-50 text-brand-600 text-xs font-bold uppercase tracking-wider rounded-full mb-3">
-                  Free Matching Service
-                </span>
-                <h2 className="text-2xl font-display font-bold text-gray-900">Start Your Smile Journey</h2>
-                <p className="text-gray-600 text-sm mt-1">Complete the form to get matched with vetted Invisalign specialists.</p>
-              </div>
-
-              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                <input required type="text" placeholder="Full name" className={inputClass} />
-                <input required type="email" placeholder="Email address" className={inputClass} />
-                <input required type="text" placeholder="Your city / location" className={inputClass} />
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-brand-500 hover:bg-brand-600 disabled:opacity-60 text-white font-semibold py-3 px-6 rounded-xl transition-colors text-sm mt-1"
-                >
-                  {isSubmitting ? 'Sending…' : 'Verify Availability →'}
-                </button>
-
-                <p className="text-center text-xs text-gray-400 mt-1">
-                  Facilitator service · Free initial consultation
-                </p>
-              </form>
-            </>
-          )}
-        </div>
+        <HeroLeadForm city={city} service={service} />
       </div>
+
+      <style>{`
+        @keyframes modalIn {
+          from { opacity: 0; transform: scale(0.95) translateY(16px); }
+          to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+      `}</style>
     </div>
   );
 }

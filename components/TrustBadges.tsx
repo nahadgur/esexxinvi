@@ -1,31 +1,42 @@
-import { ShieldCheck, UserCheck, Award, PoundSterling } from 'lucide-react';
-import { trustBadges } from '@/data/site';
-
-const iconMap: Record<string, React.ReactNode> = {
-  ShieldCheck: <ShieldCheck className="w-7 h-7 text-brand-500" />,
-  UserCheck: <UserCheck className="w-7 h-7 text-brand-500" />,
-  Award: <Award className="w-7 h-7 text-brand-500" />,
-  PoundSterling: <PoundSterling className="w-7 h-7 text-brand-500" />,
-};
-
 export function TrustBadges() {
+  const stats = [
+    { number: '4.95★', label: 'Average provider rating' },
+    { number: '150+', label: 'Cases/year — Diamond tier' },
+    { number: '14M+', label: 'Patients treated globally' },
+    { number: '£0', label: 'Cost to use our service' },
+  ];
+
   return (
-    <section className="py-10 bg-white border-b border-gray-100">
-      <div className="container-width">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-          {trustBadges.map(badge => (
-            <div key={badge.title} className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-brand-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                {iconMap[badge.icon]}
-              </div>
-              <div>
-                <div className="font-semibold text-gray-900 text-sm">{badge.title}</div>
-                <div className="text-xs text-gray-500">{badge.description}</div>
-              </div>
+    <section style={{ borderBottom: '1px solid var(--border)' }}>
+      <div style={{ display: 'flex' }}>
+        {stats.map((stat, i) => (
+          <div
+            key={stat.label}
+            style={{
+              flex: 1,
+              padding: '22px 28px',
+              borderRight: i < stats.length - 1 ? '1px solid var(--border)' : 'none',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '3px',
+            }}
+            className="trust-stat"
+          >
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '30px', fontWeight: 600, color: 'var(--sage)' }}>
+              {stat.number}
             </div>
-          ))}
-        </div>
+            <div style={{ fontSize: '11px', color: '#9A9A92', letterSpacing: '0.04em' }}>
+              {stat.label}
+            </div>
+          </div>
+        ))}
       </div>
+      <style>{`
+        @media (max-width: 640px) {
+          .trust-stat { padding: 16px 18px; }
+          .trust-stat div:first-child { font-size: 22px !important; }
+        }
+      `}</style>
     </section>
   );
 }

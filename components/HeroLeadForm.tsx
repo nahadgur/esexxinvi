@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { CheckCircle } from 'lucide-react';
 
 interface HeroLeadFormProps {
   city?: string;
@@ -19,6 +18,19 @@ const TREATMENTS = [
 
 const GOOGLE_SCRIPT_URL =
   'https://script.google.com/macros/s/AKfycbw0QaLFaG-XujztIC0ZyJ_DXbvlP9BHc7F2wbwOq0D9bRYijhYq8Dje_l4enKWfoUVvfg/exec';
+
+const inputStyle: React.CSSProperties = {
+  width: '100%',
+  padding: '11px 14px',
+  borderRadius: '8px',
+  border: '1px solid var(--border)',
+  background: 'var(--cream)',
+  color: 'var(--ink)',
+  fontSize: '13px',
+  fontFamily: 'var(--font-sans)',
+  outline: 'none',
+  transition: 'border-color 0.15s',
+};
 
 export function HeroLeadForm({ city, service }: HeroLeadFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -69,17 +81,26 @@ export function HeroLeadForm({ city, service }: HeroLeadFormProps) {
     }
   };
 
-  const inputClass =
-    "w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 text-gray-900 placeholder-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition";
-
   if (isSuccess) {
     return (
-      <div className="bg-white text-gray-900 rounded-2xl p-8 shadow-2xl border border-gray-100 flex flex-col items-center justify-center text-center gap-4 min-h-[340px]">
-        <div className="w-16 h-16 bg-green-50 text-green-500 rounded-full flex items-center justify-center">
-          <CheckCircle className="w-10 h-10" />
+      <div style={{
+        background: '#fff', borderRadius: '12px',
+        border: '1px solid var(--border)', padding: '40px 28px',
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        justifyContent: 'center', textAlign: 'center', gap: '14px', minHeight: '320px',
+      }}>
+        <div style={{
+          width: '52px', height: '52px', borderRadius: '50%',
+          background: 'var(--sage-pale)', border: '2px solid var(--sage-mid)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: '22px', color: 'var(--sage)',
+        }}>
+          ✓
         </div>
-        <h3 className="text-2xl font-display font-bold">Request Received!</h3>
-        <p className="text-gray-600">
+        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', fontWeight: 600, color: 'var(--ink)' }}>
+          Request Received
+        </h3>
+        <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.65 }}>
           We&apos;ve matched you with a Platinum Partner{city ? ` in ${city}` : ''}. Check your email for next steps.
         </p>
       </div>
@@ -87,28 +108,53 @@ export function HeroLeadForm({ city, service }: HeroLeadFormProps) {
   }
 
   return (
-    <div className="bg-white text-gray-900 rounded-2xl p-6 md:p-8 shadow-2xl border border-gray-100">
-      <div className="mb-6">
-        <span className="inline-block px-3 py-1 bg-brand-50 text-brand-600 text-xs font-bold uppercase tracking-wider rounded-full mb-3">
+    <div style={{
+      background: '#fff', borderRadius: '12px',
+      border: '1px solid var(--border)', padding: '24px 26px',
+    }}>
+      {/* Header */}
+      <div style={{ marginBottom: '20px' }}>
+        <div style={{
+          display: 'inline-block', background: 'var(--sage-pale)',
+          borderRadius: '20px', padding: '4px 12px', marginBottom: '10px',
+          fontSize: '10px', fontWeight: 600, color: 'var(--sage)',
+          letterSpacing: '0.1em', textTransform: 'uppercase',
+        }}>
           Free Matching Service
-        </span>
-        <h3 className="text-2xl font-display font-bold leading-tight">
+        </div>
+        <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.2 }}>
           Get Matched{city ? ` in ${city}` : ''}
         </h3>
-        <p className="text-gray-600 text-sm mt-1">
+        <p style={{ fontSize: '13px', color: 'var(--muted)', marginTop: '4px' }}>
           Top local clinics will contact you within 2 hours
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-        <input required name="fullName" type="text" value={formData.fullName} onChange={handleChange} placeholder="Full Name *" className={inputClass} />
+      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+        <input
+          required name="fullName" type="text"
+          value={formData.fullName} onChange={handleChange}
+          placeholder="Full Name *" style={inputStyle}
+        />
 
-        <div className="grid grid-cols-2 gap-3">
-          <input required name="phone" type="tel" value={formData.phone} onChange={handleChange} placeholder="Phone Number *" className={inputClass} />
-          <input required name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Email Address *" className={inputClass} />
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+          <input
+            required name="phone" type="tel"
+            value={formData.phone} onChange={handleChange}
+            placeholder="Phone Number *" style={inputStyle}
+          />
+          <input
+            required name="email" type="email"
+            value={formData.email} onChange={handleChange}
+            placeholder="Email Address *" style={inputStyle}
+          />
         </div>
 
-        <select required name="treatment" value={formData.treatment} onChange={handleChange} className={inputClass + " appearance-none cursor-pointer"}>
+        <select
+          required name="treatment"
+          value={formData.treatment} onChange={handleChange}
+          style={{ ...inputStyle, appearance: 'none', cursor: 'pointer' }}
+        >
           <option value="" disabled>Select Treatment *</option>
           {TREATMENTS.map(t => (
             <option key={t} value={t}>{t}</option>
@@ -116,21 +162,31 @@ export function HeroLeadForm({ city, service }: HeroLeadFormProps) {
         </select>
 
         {!city && (
-          <input required name="location" type="text" value={formData.location} onChange={handleChange} placeholder="Your City / Location *" className={inputClass} />
+          <input
+            required name="location" type="text"
+            value={formData.location} onChange={handleChange}
+            placeholder="Your City / Location *" style={inputStyle}
+          />
         )}
 
         <button
           disabled={isSubmitting}
           type="submit"
-          className="w-full bg-brand-500 hover:bg-brand-600 disabled:opacity-60 text-white font-semibold py-3 px-6 rounded-xl transition-colors text-sm mt-1"
+          style={{
+            width: '100%', background: isSubmitting ? '#7aA080' : 'var(--sage)',
+            color: '#fff', fontWeight: 500, padding: '13px 20px',
+            borderRadius: '40px', border: 'none', fontSize: '14px',
+            fontFamily: 'var(--font-sans)', cursor: isSubmitting ? 'not-allowed' : 'pointer',
+            marginTop: '4px', transition: 'background 0.2s',
+          }}
         >
-          {isSubmitting ? 'Sending…' : 'Get 3 Free Quotes →'}
+          {isSubmitting ? 'Sending\u2026' : 'Get 3 Free Quotes \u2192'}
         </button>
 
-        <div className="flex items-center justify-center gap-4 pt-1">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '18px', paddingTop: '4px' }}>
           {['100% Free', 'No Spam', '2hr Response'].map(item => (
-            <span key={item} className="flex items-center gap-1 text-xs text-green-600 font-medium">
-              <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+            <span key={item} style={{ display: 'flex', alignItems: 'center', gap: '5px', fontSize: '11px', color: 'var(--sage)', fontWeight: 500 }}>
+              <span style={{ width: '5px', height: '5px', background: 'var(--sage-mid)', borderRadius: '50%', flexShrink: 0 }} />
               {item}
             </span>
           ))}

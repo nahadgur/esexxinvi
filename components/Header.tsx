@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Menu, X, MapPin, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { services } from '@/data/services';
 import { siteConfig } from '@/data/site';
 
@@ -26,88 +25,154 @@ export function Header({ onOpenModal }: HeaderProps) {
   }, []);
 
   return (
-    <>
-      {/* Top Bar */}
-      <div className="bg-brand-900 text-brand-50 py-2 px-4 text-sm hidden md:block">
-        <div className="container-width flex justify-between items-center">
-          <span className="flex items-center gap-2">
-            <MapPin className="w-4 h-4" /> Platinum & Diamond Invisalign Providers Across Essex
-          </span>
+    <header
+      style={{
+        background: 'var(--cream)',
+        borderBottom: `1px solid var(--border)`,
+        position: 'sticky',
+        top: 0,
+        zIndex: 40,
+        transition: 'box-shadow 0.2s',
+        boxShadow: scrolled ? '0 1px 12px rgba(30,36,32,0.07)' : 'none',
+      }}
+    >
+      <div className="container-width">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '72px' }}>
+
+          {/* Logo */}
+          <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+            <div style={{
+              width: '32px', height: '32px', borderRadius: '50%',
+              border: '1.5px solid var(--sage)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '11px', color: 'var(--sage)', fontWeight: 600, letterSpacing: '-0.3px',
+              flexShrink: 0,
+            }}>IE</div>
+            <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '17px', fontWeight: 600, color: 'var(--ink)' }}>
+                Invisalign
+              </span>
+              <span style={{ fontSize: '10px', color: 'var(--sage)', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+                Essex
+              </span>
+            </div>
+          </Link>
+
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex" style={{ alignItems: 'center', gap: '4px' }}>
+            <Link href="/" style={navLink}>Home</Link>
+
+            {/* Services dropdown */}
+            <div style={{ position: 'relative' }} className="group">
+              <Link href="/services/" style={{ ...navLink, display: 'flex', alignItems: 'center', gap: '4px' }}>
+                Services <ChevronDown style={{ width: '14px', height: '14px' }} />
+              </Link>
+              <div style={{
+                position: 'absolute', top: '100%', left: 0, width: '260px',
+                background: 'var(--cream)', borderRadius: '10px',
+                border: '1px solid var(--border)', padding: '6px',
+                boxShadow: '0 8px 24px rgba(30,36,32,0.1)',
+                opacity: 0, visibility: 'hidden',
+                transform: 'translateY(8px)',
+                transition: 'all 0.18s',
+                zIndex: 50,
+              }} className="group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
+                {services.map(service => (
+                  <Link
+                    key={service.id}
+                    href={`/services/${service.slug}/`}
+                    style={{
+                      display: 'block', padding: '9px 14px',
+                      fontSize: '13px', color: 'var(--muted)',
+                      textDecoration: 'none', borderRadius: '6px',
+                      transition: 'background 0.15s, color 0.15s',
+                    }}
+                    className="hover:bg-brand-50 hover:text-brand-700"
+                  >
+                    {service.title}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <Link href="/location/" style={navLink}>Locations</Link>
+            <Link href="/blog/" style={navLink}>Blog</Link>
+
+            <button
+              onClick={onOpenModal}
+              className="btn-primary"
+              style={{ marginLeft: '12px', fontSize: '13px', padding: '9px 22px' }}
+            >
+              Find a Provider
+            </button>
+          </nav>
+
+          {/* Mobile toggle */}
+          <button
+            className="lg:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+            style={{ padding: '6px', color: 'var(--ink)', background: 'none', border: 'none', cursor: 'pointer' }}
+          >
+            {mobileOpen ? <X style={{ width: '22px', height: '22px' }} /> : <Menu style={{ width: '22px', height: '22px' }} />}
+          </button>
         </div>
       </div>
 
-      {/* Main Header */}
-      <header className={`sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b transition-shadow duration-200 ${scrolled ? 'shadow-md border-gray-200' : 'shadow-sm border-gray-100'}`}>
-        <div className="container-width">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="w-10 h-10 rounded-lg overflow-hidden flex items-center justify-center">
-                <Image src="/logo.png" alt="Invisalign Essex" width={40} height={40} priority className="object-contain" />
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div style={{
+          background: 'var(--cream)', borderTop: '1px solid var(--border)',
+          position: 'absolute', width: '100%', left: 0,
+          boxShadow: '0 8px 24px rgba(30,36,32,0.1)',
+          zIndex: 50, maxHeight: '80vh', overflowY: 'auto',
+        }}>
+          <div style={{ padding: '8px 16px 24px' }}>
+            <Link href="/" style={mobileLink}>Home</Link>
+            <div style={{ padding: '10px 12px 4px' }}>
+              <div style={{ fontSize: '10px', fontWeight: 600, color: 'var(--sage-mid)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}>
+                Treatments
               </div>
-              <div className="flex flex-col">
-                <span className="font-display font-bold text-xl leading-none text-gray-900">Invisalign</span>
-                <span className="text-xs text-brand-500 font-semibold tracking-widest uppercase">Essex</span>
-              </div>
-            </Link>
-
-            {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center gap-1">
-              <Link href="/" className="px-3 py-2 text-gray-600 hover:text-brand-600 font-medium transition-colors rounded-lg hover:bg-brand-50">Home</Link>
-
-              {/* Services Dropdown */}
-              <div className="relative group">
-                <Link href="/services/" className="flex items-center gap-1 px-3 py-2 text-gray-600 group-hover:text-brand-600 font-medium transition-colors rounded-lg group-hover:bg-brand-50">
-                  Services <ChevronDown className="w-4 h-4" />
+              {services.map(s => (
+                <Link key={s.id} href={`/services/${s.slug}/`} style={{ ...mobileLink, fontSize: '13px', paddingTop: '7px', paddingBottom: '7px' }}>
+                  {s.title}
                 </Link>
-                <div className="absolute top-full left-0 w-72 bg-white rounded-xl shadow-xl border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all translate-y-2 group-hover:translate-y-0 p-2 z-50">
-                  {services.map(service => (
-                    <Link
-                      key={service.id}
-                      href={`/services/${service.slug}/`}
-                      className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-brand-50 hover:text-brand-700 rounded-lg transition-colors"
-                    >
-                      {service.title}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <Link href="/location/" className="px-3 py-2 text-gray-600 hover:text-brand-600 font-medium transition-colors rounded-lg hover:bg-brand-50">Locations</Link>
-              <Link href="/blog/" className="px-3 py-2 text-gray-600 hover:text-brand-600 font-medium transition-colors rounded-lg hover:bg-brand-50">Blog</Link>
-
-              <button onClick={onOpenModal} className="ml-3 btn-primary text-sm !py-2.5 !px-5 rounded-full">
+              ))}
+            </div>
+            <Link href="/location/" style={mobileLink}>Locations</Link>
+            <Link href="/blog/" style={mobileLink}>Blog</Link>
+            <div style={{ padding: '16px 12px 0' }}>
+              <button
+                onClick={() => { onOpenModal?.(); setMobileOpen(false); }}
+                className="btn-primary"
+                style={{ width: '100%', textAlign: 'center', fontSize: '14px' }}
+              >
                 Find a Provider
               </button>
-            </nav>
-
-            {/* Mobile Toggle */}
-            <button className="lg:hidden p-2 text-gray-600" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
-              {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        {mobileOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-100 absolute w-full left-0 shadow-xl z-50 max-h-[80vh] overflow-y-auto">
-            <div className="px-4 pt-2 pb-6 space-y-1">
-              <Link href="/" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Home</Link>
-              <div className="px-3 py-2">
-                <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Treatments</div>
-                {services.map(s => (
-                  <Link key={s.id} href={`/services/${s.slug}/`} className="block py-2 text-sm text-gray-600 hover:text-brand-600">{s.title}</Link>
-                ))}
-              </div>
-              <Link href="/location/" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Locations</Link>
-              <Link href="/blog/" className="block px-3 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-lg">Blog</Link>
-              <div className="pt-4 px-3">
-                <button onClick={() => { onOpenModal?.(); setMobileOpen(false); }} className="block w-full btn-primary text-center">Find a Provider</button>
-              </div>
             </div>
           </div>
-        )}
-      </header>
-    </>
+        </div>
+      )}
+    </header>
   );
 }
+
+const navLink: React.CSSProperties = {
+  padding: '8px 14px',
+  fontSize: '13px',
+  color: 'var(--muted)',
+  textDecoration: 'none',
+  fontWeight: 400,
+  borderRadius: '6px',
+  transition: 'color 0.15s',
+};
+
+const mobileLink: React.CSSProperties = {
+  display: 'block',
+  padding: '11px 12px',
+  fontSize: '15px',
+  fontWeight: 400,
+  color: 'var(--ink)',
+  textDecoration: 'none',
+  borderRadius: '6px',
+};

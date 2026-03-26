@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
-import { siteConfig } from '@/data/site';
 
 interface BreadcrumbItem {
   label: string;
@@ -8,34 +7,44 @@ interface BreadcrumbItem {
 }
 
 export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
-  const allItems = [{ label: 'Home', href: '/' }, ...items];
-
   const schema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": allItems.map((item, i) => ({
-      "@type": "ListItem",
-      "position": i + 1,
-      "name": item.label,
-      ...(item.href ? { "item": `${siteConfig.url}${item.href}` } : {})
-    }))
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.label,
+      ...(item.href ? { item: item.href } : {}),
+    })),
   };
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-6">
+    <nav aria-label="Breadcrumb" style={{ paddingTop: '14px', paddingBottom: '14px' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
-      <ol className="flex items-center flex-wrap gap-1 text-sm text-gray-500">
-        {allItems.map((item, i) => (
-          <li key={i} className="flex items-center gap-1">
-            {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-gray-300" />}
-            {item.href ? (
-              <Link href={item.href} className="hover:text-brand-600 transition-colors">{item.label}</Link>
-            ) : (
-              <span className="text-gray-900 font-medium">{item.label}</span>
-            )}
-          </li>
-        ))}
-      </ol>
+      <div className="container-width">
+        <ol style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '4px', listStyle: 'none', margin: 0, padding: 0 }}>
+          {items.map((item, i) => (
+            <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+              {i > 0 && (
+                <ChevronRight style={{ width: '13px', height: '13px', color: 'var(--border)', flexShrink: 0 }} />
+              )}
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  style={{ fontSize: '12px', color: 'var(--muted)', textDecoration: 'none', transition: 'color 0.15s' }}
+                  className="hover:text-brand-600"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <span style={{ fontSize: '12px', color: 'var(--sage)', fontWeight: 500 }}>
+                  {item.label}
+                </span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
     </nav>
   );
 }
