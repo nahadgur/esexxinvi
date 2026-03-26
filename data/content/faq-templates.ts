@@ -24,7 +24,7 @@ export interface FaqVariables {
   clinic1Tier?: string;             // e.g. "Platinum", "Diamond"
   clinic1GoogleRating?: number;     // e.g. 4.9
   clinic1ReviewCount?: number;      // e.g. 312
-  clinic1CaseVolume?: number;       // e.g. 480
+  clinic1CaseVolume?: string;       // e.g. "400+"
 
   // Treatment
   treatmentFullName: string;        // e.g. "Invisalign for crowded teeth"
@@ -135,7 +135,7 @@ export function renderFaq2(v: FaqVariables): RenderedFaq {
   if (branchAReady) {
     const volumeNote =
       v.clinic1CaseVolume !== undefined
-        ? ` and has completed over ${v.clinic1CaseVolume.toLocaleString()} Invisalign cases`
+        ? ` and has completed over ${v.clinic1CaseVolume} Invisalign cases`
         : "";
     answer =
       `All providers listed on invisaligndentistsessex.uk are verified Invisalign-certified dentists operating ` +
