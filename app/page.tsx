@@ -192,7 +192,7 @@ export default function HomePage() {
             ══════════════════════════════════════════════════════════════ */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '14px clamp(24px,5vw,56px)', background: 'var(--sage-light)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
           <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
-          <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.1em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Below the fold</span>
+          <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.1em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}></span>
           <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
         </div>
 
