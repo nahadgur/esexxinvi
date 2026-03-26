@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { CheckCircle, MapPin, Star, Clock, Shield, Award, Users } from 'lucide-react';
+import { CheckCircle, MapPin, Star, Clock, Shield, Award, Users, ArrowLeft, BookOpen } from 'lucide-react';
 import { services, getServiceBySlug } from '@/data/services';
 import { LOCATIONS, getCityBySlug, toSlug } from '@/data/locations';
 import { Header } from '@/components/Header';
@@ -15,6 +15,8 @@ import { Testimonials } from '@/components/Testimonials';
 import { LeadFormModal } from '@/components/LeadFormModal';
 import { PricingSection } from '@/components/PricingSection';
 import { NearbyAreasGrid } from '@/components/NearbyAreasGrid';
+import { getTownContent, getServiceContent } from '@/data/content';
+import { serviceVariants } from '@/data/content/service-variants';
 
 export default function LocationServicePageClient({ params }: { params: { town: string; service: string } }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,11 +26,27 @@ export default function LocationServicePageClient({ params }: { params: { town: 
 
   const allCities = Object.values(LOCATIONS).flat();
 
+  // ── Content data lookup ──────────────────────────────────────────────────
+  const townData    = getTownContent(params.town);
+  const svcContent  = getServiceContent(params.town, params.service);
+
+  // Condition body: select variant if town content exists; else fall back to variant A
+  const conditionVariant = svcContent?.conditionVariant ?? 'A';
+  const conditionBody = serviceVariants[params.service]?.[conditionVariant] ?? null;
+
+  // Trust strip values — prefer content data, fall back to generic strings
+  const googleRating   = townData?.clinic1?.googleRating;
+  const reviewCount    = townData?.clinic1?.reviewCount;
+  const clinic1Name    = townData?.clinic1?.name;
+  const clinic1Tier    = townData?.clinic1?.tier ?? 'Platinum';
+  const caseVolume     = townData?.clinic1?.caseVolume ?? '300+';
+  const waitDays       = townData?.waitTimeDays ?? 7;
+
   const benefits = [
     { icon: <Award className="w-6 h-6" />, title: 'Verified High-Tier Providers', desc: `Every ${cityName} dentist in our network completes 80 or more Invisalign cases per year. That experience shows in the results.` },
-    { icon: <Clock className="w-6 h-6" />, title: 'Seen Within a Week', desc: `Most ${cityName} clinics offer free consultation slots within 7 days, including evenings and weekends.` },
+    { icon: <Clock className="w-6 h-6" />, title: `Seen Within ${waitDays} Days`, desc: `Most ${cityName} clinics offer free consultation slots within ${waitDays} days, including evenings and weekends.` },
     { icon: <Shield className="w-6 h-6" />, title: 'Advanced Technology Included', desc: 'Every consultation includes a free iTero 3D scan and full ClinCheck digital treatment plan at no extra charge.' },
-    { icon: <Users className="w-6 h-6" />, title: 'Matched to Your Case', desc: `We do not send you a random list. We match you with ${cityName} providers who have specific experience with your condition.` },
+    { icon: <Users className="w-6 h-6" />, title: 'Matched to Your Case', desc: `We match you with ${cityName} providers who have specific experience with ${service.title.toLowerCase()}.` },
   ];
 
   const treatmentSteps = [
@@ -46,7 +64,7 @@ export default function LocationServicePageClient({ params }: { params: { town: 
       <Header onOpenModal={() => setIsModalOpen(true)} />
       <main className="flex-grow">
 
-        {/* Split Hero */}
+        {/* Hero */}
         <section className="bg-gray-900 text-white relative overflow-hidden">
           <div className="absolute inset-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -62,25 +80,41 @@ export default function LocationServicePageClient({ params }: { params: { town: 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-6">
               <div>
                 <div className="inline-flex items-center gap-2 bg-brand-500/20 text-brand-300 px-3 py-1 rounded-full text-sm font-medium mb-6 border border-brand-500/30">
-                  <MapPin className="w-4 h-4" /> Platinum Providers in {cityName}
+                  <MapPin className="w-4 h-4" /> {clinic1Tier} Providers in {cityName}
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6">
                   {service.title} in <span className="text-brand-400">{cityName}</span>
                 </h1>
                 <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                  Get matched with {cityName}&apos;s most experienced Invisalign providers for {service.title.toLowerCase()}. Free consultation, free 3D scan, and up to 3 quotes at no cost.
+                  {svcContent?.introParagraph
+                    ? svcContent.introParagraph
+                    : `Get matched with ${cityName}'s most experienced Invisalign providers for ${service.title.toLowerCase()}. Free consultation, free 3D scan, and up to 3 quotes at no cost.`}
                 </p>
-                <div className="space-y-4 mb-8">
-                  {[`Specialists in ${cityName} who treat this daily`, 'Compare up to 3 free quotes side by side', 'Only Platinum and Diamond tier providers listed'].map((item, i) => (
-                    <div key={i} className="flex items-center gap-3">
-                      <CheckCircle className="w-6 h-6 text-brand-400 flex-shrink-0" />
-                      <span className="text-lg">{item}</span>
+                {/* Trust strip */}
+                <div className="grid grid-cols-3 gap-3 mb-6">
+                  {googleRating && reviewCount ? (
+                    <div className="bg-white/10 rounded-xl p-3 text-center">
+                      <div className="text-yellow-400 text-sm mb-0.5">{'★'.repeat(5)}</div>
+                      <div className="font-bold text-sm">{googleRating}/5</div>
+                      <div className="text-gray-400 text-xs">{reviewCount} reviews</div>
                     </div>
-                  ))}
-                </div>
-                <div className="flex items-center gap-4 text-sm text-gray-400">
-                  <div className="flex text-yellow-400">{[1,2,3,4,5].map(i => <Star key={i} className="w-4 h-4 fill-current" />)}</div>
-                  <span>Highly rated by {cityName} patients</span>
+                  ) : (
+                    <div className="bg-white/10 rounded-xl p-3 text-center">
+                      <div className="text-yellow-400 text-sm mb-0.5">{'★'.repeat(5)}</div>
+                      <div className="font-bold text-sm">Top Rated</div>
+                      <div className="text-gray-400 text-xs">{cityName} providers</div>
+                    </div>
+                  )}
+                  <div className="bg-white/10 rounded-xl p-3 text-center">
+                    <div className="text-brand-400 text-sm mb-0.5">🏆</div>
+                    <div className="font-bold text-sm">{clinic1Tier}</div>
+                    <div className="text-gray-400 text-xs">{caseVolume} cases</div>
+                  </div>
+                  <div className="bg-white/10 rounded-xl p-3 text-center">
+                    <div className="text-brand-400 text-sm mb-0.5">📅</div>
+                    <div className="font-bold text-sm">Free Consult</div>
+                    <div className="text-gray-400 text-xs">Within {waitDays} days</div>
+                  </div>
                 </div>
               </div>
               <div>
@@ -92,7 +126,6 @@ export default function LocationServicePageClient({ params }: { params: { town: 
 
         {/* Main Content */}
         <div className="container-width py-16">
-          {/* Benefits Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {benefits.map((benefit, idx) => (
               <div key={idx} className="flex items-start gap-4 p-5 bg-gray-50 rounded-xl border border-gray-100">
@@ -108,20 +141,58 @@ export default function LocationServicePageClient({ params }: { params: { town: 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
 
-              {/* SEO Intro */}
+              {/* Upward links */}
+              <section className="mb-12">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Link href={`/locations/${params.town}/`} className="flex items-center gap-3 flex-1 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-brand-300 hover:bg-brand-50 transition-all group">
+                    <div className="bg-brand-100 p-2 rounded-lg flex-shrink-0"><MapPin className="w-4 h-4 text-brand-600" /></div>
+                    <div className="min-w-0">
+                      <p className="text-xs text-gray-500 mb-0.5">All Invisalign in</p>
+                      <p className="font-semibold text-gray-900 group-hover:text-brand-700 text-sm">{cityName} Providers</p>
+                    </div>
+                    <ArrowLeft className="w-4 h-4 text-gray-400 group-hover:text-brand-600 ml-auto flex-shrink-0 rotate-180 transition-colors" />
+                  </Link>
+                  <Link href={`/treatments/${service.slug}/`} className="flex items-center gap-3 flex-1 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-brand-300 hover:bg-brand-50 transition-all group">
+                    <div className="bg-brand-100 p-2 rounded-lg flex-shrink-0"><BookOpen className="w-4 h-4 text-brand-600" /></div>
+                    <div className="min-w-0">
+                      <p className="text-xs text-gray-500 mb-0.5">Complete guide to</p>
+                      <p className="font-semibold text-gray-900 group-hover:text-brand-700 text-sm">{service.title}</p>
+                    </div>
+                    <ArrowLeft className="w-4 h-4 text-gray-400 group-hover:text-brand-600 ml-auto flex-shrink-0 rotate-180 transition-colors" />
+                  </Link>
+                </div>
+              </section>
+
+              {/* SEO Intro — localised if available */}
               <section className="mb-12">
                 <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-4">
                   What to Expect From {service.title} in {cityName}
                 </h2>
                 <div className="prose prose-gray max-w-none text-gray-600 space-y-4">
-                  <p>
-                    {service.title} is one of the most commonly requested Invisalign treatments at {cityName} clinics. Our Platinum providers in the area have treated hundreds of similar cases and understand exactly how to plan the aligner sequence for your specific situation. They use ClinCheck 3D software to map every millimetre of tooth movement before your first tray is even manufactured, so there are no surprises along the way.
-                  </p>
-                  <p>
-                    {cityName} patients also benefit from access to advanced Invisalign features that are only available to high-tier providers. These include SmartForce attachments for complex tooth movements, Precision Wings for bite correction, and optimised staging protocols that reduce overall treatment time. If you have been told by a general dentist that your case is too difficult for Invisalign, it is worth getting a second opinion from one of our {cityName} specialists.
-                  </p>
+                  {svcContent?.introParagraph ? (
+                    <p>{svcContent.introParagraph}</p>
+                  ) : (
+                    <>
+                      <p>{service.title} is one of the most commonly requested Invisalign treatments at {cityName} clinics. Our {clinic1Tier} providers in the area have treated hundreds of similar cases and understand exactly how to plan the aligner sequence for your specific situation.</p>
+                      <p>{cityName} patients benefit from access to advanced Invisalign features including SmartForce attachments, Precision Wings for bite correction, and optimised staging protocols that reduce overall treatment time.</p>
+                    </>
+                  )}
                 </div>
               </section>
+
+              {/* Condition explanation — variant-selected body */}
+              {conditionBody && (
+                <section className="mb-12">
+                  <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                    How Invisalign Treats {service.title}: What to Know Before Your Consultation
+                  </h2>
+                  <div className="prose prose-gray max-w-none text-gray-600 space-y-4">
+                    {conditionBody.split('\n\n').map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
+                  </div>
+                </section>
+              )}
 
               {/* Nearby Areas */}
               <NearbyAreasGrid cityName={cityName} serviceSlug={service.slug} serviceName={service.title} />
@@ -139,15 +210,43 @@ export default function LocationServicePageClient({ params }: { params: { town: 
                 </div>
               </section>
 
-              {/* Pricing */}
-              <PricingSection cityName={cityName} serviceId={service.id} serviceName={service.title} />
+              {/* Pricing — uses price_variance_note when available */}
+              <section className="mb-12">
+                <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
+                  How Much Does {service.title} Cost in {cityName}?
+                </h2>
+                {svcContent?.priceVarianceNote && (
+                  <div className="mb-6 p-4 bg-amber-50 border border-amber-100 border-l-4 border-l-amber-400 rounded-xl">
+                    <p className="text-gray-700 text-sm leading-relaxed">{svcContent.priceVarianceNote}</p>
+                  </div>
+                )}
+                {townData && (
+                  <div className="flex justify-between items-center mb-2 text-sm font-mono text-gray-600">
+                    <span>£{townData.priceRangeLow.toLocaleString()}</span>
+                    <span className="text-gray-400">{cityName} local range</span>
+                    <span>£{townData.priceRangeHigh.toLocaleString()}</span>
+                  </div>
+                )}
+                <PricingSection cityName={cityName} serviceId={service.id} serviceName={service.title} />
+                {townData?.financeMinMonthly && (
+                  <div className="mt-4 flex items-center justify-between p-4 bg-gray-900 text-white rounded-xl">
+                    <div>
+                      <div className="font-display font-bold">From £{townData.financeMinMonthly}/month</div>
+                      <div className="text-gray-400 text-sm">0% finance available at most {cityName} clinics</div>
+                    </div>
+                    <button onClick={() => setIsModalOpen(true)} className="bg-white text-gray-900 text-sm font-bold px-5 py-2.5 rounded-lg hover:bg-gray-100 transition-colors">
+                      Check Eligibility
+                    </button>
+                  </div>
+                )}
+              </section>
 
               {/* Why Choose */}
               <section className="mb-12">
                 <h3 className="text-2xl font-display font-bold text-gray-900 mb-4">Why Get {service.title} in {cityName} Through Us?</h3>
                 <div className="space-y-3">
                   {[
-                    `Every ${cityName} provider we list has been independently verified as Platinum or Diamond tier by Align Technology`,
+                    `Every ${cityName} provider we list has been independently verified as ${clinic1Tier} or Diamond tier by Align Technology`,
                     'You get a full 3D preview of your finished result before agreeing to treatment',
                     `${cityName} clinics in our network offer flexible scheduling including evenings and weekends`,
                     'Aftercare and retention planning is included in every treatment quote with no hidden extras',
@@ -159,6 +258,20 @@ export default function LocationServicePageClient({ params }: { params: { town: 
                   ))}
                 </div>
               </section>
+
+              {/* Review sentence if rating data available */}
+              {googleRating && reviewCount && clinic1Name && (
+                <div className="mb-12 p-5 bg-gray-50 rounded-xl border border-gray-100">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-yellow-400">{'★'.repeat(5)}</span>
+                    <span className="font-semibold text-gray-900">{googleRating}/5</span>
+                    <span className="text-gray-500 text-sm">across {reviewCount} patient reviews</span>
+                  </div>
+                  <p className="text-gray-700 text-sm">
+                    {clinic1Name} is among the highest-rated Invisalign providers for {service.title.toLowerCase()} in {cityName}, with a {googleRating}/5 rating across {reviewCount} verified patient reviews.
+                  </p>
+                </div>
+              )}
 
               {/* FAQs */}
               {service.faqs.length > 0 && (
@@ -178,6 +291,16 @@ export default function LocationServicePageClient({ params }: { params: { town: 
             <aside className="lg:col-span-1">
               <div className="sticky top-28 space-y-8">
                 <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+                  {/* Sidebar upward links */}
+                  <div className="mb-5 pb-5 border-b border-gray-100 space-y-2">
+                    <Link href={`/locations/${params.town}/`} className="flex items-center gap-2 text-sm text-brand-700 font-medium hover:underline">
+                      <ArrowLeft className="w-3.5 h-3.5" /> All treatments in {cityName}
+                    </Link>
+                    <Link href={`/treatments/${service.slug}/`} className="flex items-center gap-2 text-sm text-brand-700 font-medium hover:underline">
+                      <ArrowLeft className="w-3.5 h-3.5" /> {service.title} — full guide
+                    </Link>
+                  </div>
+
                   <h3 className="text-lg font-display font-bold text-gray-900 mb-4">Other Treatments in {cityName}</h3>
                   <ul className="space-y-2 mb-8">
                     {services.filter(s => s.id !== service.id).map(s => (
@@ -200,9 +323,15 @@ export default function LocationServicePageClient({ params }: { params: { town: 
                   </ul>
                 </div>
                 <div className="bg-brand-900 text-white p-6 rounded-2xl shadow-lg">
-                  <h3 className="text-lg font-display font-bold mb-3">From £50/month</h3>
-                  <p className="text-brand-100 text-sm mb-4">0% finance available at most {cityName} clinics. Spread the cost of {service.title.toLowerCase()} over 12 to 60 months with nothing to pay upfront.</p>
-                  <button onClick={() => setIsModalOpen(true)} className="block w-full bg-white text-brand-900 text-center font-bold py-3 px-6 rounded-xl hover:bg-brand-50 transition-colors text-sm">Get Free Quotes</button>
+                  <h3 className="text-lg font-display font-bold mb-3">
+                    {townData ? `From £${townData.financeMinMonthly}/month` : 'From £50/month'}
+                  </h3>
+                  <p className="text-brand-100 text-sm mb-4">
+                    0% finance available at most {cityName} clinics. Spread the cost of {service.title.toLowerCase()} over 12 to 60 months.
+                  </p>
+                  <button onClick={() => setIsModalOpen(true)} className="block w-full bg-white text-brand-900 text-center font-bold py-3 px-6 rounded-xl hover:bg-brand-50 transition-colors text-sm">
+                    Get Free Quotes
+                  </button>
                 </div>
               </div>
             </aside>

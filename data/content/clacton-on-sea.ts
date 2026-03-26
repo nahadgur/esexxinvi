@@ -1,0 +1,60 @@
+import type { TownContent } from './types';
+
+export const clactonOnSeaContent: TownContent = {
+  townName: 'Clacton-on-Sea',
+  townSlug: 'clacton-on-sea',
+  essexRegion: 'Essex Cities & Major Towns',
+  demographicProfile: 'Family-heavy / coastal / retirement community',
+  primaryAudience: 'Local families, retirees seeking discreet correction, NHS workers, younger adults in the Tendring district',
+  landmarkPrimary: 'Clacton-on-Sea town centre and the Pier shopping area',
+  landmarkSecondary: 'Clacton-on-Sea railway station on the Clacton branch line',
+  landmarkTertiary: 'Clacton Hospital minor injuries unit and Colchester General Hospital (25 miles)',
+  localKnownFor: "Essex's most popular seaside resort, with a strong community identity, the UK's oldest illuminated pleasure pier, and a warm, close-knit year-round population",
+  publicTransportNote: "Clacton station connects to London Liverpool Street in approximately 75 minutes on the Clacton branch line — a longer journey that means many patients prefer our Colchester provider for complex treatment requiring more frequent visits",
+  parkingNote: "Jackson Road and Valley Road car parks offer affordable parking near the town centre, with free parking at the Pier car park outside peak season",
+  nearestMajorHub: 'Colchester',
+  commuteTimeMin: 40,
+  commuteMode: 'Car / Train',
+  priceRangeLow: 2500,
+  priceRangeHigh: 4500,
+  financeMinMonthly: 45,
+  waitTimeDays: 8,
+  services: {
+    crowded: {
+      conditionVariant: 'A',
+      pricePosition: 'lower-end',
+      priceVarianceNote: "Crowded teeth correction for Clacton-on-Sea patients follows the Colchester Platinum provider pricing — among the most affordable in the North Essex region at £2,900–£4,600. The 40-minute drive to Colchester is practical for the 6–8 week check-up schedule, and finance from £45 per month makes the full treatment range accessible.",
+      introParagraph: "Crowded teeth correction for Clacton-on-Sea patients is handled by our vetted Platinum provider in Colchester — 40 minutes by car or via the Great Eastern Mainline — with a full clinical protocol that has resolved hundreds of Essex crowding cases across all severity levels. Free assessments with 3D iTero scanning are available within 8 days near Clacton town centre.",
+    },
+    gaps: {
+      conditionVariant: 'A',
+      pricePosition: 'lower-end',
+      priceVarianceNote: "Gap closure for Clacton-on-Sea patients is available at Colchester Platinum pricing — £2,900–£4,000 for most gap presentations. Straightforward single diastema cases may be achievable with Invisalign Express in as few as four months, minimising the number of trips to Colchester required.",
+      introParagraph: "Gap closure for Clacton-on-Sea patients is efficient and accessible at our Colchester Platinum provider, 40 minutes from the Clacton-on-Sea Pier shopping area by car. Simple cases require as few as four appointments total, making the journey to Colchester minimal relative to the treatment benefit. Free assessments within 8 days.",
+    },
+    overbite: {
+      conditionVariant: 'A',
+      pricePosition: 'upper-end',
+      priceVarianceNote: "Overbite correction for Clacton-on-Sea patients requires the expertise of our Colchester Platinum provider — 40 minutes from the Tendring coast — at a cost of £4,000–£5,200. The 6–8 week check-up interval means a typical overbite case involves approximately 10 journeys to Colchester over 14–18 months.",
+      introParagraph: "Overbite correction for Clacton-on-Sea patients draws on the Colchester Platinum provider's Precision Wing expertise — the technical capability that makes overbite treatment achievable without headgear or fixed appliances. Serving the Tendring district coastline including the Pier shopping area, the clinic offers free overbite assessment slots within 8 days.",
+    },
+    underbite: {
+      conditionVariant: 'A',
+      pricePosition: 'upper-end',
+      priceVarianceNote: "Underbite treatment for Clacton-on-Sea patients is available at the Colchester Platinum provider at £3,800–£5,200 for dental underbites within Invisalign's treatment range. The free initial assessment in Colchester covers the full diagnostic protocol and gives you a fixed cost before any treatment commitment.",
+      introParagraph: "Underbite correction for Clacton-on-Sea patients is managed at our Colchester Platinum provider — 40 minutes from Clacton railway station via the branch line connection — with a thorough diagnostic protocol that determines whether Invisalign alone can achieve the full correction. Free consultation slots are available within 8 days.",
+    },
+    crossbite: {
+      conditionVariant: 'A',
+      pricePosition: 'mid-range',
+      priceVarianceNote: "Crossbite correction for Clacton-on-Sea patients follows the Colchester Platinum provider range — £3,200–£4,800 depending on crossbite type. For Tendring coast patients, our Colchester provider is the nearest clinic with the attachment expertise crossbite cases require.",
+      introParagraph: "Crossbite correction for Clacton-on-Sea patients is handled by our Colchester Platinum provider, whose SmartForce attachment expertise delivers consistent crossbite resolution across anterior and posterior presentations. Serving the Tendring district from the Clacton-on-Sea Pier area to Frinton, the clinic offers free assessments within 8 days.",
+    },
+    adults: {
+      conditionVariant: 'A',
+      pricePosition: 'mid-range',
+      priceVarianceNote: "Adult Invisalign for Clacton-on-Sea patients is available at the Colchester Platinum provider range — £2,900–£5,200 — with finance from £45 per month. The 6–8 week check-up schedule keeps the total number of Colchester visits manageable over the course of treatment.",
+      introParagraph: "Adult Invisalign for Clacton-on-Sea patients connects Essex's most popular seaside community with Colchester's Platinum expertise, 40 minutes by car via the A133 or by train on the branch line. Our Colchester provider has treated adult patients from across the Tendring coast, with free consultations available within 8 days and finance from £45 per month.",
+    },
+  },
+};

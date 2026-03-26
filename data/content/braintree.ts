@@ -1,0 +1,60 @@
+import type { TownContent } from './types';
+
+export const braintreeContent: TownContent = {
+  townName: 'Braintree',
+  townSlug: 'braintree',
+  essexRegion: 'Essex Cities & Major Towns',
+  demographicProfile: 'Working families / Mid Essex commuter',
+  primaryAudience: 'Young families relocating from London, manufacturing and logistics workers, commuters to Chelmsford and London via Witham',
+  landmarkPrimary: 'Braintree town centre and the Freeport Essex retail village',
+  landmarkSecondary: 'Braintree railway station on the Great Eastern Mainline via Witham',
+  landmarkTertiary: 'Braintree Community Hospital',
+  localKnownFor: "a busy Mid Essex market town with a strong manufacturing heritage, rapidly growing new residential developments, and the Freeport Essex designer outlet drawing visitors from across the region",
+  publicTransportNote: "Braintree station connects to London Liverpool Street in approximately 60 minutes via a change at Witham — a manageable journey for City commuters who have chosen Braintree for its relative affordability",
+  parkingNote: "George Yard and Fairfield Road car parks are both within 5 minutes walk of the town centre, with evening rates making the Braintree clinic accessible for after-work appointments",
+  nearestMajorHub: 'Chelmsford',
+  commuteTimeMin: 25,
+  commuteMode: 'Car / Train',
+  priceRangeLow: 2700,
+  priceRangeHigh: 4900,
+  financeMinMonthly: 50,
+  waitTimeDays: 6,
+  services: {
+    crowded: {
+      conditionVariant: 'B',
+      pricePosition: 'lower-end',
+      priceVarianceNote: "Crowded teeth correction for Braintree patients is handled by our nearest Platinum provider in Chelmsford, 25 minutes by car or train. Treatment costs follow the Chelmsford range — £3,200–£4,800 for most crowding presentations — with Braintree patients benefiting from the same Diamond and Platinum expertise without a further premium.",
+      introParagraph: "Crowded teeth correction for Braintree patients is managed at our vetted Platinum provider in Chelmsford — 25 minutes by car or via Witham on the Great Eastern Mainline — with the same standard of care as local Chelmsford patients. Serving Braintree and the wider Mid Essex area from our Freeport Essex retail village catchment, the clinic offers free assessments within 6 days.",
+    },
+    gaps: {
+      conditionVariant: 'B',
+      pricePosition: 'lower-end',
+      priceVarianceNote: "Gap closure for Braintree patients follows the Chelmsford pricing structure at our nearest Platinum provider — £3,200–£4,000 for most gap presentations. The 25-minute journey from Braintree town centre and Freeport Essex is easily manageable for the six to eight appointments a typical gap closure case requires.",
+      introParagraph: "Gap closure for Braintree patients is straightforward to access at our Chelmsford Platinum provider, 25 minutes from Braintree railway station via Witham. Many Braintree patients combine their consultation with a visit to Chelmsford's city centre, making the journey a practical part of their routine. Free gap assessments within 6 days.",
+    },
+    overbite: {
+      conditionVariant: 'B',
+      pricePosition: 'upper-end',
+      priceVarianceNote: "Overbite correction for Braintree patients is handled at our Chelmsford Diamond provider — the nearest clinic with the Precision Wing expertise that overbite cases require. Treatment costs sit at £4,800–£5,800, consistent with Chelmsford's premium overbite market and the clinical complexity involved.",
+      introParagraph: "Overbite correction for Braintree patients is best handled at our Chelmsford Diamond provider, 25 minutes away, where the Precision Wing staging expertise delivers consistent overbite resolution across all severity levels. Braintree Community Hospital staff make up a regular proportion of the clinic's referral base, with free overbite slots within 6 days.",
+    },
+    underbite: {
+      conditionVariant: 'B',
+      pricePosition: 'upper-end',
+      priceVarianceNote: "Underbite treatment for Braintree patients is available at our Chelmsford Platinum and Diamond providers. The diagnostic assessment at the free initial consultation will clarify whether the underbite is dental or has a skeletal component, and provide a fixed cost before any commitment is made.",
+      introParagraph: "Underbite correction for Braintree patients draws on the expertise of our Chelmsford providers, 25 minutes from Braintree by car or train through Witham. The free initial assessment covers the full diagnostic protocol — bite analysis, 3D scan, and skeletal assessment — with results explained clearly before any treatment decision is made. Free slots within 6 days.",
+    },
+    crossbite: {
+      conditionVariant: 'B',
+      pricePosition: 'mid-range',
+      priceVarianceNote: "Crossbite correction for Braintree patients is available at our Chelmsford Platinum provider at the standard Chelmsford range — £3,800–£5,200 depending on crossbite type and severity. The 25-minute journey from Braintree is minimal relative to the treatment interval of 6–8 weeks between check-up appointments.",
+      introParagraph: "Crossbite correction for Braintree patients is handled by our Chelmsford Platinum provider — a 25-minute drive through the Chelmer Valley or via Witham on the Great Eastern Mainline. Serving the growing Mid Essex community around Braintree town centre and the Freeport retail area, the clinic has free crossbite assessment slots within 6 days.",
+    },
+    adults: {
+      conditionVariant: 'B',
+      pricePosition: 'mid-range',
+      priceVarianceNote: "Adult Invisalign for Braintree patients follows the Chelmsford Platinum provider pricing — £3,200–£5,800 across the full case complexity range. Finance from £50 per month with 0% available makes treatment accessible, with the 6–8 week check-up interval minimising travel time over the course of treatment.",
+      introParagraph: "Adult Invisalign for Braintree patients is available at our Chelmsford Platinum provider, 25 minutes from the Freeport Essex area by car or via the Great Eastern Mainline. Braintree's growing family demographic — many relocating from London for more space — finds the Chelmsford clinic easy to combine with city centre visits, with free adult consultations within 6 days.",
+    },
+  },
+};
