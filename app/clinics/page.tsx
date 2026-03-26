@@ -57,7 +57,7 @@ export default function ClinicsIndexPage() {
       </p>
 
       {/* Stats row */}
-      <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', borderTop: '1px solid var(--border)', paddingTop: '14px' }}>
+      <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', borderTop: '1px solid var(--border)', paddingTop: '14px', marginTop: 'auto' }}>
         <div>
           <div style={{ fontSize: '15px', fontWeight: 600, color: 'var(--sage)', fontFamily: 'var(--font-display)' }}>{clinic.caseVolume}</div>
           <div style={{ fontSize: '11px', color: 'var(--muted)' }}>Invisalign cases</div>
