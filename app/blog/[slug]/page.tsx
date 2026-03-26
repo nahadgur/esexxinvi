@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useMemo, useState } from 'react';
-import { ChevronUp, ArrowUpRight } from "lucide-react";
+import { ChevronUp, ArrowUpRight } from 'lucide-react';
 import Papa from 'papaparse';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
@@ -46,7 +46,7 @@ const slugify = (s: string) =>
   (s || '')
     .toLowerCase()
     .trim()
-    .replace(/['"]/g, '')
+    .replace(/['\"]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
@@ -79,48 +79,32 @@ const extractImageUrls = (html: string): string[] => {
 
 const cleanArticleHtml = (html: string) => {
   let h = html || '';
-
-  // remove <strong> / <b>
   h = h.replace(/<\/?(strong|b)\b[^>]*>/gi, '');
-
-  // strip inline styles
   h = h.replace(/\sstyle=["'][^"']*["']/gi, '');
-
-  // remove width/height attrs on images
   h = h.replace(/\s(width|height)=["'][^"']*["']/gi, '');
-
   return h;
 };
 
-// If CSV content is mostly plain text / line breaks (no <p> tags), wrap into paragraphs
-// so spacing + typography styles apply consistently.
 const ensureParagraphs = (html: string) => {
   let h = (html || '').trim();
   if (!h) return '';
 
-  // If it already has block-level structure, leave it alone.
   const hasBlocks =
     /<\s*p\b/i.test(h) ||
     /<\s*h[1-6]\b/i.test(h) ||
     /<\s*(ul|ol|table|blockquote|pre)\b/i.test(h);
   if (hasBlocks) return h;
 
-  // Split into paragraphs based on double <br> or blank lines.
   const brSplit = h.split(/<br\s*\/?>\s*<br\s*\/?>/i).map((s) => s.trim()).filter(Boolean);
   if (brSplit.length > 1) {
-    return brSplit
-      .map((p) => `<p>${p.replace(/\n/g, '<br />')}</p>`)
-      .join('');
+    return brSplit.map((p) => `<p>${p.replace(/\n/g, '<br />')}</p>`).join('');
   }
 
   const nlSplit = h.split(/\n\s*\n+/).map((s) => s.trim()).filter(Boolean);
   if (nlSplit.length > 1) {
-    return nlSplit
-      .map((p) => `<p>${p.replace(/\n/g, '<br />')}</p>`)
-      .join('');
+    return nlSplit.map((p) => `<p>${p.replace(/\n/g, '<br />')}</p>`).join('');
   }
 
-  // Fallback: single paragraph, preserve single newlines as <br />.
   return `<p>${h.replace(/\n/g, '<br />')}</p>`;
 };
 
@@ -139,7 +123,6 @@ const FURTHER_READING_POOL: ReadingLink[] = [
   { url: 'https://www.ajodo.org', label: 'AJODO (orthodontic journal)' },
 ];
 
-// Simple deterministic hash so each article gets a stable, different set.
 const hashString = (s: string) => {
   let h = 2166136261;
   for (let i = 0; i < s.length; i++) {
@@ -153,7 +136,6 @@ const pickFurtherReading = (key: string, count: number = 3): ReadingLink[] => {
   const pool = FURTHER_READING_POOL;
   if (!pool.length) return [];
   const start = hashString(key || 'post') % pool.length;
-
   const out: ReadingLink[] = [];
   for (let i = 0; i < pool.length && out.length < Math.min(count, pool.length); i++) {
     out.push(pool[(start + i) % pool.length]);
@@ -162,13 +144,95 @@ const pickFurtherReading = (key: string, count: number = 3): ReadingLink[] => {
 };
 
 /* =======================
-   CTA BANNER INJECTION
+   CTA BANNER — Warm Sage
+======================= */
+
+function BlogCtaBanner({ onOpenModal }: { onOpenModal: () => void }) {
+  return (
+    <div style={{
+      margin: '40px 0',
+      borderRadius: '12px',
+      overflow: 'hidden',
+      border: '1px solid #c8d9c9',
+      background: 'var(--sage)',
+      position: 'relative',
+    }}>
+      {/* Top accent line */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: '2px',
+        background: 'rgba(255,255,255,0.2)',
+      }} />
+      <div style={{
+        padding: '28px 32px',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '24px',
+        flexWrap: 'wrap',
+      }}>
+        {/* Icon */}
+        <div style={{
+          flexShrink: 0, width: '44px', height: '44px', borderRadius: '10px',
+          background: 'rgba(255,255,255,0.12)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+
+        {/* Text */}
+        <div style={{ flex: 1, minWidth: '200px' }}>
+          <p style={{
+            fontSize: '10px', fontWeight: 700, textTransform: 'uppercase',
+            letterSpacing: '0.12em', color: 'rgba(255,255,255,0.6)', marginBottom: '4px',
+          }}>
+            Free Consultation
+          </p>
+          <h3 style={{
+            fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 600,
+            color: '#fff', lineHeight: 1.2, marginBottom: '4px',
+          }}>
+            Ready to start your Invisalign journey?
+          </h3>
+          <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.65)', lineHeight: 1.55 }}>
+            Get matched with a specialist provider near you. No obligation, no cost.
+          </p>
+        </div>
+
+        {/* CTA */}
+        <div style={{ flexShrink: 0 }}>
+          <button
+            onClick={onOpenModal}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: '8px',
+              padding: '12px 24px', borderRadius: '40px',
+              background: '#fff', color: 'var(--sage)',
+              fontWeight: 600, fontSize: '13px',
+              border: 'none', cursor: 'pointer',
+              fontFamily: 'var(--font-sans)',
+              whiteSpace: 'nowrap',
+              transition: 'opacity 0.15s',
+            }}
+          >
+            Book Free Consultation
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* =======================
+   BANNER SPLIT HELPER
 ======================= */
 
 const splitHtmlAfterFirstH2Section = (html: string): [string, string] => {
   if (!html) return ['', ''];
 
-  // Strategy 1: split before the 2nd heading after the 1st h2
   const firstH2Match = html.match(/<h2[\s>]/i);
   if (firstH2Match && firstH2Match.index !== undefined) {
     const afterFirstH2 = html.slice(firstH2Match.index + firstH2Match[0].length);
@@ -179,7 +243,6 @@ const splitHtmlAfterFirstH2Section = (html: string): [string, string] => {
     }
   }
 
-  // Strategy 2: fallback — split after the 3rd closing </p> tag
   let count = 0;
   let pos = 0;
   while (pos < html.length && count < 3) {
@@ -194,47 +257,6 @@ const splitHtmlAfterFirstH2Section = (html: string): [string, string] => {
 
   return [html, ''];
 };
-
-function BlogCtaBanner({ onOpenModal }: { onOpenModal: () => void }) {
-  return (
-    <div className="my-10 rounded-3xl overflow-hidden border border-gray-200 bg-gradient-to-r from-slate-900 to-slate-900/80 shadow-2xl relative">
-      {/* Decorative accent line */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-sky-500 via-sky-400 to-transparent" />
-      <div className="px-8 py-10 md:px-12 md:py-10 flex flex-col md:flex-row items-center gap-8">
-        {/* Icon */}
-        <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-brand-500/15 flex items-center justify-center">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="text-brand-600">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-        {/* Text */}
-        <div className="flex-1 text-center md:text-left">
-          <p className="text-[11px] font-bold uppercase tracking-widest text-brand-600 mb-1.5">
-            Free Consultation
-          </p>
-          <h3 className="text-xl md:text-2xl font-bold text-white leading-snug mb-1.5">
-            Ready to Start Your Invisalign Journey?
-          </h3>
-          <p className="text-gray-500 text-sm font-medium leading-relaxed">
-            Get matched with a specialist provider near you. No obligation, no cost.
-          </p>
-        </div>
-        {/* CTA */}
-        <div className="flex-shrink-0">
-          <button
-            onClick={onOpenModal}
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-400 text-white font-bold text-sm tracking-wide transition-all duration-200 shadow-lg shadow-brand-500/25 hover:shadow-brand-400/30 hover:scale-105 active:scale-95 whitespace-nowrap"
-          >
-            Book Free Consultation
-            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /* =======================
    PAGE
@@ -292,8 +314,7 @@ export default function ArticlePage() {
                 );
 
                 const images = extractImageUrls(a['Article Content']);
-                const featuredImage =
-                  images.length > 0 ? images[0] : undefined;
+                const featuredImage = images.length > 0 ? images[0] : undefined;
 
                 return {
                   ...a,
@@ -305,15 +326,11 @@ export default function ArticlePage() {
                 };
               });
 
-            // NOTE: We do not gate article visibility by publishDate on the article page,
-            // so "Related articles" can always render 3 internal links.
             const found = all.find((a) => a.Slug === slug) || null;
-
             setArticle(found);
 
             if (found) {
               setFurtherReading(pickFurtherReading(found.Slug, 3));
-
               const sameCategory = all.filter(
                 (a) => a.Slug !== slug && a.wp_category === found.wp_category
               );
@@ -327,13 +344,16 @@ export default function ArticlePage() {
       });
   }, [slug]);
 
+  /* Not found state */
   if (!article) {
     return (
-      <div className="min-h-screen bg-white text-gray-900">
+      <div style={{ minHeight: '100vh', background: 'var(--cream)' }}>
         <Header onOpenModal={() => setIsModalOpen(true)} />
-        <div className="pt-32 px-6 max-w-5xl mx-auto">
-          <h1 className="text-3xl font-bold text-white">Article not found</h1>
-          <Link href="/blog" className="text-brand-600 underline mt-6 inline-block">
+        <div style={{ paddingTop: '80px', padding: '80px 24px 60px', maxWidth: '800px', margin: '0 auto' }}>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', fontWeight: 600, color: 'var(--ink)' }}>
+            Article not found
+          </h1>
+          <Link href="/blog" style={{ color: 'var(--sage)', textDecoration: 'underline', marginTop: '24px', display: 'inline-block', fontSize: '14px' }}>
             Back to blog
           </Link>
         </div>
@@ -342,128 +362,160 @@ export default function ArticlePage() {
     );
   }
 
-  /* =======================
-     RENDER
-  ======================= */
+  /* Article prose classes — Warm Sage palette */
+  const articleClasses = [
+    'p-10 max-w-none',
+    /* headings */
+    '[&_h1]:font-display [&_h1]:text-4xl [&_h1]:md:text-5xl [&_h1]:font-semibold [&_h1]:tracking-tight [&_h1]:text-ink [&_h1]:mt-10 [&_h1]:mb-5',
+    '[&_h2]:font-display [&_h2]:text-3xl [&_h2]:md:text-4xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-ink [&_h2]:mt-10 [&_h2]:mb-4',
+    '[&_h3]:font-display [&_h3]:text-2xl [&_h3]:md:text-3xl [&_h3]:font-semibold [&_h3]:tracking-tight [&_h3]:text-ink [&_h3]:mt-8 [&_h3]:mb-3',
+    '[&_h4]:font-display [&_h4]:text-xl [&_h4]:font-semibold [&_h4]:text-ink [&_h4]:mt-7 [&_h4]:mb-3',
+    /* body */
+    '[&_p]:text-muted [&_p]:leading-relaxed [&_p]:mb-5',
+    '[&_a]:text-brand-500 [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-brand-600',
+    /* lists */
+    '[&_ul]:my-6 [&_ul]:pl-7 [&_ul]:list-disc [&_ul]:list-outside [&_ul]:space-y-3 [&_ul]:text-muted',
+    '[&_ol]:my-6 [&_ol]:pl-7 [&_ol]:list-decimal [&_ol]:list-outside [&_ol]:space-y-3 [&_ol]:text-muted',
+    '[&_li]:leading-relaxed [&_li]:pl-1 [&_li]:marker:text-brand-500',
+    /* blockquote */
+    '[&_blockquote]:my-8 [&_blockquote]:rounded-xl [&_blockquote]:border-l-4 [&_blockquote]:border-brand-500 [&_blockquote]:bg-brand-50 [&_blockquote]:px-6 [&_blockquote]:py-4 [&_blockquote]:text-ink [&_blockquote]:italic',
+    '[&_blockquote_p]:mb-0',
+    /* misc */
+    '[&_hr]:my-10 [&_hr]:border-border',
+    '[&_img]:w-full [&_img]:h-auto [&_img]:rounded-xl [&_img]:border [&_img]:border-border [&_img]:my-8',
+    /* table */
+    '[&_table]:w-full [&_table]:my-10 [&_table]:overflow-hidden [&_table]:rounded-xl [&_table]:border [&_table]:border-border',
+    '[&_thead]:bg-brand-50',
+    '[&_th]:text-left [&_th]:px-5 [&_th]:py-3 [&_th]:text-ink [&_th]:text-sm [&_th]:font-semibold',
+    '[&_td]:px-5 [&_td]:py-3 [&_td]:text-muted [&_td]:text-sm [&_td]:border-t [&_td]:border-border',
+    'hover:[&_tbody_tr]:bg-brand-50',
+    /* code */
+    '[&_code]:px-2 [&_code]:py-1 [&_code]:rounded-md [&_code]:bg-brand-50 [&_code]:text-brand-600 [&_code]:text-[0.95em]',
+    '[&_pre]:my-8 [&_pre]:p-6 [&_pre]:rounded-xl [&_pre]:bg-brand-50 [&_pre]:border [&_pre]:border-border [&_pre]:overflow-x-auto',
+  ].join(' ');
+
+  const [htmlBefore, htmlAfter] = splitHtmlAfterFirstH2Section(article.cleanedHtml || '');
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div style={{ minHeight: '100vh', background: 'var(--cream)' }}>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <Header onOpenModal={() => setIsModalOpen(true)} />
 
+      {/* Scroll-to-top */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full bg-white/5 border border-gray-200"
+          style={{
+            position: 'fixed', bottom: '24px', left: '24px', zIndex: 50,
+            width: '40px', height: '40px', borderRadius: '50%',
+            background: 'var(--sage-pale)', border: '1px solid var(--border)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'pointer', color: 'var(--sage)',
+          }}
+          aria-label="Scroll to top"
         >
-          <ChevronUp />
+          <ChevronUp style={{ width: '18px', height: '18px' }} />
         </button>
       )}
 
-      <div className="pt-32 px-6 max-w-5xl mx-auto">
-        <Link href="/blog" className="text-brand-600 uppercase text-xs font-bold">
+      <div style={{ paddingTop: '48px', paddingBottom: '80px', paddingLeft: '24px', paddingRight: '24px', maxWidth: '900px', margin: '0 auto' }}>
+
+        {/* Back link */}
+        <Link href="/blog" style={{ color: 'var(--sage)', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '4px', marginBottom: '28px' }}>
           ← Back to blog
         </Link>
 
-        <div className="mt-10 rounded-2xl overflow-hidden border border-gray-200">
-          <div className="relative h-[420px] md:h-[520px]">
+        {/* Article card */}
+        <div style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid var(--border)', background: '#fff' }}>
+
+          {/* Hero image */}
+          <div style={{ position: 'relative', height: '420px' }}>
             {article.featuredImage && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
                 src={article.featuredImage}
                 alt={article['Article Title']}
-                className="absolute inset-0 w-full h-full object-cover"
+                style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
               />
             )}
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 to-transparent" />
-            <div className="absolute bottom-8 left-8 right-8">
-              <div className="text-sm text-gray-600">
+            {/* gradient overlay for title legibility */}
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(30,36,32,0.75) 0%, transparent 55%)' }} />
+            <div style={{ position: 'absolute', bottom: '32px', left: '36px', right: '36px' }}>
+              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.65)', marginBottom: '8px', fontWeight: 500 }}>
                 {article.publishDate.toDateString()}
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold text-white">
+              <h1 style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
+                fontWeight: 600,
+                color: '#fff',
+                lineHeight: 1.1,
+              }}>
                 {article['Article Title']}
               </h1>
             </div>
           </div>
 
-          {(() => {
-            const articleClasses = [
-              'p-10 max-w-none',
-              '[&_h1]:text-4xl [&_h1]:md:text-5xl [&_h1]:font-bold [&_h1]:tracking-tight [&_h1]:text-white [&_h1]:mt-10 [&_h1]:mb-5',
-              '[&_h2]:text-3xl [&_h2]:md:text-4xl [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-white [&_h2]:mt-10 [&_h2]:mb-4',
-              '[&_h3]:text-2xl [&_h3]:md:text-3xl [&_h3]:font-bold [&_h3]:tracking-tight [&_h3]:text-white [&_h3]:mt-8 [&_h3]:mb-3',
-              '[&_h4]:text-xl [&_h4]:font-bold [&_h4]:text-white [&_h4]:mt-7 [&_h4]:mb-3',
-              '[&_p]:text-gray-600 [&_p]:font-medium [&_p]:leading-relaxed [&_p]:mb-5',
-              '[&_a]:text-brand-600 [&_a]:font-bold [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-brand-400',
-              '[&_ul]:my-6 [&_ul]:pl-7 [&_ul]:list-disc [&_ul]:list-outside [&_ul]:space-y-3 [&_ul]:text-gray-600 [&_ul]:font-medium',
-              '[&_ol]:my-6 [&_ol]:pl-7 [&_ol]:list-decimal [&_ol]:list-outside [&_ol]:space-y-3 [&_ol]:text-gray-600 [&_ol]:font-medium',
-              '[&_li]:leading-relaxed [&_li]:pl-1 [&_li]:marker:text-brand-600',
-              '[&_blockquote]:my-8 [&_blockquote]:rounded-3xl [&_blockquote]:border [&_blockquote]:border-gray-200 [&_blockquote]:bg-white/5 [&_blockquote]:p-6 [&_blockquote]:text-gray-900 [&_blockquote]:font-medium',
-              '[&_blockquote_p]:mb-0',
-              '[&_hr]:my-10 [&_hr]:border-gray-200',
-              '[&_img]:w-full [&_img]:h-auto [&_img]:rounded-3xl [&_img]:border [&_img]:border-gray-200 [&_img]:shadow-2xl [&_img]:my-8',
-              '[&_table]:w-full [&_table]:my-10 [&_table]:overflow-hidden [&_table]:rounded-3xl [&_table]:border [&_table]:border-gray-200 [&_table]:bg-white/5 [&_table]:shadow-2xl',
-              '[&_thead]:bg-gray-100',
-              '[&_th]:text-left [&_th]:px-5 [&_th]:py-4 [&_th]:text-white [&_th]:text-sm [&_th]:font-bold [&_th]:tracking-wide',
-              '[&_td]:px-5 [&_td]:py-4 [&_td]:text-gray-900 [&_td]:text-sm [&_td]:font-medium [&_td]:border-t [&_td]:border-gray-200',
-              'hover:[&_tbody_tr]:bg-white/5',
-              '[&_code]:px-2 [&_code]:py-1 [&_code]:rounded-lg [&_code]:bg-gray-100 [&_code]:text-gray-700 [&_code]:text-[0.95em]',
-              '[&_pre]:my-8 [&_pre]:p-6 [&_pre]:rounded-3xl [&_pre]:bg-white/5 [&_pre]:border [&_pre]:border-gray-200 [&_pre]:overflow-x-auto',
-            ].join(' ');
-
-            const [htmlBefore, htmlAfter] = splitHtmlAfterFirstH2Section(article.cleanedHtml || '');
-
-            return htmlAfter ? (
-              <>
-                <div className={articleClasses} dangerouslySetInnerHTML={{ __html: htmlBefore }} />
-                <div className="px-10 pb-2">
-                  <BlogCtaBanner onOpenModal={() => setIsModalOpen(true)} />
-                </div>
-                <div className={articleClasses} dangerouslySetInnerHTML={{ __html: htmlAfter }} />
-              </>
-            ) : (
-              <div className={articleClasses} dangerouslySetInnerHTML={{ __html: article.cleanedHtml || '' }} />
-            );
-          })()}
+          {/* Article body */}
+          {htmlAfter ? (
+            <>
+              <div className={articleClasses} dangerouslySetInnerHTML={{ __html: htmlBefore }} />
+              <div style={{ padding: '0 40px 8px' }}>
+                <BlogCtaBanner onOpenModal={() => setIsModalOpen(true)} />
+              </div>
+              <div className={articleClasses} dangerouslySetInnerHTML={{ __html: htmlAfter }} />
+            </>
+          ) : (
+            <div className={articleClasses} dangerouslySetInnerHTML={{ __html: article.cleanedHtml || '' }} />
+          )}
         </div>
 
+        {/* Related articles */}
         {relatedArticles.length > 0 && (
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-white">Related articles</h2>
-
-            <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <div style={{ marginTop: '56px' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '24px' }}>
+              Related articles
+            </h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }} className="related-grid">
               {relatedArticles.map((a) => (
                 <Link
                   key={a.Slug}
                   href={`/blog/${a.Slug}`}
-                  className="group rounded-2xl border border-gray-200 overflow-hidden flex flex-col hover:border-brand-300 transition-all duration-500 shadow-2xl bg-white"
+                  style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', borderRadius: '10px', border: '1px solid var(--border)', overflow: 'hidden', background: '#fff', transition: 'border-color 0.15s' }}
+                  className="related-card"
                 >
-                  <div className="relative h-44 overflow-hidden bg-gradient-to-br from-slate-800 to-slate-900">
+                  {/* Thumbnail */}
+                  <div style={{ position: 'relative', height: '160px', overflow: 'hidden', background: 'var(--sage-pale)' }}>
                     {a.featuredImage ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
                         src={a.featuredImage}
                         alt={a['Article Title']}
-                        className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"
+                        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }}
                         loading="lazy"
                       />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-6xl opacity-10">📝</div>
-                      </div>
-                    )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
-                    <div className="absolute top-5 left-5 px-4 py-1.5 bg-brand-500/90 backdrop-blur-md text-white text-[10px] font-bold uppercase rounded-full">
+                    ) : null}
+                    {/* Category pill */}
+                    <div style={{
+                      position: 'absolute', top: '12px', left: '12px',
+                      padding: '3px 10px', borderRadius: '20px',
+                      background: 'rgba(237,242,238,0.92)', color: 'var(--sage)',
+                      fontSize: '10px', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+                    }}>
                       {a.wp_category}
                     </div>
                   </div>
 
-                  <div className="p-8 flex-1 flex flex-col">
-                    <h3 className="text-xl font-bold text-white mb-4 group-hover:text-brand-600 transition-colors">
+                  {/* Text */}
+                  <div style={{ padding: '16px 18px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                    <h3 style={{
+                      fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 600,
+                      color: 'var(--ink)', marginBottom: '12px', lineHeight: 1.3, flex: 1,
+                    }}>
                       {a['Article Title']}
                     </h3>
-                    <div className="flex items-center gap-2 text-brand-600 font-bold uppercase tracking-widest text-[10px] mt-auto">
-                      Read Article <ArrowUpRight className="w-4 h-4" />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: 'var(--sage)', fontSize: '11px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                      Read article <ArrowUpRight style={{ width: '13px', height: '13px' }} />
                     </div>
                   </div>
                 </Link>
@@ -472,17 +524,21 @@ export default function ArticlePage() {
           </div>
         )}
 
+        {/* Further reading */}
         {furtherReading.length > 0 && (
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-white">Further Reading</h2>
-            <ul className="mt-6 space-y-3">
+          <div style={{ marginTop: '48px', paddingTop: '32px', borderTop: '1px solid var(--border)' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', fontWeight: 600, color: 'var(--ink)', marginBottom: '16px' }}>
+              Further reading
+            </h2>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {furtherReading.map((l) => (
-                <li key={l.url}>
+                <li key={l.url} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'var(--sage-mid)', flexShrink: 0 }} />
                   <a
                     href={l.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-brand-600 underline underline-offset-4"
+                    style={{ color: 'var(--sage)', textDecoration: 'underline', textUnderlineOffset: '3px', fontSize: '14px' }}
                   >
                     {l.label}
                   </a>
@@ -494,6 +550,16 @@ export default function ArticlePage() {
       </div>
 
       <Footer />
+
+      <style>{`
+        @media (max-width: 700px) {
+          .related-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 500px) {
+          .related-grid { grid-template-columns: 1fr !important; }
+        }
+        .related-card:hover { border-color: #c8d9c9 !important; }
+      `}</style>
     </div>
   );
 }
