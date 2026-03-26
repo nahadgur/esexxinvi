@@ -3,342 +3,353 @@
 import { useState } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { CheckCircle, MapPin, Star, Clock, Shield, Award, Users, ArrowLeft, BookOpen } from 'lucide-react';
-import { services, getServiceBySlug } from '@/data/services';
-import { LOCATIONS, getCityBySlug, toSlug } from '@/data/locations';
+import { getServiceBySlug } from '@/data/services';
+import { getCityBySlug, toSlug } from '@/data/locations';
+import { getNearbyAreas } from '@/data/nearby-areas';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { HeroLeadForm } from '@/components/HeroLeadForm';
-import { FAQ } from '@/components/FAQ';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { Testimonials } from '@/components/Testimonials';
 import { LeadFormModal } from '@/components/LeadFormModal';
-import { PricingSection } from '@/components/PricingSection';
-import { NearbyAreasGrid } from '@/components/NearbyAreasGrid';
 import { getTownContent, getServiceContent } from '@/data/content';
 import { serviceVariants } from '@/data/content/service-variants';
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Sub-components
+// ─────────────────────────────────────────────────────────────────────────────
+
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div style={{ border: '1px solid var(--border)', borderRadius: '8px', marginBottom: '2px', overflow: 'hidden' }}>
+      <button
+        onClick={() => setOpen(!open)}
+        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 18px', background: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-sans)', gap: '16px', textAlign: 'left' }}
+      >
+        <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>{q}</span>
+        <span style={{ width: '18px', height: '18px', borderRadius: '50%', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', color: 'var(--sage)', flexShrink: 0, transform: open ? 'rotate(45deg)' : 'none', transition: 'transform 0.2s' }}>+</span>
+      </button>
+      {open && (
+        <div style={{ padding: '0 18px 14px', fontSize: '13px', color: 'var(--muted)', lineHeight: 1.7, background: '#fff' }}>{a}</div>
+      )}
+    </div>
+  );
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Page
+// ─────────────────────────────────────────────────────────────────────────────
+
 export default function LocationServicePageClient({ params }: { params: { town: string; service: string } }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const service = getServiceBySlug(params.service);
+
+  const service  = getServiceBySlug(params.service);
   const cityName = getCityBySlug(params.town);
   if (!service || !cityName) notFound();
 
-  const allCities = Object.values(LOCATIONS).flat();
+  const townData   = getTownContent(params.town);
+  const svcContent = getServiceContent(params.town, params.service);
 
-  // ── Content data lookup ──────────────────────────────────────────────────
-  const townData    = getTownContent(params.town);
-  const svcContent  = getServiceContent(params.town, params.service);
-
-  // Condition body: select variant if town content exists; else fall back to variant A
+  // Condition body — pick variant per town or default A
   const conditionVariant = svcContent?.conditionVariant ?? 'A';
-  const conditionBody = serviceVariants[params.service]?.[conditionVariant] ?? null;
+  const conditionBody    = serviceVariants[params.service]?.[conditionVariant] ?? null;
 
-  // Trust strip values — prefer content data, fall back to generic strings
-  const googleRating   = townData?.clinic1?.googleRating;
-  const reviewCount    = townData?.clinic1?.reviewCount;
-  const clinic1Name    = townData?.clinic1?.name;
-  const clinic1Tier    = townData?.clinic1?.tier ?? 'Platinum';
-  const caseVolume     = townData?.clinic1?.caseVolume ?? '300+';
-  const waitDays       = townData?.waitTimeDays ?? 7;
+  // Data values with fallbacks
+  const clinic1         = townData?.clinic1;
+  const googleRating    = clinic1?.googleRating;
+  const reviewCount     = clinic1?.reviewCount;
+  const clinic1Name     = clinic1?.name ?? `Top-rated clinic in ${cityName}`;
+  const clinic1Tier     = clinic1?.tier ?? 'Platinum';
+  const caseVolume      = clinic1?.caseVolume ?? '200+';
+  const waitDays        = townData?.waitTimeDays ?? 7;
+  const priceRangeLow   = townData?.priceRangeLow ?? 1500;
+  const priceRangeHigh  = townData?.priceRangeHigh ?? 5500;
+  const financeFrom     = townData?.financeMinMonthly ?? 49;
+  const introParagraph  = svcContent?.introParagraph;
+  const priceNote       = svcContent?.priceVarianceNote;
+  const nearbyAreas     = getNearbyAreas(cityName).slice(0, 5);
 
-  const benefits = [
-    { icon: <Award className="w-6 h-6" />, title: 'Verified High-Tier Providers', desc: `Every ${cityName} dentist in our network completes 80 or more Invisalign cases per year. That experience shows in the results.` },
-    { icon: <Clock className="w-6 h-6" />, title: `Seen Within ${waitDays} Days`, desc: `Most ${cityName} clinics offer free consultation slots within ${waitDays} days, including evenings and weekends.` },
-    { icon: <Shield className="w-6 h-6" />, title: 'Advanced Technology Included', desc: 'Every consultation includes a free iTero 3D scan and full ClinCheck digital treatment plan at no extra charge.' },
-    { icon: <Users className="w-6 h-6" />, title: 'Matched to Your Case', desc: `We match you with ${cityName} providers who have specific experience with ${service.title.toLowerCase()}.` },
-  ];
+  const serviceShort = service.title.toLowerCase().replace('invisalign for ', '').replace('invisalign ', '');
 
   const treatmentSteps = [
-    `Book a free consultation at a vetted ${cityName} clinic through our matching form`,
-    'Get a full 3D iTero scan of your teeth and a digital treatment simulation',
-    'Review your ClinCheck plan and see exactly how your teeth will move, week by week',
-    'Receive your custom aligners and begin wearing them, switching every 1 to 2 weeks',
-    'Attend brief check-ups every 6 to 8 weeks until treatment is complete',
-    'Get fitted with retainers to keep your results permanent',
+    `Book a free consultation — most ${cityName} providers have slots within ${waitDays} days`,
+    'Full iTero 3D scan in 4 minutes — no putty impressions',
+    'Watch your ClinCheck simulation showing the result before you commit',
+    'Receive custom aligners, switching every 1–2 weeks from home',
+    `Brief check-up every 6–8 weeks at your ${cityName} clinic`,
+    'Retainers fitted at the end — result is permanent with nightly wear',
   ];
+
+  const faqs = service.faqs;
 
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <Header onOpenModal={() => setIsModalOpen(true)} />
-      <main className="flex-grow">
 
-        {/* Hero */}
-        <section className="bg-gray-900 text-white relative overflow-hidden">
-          <div className="absolute inset-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={service.image} alt="" className="w-full h-full object-cover opacity-50" loading="eager" />
-            <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-gray-900/30" />
-          </div>
-          <div className="container-width py-12 md:py-20 relative z-10">
-            <Breadcrumbs items={[
-              { label: 'Locations', href: '/locations/' },
-              { label: cityName, href: `/locations/${params.town}/` },
-              { label: service.title },
-            ]} />
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-6">
-              <div>
-                <div className="inline-flex items-center gap-2 bg-brand-500/20 text-brand-300 px-3 py-1 rounded-full text-sm font-medium mb-6 border border-brand-500/30">
-                  <MapPin className="w-4 h-4" /> {clinic1Tier} Providers in {cityName}
-                </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-6">
-                  {service.title} in <span className="text-brand-400">{cityName}</span>
-                </h1>
-                <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-                  {svcContent?.introParagraph
-                    ? svcContent.introParagraph
-                    : `Get matched with ${cityName}'s most experienced Invisalign providers for ${service.title.toLowerCase()}. Free consultation, free 3D scan, and up to 3 quotes at no cost.`}
-                </p>
-                {/* Trust strip */}
-                <div className="grid grid-cols-3 gap-3 mb-6">
-                  {googleRating && reviewCount ? (
-                    <div className="bg-white/10 rounded-xl p-3 text-center">
-                      <div className="text-yellow-400 text-sm mb-0.5">{'★'.repeat(5)}</div>
-                      <div className="font-bold text-sm">{googleRating}/5</div>
-                      <div className="text-gray-400 text-xs">{reviewCount} reviews</div>
-                    </div>
-                  ) : (
-                    <div className="bg-white/10 rounded-xl p-3 text-center">
-                      <div className="text-yellow-400 text-sm mb-0.5">{'★'.repeat(5)}</div>
-                      <div className="font-bold text-sm">Top Rated</div>
-                      <div className="text-gray-400 text-xs">{cityName} providers</div>
-                    </div>
-                  )}
-                  <div className="bg-white/10 rounded-xl p-3 text-center">
-                    <div className="text-brand-400 text-sm mb-0.5">🏆</div>
-                    <div className="font-bold text-sm">{clinic1Tier}</div>
-                    <div className="text-gray-400 text-xs">{caseVolume} cases</div>
+      <main style={{ flex: 1 }}>
+
+        {/* ══ HERO — full-width sage ══ */}
+        <section style={{ background: 'var(--sage)', padding: 'clamp(36px,5vw,56px) clamp(24px,5vw,56px) clamp(28px,4vw,44px)' }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+
+            {/* Breadcrumb */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', color: 'rgba(255,255,255,0.5)', marginBottom: '16px', flexWrap: 'wrap' }}>
+              <Link href="/" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>Home</Link>
+              <span>/</span>
+              <Link href="/locations/" style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>Locations</Link>
+              <span>/</span>
+              <Link href={`/locations/${params.town}/`} style={{ color: 'rgba(255,255,255,0.5)', textDecoration: 'none' }}>{cityName}</Link>
+              <span>/</span>
+              <span style={{ color: 'rgba(255,255,255,0.8)' }}>{service.title}</span>
+            </div>
+
+            {/* Eyebrow */}
+            <p style={{ fontSize: '11px', fontWeight: 600, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>
+              {clinic1Tier} Providers · {cityName}, Essex
+            </p>
+
+            {/* H1 */}
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,4vw,2.8rem)', fontWeight: 600, color: '#fff', lineHeight: 1.1, marginBottom: '14px' }}>
+              Find the right specialist for<br />
+              <em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.65)' }}>{serviceShort}</em> in {cityName}
+            </h1>
+
+            {/* Subtitle */}
+            <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.75)', lineHeight: 1.75, maxWidth: '560px', marginBottom: '22px' }}>
+              {introParagraph
+                ? introParagraph
+                : `Verified Platinum and Diamond Invisalign providers matched to your case. Free 3D scan, free consultation, written quote before you commit to anything.`}
+            </p>
+
+            {/* CTAs */}
+            <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginBottom: '28px' }}>
+              <button
+                onClick={() => setIsModalOpen(true)}
+                style={{ padding: '12px 28px', background: '#fff', color: 'var(--sage)', fontSize: '14px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer' }}
+              >
+                Get Free Quotes
+              </button>
+              <Link
+                href="/clinics/"
+                style={{ padding: '12px 22px', background: 'transparent', color: 'rgba(255,255,255,0.8)', fontSize: '14px', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '40px', textDecoration: 'none' }}
+              >
+                Browse clinics →
+              </Link>
+            </div>
+
+            {/* Trust stats */}
+            <div style={{ display: 'flex', gap: '0', flexWrap: 'wrap' }}>
+              {[
+                { value: googleRating ? `★ ${googleRating}` : '★ 4.9', label: `${reviewCount ? reviewCount.toLocaleString() : '200+'} reviews` },
+                { value: `${waitDays} days`, label: 'To consultation' },
+                { value: `£${financeFrom}/mo`, label: '0% finance from' },
+                { value: 'Free', label: 'iTero 3D scan' },
+              ].map((stat, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'center' }}>
+                  {i > 0 && <div style={{ width: '1px', height: '36px', background: 'rgba(255,255,255,0.15)', margin: '0 20px' }} />}
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 600, color: '#fff', lineHeight: 1 }}>{stat.value}</div>
+                    <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.5)', marginTop: '2px' }}>{stat.label}</div>
                   </div>
-                  <div className="bg-white/10 rounded-xl p-3 text-center">
-                    <div className="text-brand-400 text-sm mb-0.5">📅</div>
-                    <div className="font-bold text-sm">Free Consult</div>
-                    <div className="text-gray-400 text-xs">Within {waitDays} days</div>
-                  </div>
                 </div>
-              </div>
-              <div>
-                <HeroLeadForm city={cityName} service={service.title} />
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Main Content */}
-        <div className="container-width py-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {benefits.map((benefit, idx) => (
-              <div key={idx} className="flex items-start gap-4 p-5 bg-gray-50 rounded-xl border border-gray-100">
-                <div className="bg-brand-100 p-2 rounded-lg text-brand-600">{benefit.icon}</div>
-                <div>
-                  <h3 className="font-bold text-gray-900">{benefit.title}</h3>
-                  <p className="text-sm text-gray-600">{benefit.desc}</p>
+        {/* ══ BODY — two column ══ */}
+        <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 320px', gap: '0', background: 'var(--cream)' }} className="body-grid">
+
+          {/* ── Main content ── */}
+          <div style={{ padding: 'clamp(32px,4vw,48px) clamp(24px,4vw,40px)', borderRight: '1px solid var(--border)', minWidth: 0 }}>
+
+            {/* Condition body */}
+            {conditionBody && (
+              <section style={{ marginBottom: '40px' }}>
+                <h2 style={h2}>About {service.title.toLowerCase()} in {cityName}</h2>
+                {conditionBody.split('\n\n').map((para, i) => (
+                  <p key={i} style={p}>{para}</p>
+                ))}
+              </section>
+            )}
+
+            {/* Price variance note */}
+            {priceNote && (
+              <section style={{ marginBottom: '40px' }}>
+                <h2 style={h2}>Pricing in {cityName}</h2>
+                <p style={p}>{priceNote}</p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '16px' }} className="two-col-sm-grid">
+                  {[
+                    { label: 'Invisalign Lite', range: `£${Math.max(1500, priceRangeLow - 200).toLocaleString()} – £${Math.min(priceRangeLow + 800, 3500).toLocaleString()}` },
+                    { label: 'Comprehensive', range: `£${priceRangeLow.toLocaleString()} – £${priceRangeHigh.toLocaleString()}` },
+                    { label: '0% finance from', range: `~£${financeFrom}/month`, highlight: true },
+                    { label: 'Free consultation', range: 'incl. 3D iTero scan', highlight: true },
+                  ].map((item, i) => (
+                    <div key={i} style={{ background: item.highlight ? 'var(--sage-pale)' : '#fff', border: `1px solid ${item.highlight ? '#c8d9c9' : 'var(--border)'}`, borderRadius: '8px', padding: '14px 16px' }}>
+                      <div style={{ fontSize: '12px', color: 'var(--muted)', marginBottom: '4px' }}>{item.label}</div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: '17px', fontWeight: 600, color: item.highlight ? 'var(--sage)' : 'var(--ink)' }}>{item.range}</div>
+                    </div>
+                  ))}
                 </div>
+              </section>
+            )}
+
+            {/* How it works */}
+            <section style={{ marginBottom: '40px' }}>
+              <h2 style={h2}>How it works in {cityName}</h2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {treatmentSteps.map((step, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'var(--sage)', color: '#fff', fontFamily: 'var(--font-display)', fontSize: '12px', fontWeight: 600, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: '1px' }}>{i + 1}</div>
+                    <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.65, margin: 0 }}>{step}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </section>
+
+            {/* FAQ */}
+            {faqs && faqs.length > 0 && (
+              <section style={{ marginBottom: '40px' }}>
+                <h2 style={h2}>Common questions</h2>
+                {faqs.map(faq => (
+                  <FaqItem key={faq.question} q={faq.question} a={faq.answer} />
+                ))}
+              </section>
+            )}
+
+            {/* Nearby areas */}
+            {nearbyAreas.length > 0 && (
+              <section style={{ marginBottom: '16px' }}>
+                <h2 style={h2}>Nearby areas</h2>
+                <p style={p}>Looking for providers in a specific part of {cityName}? We also cover these surrounding areas:</p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {nearbyAreas.map(area => (
+                    <Link
+                      key={area}
+                      href={`/locations/${toSlug(area)}/`}
+                      style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '20px', padding: '6px 14px', fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'none' }}
+                    >
+                      {area}
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2">
+          {/* ── Sidebar ── */}
+          <div style={{ padding: 'clamp(32px,4vw,48px) 20px', background: 'var(--sage-light)' }}>
+            <div style={{ position: 'sticky', top: '80px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
-              {/* Upward links */}
-              <section className="mb-12">
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <Link href={`/locations/${params.town}/`} className="flex items-center gap-3 flex-1 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-brand-300 hover:bg-brand-50 transition-all group">
-                    <div className="bg-brand-100 p-2 rounded-lg flex-shrink-0"><MapPin className="w-4 h-4 text-brand-600" /></div>
-                    <div className="min-w-0">
-                      <p className="text-xs text-gray-500 mb-0.5">All Invisalign in</p>
-                      <p className="font-semibold text-gray-900 group-hover:text-brand-700 text-sm">{cityName} Providers</p>
+              {/* Clinic card */}
+              {clinic1Name && (
+                <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '12px', padding: '18px 20px' }}>
+                  <div style={{ fontSize: '10px', fontWeight: 600, color: 'var(--sage-mid)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '10px' }}>Featured provider</div>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 600, color: 'var(--ink)', marginBottom: '4px' }}>{clinic1Name}</div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 700, padding: '2px 8px', borderRadius: '10px', background: clinic1Tier === 'Diamond' ? '#EDE9F8' : 'var(--sage-pale)', color: clinic1Tier === 'Diamond' ? '#5B42A8' : 'var(--sage)' }}>
+                      {clinic1Tier}
+                    </span>
+                    <span style={{ fontSize: '12px', color: 'var(--muted)' }}>{caseVolume} cases/year</span>
+                  </div>
+                  {googleRating && reviewCount && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '4px', fontSize: '12px', color: 'var(--muted)', marginBottom: '12px' }}>
+                      <span style={{ color: '#C9A96E' }}>★★★★★</span>
+                      <span>{googleRating} · {reviewCount.toLocaleString()} reviews</span>
                     </div>
-                    <ArrowLeft className="w-4 h-4 text-gray-400 group-hover:text-brand-600 ml-auto flex-shrink-0 rotate-180 transition-colors" />
-                  </Link>
-                  <Link href={`/treatments/${service.slug}/`} className="flex items-center gap-3 flex-1 p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-brand-300 hover:bg-brand-50 transition-all group">
-                    <div className="bg-brand-100 p-2 rounded-lg flex-shrink-0"><BookOpen className="w-4 h-4 text-brand-600" /></div>
-                    <div className="min-w-0">
-                      <p className="text-xs text-gray-500 mb-0.5">Complete guide to</p>
-                      <p className="font-semibold text-gray-900 group-hover:text-brand-700 text-sm">{service.title}</p>
-                    </div>
-                    <ArrowLeft className="w-4 h-4 text-gray-400 group-hover:text-brand-600 ml-auto flex-shrink-0 rotate-180 transition-colors" />
-                  </Link>
-                </div>
-              </section>
-
-              {/* SEO Intro — localised if available */}
-              <section className="mb-12">
-                <h2 className="text-2xl md:text-3xl font-display font-bold text-gray-900 mb-4">
-                  What to Expect From {service.title} in {cityName}
-                </h2>
-                <div className="prose prose-gray max-w-none text-gray-600 space-y-4">
-                  {svcContent?.introParagraph ? (
-                    <p>{svcContent.introParagraph}</p>
-                  ) : (
-                    <>
-                      <p>{service.title} is one of the most commonly requested Invisalign treatments at {cityName} clinics. Our {clinic1Tier} providers in the area have treated hundreds of similar cases and understand exactly how to plan the aligner sequence for your specific situation.</p>
-                      <p>{cityName} patients benefit from access to advanced Invisalign features including SmartForce attachments, Precision Wings for bite correction, and optimised staging protocols that reduce overall treatment time.</p>
-                    </>
                   )}
-                </div>
-              </section>
-
-              {/* Condition explanation — variant-selected body */}
-              {conditionBody && (
-                <section className="mb-12">
-                  <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
-                    How Invisalign Treats {service.title}: What to Know Before Your Consultation
-                  </h2>
-                  <div className="prose prose-gray max-w-none text-gray-600 space-y-4">
-                    {conditionBody.split('\n\n').map((para, i) => (
-                      <p key={i}>{para}</p>
-                    ))}
-                  </div>
-                </section>
-              )}
-
-              {/* Nearby Areas */}
-              <NearbyAreasGrid cityName={cityName} serviceSlug={service.slug} serviceName={service.title} />
-
-              {/* Treatment Steps */}
-              <section className="mb-12">
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">How {service.title} Works in {cityName}</h2>
-                <div className="space-y-4">
-                  {treatmentSteps.map((step, i) => (
-                    <div key={i} className="flex gap-4 p-4 bg-white rounded-xl shadow-sm border border-gray-100">
-                      <div className="flex-shrink-0 w-8 h-8 bg-brand-500 text-white rounded-full flex items-center justify-center font-bold text-sm">{i + 1}</div>
-                      <p className="text-gray-700 font-medium pt-1">{step}</p>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              {/* Pricing — uses price_variance_note when available */}
-              <section className="mb-12">
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
-                  How Much Does {service.title} Cost in {cityName}?
-                </h2>
-                {svcContent?.priceVarianceNote && (
-                  <div className="mb-6 p-4 bg-amber-50 border border-amber-100 border-l-4 border-l-amber-400 rounded-xl">
-                    <p className="text-gray-700 text-sm leading-relaxed">{svcContent.priceVarianceNote}</p>
-                  </div>
-                )}
-                {townData && (
-                  <div className="flex justify-between items-center mb-2 text-sm font-mono text-gray-600">
-                    <span>£{townData.priceRangeLow.toLocaleString()}</span>
-                    <span className="text-gray-400">{cityName} local range</span>
-                    <span>£{townData.priceRangeHigh.toLocaleString()}</span>
-                  </div>
-                )}
-                <PricingSection cityName={cityName} serviceId={service.id} serviceName={service.title} />
-                {townData?.financeMinMonthly && (
-                  <div className="mt-4 flex items-center justify-between p-4 bg-gray-900 text-white rounded-xl">
-                    <div>
-                      <div className="font-display font-bold">From £{townData.financeMinMonthly}/month</div>
-                      <div className="text-gray-400 text-sm">0% finance available at most {cityName} clinics</div>
-                    </div>
-                    <button onClick={() => setIsModalOpen(true)} className="bg-white text-gray-900 text-sm font-bold px-5 py-2.5 rounded-lg hover:bg-gray-100 transition-colors">
-                      Check Eligibility
-                    </button>
-                  </div>
-                )}
-              </section>
-
-              {/* Why Choose */}
-              <section className="mb-12">
-                <h3 className="text-2xl font-display font-bold text-gray-900 mb-4">Why Get {service.title} in {cityName} Through Us?</h3>
-                <div className="space-y-3">
-                  {[
-                    `Every ${cityName} provider we list has been independently verified as ${clinic1Tier} or Diamond tier by Align Technology`,
-                    'You get a full 3D preview of your finished result before agreeing to treatment',
-                    `${cityName} clinics in our network offer flexible scheduling including evenings and weekends`,
-                    'Aftercare and retention planning is included in every treatment quote with no hidden extras',
-                  ].map((point, i) => (
-                    <div key={i} className="flex items-start gap-3 bg-brand-50 p-4 rounded-xl border border-brand-100">
-                      <CheckCircle className="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-800 font-medium text-sm">{point}</span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-
-              {/* Review sentence if rating data available */}
-              {googleRating && reviewCount && clinic1Name && (
-                <div className="mb-12 p-5 bg-gray-50 rounded-xl border border-gray-100">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-yellow-400">{'★'.repeat(5)}</span>
-                    <span className="font-semibold text-gray-900">{googleRating}/5</span>
-                    <span className="text-gray-500 text-sm">across {reviewCount} patient reviews</span>
-                  </div>
-                  <p className="text-gray-700 text-sm">
-                    {clinic1Name} is among the highest-rated Invisalign providers for {service.title.toLowerCase()} in {cityName}, with a {googleRating}/5 rating across {reviewCount} verified patient reviews.
-                  </p>
+                  <Link href={`/clinics/`} style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+                    View all {cityName} clinics →
+                  </Link>
                 </div>
               )}
 
-              {/* FAQs */}
-              {service.faqs.length > 0 && (
-                <div className="mb-12">
-                  <FAQ faqs={service.faqs} title={`${service.title} in ${cityName}: Common Questions`} />
+              {/* Main CTA */}
+              <div style={{ background: 'var(--sage)', borderRadius: '12px', padding: '20px' }}>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 600, color: '#fff', marginBottom: '8px', lineHeight: 1.3 }}>
+                  Get matched with {cityName} providers
                 </div>
-              )}
-
-              {/* Reviews */}
-              <section className="mt-12 mb-12">
-                <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">What Patients Are Saying</h2>
-                <Testimonials limit={2} />
-              </section>
-            </div>
-
-            {/* Sidebar */}
-            <aside className="lg:col-span-1">
-              <div className="sticky top-28 space-y-8">
-                <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
-                  {/* Sidebar upward links */}
-                  <div className="mb-5 pb-5 border-b border-gray-100 space-y-2">
-                    <Link href={`/locations/${params.town}/`} className="flex items-center gap-2 text-sm text-brand-700 font-medium hover:underline">
-                      <ArrowLeft className="w-3.5 h-3.5" /> All treatments in {cityName}
-                    </Link>
-                    <Link href={`/treatments/${service.slug}/`} className="flex items-center gap-2 text-sm text-brand-700 font-medium hover:underline">
-                      <ArrowLeft className="w-3.5 h-3.5" /> {service.title} — full guide
-                    </Link>
-                  </div>
-
-                  <h3 className="text-lg font-display font-bold text-gray-900 mb-4">Other Treatments in {cityName}</h3>
-                  <ul className="space-y-2 mb-8">
-                    {services.filter(s => s.id !== service.id).map(s => (
-                      <li key={s.id}>
-                        <Link href={`/locations/${params.town}/${s.slug}/`} className="block px-4 py-3 rounded-lg bg-gray-50 border border-gray-100 hover:border-brand-300 hover:bg-brand-50 text-gray-700 hover:text-brand-700 transition-all text-sm font-medium">
-                          {s.title} in {cityName}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <h3 className="text-lg font-display font-bold text-gray-900 mb-4">{service.title} Elsewhere in Essex</h3>
-                  <ul className="space-y-2">
-                    {allCities.filter(c => c !== cityName).slice(0, 5).map(city => (
-                      <li key={city}>
-                        <Link href={`/locations/${toSlug(city)}/${service.slug}/`} className="block px-4 py-3 rounded-lg bg-gray-50 border border-gray-100 hover:border-brand-300 hover:bg-brand-50 text-gray-700 hover:text-brand-700 transition-all text-sm font-medium">
-                          {service.title} in {city}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="bg-brand-900 text-white p-6 rounded-2xl shadow-lg">
-                  <h3 className="text-lg font-display font-bold mb-3">
-                    {townData ? `From £${townData.financeMinMonthly}/month` : 'From £50/month'}
-                  </h3>
-                  <p className="text-brand-100 text-sm mb-4">
-                    0% finance available at most {cityName} clinics. Spread the cost of {service.title.toLowerCase()} over 12 to 60 months.
-                  </p>
-                  <button onClick={() => setIsModalOpen(true)} className="block w-full bg-white text-brand-900 text-center font-bold py-3 px-6 rounded-xl hover:bg-brand-50 transition-colors text-sm">
-                    Get Free Quotes
-                  </button>
-                </div>
+                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.75)', lineHeight: 1.65, marginBottom: '16px' }}>
+                  Free 3D scan · Free consultation · Written quote before you commit · 0% finance available
+                </p>
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  style={{ width: '100%', padding: '12px', background: '#fff', color: 'var(--sage)', fontSize: '14px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer' }}
+                >
+                  Find Providers in {cityName}
+                </button>
+                <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.45)', textAlign: 'center', marginTop: '8px' }}>
+                  100% free · No obligation
+                </p>
               </div>
-            </aside>
+
+              {/* Price summary */}
+              <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '12px', padding: '16px 18px' }}>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ink)', marginBottom: '12px' }}>{cityName} pricing</div>
+                {[
+                  { label: 'Price range', value: `£${priceRangeLow.toLocaleString()} – £${priceRangeHigh.toLocaleString()}` },
+                  { label: 'Finance from', value: `~£${financeFrom}/month at 0%` },
+                  { label: 'Initial consultation', value: 'Free' },
+                  { label: 'iTero 3D scan', value: 'Free' },
+                ].map((row, i) => (
+                  <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '13px', paddingBottom: '8px', marginBottom: '8px', borderBottom: i < 3 ? '1px solid var(--border)' : 'none' }}>
+                    <span style={{ color: 'var(--muted)' }}>{row.label}</span>
+                    <span style={{ color: 'var(--ink)', fontWeight: 500 }}>{row.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Other treatments */}
+              <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '12px', padding: '16px 18px' }}>
+                <div style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ink)', marginBottom: '10px' }}>Other treatments in {cityName}</div>
+                {['crowded', 'gaps', 'overbite', 'underbite', 'crossbite', 'adults']
+                  .filter(s => s !== params.service)
+                  .slice(0, 4)
+                  .map(slug => {
+                    const s = { crowded: 'Crowded Teeth', gaps: 'Gaps', overbite: 'Overbite', underbite: 'Underbite', crossbite: 'Crossbite', adults: 'Adult Invisalign' }[slug];
+                    return (
+                      <Link key={slug} href={`/locations/${params.town}/${slug}/`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '13px', color: 'var(--sage)', textDecoration: 'none', padding: '7px 0', borderBottom: '1px solid var(--border)' }}>
+                        <span>{s}</span>
+                        <span>→</span>
+                      </Link>
+                    );
+                  })}
+              </div>
+
+            </div>
           </div>
         </div>
+
       </main>
+
       <Footer />
+
+      <style>{`
+        @media (max-width: 900px) {
+          .body-grid { grid-template-columns: 1fr !important; }
+          .body-grid > div:last-child { border-right: none !important; }
+        }
+        @media (max-width: 640px) {
+          .two-col-sm-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </>
   );
 }
+
+const h2: React.CSSProperties = {
+  fontFamily: 'var(--font-display)',
+  fontSize: 'clamp(1.2rem,2.5vw,1.6rem)',
+  fontWeight: 600,
+  color: 'var(--ink)',
+  lineHeight: 1.2,
+  marginBottom: '14px',
+  paddingBottom: '10px',
+  borderBottom: '1px solid var(--border)',
+};
+
+const p: React.CSSProperties = {
+  fontSize: '14px',
+  color: 'var(--muted)',
+  lineHeight: 1.8,
+  marginBottom: '14px',
+};
