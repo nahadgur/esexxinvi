@@ -114,6 +114,12 @@ export default function ContactPage() {
               ) : (
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 600, color: 'var(--ink)', marginBottom: '4px' }}>Send a message</div>
+            <p style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '16px', lineHeight: 1.6 }}>
+              Looking to be matched with an Invisalign provider?{' '}
+              <button onClick={() => setIsModalOpen(true)} style={{ color: 'var(--sage)', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', textUnderlineOffset: '3px', fontSize: '13px', fontFamily: 'var(--font-sans)' }}>
+                Use our free matching service instead →
+              </button>
+            </p>
 
                   {[
                     { name: 'name',    label: 'Your name',      type: 'text',  required: true },

@@ -22,7 +22,6 @@
 
 @layer base {
   html {
-    font-size: 17.5px; /* Base scale — was 16px default. Increase to grow ALL text proportionally. */
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -31,6 +30,7 @@
     @apply font-sans text-ink bg-cream;
     color: var(--ink);
     background: var(--cream);
+    zoom: 1.12; /* Scales ALL text including inline px values. Change this one number to resize the whole site. */
   }
   h1, h2, h3 {
     @apply font-display;
