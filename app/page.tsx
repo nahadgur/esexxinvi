@@ -2,64 +2,111 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, MapPin, Shield, Calendar, Users } from 'lucide-react';
-import { services } from '@/data/services';
-import { toSlug } from '@/data/locations';
-import { pricingTiers, financeInfo, treatmentIncludes } from '@/data/pricing';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { Hero } from '@/components/Hero';
-import { TrustBadges } from '@/components/TrustBadges';
-import { Testimonials } from '@/components/Testimonials';
-import { FAQ } from '@/components/FAQ';
 import { LeadFormModal } from '@/components/LeadFormModal';
+import { services } from '@/data/services';
+import { pricingTiers, financeInfo, treatmentIncludes } from '@/data/pricing';
+import { toSlug } from '@/data/locations';
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Data
+// ─────────────────────────────────────────────────────────────────────────────
+
+const testimonials = [
+  { initials: 'CW', quote: 'My teeth look incredible after just 8 months. The Diamond provider in Chelmsford they matched me with was exceptional.', name: 'Charlotte W.', loc: 'Chelmsford · Full Invisalign' },
+  { initials: 'JR', quote: 'Finding a Platinum provider in Brentwood made all the difference. They\'d handled thousands of cases and knew exactly how to manage my bite.', name: 'James R.', loc: 'Brentwood · Full Invisalign' },
+  { initials: 'DK', quote: 'Done in 5 months and the results speak for themselves. Great to find a verified top-tier provider in Colchester without all the research.', name: 'Daniel K.', loc: 'Colchester · Invisalign Lite' },
+  { initials: 'PM', quote: 'I combined Invisalign with whitening at the end. The transformation is genuinely unreal. Provider had over 1,500 cases under their belt.', name: 'Priya M.', loc: 'Basildon · Invisalign + Whitening' },
+];
+
+const featureCards = [
+  { title: 'Diamond & Platinum Only', body: 'We list only the top-tier Invisalign providers in Essex by annual case volume — verified independently before joining our network.' },
+  { title: 'Free 3D Smile Preview', body: 'Every matched provider includes a free iTero scan and ClinCheck preview — you see your finished smile before agreeing to a single thing.' },
+  { title: 'Independently Verified', body: "Every provider's Invisalign tier is checked against Align Technology's records before we list them. No self-reported claims." },
+  { title: '0% Finance Available', body: 'Most providers in our Essex network offer interest-free payment plans from £50 a month. Treatment does not have to be a single upfront cost.' },
+];
+
+const objections = [
+  { q: 'Is Invisalign actually as effective as metal braces?', a: 'For the vast majority of adult cases — including complex crowding, bites, and gaps — yes. The narrow exception is severe skeletal jaw discrepancy requiring surgery, which affects a small minority. Diamond-tier providers routinely handle cases that were braces-only territory five years ago.' },
+  { q: 'Why does the provider tier matter so much?', a: 'A dentist who completes 150+ cases a year has far more hands-on experience with difficult movements, access to advanced Invisalign features, and a lower refinement rate than one doing 10 cases. The end result you walk away with reflects that gap directly.' },
+  { q: "How is this service free — what's the catch?", a: 'We earn a referral fee from the clinic only if you choose to go ahead with treatment. If you do not proceed, nobody pays anything. Our incentive is to match you with a provider good enough that you actually go ahead.' },
+];
+
+const comparisonRows = [
+  { label: 'Visibility',          inv: 'Nearly invisible',           braces: 'Visible brackets & wire' },
+  { label: 'Eating restrictions', inv: 'None — remove to eat',       braces: 'Long banned-food list' },
+  { label: 'Preview your result', inv: '3D animation before you start', braces: 'No preview available' },
+  { label: 'Typical duration',    inv: '6 – 18 months',              braces: '18 – 36 months' },
+  { label: 'Check-up frequency',  inv: 'Every 6 – 8 weeks',          braces: 'Monthly adjustments' },
+];
+
+const faqs = [
+  { q: 'What does Invisalign cost across Essex?', a: 'Most Essex clinics in our network price Invisalign between £1,500 and £5,500. Where you land depends on case complexity, which product your dentist recommends, and provider tier. Nearly every provider we work with offers interest-free monthly payments from around £50, so the upfront number is rarely what you actually pay each month.' },
+  { q: 'How quickly will I see results?', a: 'Minor cosmetic corrections with Invisalign Express can show results in as few as 10–12 weeks. Moderate cases typically show clear improvement within 3–4 months. Full comprehensive treatment takes 12–18 months, with most patients noticing significant change by month 3.' },
+  { q: 'How does your free matching service actually work?', a: 'You fill in a 60-second form with your Essex location and what you want to fix. We filter our network by case type, distance, availability, and patient ratings, then send your details only to the 2–3 best matches. Those providers contact you within hours to arrange a free consultation — no pressure, no obligation.' },
+  { q: 'Can I get Invisalign on the NHS in Essex?', a: 'NHS orthodontic treatment is available for children and teenagers in certain qualifying circumstances, but adult Invisalign is not available on the NHS. All treatment through our network is private, and we help patients access interest-free finance to make it manageable.' },
+  { q: 'Is treatment painful?', a: 'SmartTrack material applies calibrated, gentle force. Most patients describe mild pressure for the first day or two of each new tray — nothing like the soreness of traditional brace tightening. There are no metal edges, no wires, and no emergency appointments for broken brackets.' },
+];
 
 const topCities = ['Chelmsford', 'Southend-on-Sea', 'Colchester', 'Basildon', 'Brentwood', 'Harlow', 'Braintree', 'Clacton-on-Sea', 'Grays', 'Rayleigh', 'Billericay', 'Loughton'];
 
-const homepageFaqs = [
-  { question: "What does Invisalign treatment cost across Essex?", answer: "Most Essex clinics in our network price Invisalign between £1,500 and £5,500. Where you land in that range comes down to three things: how complex your case is, which Invisalign product your dentist recommends, and whether the clinic holds Platinum or Diamond status. Express treatment for minor cosmetic fixes sits at the lower end. Full Comprehensive for bite correction and severe crowding sits at the upper end. Nearly every Essex provider we work with offers interest-free monthly payments starting around £50, so the upfront number is rarely what you actually pay each month." },
-  { question: "How quickly will I see results?", answer: "That depends entirely on what needs fixing. If you have a small gap or slight crowding in your front teeth, Invisalign Express can wrap up in 3 to 6 months. Moderate cases using Invisalign Lite typically take 6 to 12 months. Full Comprehensive treatment for complex issues like bite correction runs 12 to 18 months. Most patients notice visible changes within the first 6 to 8 weeks. Your Essex provider will show you a precise week-by-week digital timeline before you commit to anything." },
-  { question: "Do clear aligners actually work as well as metal braces?", answer: "For the vast majority of adult cases, yes. Clinical research shows Invisalign delivers equivalent results for crowding, spacing, and mild to moderate bite problems. Where it gets interesting is that Platinum-tier providers now have access to features like Precision Wings and SmartForce attachments that handle complex movements previously only possible with fixed braces. The small number of cases where braces still have an edge are severe skeletal jaw discrepancies that need surgical intervention, which applies to very few adults." },
-  { question: "Is the treatment painful?", answer: "Uncomfortable for a couple of days when you switch to a new tray, but nothing close to the pain of braces tightening. What you feel is a dull pressure as the aligner moves your teeth into position. It typically fades within 48 hours. Most Essex patients we hear from say they rarely need pain relief beyond the first day of a new set." },
-  { question: "Why should I care about my dentist's Invisalign tier?", answer: "Because experience changes everything. Align Technology ranks providers by how many cases they finish each year. A Gold provider might do 20. A Platinum provider does 80 or more. A Diamond provider does 150 or more. That is the difference between someone who occasionally fits aligners and someone who lives and breathes complex tooth movements every single day. Every dentist in our Essex network holds Platinum or Diamond status." },
-  { question: "How does your free service actually work?", answer: "You fill in a short form telling us where you are in Essex and what treatment you are interested in. We then match you with up to 3 Platinum or Diamond providers near you. Those clinics contact you directly, usually within a couple of hours, to book a free consultation that includes a 3D iTero scan and a personalised treatment plan. You pay us nothing. The clinics pay us a referral fee only if you decide to go ahead with treatment." },
-  { question: "Are there any food restrictions during treatment?", answer: "None at all. You take your aligners out to eat and drink, which means you can have whatever you want. The only rule is to wear your trays for 20 to 22 hours a day. Brush your teeth before putting the aligners back in and you are good to go." },
-  { question: "Can I preview my finished smile before starting?", answer: "Yes. Every consultation with our Essex providers includes a 3D scan using an iTero scanner. Your dentist feeds that scan into ClinCheck software, which generates a complete digital simulation showing exactly how each tooth moves from where it is now to where it will end up. You watch the animation and decide if you want to proceed." },
-  { question: "Can I get Invisalign through the NHS in Essex?", answer: "Almost certainly not. NHS orthodontics is restricted to under-18s with clinically severe problems. Adult Invisalign is private. But with 0% finance options available at most Essex clinics, the monthly cost is often comparable to a gym membership." },
-  { question: "How many check-up appointments will I need?", answer: "Far fewer than with braces. Most Invisalign patients see their provider every 6 to 8 weeks, and each appointment is usually 15 to 20 minutes. There are no wires to tighten. Your dentist checks that your teeth are tracking correctly, hands you your next sets of aligners, and sends you on your way." },
-];
+// ─────────────────────────────────────────────────────────────────────────────
+// Sub-components
+// ─────────────────────────────────────────────────────────────────────────────
 
-const featureItems = [
-  { title: 'Nobody Can Tell', desc: 'SmartTrack trays are clear, thin, and custom-fitted. Colleagues and clients will not notice them during normal conversation.' },
-  { title: 'Eat Whatever You Want', desc: 'Remove the trays for meals and eat normally. No banned-food lists, no getting food stuck in wires for 12 to 24 months.' },
-  { title: 'Far Less Discomfort', desc: 'No metal edges, no wires. SmartTrack applies gentle, calibrated force — most patients describe mild pressure for the first day or two of each new tray.' },
-  { title: 'See the End Result Before You Start', desc: 'ClinCheck generates a 3D animation of your entire treatment before a single tray is manufactured. No guesswork.' },
-  { title: 'Some Cases Finish in 3 Months', desc: 'Minor cosmetic corrections with Invisalign Express can complete in as little as 3 months. Complex cases still average half the time of traditional braces.' },
-  { title: 'Your Teeth Stay Healthier', desc: 'Braces trap food and lead to white spots and cavities. With Invisalign you remove the trays and brush normally throughout treatment.' },
-];
+function SecLabel({ n, tag, dark }: { n: number; tag: string; dark?: boolean }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
+      <div style={{
+        width: '22px', height: '22px', borderRadius: '50%',
+        background: dark ? 'rgba(255,255,255,0.2)' : 'var(--sage)',
+        color: '#fff', fontSize: '10px', fontWeight: 600,
+        display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+      }}>{n}</div>
+      <span style={{ fontSize: '10px', color: dark ? 'rgba(255,255,255,0.55)' : 'var(--sage-mid)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
+        {tag}
+      </span>
+    </div>
+  );
+}
 
-// Section heading component (inline for this file)
 function SectionH({ children }: { children: React.ReactNode }) {
   return (
-    <h2 style={{
-      fontFamily: 'var(--font-display)',
-      fontSize: 'clamp(1.8rem, 3vw, 2.4rem)',
-      fontWeight: 600,
-      color: 'var(--ink)',
-      lineHeight: 1.15,
-    }}>
+    <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,3vw,2.2rem)', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.15, marginBottom: '10px' }}>
       {children}
-    </h2>
+    </div>
   );
 }
 
-function SectionSub({ children, maxWidth }: { children: React.ReactNode; maxWidth?: string }) {
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
   return (
-    <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: maxWidth || '560px' }}>
-      {children}
-    </p>
+    <div style={{ border: '1px solid var(--border)', borderRadius: '8px', overflow: 'hidden', marginBottom: '2px' }}>
+      <button
+        onClick={() => setOpen(!open)}
+        style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', background: '#fff', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-sans)', gap: '16px', textAlign: 'left' }}
+      >
+        <span style={{ fontSize: '14px', fontWeight: 500, color: 'var(--ink)' }}>{q}</span>
+        <span style={{
+          width: '18px', height: '18px', borderRadius: '50%', border: '1px solid var(--border)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: '11px', color: 'var(--sage)', flexShrink: 0,
+          transform: open ? 'rotate(45deg)' : 'none', transition: 'transform 0.2s',
+        }}>+</span>
+      </button>
+      {open && (
+        <div style={{ padding: '0 20px 16px', fontSize: '13px', color: 'var(--muted)', lineHeight: 1.7, background: '#fff' }}>
+          {a}
+        </div>
+      )}
+    </div>
   );
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Page
+// ─────────────────────────────────────────────────────────────────────────────
 
 export default function HomePage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -71,433 +118,305 @@ export default function HomePage() {
 
       <main style={{ flex: 1 }}>
 
-        {/* HERO */}
-        <Hero
-          title="Essex's Finest Invisalign Specialists, Matched Free"
-          subtitle="We vet every provider so you do not have to. Get matched with Platinum and Diamond Invisalign specialists near you. Free consultation, free 3D scan, zero cost to use our service."
-          image="https://images.unsplash.com/photo-1694675236489-d73651370688?q=80&w=880&auto=format&fit=crop"
-          onOpenModal={() => setIsModalOpen(true)}
-        />
+        {/* ══════════════════════════════════════════════════════════════
+            HERO — split 50/50, above fold
+            Left: headline + subtitle + CTA + social proof
+            Right: dental image with floating provider cards overlay
+            ══════════════════════════════════════════════════════════════ */}
+        <section style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '460px', borderBottom: '1px solid var(--border)' }} className="hero-grid">
 
-        {/* STAT STRIP */}
-        <TrustBadges />
+          {/* Left column */}
+          <div style={{ padding: 'clamp(40px,6vw,64px) clamp(24px,4vw,48px)', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 0, background: 'var(--cream)' }}>
 
-        {/* ── WHAT IS INVISALIGN ── */}
-        <section style={{ padding: 'clamp(48px,6vw,80px) 0', background: 'var(--cream)', borderBottom: '1px solid var(--border)' }}>
-          <div className="container-width">
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: '56px', alignItems: 'start' }} className="two-col-grid">
-
-              {/* Left: prose */}
-              <div>
-                <div style={{ marginBottom: '24px' }}>
-                  <div style={{ width: '3px', height: '28px', background: 'var(--sage)', borderRadius: '2px', marginBottom: '14px' }} />
-                  <SectionH>Clear aligners that straighten teeth <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>without the metal</em></SectionH>
-                </div>
-                <div style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.8, display: 'flex', flexDirection: 'column', gap: '14px', maxWidth: '600px' }}>
-                  <p>Invisalign replaces traditional brackets and wires with a series of custom-moulded, nearly invisible plastic trays. Each set is worn for one to two weeks before swapping to the next, gradually shifting your teeth into the correct position. You remove them to eat, drink, and brush, then pop them back in.</p>
-                  <p>Before treatment begins, your dentist takes a full 3D scan using an iTero scanner. That scan feeds into ClinCheck software, which maps out every tooth movement from day one to the final result. You watch an animated preview of your smile transformation before agreeing to anything. No guesswork, no surprises.</p>
-                  <p>Align Technology has treated over 14 million patients worldwide since 1997 and holds over 900 patents on the materials and attachment designs used in every set of trays. It is the most clinically studied clear aligner system on the market.</p>
-                  <p>Here is the part most people do not realise: <strong style={{ fontWeight: 600, color: 'var(--ink)' }}>not all Invisalign dentists are equal</strong>. Align Technology ranks providers into tiers based on how many cases they complete each year. The difference between a dentist who does 10 cases annually and one who does 150 is enormous — in planning skill, troubleshooting ability, and the final result you walk away with.</p>
-                </div>
+            {/* 1 — Headline */}
+            <div style={{ marginBottom: '20px' }}>
+              <SecLabel n={1} tag="Headline" />
+              <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem,5vw,3rem)', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.1 }}>
+                Essex&apos;s Finest<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>Invisalign</em>
+              </h1>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem,5vw,3rem)', fontWeight: 400, fontStyle: 'italic', color: '#C0C8BE', lineHeight: 1.1 }}>
+                Specialists, Matched Free
               </div>
+            </div>
 
-              {/* Right: tier cards */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                {[
-                  { tier: 'Diamond', cases: '150+ cases/year', desc: 'Treats multiple patients daily. Access to every advanced Invisalign feature and priority technical support.', listed: true, badgeStyle: { background: '#EDE9F8', color: '#5B42A8' } },
-                  { tier: 'Platinum', cases: '80+ cases/year', desc: 'Routinely handles complex cases including deep bites, severe crowding, and full arch corrections.', listed: true, badgeStyle: { background: 'var(--sage-pale)', color: 'var(--sage)' } },
-                  { tier: 'Gold', cases: '20+ cases/year', desc: 'Limited complex case experience. Not included in our Essex network.', listed: false, badgeStyle: { background: '#f0f0ec', color: '#9A9A92' } },
-                ].map(item => (
-                  <div key={item.tier} style={{
-                    background: item.listed ? 'var(--sage-pale)' : '#f5f5f2',
-                    border: `1px solid ${item.listed ? '#c8d9c9' : 'var(--border)'}`,
-                    borderRadius: '10px', padding: '16px 18px',
-                    opacity: item.listed ? 1 : 0.5,
-                  }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
-                      <span style={{ fontWeight: 600, color: 'var(--ink)', fontSize: '14px' }}>{item.tier}</span>
-                      <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 9px', borderRadius: '20px', letterSpacing: '0.05em', ...item.badgeStyle }}>
-                        {item.listed ? 'In Network' : 'Not Listed'}
-                      </span>
-                    </div>
-                    <div style={{ fontSize: '11px', color: 'var(--muted)', marginBottom: '6px' }}>{item.cases}</div>
-                    <p style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.55 }}>{item.desc}</p>
-                  </div>
-                ))}
+            {/* 2 — Subtitle */}
+            <div style={{ marginBottom: '28px' }}>
+              <SecLabel n={2} tag="Subtitle" />
+              <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '320px' }}>
+                We vet every provider so you do not have to. Get matched with Platinum and Diamond Invisalign specialists near you — free consultation, free 3D scan, zero cost.
+              </p>
+            </div>
 
-                {/* Why tier matters */}
-                <div style={{ background: 'var(--sage)', borderRadius: '10px', padding: '18px 20px' }}>
-                  <div style={{ fontSize: '13px', fontWeight: 600, color: '#fff', marginBottom: '6px' }}>Why does tier matter?</div>
-                  <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.75)', lineHeight: 1.6 }}>
-                    A higher tier means more hands-on experience with difficult cases, access to advanced features like Precision Wings and mandibular advancement, lower refinement rates, and consistently better outcomes. We do the vetting so you get the top 5% without having to research it yourself.
-                  </p>
+            {/* 3 — CTA */}
+            <div style={{ marginBottom: '24px' }}>
+              <SecLabel n={3} tag="CTA" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                <button onClick={() => setIsModalOpen(true)} className="btn-primary" style={{ padding: '13px 28px', borderRadius: '40px', fontSize: '13px' }}>
+                  Get Free Quotes
+                </button>
+                <Link href="/treatments/" style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+                  View Treatments
+                </Link>
+              </div>
+            </div>
+
+            {/* 4 — Social proof */}
+            <div>
+              <SecLabel n={4} tag="Social Proof" />
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
+                  <span style={{ color: '#C9A96E', fontSize: '13px', letterSpacing: '1px' }}>★★★★★</span>
+                  <span style={{ fontSize: '12px', color: 'var(--muted)' }}>4.95 avg</span>
                 </div>
+                <div style={{ width: '1px', height: '14px', background: 'var(--border)' }} />
+                <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Platinum &amp; Diamond only</span>
+                <div style={{ width: '1px', height: '14px', background: 'var(--border)' }} />
+                <span style={{ background: 'var(--sage-pale)', borderRadius: '20px', padding: '3px 10px', fontSize: '11px', color: 'var(--sage)', fontWeight: 500 }}>
+                  Free 3D scan
+                </span>
               </div>
             </div>
           </div>
-        </section>
 
-        {/* ── SIX REASONS ── */}
-        <section style={{ padding: 'clamp(48px,6vw,80px) 0', background: 'var(--sage-pale)', borderBottom: '1px solid var(--border)' }}>
-          <div className="container-width">
-            <div style={{ marginBottom: '40px' }}>
-              <div style={{ width: '3px', height: '28px', background: 'var(--sage)', borderRadius: '2px', marginBottom: '14px' }} />
-              <SectionH>Six reasons Essex patients <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>choose Invisalign</em></SectionH>
-              <div style={{ marginTop: '12px' }}>
-                <SectionSub maxWidth="580px">
-                  Adult orthodontics has grown dramatically across the South East. The appeal is simple: Invisalign delivers the same clinical results as braces for most cases, without the lifestyle compromise.
-                </SectionSub>
-              </div>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px' }} className="three-col-grid">
-              {featureItems.map((item, i) => (
-                <div key={i} style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '10px', padding: '20px 22px' }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 600, color: 'var(--ink)', marginBottom: '8px' }}>
-                    {item.title}
+          {/* 5 — Visual: image + floating provider cards */}
+          <div style={{ background: 'var(--sage-pale)', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '24px', minHeight: '380px' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800&auto=format&fit=crop"
+              alt="Invisalign consultation"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.55, mixBlendMode: 'multiply' }}
+            />
+            <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              {[
+                { name: 'Chelmsford Dental Studio', tier: 'Diamond', sub: '150+ cases per year · Free 3D scan', badgeBg: '#EDE9F8', badgeColor: '#5B42A8' },
+                { name: 'Brentwood Smile Clinic',   tier: 'Platinum', sub: '80+ cases per year · 0% finance', badgeBg: 'var(--sage-pale)', badgeColor: 'var(--sage)' },
+              ].map(card => (
+                <div key={card.name} style={{ background: 'rgba(250,250,247,0.92)', border: '1px solid rgba(61,92,66,0.15)', borderRadius: '8px', padding: '10px 14px', backdropFilter: 'blur(4px)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '3px' }}>
+                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--sage-mid)', flexShrink: 0 }} />
+                    <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--ink)' }}>{card.name}</span>
+                    <span style={{ fontSize: '9px', fontWeight: 700, padding: '2px 7px', borderRadius: '3px', letterSpacing: '0.05em', background: card.badgeBg, color: card.badgeColor, marginLeft: 'auto' }}>
+                      {card.tier}
+                    </span>
                   </div>
-                  <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65 }}>{item.desc}</p>
+                  <div style={{ fontSize: '11px', color: 'var(--muted)', paddingLeft: '14px' }}>{card.sub}</div>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── PRICING ── */}
-        <section style={{ padding: 'clamp(48px,6vw,80px) 0', background: 'var(--cream)', borderBottom: '1px solid var(--border)' }}>
-          <div className="container-width">
-            <div style={{ marginBottom: '28px' }}>
-              <div style={{ width: '3px', height: '28px', background: 'var(--sage)', borderRadius: '2px', marginBottom: '14px' }} />
-              <SectionH>What Essex patients <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>actually pay</em> for Invisalign</SectionH>
-              <div style={{ marginTop: '10px' }}>
-                <SectionSub maxWidth="600px">
-                  Every case is different, but these are the price ranges you will see from Platinum and Diamond clinics across Essex. The quality of provider you get through our network justifies every penny.
-                </SectionSub>
-              </div>
-            </div>
+        {/* ══════════════════════════════════════════════════════════════
+            THE FOLD LINE
+            ══════════════════════════════════════════════════════════════ */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '14px clamp(24px,5vw,56px)', background: 'var(--sage-light)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+          <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '0.1em', textTransform: 'uppercase', whiteSpace: 'nowrap' }}>Below the fold</span>
+          <div style={{ flex: 1, height: '1px', background: 'var(--border)' }} />
+        </div>
 
-            {/* Pricing table */}
-            <div style={{ overflowX: 'auto', marginBottom: '24px' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid var(--border)', borderRadius: '10px', overflow: 'hidden', fontSize: '13px' }}>
+        {/* ══════════════════════════════════════════════════════════════
+            6 — FEATURES / OBJECTIONS / BENEFITS
+            2×2 feature cards + objections row + comparison table
+            ══════════════════════════════════════════════════════════════ */}
+        <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', borderBottom: '1px solid var(--border)', background: 'var(--cream)' }}>
+
+          <SecLabel n={6} tag="Features, Objections & Benefits" />
+          <SectionH>Why tier matters.<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>And why we only list the top 5%.</em></SectionH>
+          <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '500px', marginBottom: '36px' }}>
+            Any dentist can call themselves an Invisalign provider after a weekend course. The difference between someone doing 10 cases a year and 150 is enormous in skill, troubleshooting, and your final result.
+          </p>
+
+          {/* 2×2 feature cards */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '32px' }} className="two-col-sm-grid">
+            {featureCards.map(card => (
+              <div key={card.title} style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '10px', padding: '20px 22px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                  <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: 'var(--sage-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <span style={{ color: 'var(--sage)', fontSize: '14px' }}>✦</span>
+                  </div>
+                  <span style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>{card.title}</span>
+                </div>
+                <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6 }}>{card.body}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Objections */}
+          <div style={{ background: 'var(--sage-pale)', borderRadius: '10px', padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: '18px', marginBottom: '32px' }}>
+            {objections.map(obj => (
+              <div key={obj.q} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
+                <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: 'var(--sage)', flexShrink: 0, marginTop: '2px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <span style={{ fontSize: '9px', color: '#fff', fontWeight: 700 }}>?</span>
+                </div>
+                <div>
+                  <p style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)', marginBottom: '3px' }}>{obj.q}</p>
+                  <p style={{ fontSize: '12px', color: 'var(--muted)', lineHeight: 1.55 }}>{obj.a}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Comparison table */}
+          <div>
+            <div style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 600, color: 'var(--ink)', marginBottom: '16px' }}>
+              Invisalign <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>vs</em> Traditional Braces
+            </div>
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
-                  <tr style={{ background: 'var(--sage-pale)', textAlign: 'left' }}>
-                    <th style={{ padding: '12px 18px', fontWeight: 600, color: 'var(--ink)', fontSize: '12px' }}>Treatment Type</th>
-                    <th style={{ padding: '12px 18px', fontWeight: 600, color: 'var(--sage)', fontSize: '12px' }}>Price (GBP)</th>
-                    <th style={{ padding: '12px 18px', fontWeight: 600, color: 'var(--ink)', fontSize: '12px' }} className="hidden md:table-cell">Duration</th>
-                    <th style={{ padding: '12px 18px', fontWeight: 600, color: 'var(--ink)', fontSize: '12px' }} className="hidden lg:table-cell">Best For</th>
+                  <tr>
+                    <th style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 500, padding: '8px 16px', textAlign: 'left', borderBottom: '2px solid var(--border)', width: '36%' }}></th>
+                    <th style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--sage)', fontWeight: 500, padding: '8px 16px', textAlign: 'left', borderBottom: '2px solid var(--border)', background: 'var(--sage-pale)', borderRadius: '6px 6px 0 0' }}>Invisalign</th>
+                    <th style={{ fontSize: '11px', letterSpacing: '0.08em', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 500, padding: '8px 16px', textAlign: 'left', borderBottom: '2px solid var(--border)' }}>Metal Braces</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {pricingTiers.map((tier, i) => (
-                    <tr key={tier.slug} style={{ background: i % 2 === 0 ? '#fff' : 'var(--cream)' }}>
-                      <td style={{ padding: '13px 18px', fontWeight: 600, color: 'var(--ink)', borderBottom: '1px solid var(--border)' }}>{tier.treatment}</td>
-                      <td style={{ padding: '13px 18px', borderBottom: '1px solid var(--border)' }}>
-                        <span style={{ fontWeight: 600, color: 'var(--sage)', fontSize: '15px' }}>£{tier.priceFrom.toLocaleString()} – £{tier.priceTo.toLocaleString()}</span>
-                      </td>
-                      <td style={{ padding: '13px 18px', color: 'var(--muted)', borderBottom: '1px solid var(--border)' }} className="hidden md:table-cell">{tier.typicalDuration}</td>
-                      <td style={{ padding: '13px 18px', color: 'var(--muted)', fontSize: '12px', borderBottom: '1px solid var(--border)' }} className="hidden lg:table-cell">{tier.description}</td>
+                  {comparisonRows.map((row, i) => (
+                    <tr key={row.label} style={{ background: i % 2 === 0 ? '#fff' : '#fafaf7' }}>
+                      <td style={{ padding: '11px 16px', fontSize: '13px', color: 'var(--ink)', borderBottom: '1px solid var(--border)' }}>{row.label}</td>
+                      <td style={{ padding: '11px 16px', fontSize: '13px', color: 'var(--sage)', fontWeight: 500, background: 'var(--sage-pale)', borderBottom: '1px solid var(--border)' }}>{row.inv}</td>
+                      <td style={{ padding: '11px 16px', fontSize: '13px', color: '#A0A09A', borderBottom: '1px solid var(--border)' }}>{row.braces}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-
-            {/* Included + finance */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }} className="two-col-sm-grid">
-              <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '10px', padding: '20px 22px' }}>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 600, color: 'var(--ink)', marginBottom: '14px' }}>Every Quote Includes</h3>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  {treatmentIncludes.map((item, i) => (
-                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13px', color: 'var(--muted)' }}>
-                      <div style={{ width: '14px', height: '14px', borderRadius: '50%', background: 'var(--sage)', flexShrink: 0, marginTop: '2px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontSize: '8px', color: '#fff', fontWeight: 700 }}>✓</span>
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '10px', padding: '20px 22px' }}>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 600, color: 'var(--ink)', marginBottom: '8px' }}>0% Finance Available</h3>
-                <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65, marginBottom: '14px' }}>{financeInfo.description}</p>
-                <div style={{ background: 'var(--sage-pale)', borderRadius: '8px', padding: '14px 16px' }}>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: '26px', fontWeight: 600, color: 'var(--sage)' }}>From £{financeInfo.monthlyFrom}/month</div>
-                  <span style={{ fontSize: '11px', color: 'var(--muted)' }}>Over {financeInfo.spreadOver} at 0% APR</span>
-                </div>
-              </div>
-            </div>
-
-            <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '680px' }}>
-              Yes, a Platinum provider may cost slightly more than the general dentist down the road. But their experience means fewer correction rounds, fewer surprises, and a better end result. Most patients find the marginally higher fee saves them money overall. Our service is free, so compare up to 3 quotes and decide for yourself.
-            </p>
           </div>
         </section>
 
-        {/* ── TREATMENTS / SERVICES ── */}
-        <section style={{ padding: 'clamp(48px,6vw,80px) 0', background: 'var(--sage-light)', borderBottom: '1px solid var(--border)' }}>
-          <div className="container-width">
-            <div style={{ marginBottom: '36px' }}>
-              <div style={{ width: '3px', height: '28px', background: 'var(--sage)', borderRadius: '2px', marginBottom: '14px' }} />
-              <SectionH>What can Invisalign <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>actually fix?</em></SectionH>
-              <div style={{ marginTop: '10px' }}>
-                <SectionSub>
-                  More than most people think. Our Essex Platinum providers use advanced attachments and staging techniques to treat cases that were braces-only territory just a few years ago.
-                </SectionSub>
-              </div>
-            </div>
+        {/* ══════════════════════════════════════════════════════════════
+            7 — SOCIAL PROOF / TESTIMONIALS
+            Sage-pale background, serif italic quote style
+            ══════════════════════════════════════════════════════════════ */}
+        <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', background: 'var(--sage-pale)', borderBottom: '1px solid var(--border)' }}>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '14px' }} className="three-col-grid">
-              {services.map(service => (
-                <article key={service.id} style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '10px', overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
-                  <Link href={`/services/${service.slug}/`} style={{ display: 'block', height: '180px', overflow: 'hidden' }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={service.image} alt={service.title}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
-                      loading="lazy"
-                      className="service-img"
-                    />
-                  </Link>
-                  <div style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                    <Link href={`/services/${service.slug}/`} style={{ textDecoration: 'none' }}>
-                      <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 600, color: 'var(--ink)', marginBottom: '6px', transition: 'color 0.15s' }}
-                        className="hover:text-brand-600">
-                        {service.title}
-                      </h3>
-                    </Link>
-                    <p style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '16px', lineHeight: 1.6, flex: 1 }}>{service.description}</p>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid var(--border)', paddingTop: '12px' }}>
-                      <Link href={`/services/${service.slug}/`} style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '4px', textDecoration: 'none' }}>
-                        Find providers <ArrowRight style={{ width: '14px', height: '14px' }} />
-                      </Link>
-                      <button
-                        onClick={() => setIsModalOpen(true)}
-                        style={{ background: 'var(--ink)', color: '#fff', fontSize: '11px', fontWeight: 600, padding: '7px 12px', borderRadius: '6px', border: 'none', cursor: 'pointer', fontFamily: 'var(--font-sans)' }}
-                      >
-                        Get 3 Quotes
-                      </button>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+          <SecLabel n={7} tag="Social Proof" />
+          <SectionH>What Essex patients say<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>after using our service</em></SectionH>
 
-        {/* ── HOW IT WORKS ── */}
-        <section style={{ padding: 'clamp(48px,6vw,80px) 0', background: 'var(--cream)', borderBottom: '1px solid var(--border)' }}>
-          <div className="container-width">
-            <div style={{ marginBottom: '44px' }}>
-              <div style={{ width: '3px', height: '28px', background: 'var(--sage)', borderRadius: '2px', marginBottom: '14px' }} />
-              <SectionH>From form to free consultation <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>in under 2 hours</em></SectionH>
-              <div style={{ marginTop: '10px' }}>
-                <SectionSub>We are not a dental practice. We are a free matching service that connects Essex patients with the right Invisalign specialist for their case.</SectionSub>
-              </div>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '32px', marginBottom: '44px' }} className="three-col-grid">
-              {[
-                { step: 1, title: 'Tell Us What You Need', desc: 'Fill in a 60-second form with your Essex location and what you want to fix. No account required. We only share your details with clinics we match you with.' },
-                { step: 2, title: 'We Shortlist Your Best Options', desc: 'We filter our network by case type, distance, availability, and patient ratings. You get the best 2 to 3 matches, not a random list.' },
-                { step: 3, title: 'Clinics Reach Out With Free Quotes', desc: 'Matched providers contact you within hours to arrange a free consultation including an iTero 3D scan and a personalised treatment plan — at no cost.' },
-              ].map(item => (
-                <div key={item.step} style={{ textAlign: 'center' }}>
-                  <div style={{
-                    width: '52px', height: '52px', borderRadius: '50%',
-                    background: 'var(--sage-pale)', border: '2px solid #c8d9c9',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    margin: '0 auto 18px', flexShrink: 0,
-                  }}>
-                    <span style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 600, color: 'var(--sage)' }}>{item.step}</span>
-                  </div>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 600, color: 'var(--ink)', marginBottom: '8px' }}>{item.title}</h3>
-                  <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65 }}>{item.desc}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Why this service exists */}
-            <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '12px', padding: 'clamp(24px,4vw,40px)' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '40px', alignItems: 'center' }} className="cta-split-grid">
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '14px' }}>
-                    <div style={{ width: '24px', height: '1px', background: 'var(--sage-mid)' }} />
-                    <span style={{ fontSize: '11px', color: 'var(--sage-mid)', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Why this service exists</span>
-                  </div>
-                  <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '10px' }}>
-                    Any high-street dentist can call themselves an Invisalign provider after a weekend course. The problem is that your result depends almost entirely on how many complex cases that dentist has actually completed. Researching provider tiers, reading reviews, and comparing quotes across multiple clinics takes hours. We have already done that work for every provider in our Essex network.
-                  </p>
-                  <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75 }}>
-                    We cover clinics from Saffron Walden down to Southend, from Harlow across to Clacton. The service costs you nothing. We earn a referral fee from the clinic only if you choose to go ahead with treatment.
-                  </p>
-                </div>
-                <div style={{ textAlign: 'center', flexShrink: 0 }}>
-                  <button onClick={() => setIsModalOpen(true)} className="btn-primary" style={{ fontSize: '14px', whiteSpace: 'nowrap' }}>
-                    Get Your Free Quotes
-                  </button>
-                  <p style={{ fontSize: '11px', color: 'var(--muted)', marginTop: '8px' }}>100% free &middot; No obligation &middot; 60 seconds</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ── INVISALIGN VS BRACES ── */}
-        <section style={{ padding: 'clamp(48px,6vw,80px) 0', background: 'var(--sage-light)', borderBottom: '1px solid var(--border)' }}>
-          <div className="container-width">
-            <div style={{ marginBottom: '32px' }}>
-              <div style={{ width: '3px', height: '28px', background: 'var(--sage)', borderRadius: '2px', marginBottom: '14px' }} />
-              <SectionH>Invisalign <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>vs</em> Metal Braces: the honest comparison</SectionH>
-              <div style={{ marginTop: '10px' }}>
-                <SectionSub maxWidth="600px">Both systems straighten teeth. The difference is how they fit into your life while they do it.</SectionSub>
-              </div>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginBottom: '24px' }} className="two-col-sm-grid">
-              {/* Invisalign col */}
-              <div style={{ background: '#fff', border: '1px solid #c8d9c9', borderRadius: '10px', padding: '22px 24px' }}>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 600, color: 'var(--sage)', marginBottom: '18px' }}>
-                  Invisalign Clear Aligners
-                </h3>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  {['Nearly invisible, most people will not notice', 'Remove to eat, drink, brush, and floss', 'No metal in your mouth at all', 'Check-ups every 6 to 8 weeks only', 'Full 3D preview of your result before starting', 'Typical treatment 6 to 18 months', 'Smooth medical-grade plastic, no sharp edges', 'From £1,500 to £5,500 across Essex'].map((item, i) => (
-                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13px', color: 'var(--muted)' }}>
-                      <div style={{ width: '14px', height: '14px', borderRadius: '50%', background: 'var(--sage)', flexShrink: 0, marginTop: '2px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <span style={{ fontSize: '8px', color: '#fff', fontWeight: 700 }}>✓</span>
-                      </div>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Braces col */}
-              <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '10px', padding: '22px 24px', opacity: 0.75 }}>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 600, color: '#B0B0A8', marginBottom: '18px' }}>
-                  Traditional Metal Braces
-                </h3>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  {['Visible metal brackets and wires', 'Fixed in place for the entire treatment', 'Long list of banned foods', 'Monthly adjustment appointments required', 'No way to visualise the end result', 'Typical treatment 18 to 36 months', 'Brackets and wires cause sores and irritation', 'From £1,500 to £6,000'].map((item, i) => (
-                    <li key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13px', color: '#B0B0A8' }}>
-                      <div style={{ width: '14px', height: '14px', borderRadius: '50%', border: '1.5px solid #D0D0C8', flexShrink: 0, marginTop: '2px' }} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '680px' }}>
-              The deciding factor is always provider experience. A Platinum specialist who has planned and managed hundreds of Invisalign cases will outperform a generalist with either system. For everyone else, Invisalign treated by an experienced provider is the stronger option.
-            </p>
-          </div>
-        </section>
-
-        {/* ── TESTIMONIALS ── */}
-        <section style={{ padding: 'clamp(48px,6vw,80px) 0', background: 'var(--sage-pale)', borderBottom: '1px solid var(--border)' }}>
-          <div className="container-width">
-            <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '20px', marginBottom: '36px', flexWrap: 'wrap' }}>
-              <div>
-                <div style={{ width: '3px', height: '28px', background: 'var(--sage)', borderRadius: '2px', marginBottom: '14px' }} />
-                <SectionH>Straight from <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>Essex patients</em></SectionH>
-                <div style={{ marginTop: '8px' }}>
-                  <SectionSub>Real experiences from people who used our free matching service to find their Invisalign provider.</SectionSub>
-                </div>
-              </div>
-              <button onClick={() => setIsModalOpen(true)} className="btn-primary" style={{ fontSize: '13px', flexShrink: 0 }}>
-                Get Matched Free
-              </button>
-            </div>
-            <Testimonials limit={4} />
-          </div>
-        </section>
-
-        {/* ── LOCATIONS ── */}
-        <section style={{ padding: 'clamp(48px,6vw,80px) 0', background: 'var(--cream)', borderBottom: '1px solid var(--border)' }}>
-          <div className="container-width">
-            <div style={{ marginBottom: '32px' }}>
-              <div style={{ width: '3px', height: '28px', background: 'var(--sage)', borderRadius: '2px', marginBottom: '14px' }} />
-              <SectionH>Find providers in <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>your part of Essex</em></SectionH>
-              <div style={{ marginTop: '10px' }}>
-                <SectionSub maxWidth="580px">We cover every major town in the county. Each location page shows which treatments are available, what local patients pay, and how to book a free consultation.</SectionSub>
-              </div>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px' }} className="loc-grid">
-              {topCities.map(city => (
-                <Link key={city} href={`/location/${toSlug(city)}/`} style={{
-                  display: 'flex', alignItems: 'center', gap: '12px',
-                  background: '#fff', border: '1px solid var(--border)',
-                  borderRadius: '8px', padding: '14px 16px',
-                  textDecoration: 'none', transition: 'border-color 0.15s, background 0.15s',
-                }} className="loc-link">
-                  <div style={{
-                    width: '32px', height: '32px', borderRadius: '50%',
-                    background: 'var(--sage-pale)', display: 'flex', alignItems: 'center',
-                    justifyContent: 'center', flexShrink: 0,
-                  }}>
-                    <MapPin style={{ width: '14px', height: '14px', color: 'var(--sage)' }} />
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginTop: '32px' }} className="two-col-sm-grid">
+            {testimonials.map(t => (
+              <div key={t.initials} style={{ background: 'var(--cream)', borderRadius: '10px', border: '1px solid var(--border)', padding: '22px 24px' }}>
+                <div style={{ color: '#C9A96E', fontSize: '12px', letterSpacing: '1px', marginBottom: '12px' }}>★★★★★</div>
+                <p style={{ fontFamily: 'var(--font-display)', fontSize: '17px', fontStyle: 'italic', color: 'var(--ink)', lineHeight: 1.5, marginBottom: '16px' }}>
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'var(--sage-pale)', border: '1.5px solid var(--sage-mid)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 600, color: 'var(--sage)', flexShrink: 0 }}>
+                    {t.initials}
                   </div>
                   <div>
-                    <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, color: 'var(--ink)', fontSize: '14px', display: 'block' }}>
-                      Invisalign {city}
-                    </span>
-                    <span style={{ fontSize: '11px', color: 'var(--muted)' }}>Providers and prices</span>
+                    <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)' }}>{t.name}</div>
+                    <div style={{ fontSize: '11px', color: 'var(--muted)' }}>{t.loc}</div>
                   </div>
-                </Link>
-              ))}
-            </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
-              <Link href="/location/" style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
-                Browse all Essex locations
+        {/* ══════════════════════════════════════════════════════════════
+            LOCATIONS — inline between testimonials and FAQ
+            ══════════════════════════════════════════════════════════════ */}
+        <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', background: 'var(--cream)', borderBottom: '1px solid var(--border)' }}>
+          <SectionH>Find providers in <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>your part of Essex</em></SectionH>
+          <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '480px', marginBottom: '28px' }}>
+            We cover every major town in the county. Each location page shows which treatments are available, what local patients pay, and how to book a free consultation.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '10px', marginBottom: '20px' }} className="loc-grid">
+            {topCities.map(city => (
+              <Link key={city} href={`/locations/${toSlug(city)}/`} style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#fff', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px 14px', textDecoration: 'none', transition: 'border-color 0.15s' }} className="loc-link">
+                <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'var(--sage-pale)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <span style={{ fontSize: '10px', color: 'var(--sage)' }}>↗</span>
+                </div>
+                <div>
+                  <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, color: 'var(--ink)', fontSize: '13px', display: 'block' }}>
+                    {city}
+                  </span>
+                  <span style={{ fontSize: '10px', color: 'var(--muted)' }}>Providers &amp; prices</span>
+                </div>
               </Link>
-            </div>
+            ))}
+          </div>
+          <Link href="/locations/" style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
+            Browse all 111 Essex towns →
+          </Link>
+        </section>
+
+        {/* ══════════════════════════════════════════════════════════════
+            8 — FAQ
+            Accordion, clean borders
+            ══════════════════════════════════════════════════════════════ */}
+        <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', borderBottom: '1px solid var(--border)', background: 'var(--cream)' }}>
+
+          <SecLabel n={8} tag="FAQ" />
+          <SectionH>Your questions,<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>answered honestly</em></SectionH>
+          <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '480px', marginBottom: '32px' }}>
+            No vague answers. No upselling. Just what you need to know before booking.
+          </p>
+
+          <div>
+            {faqs.map(faq => (
+              <FaqItem key={faq.q} q={faq.q} a={faq.a} />
+            ))}
           </div>
         </section>
 
-        {/* ── FAQ ── */}
-        <section style={{ padding: 'clamp(48px,6vw,80px) 0', background: 'var(--cream)', borderBottom: '1px solid var(--border)' }}>
-          <div className="container-width" style={{ maxWidth: '760px' }}>
-            <div style={{ marginBottom: '8px' }}>
-              <div style={{ width: '3px', height: '28px', background: 'var(--sage)', borderRadius: '2px', marginBottom: '14px' }} />
-            </div>
-            <FAQ faqs={homepageFaqs} title="Your Invisalign questions, answered" />
+        {/* ══════════════════════════════════════════════════════════════
+            9 — FINAL CTA
+            Sage background, white headline, ghost secondary button
+            ══════════════════════════════════════════════════════════════ */}
+        <section style={{ padding: 'clamp(56px,8vw,96px) clamp(24px,5vw,56px)', background: 'var(--sage)', textAlign: 'center' }}>
+
+          <SecLabel n={9} tag="CTA" dark />
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,4vw,2.8rem)', fontWeight: 600, color: '#fff', lineHeight: 1.15, marginBottom: '12px', marginTop: '10px' }}>
+            Your perfect smile starts<br /><em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.65)' }}>with the right provider.</em>
+          </h2>
+          <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', marginBottom: '32px', lineHeight: 1.7 }}>
+            Free quotes, free consultations, free 3D scans. Essex&apos;s top Invisalign clinics come to you. No strings attached.
+          </p>
+
+          <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', marginBottom: '20px', flexWrap: 'wrap' }}>
+            <button onClick={() => setIsModalOpen(true)} style={{ padding: '14px 36px', background: '#fff', color: 'var(--sage)', fontSize: '14px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer' }}>
+              Get Free Quotes
+            </button>
+            <Link href="/treatments/" style={{ padding: '14px 28px', background: 'transparent', color: 'rgba(255,255,255,0.7)', fontSize: '14px', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '40px', textDecoration: 'none' }}>
+              Browse Treatments
+            </Link>
+          </div>
+
+          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', fontSize: '12px', color: 'rgba(255,255,255,0.5)', flexWrap: 'wrap' }}>
+            {['Always 100% free', 'Platinum and Diamond only', 'Free 3D scan included'].map(item => (
+              <span key={item}>— {item}</span>
+            ))}
           </div>
         </section>
 
-        {/* ── FINAL CTA ── */}
-        <section style={{ padding: 'clamp(56px,8vw,96px) 0', background: 'var(--sage)' }}>
-          <div className="container-width" style={{ textAlign: 'center' }}>
-            <h2 style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(2rem,4vw,2.8rem)',
-              fontWeight: 600, color: '#fff',
-              lineHeight: 1.15, marginBottom: '12px',
-            }}>
-              Your perfect smile starts with <em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.55)' }}>the right provider</em>
-            </h2>
-            <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.65)', marginBottom: '36px', lineHeight: 1.75, maxWidth: '480px', margin: '0 auto 36px' }}>
-              Fill in our 60-second form and let Essex&apos;s top Invisalign clinics come to you. Free quotes, free consultations, free 3D scans. No strings attached.
+        {/* ══════════════════════════════════════════════════════════════
+            10 — FOUNDER'S NOTE
+            Cream background, serif italic quote, avatar sig
+            ══════════════════════════════════════════════════════════════ */}
+        <section style={{ padding: 'clamp(44px,6vw,64px) clamp(24px,5vw,56px)', borderTop: '1px solid var(--border)', background: 'var(--cream)' }}>
+
+          <SecLabel n={10} tag="Founder's Note" />
+          <div style={{ maxWidth: '520px', marginTop: '16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
+              <div style={{ width: '28px', height: '1px', background: 'var(--sage-mid)' }} />
+              <span style={{ fontSize: '11px', color: 'var(--sage-mid)', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}>
+                A note on why this exists
+              </span>
+            </div>
+            <p style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontStyle: 'italic', color: 'var(--ink)', lineHeight: 1.65, marginBottom: '24px' }}>
+              &ldquo;Any high-street dentist can call themselves an Invisalign provider after a weekend course. When I looked into treatment for myself, I spent three hours trying to understand what &lsquo;Platinum&rsquo; actually meant and whether my local clinic was genuinely experienced — or just listed on Align&apos;s website. That research gap is what this service closes. We&apos;ve done the work so you don&apos;t have to.&rdquo;
             </p>
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '20px' }}>
-              <button
-                onClick={() => setIsModalOpen(true)}
-                style={{ padding: '14px 36px', background: '#fff', color: 'var(--sage)', fontSize: '14px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer' }}
-              >
-                Compare Providers Free
-              </button>
-              <Link href="/services/" className="btn-outline" style={{ fontSize: '14px', textDecoration: 'none' }}>
-                Browse Treatments
-              </Link>
-            </div>
-            <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              {['Always 100% free', 'Platinum and Diamond only', 'Free 3D scan included'].map(item => (
-                <span key={item} style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.35)', flexShrink: 0 }} />
-                  {item}
-                </span>
-              ))}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+              <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--sage-pale)', border: '1.5px solid var(--sage-mid)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: 600, color: 'var(--sage)', flexShrink: 0 }}>
+                IE
+              </div>
+              <div>
+                <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>Invisalign Essex</div>
+                <div style={{ fontSize: '12px', color: 'var(--muted)' }}>Independent referral facilitator · Est. Essex</div>
+              </div>
             </div>
           </div>
         </section>
@@ -508,18 +427,15 @@ export default function HomePage() {
 
       <style>{`
         @media (max-width: 900px) {
-          .two-col-grid { grid-template-columns: 1fr !important; }
-          .three-col-grid { grid-template-columns: 1fr 1fr !important; }
+          .hero-grid { grid-template-columns: 1fr !important; }
+          .hero-grid > div:last-child { min-height: 260px !important; }
           .loc-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .cta-split-grid { grid-template-columns: 1fr !important; text-align: center; }
         }
-        @media (max-width: 600px) {
-          .three-col-grid { grid-template-columns: 1fr !important; }
+        @media (max-width: 640px) {
           .two-col-sm-grid { grid-template-columns: 1fr !important; }
           .loc-grid { grid-template-columns: 1fr 1fr !important; }
         }
         .loc-link:hover { background: var(--sage-pale) !important; border-color: #c8d9c9 !important; }
-        .service-img:hover { transform: scale(1.04); }
       `}</style>
     </>
   );
