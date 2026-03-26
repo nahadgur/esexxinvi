@@ -1,54 +1,62 @@
 // app/locations/[town]/[service]/page.tsx
 // Next.js 14 server wrapper — params accessed directly (no use())
 
-import type { Metadata } from "next";
-import Script from "next/script";
-import { notFound } from "next/navigation";
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import { notFound } from 'next/navigation';
 
-import { getAllCitySlugs, getAllServiceSlugs, getTownContent, getServiceContent } from "@/data/content";
-import { buildFaqPageSchema, type FaqVariables } from "@/data/content/faq-templates";
-import BreadcrumbJsonLd from "@/components/schema/BreadcrumbJsonLd";
-import LocationServicePageClient from "@/components/LocationServicePageClient";
+// FIXED: getAllCitySlugs lives in @/data/locations, not @/data/content
+// FIXED: getAllServiceSlugs lives in @/data/services, not @/data/content
+import { getAllCitySlugs, getCityBySlug } from '@/data/locations';
+import { getAllServiceSlugs, getServiceBySlug } from '@/data/services';
+import { getTownContent, getServiceContent } from '@/data/content';
+import { buildFaqPageSchema, type FaqVariables } from '@/data/content/faq-templates';
+
+// FIXED: correct path — @/components/BreadcrumbJsonLd (no /schema/ subdirectory)
+import { BreadcrumbJsonLd } from '@/components/BreadcrumbJsonLd';
+
+// FIXED: client component is in the same directory — not a shared component
+import LocationServicePageClient from './PageClient';
+
+const SITE = 'https://www.invisaligndentistsessex.uk';
 
 // ---------------------------------------------------------------------------
 // Static params — 111 towns × 6 services = 666 pages
 // ---------------------------------------------------------------------------
 
-export async function generateStaticParams() {
-  const towns = getAllCitySlugs();
+export function generateStaticParams() {
+  const towns    = getAllCitySlugs();
   const services = getAllServiceSlugs();
-
-  return towns.flatMap((town) =>
-    services.map((service) => ({ town, service }))
-  );
+  return towns.flatMap(town => services.map(service => ({ town, service })));
 }
 
 // ---------------------------------------------------------------------------
 // Metadata
 // ---------------------------------------------------------------------------
 
-export async function generateMetadata({
+export function generateMetadata({
   params,
 }: {
   params: { town: string; service: string };
-}): Promise<Metadata> {
+}): Metadata {
+  const cityName = getCityBySlug(params.town);
+  const service  = getServiceBySlug(params.service);
   const townData = getTownContent(params.town);
-  const svcContent = getServiceContent(params.service);
 
-  if (!townData || !svcContent) return {};
+  if (!cityName || !service) return {};
 
-  const canonicalUrl = `https://invisaligndentistsessex.uk/locations/${params.town}/${params.service}/`;
+  const canonical = `${SITE}/locations/${params.town}/${params.service}/`;
+  const priceFrom = townData?.priceRangeLow    ?? 1500;
+  const finance   = townData?.financeMinMonthly ?? 49;
 
   return {
-    title: `${svcContent.title} in ${townData.cityName}, Essex | Invisalign Dentists Essex`,
-    description: `Find qualified Invisalign providers for ${svcContent.title.toLowerCase()} near ${townData.cityName}. Free consultations, 0% finance from £${townData.financeMinMonthly ?? 49}/mo.`,
-    alternates: {
-      canonical: canonicalUrl,
-    },
+    title: `${service.title} in ${cityName}, Essex | Invisalign Dentists Essex`,
+    description: `Find qualified Invisalign providers for ${service.title.toLowerCase()} near ${cityName}. Free consultations, 0% finance from £${finance}/mo. Prices from £${priceFrom.toLocaleString()}.`,
+    alternates: { canonical },
     openGraph: {
-      title: `${svcContent.title} in ${townData.cityName}, Essex`,
-      description: `Verified Invisalign providers near ${townData.cityName}. Compare costs, read reviews, book a free consultation.`,
-      url: canonicalUrl,
+      title:       `${service.title} in ${cityName}, Essex`,
+      description: `Verified Invisalign providers near ${cityName}. Compare costs, read reviews, book a free consultation.`,
+      url:          canonical,
     },
   };
 }
@@ -58,55 +66,51 @@ export async function generateMetadata({
 // ---------------------------------------------------------------------------
 
 function buildMedicalWebPageSchema(
-  townData: ReturnType<typeof getTownContent>,
-  svcContent: ReturnType<typeof getServiceContent>,
-  params: { town: string; service: string }
+  cityName: string,
+  serviceTitle: string,
+  townSlug: string,
+  serviceSlug: string,
 ): object {
-  const cityName = townData!.cityName;
-  const pageUrl = `https://invisaligndentistsessex.uk/locations/${params.town}/${params.service}/`;
-
+  const pageUrl = `${SITE}/locations/${townSlug}/${serviceSlug}/`;
   return {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    "@id": `${pageUrl}#webpage`,
-    name: `${svcContent!.title} in ${cityName}, Essex`,
-    url: pageUrl,
-    description: `Find Invisalign-certified dentists for ${svcContent!.title.toLowerCase()} near ${cityName}, Essex.`,
-    about: {
-      "@type": "MedicalCondition",
-      name: svcContent!.conditionName ?? svcContent!.title,
-    },
-    audience: {
-      "@type": "Patient",
-    },
-    inLanguage: "en-GB",
+    '@context': 'https://schema.org',
+    '@type':    'MedicalWebPage',
+    '@id':      `${pageUrl}#webpage`,
+    name:        `${serviceTitle} in ${cityName}, Essex`,
+    url:          pageUrl,
+    description:  `Find Invisalign-certified dentists for ${serviceTitle.toLowerCase()} near ${cityName}, Essex.`,
+    about:    { '@type': 'MedicalCondition', name: serviceTitle },
+    audience: { '@type': 'Patient' },
+    inLanguage: 'en-GB',
   };
 }
 
 function buildAggregateRatingSchema(
-  clinic1: NonNullable<ReturnType<typeof getTownContent>>["clinics"][0],
-  townData: ReturnType<typeof getTownContent>,
-  params: { town: string; service: string }
+  clinicName: string,
+  googleRating: number,
+  reviewCount: number,
+  cityName: string,
+  townSlug: string,
+  serviceSlug: string,
 ): object {
-  const pageUrl = `https://invisaligndentistsessex.uk/locations/${params.town}/${params.service}/`;
-
+  const pageUrl = `${SITE}/locations/${townSlug}/${serviceSlug}/`;
   return {
-    "@context": "https://schema.org",
-    "@type": "Dentist",
-    "@id": `${pageUrl}#clinic-${encodeURIComponent(clinic1.name.toLowerCase().replace(/\s+/g, "-"))}`,
-    name: clinic1.name,
+    '@context': 'https://schema.org',
+    '@type':    'Dentist',
+    '@id':      `${pageUrl}#clinic-${clinicName.toLowerCase().replace(/\s+/g, '-')}`,
+    name:        clinicName,
     address: {
-      "@type": "PostalAddress",
-      addressLocality: townData!.cityName,
-      addressRegion: "Essex",
-      addressCountry: "GB",
+      '@type':         'PostalAddress',
+      addressLocality: cityName,
+      addressRegion:   'Essex',
+      addressCountry:  'GB',
     },
     aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: clinic1.googleRating!.toFixed(1),
-      reviewCount: clinic1.reviewCount!,
-      bestRating: "5",
-      worstRating: "1",
+      '@type':      'AggregateRating',
+      ratingValue:   googleRating.toFixed(1),
+      reviewCount,
+      bestRating:   '5',
+      worstRating:  '1',
     },
   };
 }
@@ -120,115 +124,92 @@ export default function LocationServicePage({
 }: {
   params: { town: string; service: string };
 }) {
+  const cityName = getCityBySlug(params.town);
+  const service  = getServiceBySlug(params.service);
   const townData = getTownContent(params.town);
-  const svcContent = getServiceContent(params.service);
 
-  if (!townData || !svcContent) notFound();
+  if (!cityName || !service) notFound();
 
-  const cityName = townData.cityName;
-  const clinic1 = townData.clinics?.[0];
+  // FIXED: getServiceContent takes 2 args (townSlug, serviceSlug)
+  const svcContent = getServiceContent(params.town, params.service);
 
-  // Price range — fall back to service defaults then hard floor
-  const priceRangeLow: number =
-    townData.priceRangeLow ?? svcContent.priceRangeLow ?? 1500;
-  const priceRangeHigh: number =
-    townData.priceRangeHigh ?? svcContent.priceRangeHigh ?? 5500;
+  // FIXED: TownContent uses clinic1 (object), not clinics[] (array)
+  const clinic1 = townData?.clinic1;
+
+  const priceRangeLow:  number = townData?.priceRangeLow  ?? 1500;
+  const priceRangeHigh: number = townData?.priceRangeHigh ?? 5500;
 
   const priceVarianceNote: string =
-    townData.priceVarianceNote ??
-    svcContent.priceVarianceNote ??
-    `${svcContent.title} in ${cityName} is typically quoted between £${priceRangeLow} and £${priceRangeHigh} depending on case complexity. Your provider will confirm a fixed cost at the free initial consultation.`;
+    svcContent?.priceVarianceNote ??
+    `${service.title} in ${cityName} is typically quoted between £${priceRangeLow.toLocaleString()} and £${priceRangeHigh.toLocaleString()} depending on case complexity. Your provider will confirm a fixed cost at the free initial consultation.`;
 
-  // Assemble FaqVariables
   const faqVars: FaqVariables = {
-    // Location
-    townName: cityName,
-    essexRegion: townData.essexRegion ?? "Essex",
-    nearestMajorHub: townData.nearestMajorHub ?? "Chelmsford",
-    commuteTimeMin: townData.commuteTimeMin ?? 20,
-    commuteMode: townData.commuteMode ?? "train",
-
-    // Logistics
-    waitTimeDays: townData.waitTimeDays ?? 7,
-
-    // Finance
-    financeMinMonthly: townData.financeMinMonthly ?? 49,
+    townName:          cityName,
+    essexRegion:       townData?.essexRegion       ?? 'Essex',
+    nearestMajorHub:   townData?.nearestMajorHub   ?? 'Chelmsford',
+    commuteTimeMin:    townData?.commuteTimeMin     ?? 20,
+    commuteMode:       townData?.commuteMode        ?? 'Car',
+    waitTimeDays:      townData?.waitTimeDays        ?? 7,
+    financeMinMonthly: townData?.financeMinMonthly  ?? 49,
     priceRangeLow,
     priceRangeHigh,
     priceVarianceNote,
-
-    // Clinic (optional — Branch A)
-    ...(clinic1?.name && { clinic1Name: clinic1.name }),
-    ...(clinic1?.tier && { clinic1Tier: clinic1.tier }),
+    ...(clinic1?.name         && { clinic1Name:         clinic1.name }),
+    ...(clinic1?.tier         && { clinic1Tier:         clinic1.tier }),
     ...(clinic1?.googleRating !== undefined && { clinic1GoogleRating: clinic1.googleRating }),
-    ...(clinic1?.reviewCount !== undefined && { clinic1ReviewCount: clinic1.reviewCount }),
-    ...(clinic1?.caseVolume !== undefined && { clinic1CaseVolume: clinic1.caseVolume }),
-
-    // Treatment
-    treatmentFullName: svcContent.fullName ?? svcContent.title,
-    treatmentShortName: svcContent.shortName ?? svcContent.title,
-    siteBaseUrl: "https://invisaligndentistsessex.uk",
+    ...(clinic1?.reviewCount  !== undefined && { clinic1ReviewCount:  clinic1.reviewCount }),
+    ...(clinic1?.caseVolume   !== undefined && { clinic1CaseVolume:   clinic1.caseVolume }),
+    treatmentFullName:  service.title,
+    treatmentShortName: service.title
+      .toLowerCase()
+      .replace('invisalign for ', '')
+      .replace('invisalign ', ''),
+    siteBaseUrl: SITE,
   };
 
-  // Schema objects
-  const medicalWebPageSchema = buildMedicalWebPageSchema(townData, svcContent, params);
-  const faqPageSchema = buildFaqPageSchema(faqVars);
+  const medicalWebPageSchema   = buildMedicalWebPageSchema(cityName, service.title, params.town, params.service);
+  const faqPageSchema          = buildFaqPageSchema(faqVars);
 
-  const hasAggregateRating =
-    clinic1 !== undefined &&
-    clinic1.googleRating !== undefined &&
-    clinic1.reviewCount !== undefined;
-
-  const aggregateRatingSchema = hasAggregateRating
-    ? buildAggregateRatingSchema(clinic1!, townData, params)
+  const hasRating = clinic1?.googleRating !== undefined && clinic1?.reviewCount !== undefined;
+  const aggregateRatingSchema  = hasRating
+    ? buildAggregateRatingSchema(clinic1!.name, clinic1!.googleRating!, clinic1!.reviewCount!, cityName, params.town, params.service)
     : null;
 
-  // Breadcrumb items
+  // FIXED: BreadcrumbJsonLd uses `url` not `item`
   const breadcrumbItems = [
-    { name: "Home", item: "https://invisaligndentistsessex.uk/" },
-    { name: "Locations", item: "https://invisaligndentistsessex.uk/locations/" },
-    {
-      name: cityName,
-      item: `https://invisaligndentistsessex.uk/locations/${params.town}/`,
-    },
-    {
-      name: svcContent.title,
-      item: `https://invisaligndentistsessex.uk/locations/${params.town}/${params.service}/`,
-    },
+    { name: 'Home',        url: `${SITE}/` },
+    { name: 'Locations',   url: `${SITE}/locations/` },
+    { name: cityName,      url: `${SITE}/locations/${params.town}/` },
+    { name: service.title },
   ];
 
   return (
     <>
-      {/* ── Schema block 1: BreadcrumbList ── */}
       <BreadcrumbJsonLd items={breadcrumbItems} />
 
-      {/* ── Schema block 2: MedicalWebPage ── */}
       <Script
-        id={`schema-medicalwebpage-${params.town}-${params.service}`}
+        id={`schema-mwp-${params.town}-${params.service}`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalWebPageSchema) }}
         strategy="beforeInteractive"
       />
 
-      {/* ── Schema block 3: AggregateRating — conditional ── */}
       {aggregateRatingSchema && (
         <Script
-          id={`schema-aggregaterating-${params.town}-${params.service}`}
+          id={`schema-ar-${params.town}-${params.service}`}
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(aggregateRatingSchema) }}
           strategy="beforeInteractive"
         />
       )}
 
-      {/* ── Schema block 4: FAQPage ── */}
       <Script
-        id={`schema-faqpage-${params.town}-${params.service}`}
+        id={`schema-faq-${params.town}-${params.service}`}
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
         strategy="beforeInteractive"
       />
 
-      {/* ── Client component ── */}
       <LocationServicePageClient params={params} />
     </>
   );
