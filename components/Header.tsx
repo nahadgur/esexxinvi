@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
@@ -10,125 +10,180 @@ interface HeaderProps {
   onOpenModal?: () => void;
 }
 
+const trustLinks = [
+  { label: 'How We Vet Providers',    href: '/how-we-vet-providers/' },
+  { label: 'Medical Advisory Board',  href: '/advisory-board/' },
+  { label: 'Editorial Policy',        href: '/editorial-policy/' },
+  { label: 'Patient Success Stories', href: '/success-stories/' },
+  { label: 'Share Your Story',        href: '/share-your-story/' },
+  { label: 'About Us',                href: '/about-us/' },
+];
+
 export function Header({ onOpenModal }: HeaderProps) {
-  const [mobileOpen, setMobileOpen]       = useState(false);
-  const [scrolled, setScrolled]           = useState(false);
+  const [mobileOpen, setMobileOpen]         = useState(false);
   const [treatmentsOpen, setTreatmentsOpen] = useState(false);
-  const [trustOpen, setTrustOpen]         = useState(false);
-  const pathname = usePathname();
+  const [aboutOpen, setAboutOpen]           = useState(false);
+  const [scrolled, setScrolled]             = useState(false);
+  const pathname                             = usePathname();
 
-  useEffect(() => { setMobileOpen(false); setTreatmentsOpen(false); setTrustOpen(false); }, [pathname]);
+  const treatmentsRef = useRef<HTMLDivElement>(null);
+  const aboutRef      = useRef<HTMLDivElement>(null);
 
+  // Close everything on route change
+  useEffect(() => {
+    setMobileOpen(false);
+    setTreatmentsOpen(false);
+    setAboutOpen(false);
+  }, [pathname]);
+
+  // Scroll shadow
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const trustLinks = [
-    { label: 'How We Vet Providers', href: '/how-we-vet-providers/' },
-    { label: 'Medical Advisory Board', href: '/advisory-board/' },
-    { label: 'Editorial Policy',       href: '/editorial-policy/' },
-    { label: 'Patient Success Stories',href: '/success-stories/' },
-    { label: 'About Us',               href: '/about-us/' },
-  ];
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (treatmentsRef.current && !treatmentsRef.current.contains(e.target as Node)) {
+        setTreatmentsOpen(false);
+      }
+      if (aboutRef.current && !aboutRef.current.contains(e.target as Node)) {
+        setAboutOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  const dropdownStyle: React.CSSProperties = {
+    position: 'absolute',
+    top: 'calc(100% + 8px)',
+    left: 0,
+    width: '240px',
+    background: 'var(--cream)',
+    borderRadius: '10px',
+    border: '1px solid var(--border)',
+    padding: '6px',
+    boxShadow: '0 8px 24px rgba(30,36,32,0.12)',
+    zIndex: 100,
+  };
+
+  const dropdownLinkStyle: React.CSSProperties = {
+    display: 'block',
+    padding: '9px 14px',
+    fontSize: '13px',
+    color: 'var(--muted)',
+    textDecoration: 'none',
+    borderRadius: '6px',
+    transition: 'background 0.15s, color 0.15s',
+  };
 
   return (
     <header style={{
       background: 'var(--cream)',
-      borderBottom: `1px solid var(--border)`,
+      borderBottom: '1px solid var(--border)',
       position: 'sticky', top: 0, zIndex: 40,
-      transition: 'box-shadow 0.2s',
       boxShadow: scrolled ? '0 1px 12px rgba(30,36,32,0.07)' : 'none',
+      transition: 'box-shadow 0.2s',
     }}>
       <div className="container-width">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '72px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: '68px' }}>
 
           {/* Logo */}
           <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
             <div style={{
-              width: '32px', height: '32px', borderRadius: '50%',
+              width: '30px', height: '30px', borderRadius: '50%',
               border: '1.5px solid var(--sage)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '11px', color: 'var(--sage)', fontWeight: 600, letterSpacing: '-0.3px', flexShrink: 0,
+              fontSize: '10px', color: 'var(--sage)', fontWeight: 600, flexShrink: 0,
             }}>IE</div>
-            <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.1 }}>
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: '17px', fontWeight: 600, color: 'var(--ink)' }}>
-                Invisalign
-              </span>
-              <span style={{ fontSize: '10px', color: 'var(--sage)', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                Essex
-              </span>
+            <div style={{ lineHeight: 1.1 }}>
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 600, color: 'var(--ink)' }}>Invisalign</div>
+              <div style={{ fontSize: '9px', color: 'var(--sage)', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase' }}>Essex</div>
             </div>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex" style={{ alignItems: 'center', gap: '4px' }}>
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '2px' }} className="hidden lg:flex">
 
             {/* Treatments dropdown */}
-            <div style={{ position: 'relative' }} className="group">
-              <Link href="/treatments/" style={{ ...navLink, display: 'flex', alignItems: 'center', gap: '4px' }}>
-                Treatments <ChevronDown style={{ width: '14px', height: '14px' }} />
-              </Link>
-              <div style={{
-                position: 'absolute', top: '100%', left: 0, width: '260px',
-                background: 'var(--cream)', borderRadius: '10px',
-                border: '1px solid var(--border)', padding: '6px',
-                boxShadow: '0 8px 24px rgba(30,36,32,0.1)',
-                opacity: 0, visibility: 'hidden', transform: 'translateY(8px)',
-                transition: 'all 0.18s', zIndex: 50,
-              }} className="group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
-                {services.map(service => (
-                  <Link key={service.id} href={`/treatments/${service.slug}/`} style={{
-                    display: 'block', padding: '9px 14px', fontSize: '13px',
-                    color: 'var(--muted)', textDecoration: 'none', borderRadius: '6px',
-                    transition: 'background 0.15s, color 0.15s',
-                  }} className="hover:bg-brand-50 hover:text-brand-700">
-                    {service.title}
+            <div ref={treatmentsRef} style={{ position: 'relative' }}>
+              <button
+                onClick={() => { setTreatmentsOpen(o => !o); setAboutOpen(false); }}
+                style={{ ...navBtn, color: treatmentsOpen ? 'var(--sage)' : 'var(--muted)' }}
+              >
+                Treatments
+                <ChevronDown style={{ width: '13px', height: '13px', transform: treatmentsOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+              </button>
+              {treatmentsOpen && (
+                <div style={dropdownStyle}>
+                  {services.map(service => (
+                    <Link
+                      key={service.id}
+                      href={`/treatments/${service.slug}/`}
+                      style={dropdownLinkStyle}
+                      onMouseEnter={e => { (e.target as HTMLElement).style.background = 'var(--sage-pale)'; (e.target as HTMLElement).style.color = 'var(--sage)'; }}
+                      onMouseLeave={e => { (e.target as HTMLElement).style.background = 'transparent'; (e.target as HTMLElement).style.color = 'var(--muted)'; }}
+                    >
+                      {service.title}
+                    </Link>
+                  ))}
+                  <div style={{ borderTop: '1px solid var(--border)', margin: '4px 0' }} />
+                  <Link href="/treatments/" style={{ ...dropdownLinkStyle, fontWeight: 500, color: 'var(--sage)' }}>
+                    All Treatments →
                   </Link>
-                ))}
-              </div>
+                </div>
+              )}
             </div>
 
             <Link href="/locations/" style={navLink}>Locations</Link>
             <Link href="/clinics/"   style={navLink}>Clinics</Link>
             <Link href="/blog/"      style={navLink}>Blog</Link>
 
-            {/* Trust dropdown */}
-            <div style={{ position: 'relative' }} className="group">
-              <button style={{ ...navLink, background: 'none', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                About <ChevronDown style={{ width: '14px', height: '14px' }} />
+            {/* About dropdown */}
+            <div ref={aboutRef} style={{ position: 'relative' }}>
+              <button
+                onClick={() => { setAboutOpen(o => !o); setTreatmentsOpen(false); }}
+                style={{ ...navBtn, color: aboutOpen ? 'var(--sage)' : 'var(--muted)' }}
+              >
+                About
+                <ChevronDown style={{ width: '13px', height: '13px', transform: aboutOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
               </button>
-              <div style={{
-                position: 'absolute', top: '100%', right: 0, width: '240px',
-                background: 'var(--cream)', borderRadius: '10px',
-                border: '1px solid var(--border)', padding: '6px',
-                boxShadow: '0 8px 24px rgba(30,36,32,0.1)',
-                opacity: 0, visibility: 'hidden', transform: 'translateY(8px)',
-                transition: 'all 0.18s', zIndex: 50,
-              }} className="group-hover:opacity-100 group-hover:visible group-hover:translate-y-0">
-                {trustLinks.map(l => (
-                  <Link key={l.href} href={l.href} style={{
-                    display: 'block', padding: '9px 14px', fontSize: '13px',
-                    color: 'var(--muted)', textDecoration: 'none', borderRadius: '6px',
-                    transition: 'background 0.15s, color 0.15s',
-                  }} className="hover:bg-brand-50 hover:text-brand-700">
-                    {l.label}
-                  </Link>
-                ))}
-              </div>
+              {aboutOpen && (
+                <div style={{ ...dropdownStyle, left: 'auto', right: 0 }}>
+                  {trustLinks.map(l => (
+                    <Link
+                      key={l.href}
+                      href={l.href}
+                      style={dropdownLinkStyle}
+                      onMouseEnter={e => { (e.target as HTMLElement).style.background = 'var(--sage-pale)'; (e.target as HTMLElement).style.color = 'var(--sage)'; }}
+                      onMouseLeave={e => { (e.target as HTMLElement).style.background = 'transparent'; (e.target as HTMLElement).style.color = 'var(--muted)'; }}
+                    >
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
 
-            <button onClick={onOpenModal} className="btn-primary"
-              style={{ marginLeft: '12px', fontSize: '13px', padding: '9px 22px' }}>
+            <button
+              onClick={onOpenModal}
+              className="btn-primary"
+              style={{ marginLeft: '8px', fontSize: '13px', padding: '9px 22px' }}
+            >
               Find a Provider
             </button>
           </nav>
 
           {/* Mobile toggle */}
-          <button className="lg:hidden" onClick={() => setMobileOpen(!mobileOpen)}
+          <button
+            className="lg:hidden"
+            onClick={() => setMobileOpen(o => !o)}
             aria-label="Toggle menu"
-            style={{ padding: '6px', color: 'var(--ink)', background: 'none', border: 'none', cursor: 'pointer' }}>
+            style={{ padding: '6px', color: 'var(--ink)', background: 'none', border: 'none', cursor: 'pointer' }}
+          >
             {mobileOpen ? <X style={{ width: '22px', height: '22px' }} /> : <Menu style={{ width: '22px', height: '22px' }} />}
           </button>
         </div>
@@ -140,24 +195,23 @@ export function Header({ onOpenModal }: HeaderProps) {
           background: 'var(--cream)', borderTop: '1px solid var(--border)',
           position: 'absolute', width: '100%', left: 0,
           boxShadow: '0 8px 24px rgba(30,36,32,0.1)',
-          zIndex: 50, maxHeight: '80vh', overflowY: 'auto',
+          zIndex: 50, maxHeight: '85vh', overflowY: 'auto',
         }}>
-          <div style={{ padding: '8px 16px 24px' }}>
+          <div style={{ padding: '8px 20px 28px' }}>
 
             <Link href="/" style={mobileLink}>Home</Link>
 
-            {/* Treatments section */}
-            <div style={{ padding: '10px 12px 4px' }}>
-              <div style={{ fontSize: '10px', fontWeight: 600, color: 'var(--sage-mid)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}>
+            {/* Treatments */}
+            <div style={{ padding: '10px 0 4px' }}>
+              <div style={{ fontSize: '10px', fontWeight: 600, color: 'var(--sage-mid)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '6px', paddingLeft: '4px' }}>
                 Treatments
               </div>
               {services.map(s => (
-                <Link key={s.id} href={`/treatments/${s.slug}/`}
-                  style={{ ...mobileLink, fontSize: '13px', paddingTop: '7px', paddingBottom: '7px' }}>
+                <Link key={s.id} href={`/treatments/${s.slug}/`} style={{ ...mobileLink, fontSize: '14px', paddingTop: '8px', paddingBottom: '8px' }}>
                   {s.title}
                 </Link>
               ))}
-              <Link href="/treatments/" style={{ ...mobileLink, fontSize: '13px', paddingTop: '7px', paddingBottom: '7px', color: 'var(--sage)' }}>
+              <Link href="/treatments/" style={{ ...mobileLink, fontSize: '13px', color: 'var(--sage)', fontWeight: 500 }}>
                 All Treatments →
               </Link>
             </div>
@@ -166,22 +220,24 @@ export function Header({ onOpenModal }: HeaderProps) {
             <Link href="/clinics/"   style={mobileLink}>Clinics</Link>
             <Link href="/blog/"      style={mobileLink}>Blog</Link>
 
-            {/* Trust section */}
-            <div style={{ padding: '10px 12px 4px' }}>
-              <div style={{ fontSize: '10px', fontWeight: 600, color: 'var(--sage-mid)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '8px' }}>
+            {/* About & Trust */}
+            <div style={{ padding: '10px 0 4px', borderTop: '1px solid var(--border)', marginTop: '8px' }}>
+              <div style={{ fontSize: '10px', fontWeight: 600, color: 'var(--sage-mid)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '6px', paddingLeft: '4px' }}>
                 About &amp; Trust
               </div>
               {trustLinks.map(l => (
-                <Link key={l.href} href={l.href}
-                  style={{ ...mobileLink, fontSize: '13px', paddingTop: '7px', paddingBottom: '7px' }}>
+                <Link key={l.href} href={l.href} style={{ ...mobileLink, fontSize: '14px', paddingTop: '8px', paddingBottom: '8px' }}>
                   {l.label}
                 </Link>
               ))}
             </div>
 
-            <div style={{ padding: '16px 12px 0' }}>
-              <button onClick={() => { onOpenModal?.(); setMobileOpen(false); }} className="btn-primary"
-                style={{ width: '100%', textAlign: 'center', fontSize: '14px' }}>
+            <div style={{ padding: '16px 0 0' }}>
+              <button
+                onClick={() => { onOpenModal?.(); setMobileOpen(false); }}
+                className="btn-primary"
+                style={{ width: '100%', textAlign: 'center', fontSize: '14px' }}
+              >
                 Find a Provider
               </button>
             </div>
@@ -193,12 +249,33 @@ export function Header({ onOpenModal }: HeaderProps) {
 }
 
 const navLink: React.CSSProperties = {
-  padding: '8px 14px', fontSize: '13px', color: 'var(--muted)',
-  textDecoration: 'none', fontWeight: 400, borderRadius: '6px',
-  transition: 'color 0.15s',
+  padding: '8px 14px',
+  fontSize: '13px',
+  color: 'var(--muted)',
+  textDecoration: 'none',
+  fontWeight: 400,
+  borderRadius: '6px',
+};
+
+const navBtn: React.CSSProperties = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: '4px',
+  padding: '8px 14px',
+  fontSize: '13px',
+  fontWeight: 400,
+  fontFamily: 'var(--font-sans)',
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+  borderRadius: '6px',
 };
 
 const mobileLink: React.CSSProperties = {
-  display: 'block', padding: '11px 12px', fontSize: '15px',
-  fontWeight: 400, color: 'var(--ink)', textDecoration: 'none', borderRadius: '6px',
+  display: 'block',
+  padding: '10px 4px',
+  fontSize: '15px',
+  fontWeight: 400,
+  color: 'var(--ink)',
+  textDecoration: 'none',
 };
