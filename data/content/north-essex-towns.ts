@@ -184,7 +184,7 @@ export const brightlingsEaContent: TownContent = {
   demographicProfile: 'Coastal / Sailing / Family',
   primaryAudience: 'Brightlingsea sailing and watersports community, coastal Essex families, boat yard and marine industry workers',
   landmarkPrimary: "Brightlingsea Hard waterfront and the Royal Burnham Yacht Club quayside",
-  landmarkSecondary: 'Brightlingsea town centre and the All Saints' Church landmark',
+  landmarkSecondary: "Brightlingsea town centre and the All Saints' Church landmark",
   landmarkTertiary: "Cindery Island and the Colne Estuary nature reserve",
   localKnownFor: "the only Cinque Port associate in Essex — Brightlingsea's maritime heritage stretches back to medieval times, and its active sailing community, boat yards, and the Colne Estuary's wildlife-rich salt marshes give it a distinctly nautical character that sets it apart from every other coastal town in North Essex",
   publicTransportNote: "Brightlingsea has no rail connection — the nearest station is Wivenhoe, 8 miles north-west, for Clacton branch services to Colchester and London. Most residents drive to Colchester for major clinic appointments",
