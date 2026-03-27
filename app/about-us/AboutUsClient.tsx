@@ -169,7 +169,7 @@ export default function AboutUsClient() {
           </p>
         </section>
 
-        {/* Contact & company details */}
+        {/* Contact & company details — hidden until company details are confirmed
         <section>
           <div className="flex items-center gap-3 mb-6">
             <Building2 className="w-7 h-7 text-brand-600 flex-shrink-0" />
@@ -234,6 +234,7 @@ export default function AboutUsClient() {
             </div>
           </div>
         </section>
+        */}
 
         {/* Launch checklist */}
         <section className="border-2 border-dashed border-amber-300 rounded-xl p-6 bg-amber-50">
