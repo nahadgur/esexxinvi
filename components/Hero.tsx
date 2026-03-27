@@ -82,8 +82,8 @@ export function Hero({ title, subtitle, image, showCta = true, showTrust = true,
         {/* Floating provider cards */}
         <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '8px' }}>
           {[
-            { name: 'Diamond Provider · Harlow', badge: 'Diamond', badgeStyle: { background: '#EDE9F8', color: '#5B42A8' }, sub: '150+ cases per year · Free 3D scan' },
-            { name: 'Platinum Provider · Chelmsford', badge: 'Platinum', badgeStyle: { background: 'var(--sage-pale)', color: 'var(--sage)' }, sub: '80+ cases per year · 0% finance' },
+            { name: 'Nuffield Dental Practice · Harlow', badge: 'Platinum', badgeStyle: { background: 'var(--sage-pale)', color: 'var(--sage)' }, sub: '200+ cases per year · 4.8★ from 120 reviews' },
+            { name: 'Church Langley Dental · Harlow', badge: 'Platinum', badgeStyle: { background: 'var(--sage-pale)', color: 'var(--sage)' }, sub: '150+ cases per year · 4.9★ from 180 reviews' },
           ].map(card => (
             <div key={card.name} style={{
               background: 'rgba(250,250,247,0.9)', border: '1px solid rgba(61,92,66,0.15)',
