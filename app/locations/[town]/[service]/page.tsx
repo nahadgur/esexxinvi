@@ -8,7 +8,6 @@ import { getAllServiceSlugs, getServiceBySlug } from '@/data/services';
 import { getTownContent, getServiceContent } from '@/data/content';
 import { buildMatrixPageSchema } from './schema';
 
-import { BreadcrumbJsonLd } from '@/components/BreadcrumbJsonLd';
 import LocationServicePageClient from './PageClient';
 
 const SITE = 'https://www.invisaligndentistsessex.uk';
@@ -89,17 +88,8 @@ export default function LocationServicePage({
     priceVarianceNote,
   );
 
-  const breadcrumbItems = [
-    { name: 'Home',        url: `${SITE}/` },
-    { name: 'Locations',   url: `${SITE}/locations/` },
-    { name: cityName,      url: `${SITE}/locations/${params.town}/` },
-    { name: service.title },
-  ];
-
   return (
     <>
-      <BreadcrumbJsonLd items={breadcrumbItems} />
-
       {schemas.map((schema, i) => (
         <script
           key={i}
