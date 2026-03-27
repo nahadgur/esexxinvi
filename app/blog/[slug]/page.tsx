@@ -364,7 +364,7 @@ export default function ArticlePage() {
 
   /* Article prose classes — Warm Sage palette */
   const articleClasses = [
-    'p-10 max-w-none',
+    'px-4 py-6 sm:px-8 sm:py-8 md:p-10 max-w-none',
     /* headings */
     '[&_h1]:font-display [&_h1]:text-4xl [&_h1]:md:text-5xl [&_h1]:font-semibold [&_h1]:tracking-tight [&_h1]:text-ink [&_h1]:mt-10 [&_h1]:mb-5',
     '[&_h2]:font-display [&_h2]:text-3xl [&_h2]:md:text-4xl [&_h2]:font-semibold [&_h2]:tracking-tight [&_h2]:text-ink [&_h2]:mt-10 [&_h2]:mb-4',
@@ -384,7 +384,7 @@ export default function ArticlePage() {
     '[&_hr]:my-10 [&_hr]:border-border',
     '[&_img]:w-full [&_img]:h-auto [&_img]:rounded-xl [&_img]:border [&_img]:border-border [&_img]:my-8',
     /* table */
-    '[&_table]:w-full [&_table]:my-10 [&_table]:overflow-hidden [&_table]:rounded-xl [&_table]:border [&_table]:border-border',
+    '[&_table]:w-full [&_table]:my-10 [&_table]:block [&_table]:overflow-x-auto [&_table]:rounded-xl [&_table]:border [&_table]:border-border',
     '[&_thead]:bg-brand-50',
     '[&_th]:text-left [&_th]:px-5 [&_th]:py-3 [&_th]:text-ink [&_th]:text-sm [&_th]:font-semibold',
     '[&_td]:px-5 [&_td]:py-3 [&_td]:text-muted [&_td]:text-sm [&_td]:border-t [&_td]:border-border',

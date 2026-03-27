@@ -136,7 +136,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div style={{
+        <div className="footer-bottom" style={{
           borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '24px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           flexWrap: 'wrap', gap: '12px',
@@ -175,6 +175,9 @@ export function Footer() {
         @media (max-width: 400px) {
           .footer-grid { grid-template-columns: 1fr !important; }
           .footer-grid > div:first-child { grid-column: span 1; }
+        }
+        @media (max-width: 640px) {
+          .footer-bottom { flex-direction: column !important; align-items: flex-start !important; }
         }
       `}</style>
     </footer>

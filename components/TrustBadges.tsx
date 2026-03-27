@@ -8,7 +8,7 @@ export function TrustBadges() {
 
   return (
     <section style={{ borderBottom: '1px solid var(--border)' }}>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex' }} className="trust-strip">
         {stats.map((stat, i) => (
           <div
             key={stat.label}

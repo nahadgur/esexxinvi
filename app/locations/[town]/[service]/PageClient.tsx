@@ -328,7 +328,7 @@ export default function LocationServicePageClient({ params }: { params: { town: 
           .body-grid { grid-template-columns: 1fr !important; }
           .body-grid > div:last-child { border-right: none !important; }
         }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .two-col-sm-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>

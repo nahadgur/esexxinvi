@@ -28,8 +28,10 @@ export function LeadFormModal({ isOpen, onClose, city, service }: LeadFormModalP
       style={{
         position: 'fixed', inset: 0, zIndex: 100,
         background: 'rgba(30,36,32,0.55)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        padding: '20px',
+        display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+        padding: '16px',
+        paddingTop: 'max(16px, env(safe-area-inset-top))',
+        overflowY: 'auto',
         backdropFilter: 'blur(2px)',
       }}
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
@@ -37,6 +39,7 @@ export function LeadFormModal({ isOpen, onClose, city, service }: LeadFormModalP
       <div style={{
         position: 'relative', width: '100%', maxWidth: '460px',
         animation: 'modalIn 0.25s ease-out',
+        marginTop: '24px', marginBottom: '24px',
       }}>
         {/* Close */}
         <button

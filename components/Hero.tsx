@@ -101,12 +101,17 @@ export function Hero({ title, subtitle, image, showCta = true, showTrust = true,
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
           .hero-grid {
             grid-template-columns: 1fr !important;
           }
           .hero-grid > div:last-child {
-            min-height: 260px;
+            min-height: 240px;
+          }
+        }
+        @media (max-width: 640px) {
+          .hero-grid > div:last-child {
+            min-height: 200px;
           }
         }
       `}</style>

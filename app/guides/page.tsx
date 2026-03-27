@@ -132,7 +132,7 @@ export default function GuidesIndexPage() {
 
       <style>{`
         .guide-card:hover { border-color: #c8d9c9 !important; background: var(--sage-pale) !important; }
-        @media (max-width: 640px) { .two-col-sm-grid { grid-template-columns: 1fr !important; } }
+        @media (max-width: 768px) { .two-col-sm-grid { grid-template-columns: 1fr !important; } }
       `}</style>
     </>
   );

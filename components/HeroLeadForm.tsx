@@ -130,7 +130,7 @@ export function HeroLeadForm({ city, service }: HeroLeadFormProps) {
           placeholder="Full Name *" style={inputStyle}
         />
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+        <div className="lead-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
           <input
             required name="phone" type="tel"
             placeholder="Phone Number *" style={inputStyle}

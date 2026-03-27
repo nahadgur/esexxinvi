@@ -25,12 +25,16 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
   body {
     @apply font-sans text-ink bg-cream;
     color: var(--ink);
     background: var(--cream);
-    zoom: 1.20; /* Scales ALL text including inline px values. Change this one number to resize the whole site. */
+  }
+  /* Apply zoom only on larger screens — prevents mobile horizontal overflow */
+  @media (min-width: 769px) {
+    body { zoom: 1.20; }
   }
   h1, h2, h3 {
     @apply font-display;
@@ -119,5 +123,61 @@
     border: 1px solid #d4dfd5;
     border-radius: 10px;
     padding: 1.25rem 1.375rem;
+  }
+}
+
+/* ── Global responsive overrides ──────────────────────────────── */
+
+/* Tablet: collapse hero split, fix guide sidebar */
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-grid > div:last-child {
+    min-height: 240px;
+  }
+  .guide-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .guide-sidebar {
+    position: static !important;
+    top: auto !important;
+  }
+}
+
+/* Mobile: collapse two-column and pricing layouts */
+@media (max-width: 768px) {
+  .two-col-sm-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .pricing-two-col {
+    grid-template-columns: 1fr !important;
+  }
+  .lead-form-row {
+    grid-template-columns: 1fr !important;
+  }
+  .trust-strip {
+    flex-wrap: wrap;
+  }
+  .trust-stat {
+    flex: 1 1 48% !important;
+    min-width: 140px;
+    padding: 16px 18px !important;
+  }
+  .trust-stat > div:first-child {
+    font-size: 22px !important;
+  }
+  .clinics-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Small mobile extras */
+@media (max-width: 640px) {
+  .loc-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+  .hero-grid > div:last-child {
+    min-height: 200px;
   }
 }

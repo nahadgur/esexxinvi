@@ -402,8 +402,11 @@ export default function HomePage() {
           .hero-grid > div:last-child { min-height: 260px !important; }
           .loc-grid { grid-template-columns: repeat(2, 1fr) !important; }
         }
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
           .two-col-sm-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 640px) {
+          .hero-grid > div:last-child { min-height: 200px !important; }
           .loc-grid { grid-template-columns: 1fr 1fr !important; }
         }
         .loc-link:hover { background: var(--sage-pale) !important; border-color: #c8d9c9 !important; }
