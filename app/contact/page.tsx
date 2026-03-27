@@ -25,14 +25,18 @@ export default function ContactPage() {
       <main style={{ flex: 1 }}>
 
         {/* Hero */}
-        <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', background: 'var(--cream)', borderBottom: '1px solid var(--border)' }}>
-          <p style={{ fontSize: '10px', fontWeight: 600, color: 'var(--sage-mid)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Get in Touch</p>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,4vw,2.8rem)', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.1, marginBottom: '12px' }}>
-            Contact<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>Invisalign Essex</em>
-          </h1>
-          <p style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '480px' }}>
-            Questions about our directory, a listed clinic, or our vetting process — we respond within 2 working days.
-          </p>
+        <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', background: 'var(--cream)', borderBottom: '1px solid var(--border)', position: 'relative', overflow: 'hidden' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/contact/hero-receptionist-phone.webp" alt="" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.12 }} />
+          <div style={{ position: 'relative', zIndex: 1 }}>
+            <p style={{ fontSize: '10px', fontWeight: 600, color: 'var(--sage-mid)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: '12px' }}>Get in Touch</p>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem,4vw,2.8rem)', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.1, marginBottom: '12px' }}>
+              Contact<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>Invisalign Essex</em>
+            </h1>
+            <p style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '480px' }}>
+              Questions about our directory, a listed clinic, or our vetting process — we respond within 2 working days.
+            </p>
+          </div>
         </section>
 
         {/* Content */}

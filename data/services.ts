@@ -20,7 +20,7 @@ export const services: Service[] = [
     title: 'Invisalign for Crowded Teeth',
     slug: 'crowded',
     description: 'Effectively straighten teeth that overlap or lack space. Crowded teeth can lead to plaque buildup and gum disease.',
-    image: 'https://images.unsplash.com/photo-1660732205543-dfef1a8761f7?q=80&w=1170&auto=format&fit=crop',
+    image: '/images/treatments/crowded/hero-crowded-teeth-macro.webp',
     icon: 'Users',
     color: 'sky',
     faqs: [
@@ -34,7 +34,7 @@ export const services: Service[] = [
     title: 'Invisalign for Gaps',
     slug: 'gaps',
     description: 'Close noticeable spaces between your teeth quickly. Gaps can bring your smile together seamlessly.',
-    image: 'https://images.pexels.com/photos/6502308/pexels-photo-6502308.jpeg',
+    image: '/images/treatments/gaps/hero-gap-teeth-macro.webp',
     icon: 'Sparkles',
     color: 'indigo',
     faqs: [
@@ -48,7 +48,7 @@ export const services: Service[] = [
     title: 'Invisalign for Overbite',
     slug: 'overbite',
     description: 'Correct deep bites where upper teeth overlap lower teeth significantly. Modern attachments handle complex movements.',
-    image: 'https://images.pexels.com/photos/15073697/pexels-photo-15073697.jpeg',
+    image: '/images/treatments/overbite/hero-overbite-profile.webp',
     icon: 'Shield',
     color: 'emerald',
     faqs: [
@@ -62,7 +62,7 @@ export const services: Service[] = [
     title: 'Invisalign for Underbite',
     slug: 'underbite',
     description: 'Address underbites to enhance facial profile and prevent wear. Invisalign is a gentle alternative to corrective surgery.',
-    image: 'https://images.pexels.com/photos/3762402/pexels-photo-3762402.jpeg',
+    image: '/images/treatments/underbite/hero-underbite-profile.webp',
     icon: 'Medal',
     color: 'amber',
     faqs: [
@@ -76,7 +76,7 @@ export const services: Service[] = [
     title: 'Invisalign for Crossbite',
     slug: 'crossbite',
     description: 'Fix crossbites to prevent jaw pain and tooth chipping. Clear aligners widen the arch for a balanced bite.',
-    image: 'https://images.unsplash.com/photo-1581939511501-4ec557ff0957?q=80&w=1170&auto=format&fit=crop',
+    image: '/images/treatments/crossbite/hero-crossbite-frontal.webp',
     icon: 'Globe',
     color: 'rose',
     faqs: [
@@ -90,7 +90,7 @@ export const services: Service[] = [
     title: 'Invisalign for Adults',
     slug: 'adults',
     description: 'Professional, discreet aligners designed for busy lifestyles. Straighten your teeth without the traditional braces look.',
-    image: 'https://images.unsplash.com/photo-1489278353717-f64c6ee8a4d2?q=80&w=1170&auto=format&fit=crop',
+    image: '/images/treatments/adults/hero-adult-professional-aligners.webp',
     icon: 'User',
     color: 'sky',
     faqs: [

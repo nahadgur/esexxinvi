@@ -119,7 +119,7 @@ export default function BlogPage() {
         <Hero
           title="Invisalign Essex Insights"
           subtitle="Expert clinical advice, pricing updates, and patient success stories from our network of Platinum providers across Essex."
-          image="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2000&auto=format&fit=crop"
+          image="/images/blog/hero-blog-flatlay.webp"
           showCta={false}
           showTrust={false}
         />

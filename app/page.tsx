@@ -163,7 +163,7 @@ export default function HomePage() {
           <div style={{ background: 'var(--sage-pale)', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '24px', minHeight: '380px' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800&auto=format&fit=crop"
+              src="/images/home/hero-smile-reception.webp"
               alt="Invisalign consultation"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.55, mixBlendMode: 'multiply' }}
             />

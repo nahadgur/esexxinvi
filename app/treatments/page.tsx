@@ -20,7 +20,7 @@ export default function TreatmentsIndexPage() {
         <Hero
           title="Elite Invisalign Treatments in Essex"
           subtitle="Customised clear aligner solutions for every clinical challenge across Essex, from complex bite issues to lifestyle-focused adult treatment."
-          image="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2000&auto=format&fit=crop"
+          image="/images/treatments/hero-aligner-trays-arc.webp"
           showCta={false}
           showTrust={false}
         />

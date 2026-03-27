@@ -33,7 +33,7 @@ export default function LocationsIndexPage() {
         <Hero
           title="Find Your Local Essex Provider"
           subtitle="Access Essex's most exclusive network of clear aligner experts. Vetted for quality, verified for results."
-          image="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=2000&auto=format&fit=crop"
+          image="/images/locations/hero-essex-aerial.webp"
           onOpenModal={() => setIsModalOpen(true)}
         />
 

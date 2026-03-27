@@ -17,10 +17,55 @@ import { PricingSection } from '@/components/PricingSection';
 import { NearbyAreasGrid } from '@/components/NearbyAreasGrid';
 import { Testimonials } from '@/components/Testimonials';
 
+const townRegionImage: Record<string, string> = {
+  // Coastal
+  'southend-on-sea': '/images/locations/template-coastal-essex.webp',
+  'clacton-on-sea': '/images/locations/template-coastal-essex.webp',
+  'brightlingsea': '/images/locations/template-coastal-essex.webp',
+  'mersea-island': '/images/locations/template-coastal-essex.webp',
+  'shoeburyness': '/images/locations/template-coastal-essex.webp',
+  'westcliff-on-sea': '/images/locations/template-coastal-essex.webp',
+  'leigh-on-sea': '/images/locations/template-coastal-essex.webp',
+  'canvey-island': '/images/locations/template-coastal-essex.webp',
+  'burnham-on-crouch': '/images/locations/template-coastal-essex.webp',
+  'mersea': '/images/locations/template-coastal-essex.webp',
+  // Commuter belt / London fringe
+  'loughton': '/images/locations/template-commuter-belt.webp',
+  'epping': '/images/locations/template-commuter-belt.webp',
+  'buckhurst-hill': '/images/locations/template-commuter-belt.webp',
+  'chigwell': '/images/locations/template-commuter-belt.webp',
+  'waltham-abbey': '/images/locations/template-commuter-belt.webp',
+  'cheshunt': '/images/locations/template-commuter-belt.webp',
+  'woodford': '/images/locations/template-commuter-belt.webp',
+  'theydon-bois': '/images/locations/template-commuter-belt.webp',
+  'abridge': '/images/locations/template-commuter-belt.webp',
+  'roydon': '/images/locations/template-commuter-belt.webp',
+  'nazeing': '/images/locations/template-commuter-belt.webp',
+  'north-weald-bassett': '/images/locations/template-commuter-belt.webp',
+  'ongar': '/images/locations/template-commuter-belt.webp',
+  // South Essex / Thurrock
+  'basildon': '/images/locations/template-south-essex-town.webp',
+  'grays': '/images/locations/template-south-essex-town.webp',
+  'tilbury': '/images/locations/template-south-essex-town.webp',
+  'stanford-le-hope': '/images/locations/template-south-essex-town.webp',
+  'corringham': '/images/locations/template-south-essex-town.webp',
+  'purfleet': '/images/locations/template-south-essex-town.webp',
+  'south-ockendon': '/images/locations/template-south-essex-town.webp',
+  'aveley': '/images/locations/template-south-essex-town.webp',
+  'pitsea': '/images/locations/template-south-essex-town.webp',
+  'laindon': '/images/locations/template-south-essex-town.webp',
+  'langdon-hills': '/images/locations/template-south-essex-town.webp',
+  'horndon-on-the-hill': '/images/locations/template-south-essex-town.webp',
+};
+
+const DEFAULT_TOWN_IMAGE = '/images/locations/template-market-town.webp';
+
 export default function TownPageClient({ params }: { params: { town: string } }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const cityName = getCityBySlug(params.town);
   if (!cityName) notFound();
+
+  const heroImage = townRegionImage[params.town] ?? DEFAULT_TOWN_IMAGE;
 
   return (
     <>
@@ -30,6 +75,8 @@ export default function TownPageClient({ params }: { params: { town: string } })
 
         {/* Hero with form */}
         <section className="bg-gray-900 text-white relative overflow-hidden">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={heroImage} alt="" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.18 }} />
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-brand-900/30 via-gray-900/0 to-transparent pointer-events-none" />
           <div className="container-width py-12 md:py-20 relative z-10">
             <Breadcrumbs items={[{ label: 'Locations', href: '/locations/' }, { label: cityName }]} />

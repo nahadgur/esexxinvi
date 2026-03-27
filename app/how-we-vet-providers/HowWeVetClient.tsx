@@ -82,8 +82,10 @@ export default function HowWeVetProvidersClient() {
       <Header onOpenModal={() => setIsModalOpen(true)} />
     <main className="bg-white">
 
-      <section className="bg-gray-900 text-white py-20">
-        <div className="container-width">
+      <section className="bg-gray-900 text-white py-20 relative overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/images/how-we-vet-providers/hero-vetting-checklist.webp" alt="" aria-hidden="true" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.18 }} />
+        <div className="container-width relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-brand-500/20 text-brand-300 px-3 py-1 rounded-full text-sm font-medium mb-6 border border-brand-500/30">
               <ShieldCheck className="w-4 h-4" /> Independent Consumer Directory
