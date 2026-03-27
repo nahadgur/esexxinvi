@@ -169,8 +169,8 @@ export default function HomePage() {
             />
             <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', gap: '8px' }}>
               {[
-                { name: 'Diamond Provider · Harlow', tier: 'Diamond', sub: '150+ cases per year · Free 3D scan', badgeBg: '#EDE9F8', badgeColor: '#5B42A8' },
-                { name: 'Platinum Provider · Chelmsford', tier: 'Platinum', sub: '80+ cases per year · 0% finance', badgeBg: 'var(--sage-pale)', badgeColor: 'var(--sage)' },
+                { name: 'Nuffield Dental Practice · Harlow', tier: 'Platinum', sub: '200+ cases per year · 4.8★ from 120 reviews', badgeBg: 'var(--sage-pale)', badgeColor: 'var(--sage)' },
+                { name: 'Church Langley Dental · Harlow', tier: 'Platinum', sub: '150+ cases per year · 4.9★ from 180 reviews', badgeBg: 'var(--sage-pale)', badgeColor: 'var(--sage)' },
               ].map(card => (
                 <div key={card.name} style={{ background: 'rgba(250,250,247,0.92)', border: '1px solid rgba(61,92,66,0.15)', borderRadius: '8px', padding: '10px 14px', backdropFilter: 'blur(4px)' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '3px' }}>
