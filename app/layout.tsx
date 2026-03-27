@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 import { siteConfig } from "@/data/site";
+import { buildGlobalSchema } from "./global-schema";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -38,27 +39,16 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: siteConfig.name,
-    alternateName: siteConfig.tagline,
-    url: siteConfig.url,
-  };
-
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url,
-    logo: `${siteConfig.url}/android-chrome-512x512.png`,
-  };
+  const globalSchema = buildGlobalSchema();
 
   return (
     <html lang="en-GB">
       <head>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }} />
+        {/* Single @graph — Organization + WebSite with stable @id anchors and SearchAction */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
+        />
       </head>
       <body className="min-h-screen flex flex-col">
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-2DYPJ7RCB8" strategy="afterInteractive" />
