@@ -186,31 +186,9 @@ export function buildMatrixPageSchema(
         },
       },
     ],
-    // priceRange reflects the local market band from the matrix
-    // This is on the PAGE describing the service, distinct from
-    // the Dentist entity's priceRange (which reflects the specific clinic)
-    'offers': {
-      '@type': 'Offer',
-      'priceCurrency': 'GBP',
-      'priceSpecification': {
-        '@type': 'PriceSpecification',
-        'minPrice': priceRangeLow,       // [price_range_low]
-        'maxPrice': priceRangeHigh,      // [price_range_high]
-        'priceCurrency': 'GBP',
-      },
-      'description':
-        `${service.title} in ${townName} from £${priceRangeLow.toLocaleString()} ` +
-        `to £${priceRangeHigh.toLocaleString()}. 0% finance from ` +
-        `£${financeMin}/month. Free initial consultation.`,
-      'eligibleRegion': {
-        '@type': 'Place',
-        'name': townName,
-        'containedInPlace': {
-          '@type': 'AdministrativeArea',
-          'name': 'Essex',
-        },
-      },
-    },
+    // offers intentionally omitted — this directory does not sell treatment.
+    // Price information belongs in FAQ answers only (see FAQPage block below).
+    // Adding offers here would misrepresent the directory as the provider.
   };
 
   // ── 3. Dentist + AggregateRating ─────────────────────────────────────────

@@ -237,6 +237,28 @@ export function buildClinicProfileSchema(input: ClinicSchemaInput): object {
       'ClinCheck digital treatment planning',
       'iTero digital scanning',
     ],
+
+    // ── potentialAction — signals this is a transactional lead gen page ───
+    // ReserveAction tells Google the page drives appointment bookings,
+    // distinguishing it from a purely informational article.
+    // EntryPoint url is the directory contact/match form — the clinic
+    // does not need its own booking URL for this to be valid.
+    'potentialAction': {
+      '@type': 'ReserveAction',
+      'name': `Book a free Invisalign consultation at ${clinicName}`,
+      'target': {
+        '@type': 'EntryPoint',
+        'urlTemplate': `https://www.invisaligndentistsessex.uk/contact/?clinic=${clinicSlug}`,
+        'actionPlatform': [
+          'https://schema.org/DesktopWebPlatform',
+          'https://schema.org/MobileWebPlatform',
+        ],
+      },
+      'result': {
+        '@type': 'Reservation',
+        'name': 'Free Invisalign consultation',
+      },
+    },
   };
 
   return {

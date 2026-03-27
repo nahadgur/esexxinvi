@@ -87,23 +87,9 @@ export function buildTownHubSchema(input: TownHubSchemaInput): object {
     });
   });
 
-  // Fallback: if no clinic data yet, add a generic directory CTA item
-  if (listItems.length === 0) {
-    listItems.push({
-      '@type': 'ListItem',
-      'position': 1,
-      'item': {
-        '@type': 'Dentist',
-        'name': `Invisalign Provider in ${townName}`,
-        'url': pageUrl,
-        'address': {
-          '@type': 'PostalAddress',
-          'addressLocality': townName,
-          'addressCountry': 'GB',
-        },
-      },
-    });
-  }
+  // No fallback entity — if no real clinic data exists for this town,
+  // the ItemList simply has zero items. A fabricated Dentist entity
+  // is a misrepresentation and draws scrutiny from Google on YMYL pages.
 
   // ── BreadcrumbList ─────────────────────────────────────────────────────────
   const breadcrumbNode = {
