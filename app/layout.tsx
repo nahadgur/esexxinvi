@@ -17,7 +17,10 @@ export const metadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  alternates: { canonical: siteConfig.url },
+  // NOTE: No alternates.canonical here — each page sets its own.
+  // Setting a canonical in layout causes all pages without their own
+  // canonical to inherit the root URL, triggering GSC "Duplicate without
+  // user-selected canonical" errors.
   robots: { index: true, follow: true },
   icons: {
     icon: [
@@ -50,7 +53,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-GB">
       <head>
-        {/* Single @graph — Organization + WebSite with stable @id anchors and SearchAction */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
