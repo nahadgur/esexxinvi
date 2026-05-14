@@ -70,7 +70,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en-GB" className={`${dmSans.variable} ${cormorant.variable}`}>
       <head>
         <meta name="google-site-verification" content="dcdrTVarxyLM5Qd8YERt_3__dhu4A_yvxKoByxxODeU" />
-        <link rel="canonical" href={siteConfig.url} />
+        {/* No global canonical: each page sets its own via generateMetadata.
+            A layout-level canonical makes every page without alternates.canonical
+            point at the homepage, which triggers GSC "Duplicate without
+            user-selected canonical" warnings across the whole site. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
