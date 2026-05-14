@@ -7,18 +7,18 @@ import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 
 const drinkRisks = [
-  { drink: 'Tea or coffee', risk: 'Stains the aligner permanently yellow-brown within days. Also hot — warps the plastic.', verdict: 'Remove aligners' },
+  { drink: 'Tea or coffee', risk: 'Stains the aligner permanently yellow-brown within days. Also hot, warps the plastic.', verdict: 'Remove aligners' },
   { drink: 'Fizzy drinks / juice', risk: 'Acidic liquid trapped between tray and enamel accelerates decay dramatically.', verdict: 'Remove aligners' },
   { drink: 'Alcohol', risk: 'Sugar content risks decay; warm drinks risk warping. Staining likely with red wine.', verdict: 'Remove aligners' },
   { drink: 'Hot water / herbal tea', risk: 'Heat above approximately 70°C permanently deforms the thermoplastic.', verdict: 'Remove aligners' },
-  { drink: 'Sparkling water (cold)', risk: 'No sugar, no heat — technically acceptable, though some providers advise still water only.', verdict: 'Generally fine' },
+  { drink: 'Sparkling water (cold)', risk: 'No sugar, no heat, technically acceptable, though some providers advise still water only.', verdict: 'Generally fine' },
   { drink: 'Still cold/room temp water', risk: 'No risk whatsoever.', verdict: 'Always fine' },
 ];
 
 const hardFoods = [
   { food: 'Boiled sweets / hard candy', issue: 'Direct bite force on hard objects is the most common cause of attachment dislodgement.' },
   { food: 'Ice (chewing)', issue: 'Same risk as hard candy. Chewing ice damages both attachments and natural enamel.' },
-  { food: 'Very crusty bread / baguette', issue: 'Tearing force required pulls laterally on teeth — loosens attachments at the margins.' },
+  { food: 'Very crusty bread / baguette', issue: 'Tearing force required pulls laterally on teeth, loosens attachments at the margins.' },
   { food: 'Nuts (whole)', issue: 'Hard surfaces create unpredictable force distribution. Chopped or ground is fine.' },
   { food: 'Turmeric / curry paste', issue: 'Does not affect the aligner (you remove it to eat) but heavily stains composite attachments.' },
   { food: 'Beetroot / red cabbage', issue: 'Strong pigment stains tooth-coloured composite attachments visibly.' },
@@ -54,11 +54,11 @@ export default function DietClient() {
             <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '12px', padding: '20px 24px', marginBottom: '24px' }}>
               <p style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', marginBottom: '6px' }}>The golden rule</p>
               <p style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.75, margin: 0 }}>
-                You can eat absolutely anything you want during Invisalign treatment — <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>as long as you take the aligners out first.</strong> There is no banned-food list. There are no wires to break, no brackets to dislodge with a sandwich. The restrictions are about what happens with aligners <em>in</em>, not what you eat with them <em>out</em>.
+                You can eat absolutely anything you want during Invisalign treatment, <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>as long as you take the aligners out first.</strong> There is no banned-food list. There are no wires to break, no brackets to dislodge with a sandwich. The restrictions are about what happens with aligners <em>in</em>, not what you eat with them <em>out</em>.
               </p>
             </div>
             <p style={pStyle}>
-              That said, there are some foods and drinks worth being thoughtful about — not because of the aligners themselves, but because of the attachments bonded to your teeth. And the discipline of removing aligners for every meal and drink, every time, is more of a lifestyle adjustment than many patients anticipate. This guide covers all of it.
+              That said, there are some foods and drinks worth being thoughtful about, not because of the aligners themselves, but because of the attachments bonded to your teeth. And the discipline of removing aligners for every meal and drink, every time, is more of a lifestyle adjustment than many patients anticipate. This guide covers all of it.
             </p>
           </div>
         </section>
@@ -71,13 +71,13 @@ export default function DietClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>The "Water Only" Rule</h2>
               <p style={pStyle}>
-                The single most important dietary rule for Invisalign patients has nothing to do with food — it is about what you drink while your aligners are in. The rule is simple: <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>nothing except still, cold or room temperature water.</strong> Everything else goes in the glass, not in your mouth, until the aligner comes out. Here is why.
+                The single most important dietary rule for Invisalign patients has nothing to do with food, it is about what you drink while your aligners are in. The rule is simple: <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>nothing except still, cold or room temperature water.</strong> Everything else goes in the glass, not in your mouth, until the aligner comes out. Here is why.
               </p>
               <p style={pStyle}>
-                Your aligner fits tightly against your teeth, creating a sealed space between the plastic and your enamel. When you drink anything other than water with an aligner in, that liquid is drawn into that sealed space by capillary action and stays there. It cannot rinse away. For sugary drinks — squash, juice, fizzy drinks, flavoured coffees — this means concentrated sugar is in prolonged contact with your enamel with no saliva access to neutralise it. The result is accelerated decay and demineralisation that can permanently damage your enamel during the very treatment you invested in to improve your smile.
+                Your aligner fits tightly against your teeth, creating a sealed space between the plastic and your enamel. When you drink anything other than water with an aligner in, that liquid is drawn into that sealed space by capillary action and stays there. It cannot rinse away. For sugary drinks, squash, juice, fizzy drinks, flavoured coffees, this means concentrated sugar is in prolonged contact with your enamel with no saliva access to neutralise it. The result is accelerated decay and demineralisation that can permanently damage your enamel during the very treatment you invested in to improve your smile.
               </p>
               <p style={pStyle}>
-                Heat is the second issue. Invisalign aligners are manufactured from a medical-grade thermoplastic called SmartTrack. It is precisely engineered to apply calibrated force to your teeth. Above approximately 70°C, the material softens and deforms. A cup of tea, coffee, or any hot drink consumed with an aligner in will warp the plastic permanently — changing its shape, destroying its fit, and potentially applying unintended force to your teeth. A warped aligner is a useless aligner. The replacement cost is £50 to £150 per set.
+                Heat is the second issue. Invisalign aligners are manufactured from a medical-grade thermoplastic called SmartTrack. It is precisely engineered to apply calibrated force to your teeth. Above approximately 70°C, the material softens and deforms. A cup of tea, coffee, or any hot drink consumed with an aligner in will warp the plastic permanently, changing its shape, destroying its fit, and potentially applying unintended force to your teeth. A warped aligner is a useless aligner. The replacement cost is £50 to £150 per set.
               </p>
 
               <div style={{ overflowX: 'auto', margin: '24px 0' }}>
@@ -108,10 +108,10 @@ export default function DietClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Foods to Be Careful With (Even When Aligners Are Out)</h2>
               <p style={pStyle}>
-                With aligners out, you can eat anything. But there is a category of food and drink worth thinking about even during meal times — not because of the plastic, but because of the composite attachments bonded to your teeth.
+                With aligners out, you can eat anything. But there is a category of food and drink worth thinking about even during meal times, not because of the plastic, but because of the composite attachments bonded to your teeth.
               </p>
               <p style={pStyle}>
-                Attachments are small tooth-coloured dots of composite resin. They are bonded securely to enamel, but they are not indestructible. Extremely hard foods can dislodge attachments. Strongly pigmented foods can stain them visibly. Neither outcome ends your treatment, but a lost attachment does require a brief appointment to re-bond — and heavily stained attachments become visible during treatment in a way that defeats some of the aesthetic appeal of clear aligners.
+                Attachments are small tooth-coloured dots of composite resin. They are bonded securely to enamel, but they are not indestructible. Extremely hard foods can dislodge attachments. Strongly pigmented foods can stain them visibly. Neither outcome ends your treatment, but a lost attachment does require a brief appointment to re-bond, and heavily stained attachments become visible during treatment in a way that defeats some of the aesthetic appeal of clear aligners.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', margin: '24px 0' }}>
@@ -129,7 +129,7 @@ export default function DietClient() {
               </div>
 
               <p style={{ ...pStyle, fontSize: '13px', fontStyle: 'italic' }}>
-                None of these foods are banned. Awareness and moderation reduce the risk of attachment loss. If an attachment does come off, contact your provider — it is a quick appointment to re-bond.
+                None of these foods are banned. Awareness and moderation reduce the risk of attachment loss. If an attachment does come off, contact your provider, it is a quick appointment to re-bond.
               </p>
             </section>
 
@@ -142,10 +142,10 @@ export default function DietClient() {
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', margin: '24px 0' }}>
                 {[
-                  { title: 'Eat three defined meals rather than grazing', body: 'Every time you take your aligners out to eat, the clock starts. Three 30-minute meals costs 90 minutes. Three 30-minute meals plus continuous snacking throughout the day can easily cost four hours. The patients who struggle with wear time are almost always snackers — not because of meals, but because of the constant in-out cycle required by frequent small snacks.' },
-                  { title: 'Keep a travel toothbrush at work', body: 'You need to brush (and ideally floss) before putting aligners back in after every meal — food debris trapped under an aligner for hours is a decay risk. Keeping a compact toothbrush and toothpaste in a desk drawer or bag makes lunchtime compliance practical rather than inconvenient.' },
+                  { title: 'Eat three defined meals rather than grazing', body: 'Every time you take your aligners out to eat, the clock starts. Three 30-minute meals costs 90 minutes. Three 30-minute meals plus continuous snacking throughout the day can easily cost four hours. The patients who struggle with wear time are almost always snackers, not because of meals, but because of the constant in-out cycle required by frequent small snacks.' },
+                  { title: 'Keep a travel toothbrush at work', body: 'You need to brush (and ideally floss) before putting aligners back in after every meal, food debris trapped under an aligner for hours is a decay risk. Keeping a compact toothbrush and toothpaste in a desk drawer or bag makes lunchtime compliance practical rather than inconvenient.' },
                   { title: 'Use aligner chewies after seating', body: 'Aligner chewies are small foam cylinders you bite down on after putting an aligner back in. They help the plastic seat fully against the teeth, ensuring proper contact with attachments. Most providers include them with your aligner sets. Biting on chewies for 30 seconds per quadrant after every insertion improves tracking.' },
-                  { title: 'The snacking problem — be honest with yourself', body: 'The 22-hour rule effectively discourages habitual snacking, because every snack requires removing aligners, eating, cleaning teeth, and reinserting. Many patients simply stop snacking because the friction is not worth it for a handful of crisps. This is the source of the "Invisalign diet" effect discussed below — and it is a feature, not a bug, for patients who benefit from reduced grazing.' },
+                  { title: 'The snacking problem, be honest with yourself', body: 'The 22-hour rule effectively discourages habitual snacking, because every snack requires removing aligners, eating, cleaning teeth, and reinserting. Many patients simply stop snacking because the friction is not worth it for a handful of crisps. This is the source of the "Invisalign diet" effect discussed below, and it is a feature, not a bug, for patients who benefit from reduced grazing.' },
                 ].map((item, i) => (
                   <div key={i} style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '10px', padding: '18px 20px' }}>
                     <p style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)', marginBottom: '8px' }}>{item.title}</p>
@@ -159,10 +159,10 @@ export default function DietClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>The "Invisalign Diet" Weight Loss Effect</h2>
               <p style={pStyle}>
-                There is a well-documented phenomenon among Invisalign patients — many lose a small amount of weight during treatment, typically three to five kilograms over a 12-month course, without actively trying. It has been discussed enough in dental forums and patient communities to have acquired its own informal name: the Invisalign diet.
+                There is a well-documented phenomenon among Invisalign patients, many lose a small amount of weight during treatment, typically three to five kilograms over a 12-month course, without actively trying. It has been discussed enough in dental forums and patient communities to have acquired its own informal name: the Invisalign diet.
               </p>
               <p style={pStyle}>
-                The mechanism is entirely behavioural. When every snack requires removing your aligners, cleaning your teeth, and reinserting — a process that takes five to ten minutes — the unconscious, habitual eating that contributes significantly to daily caloric intake stops. The hand-to-mouth snacking that happens during work, television, and socialising simply becomes too much friction. Most Invisalign patients report that they still eat three full meals without any reduction, but that the incidental consumption between meals drops dramatically.
+                The mechanism is entirely behavioural. When every snack requires removing your aligners, cleaning your teeth, and reinserting, a process that takes five to ten minutes, the unconscious, habitual eating that contributes significantly to daily caloric intake stops. The hand-to-mouth snacking that happens during work, television, and socialising simply becomes too much friction. Most Invisalign patients report that they still eat three full meals without any reduction, but that the incidental consumption between meals drops dramatically.
               </p>
               <p style={pStyle}>
                 This is not a diet plan and is not a reason to choose Invisalign. For patients who are already at a healthy weight, the effect is marginal. But for patients who acknowledge habitual snacking as something they have wanted to address, the structural incentive that Invisalign provides can be a genuinely useful side effect of a treatment they were already choosing for other reasons.
@@ -173,10 +173,10 @@ export default function DietClient() {
             <section style={{ marginBottom: '32px' }}>
               <h2 style={h2Style}>Ready to Commit to Your New Smile?</h2>
               <p style={pStyle}>
-                Invisalign requires discipline — mostly around drink rules and consistent wear time. For patients who are ready to commit, the reward is straight teeth achieved discreetly, with no food restrictions and far fewer clinic appointments than braces require.
+                Invisalign requires discipline, mostly around drink rules and consistent wear time. For patients who are ready to commit, the reward is straight teeth achieved discreetly, with no food restrictions and far fewer clinic appointments than braces require.
               </p>
               <p style={pStyle}>
-                Compare Platinum and Diamond providers across Essex — each location page shows local pricing, available treatments, and verified patient ratings.
+                Compare verified Platinum-tier providers across Essex. Each location page shows local pricing, available treatments, and verified patient ratings.
               </p>
               <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '12px', padding: '24px', margin: '28px 0' }}>
                 <p style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)', marginBottom: '16px' }}>Find verified Invisalign providers near you:</p>
@@ -194,7 +194,7 @@ export default function DietClient() {
                   ))}
                 </div>
                 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                  <Link href="/locations/" style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>Browse all 111 Essex towns →</Link>
+                  <Link href="/locations/" style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>Browse all 12 Essex catchments →</Link>
                   <button onClick={() => setIsModalOpen(true)} style={{ padding: '10px 22px', background: 'var(--sage)', color: '#fff', fontSize: '13px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer' }}>Get Matched Free</button>
                 </div>
               </div>
@@ -208,8 +208,8 @@ export default function DietClient() {
               <p style={{ fontSize: '11px', fontWeight: 600, color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>The Key Rules</p>
               {[
                 'Water only while aligners are in',
-                'No hot drinks in — they warp the plastic',
-                'No sugary drinks in — decay risk',
+                'No hot drinks in, they warp the plastic',
+                'No sugary drinks in, decay risk',
                 'Remove for all food and drink',
                 'Brush before reinserting after meals',
                 'Hard foods can dislodge attachments',

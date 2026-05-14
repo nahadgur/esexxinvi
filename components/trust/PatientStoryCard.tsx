@@ -37,7 +37,7 @@ interface PatientStoryCardProps {
 const collectionMethodLabel: Record<string, string> = {
   FORM_SUBMISSION:    'Submitted via our patient story form',
   GOOGLE_ATTRIBUTION: 'Google review, republished with consent',
-  CLINIC_REFERRED:    'Clinic-referred — story written independently by patient',
+  CLINIC_REFERRED:    'Clinic-referred, story written independently by patient',
 };
 
 const tierIcon = {

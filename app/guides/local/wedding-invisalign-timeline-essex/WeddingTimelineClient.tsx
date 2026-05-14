@@ -52,15 +52,15 @@ export default function WeddingTimelineClient() {
               <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>Your Pre-Wedding Invisalign Timeline</em>
             </h1>
             <p style={pStyle}>
-              Essex has some of the most beautiful wedding venues in the South East — Georgian manor houses in Chelmsford, converted barns across the Braintree countryside, lakeside estates near Halstead, and historic towers outside Colchester. Whatever you have booked, one thing unites every wedding photo taken at all of them: you will spend the rest of your life looking at your smile in those images.
+              Essex has some of the most beautiful wedding venues in the South East, Georgian manor houses in Chelmsford, converted barns across the Braintree countryside, lakeside estates near Halstead, and historic towers outside Colchester. Whatever you have booked, one thing unites every wedding photo taken at all of them: you will spend the rest of your life looking at your smile in those images.
             </p>
             <p style={pStyle}>
-              Invisalign is the most popular cosmetic dental treatment chosen specifically in preparation for a wedding — and for good reason. It is discreet enough to wear through the engagement period without anyone noticing, and the timeline is predictable enough to plan around a wedding date with precision. This guide tells you exactly how much lead time you need and what is achievable at every stage.
+              Invisalign is the most popular cosmetic dental treatment chosen specifically in preparation for a wedding, and for good reason. It is discreet enough to wear through the engagement period without anyone noticing, and the timeline is predictable enough to plan around a wedding date with precision. This guide tells you exactly how much lead time you need and what is achievable at every stage.
             </p>
 
             {/* Venue name-drops */}
             <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '10px', padding: '16px 20px', marginTop: '24px' }}>
-              <p style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)', marginBottom: '10px' }}>Popular Essex wedding venues — and how much smile prep time you have</p>
+              <p style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)', marginBottom: '10px' }}>Popular Essex wedding venues, and how much smile prep time you have</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                 {essexVenues.map(v => (
                   <span key={v.name} style={{ background: '#fff', border: '1px solid #c8d9c9', borderRadius: '6px', padding: '5px 12px', fontSize: '12px', color: 'var(--muted)' }}>
@@ -69,7 +69,7 @@ export default function WeddingTimelineClient() {
                 ))}
               </div>
               <p style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '10px', marginBottom: 0, fontStyle: 'italic' }}>
-                Most Essex venues are booked 12–18 months in advance — the same lead time as Invisalign Comprehensive. The timing is not a coincidence.
+                Most Essex venues are booked 12–18 months in advance, the same lead time as Invisalign Comprehensive. The timing is not a coincidence.
               </p>
             </div>
           </div>
@@ -103,22 +103,22 @@ export default function WeddingTimelineClient() {
               </div>
 
               <p style={pStyle}>
-                If your wedding is 12 to 18 months away, you have the most flexibility of any pre-wedding treatment window — and that flexibility matters. Invisalign Comprehensive can be prescribed with unlimited aligners, covers the full clinical range of adult tooth movements, and typically completes in 12 to 18 months for moderate-to-complex cases. Starting now means you can address whatever your case needs without feeling rushed.
+                If your wedding is 12 to 18 months away, you have the most flexibility of any pre-wedding treatment window, and that flexibility matters. Invisalign Comprehensive can be prescribed with unlimited aligners, covers the full clinical range of adult tooth movements, and typically completes in 12 to 18 months for moderate-to-complex cases. Starting now means you can address whatever your case needs without feeling rushed.
               </p>
               <p style={pStyle}>
-                The other critical advantage of this window is time for teeth whitening after treatment. Whitening is most effective on clean, recently straightened teeth — and it is always done after Invisalign, not during, because the aligner trays sit flush against your enamel and would interfere with bleaching gel distribution. A professional whitening course (in-chair or take-home tray) takes four to six weeks. Starting Invisalign at 15 months out gives you 12 months of treatment, a month of post-treatment settling, and two months for whitening before the wedding. The result in photographs is the full transformation — straighter and brighter.
+                The other critical advantage of this window is time for teeth whitening after treatment. Whitening is most effective on clean, recently straightened teeth, and it is always done after Invisalign, not during, because the aligner trays sit flush against your enamel and would interfere with bleaching gel distribution. A professional whitening course (in-chair or take-home tray) takes four to six weeks. Starting Invisalign at 15 months out gives you 12 months of treatment, a month of post-treatment settling, and two months for whitening before the wedding. The result in photographs is the full transformation, straighter and brighter.
               </p>
 
               <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '10px', padding: '18px 20px' }}>
                 <p style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)', marginBottom: '6px' }}>Ideal 15-month wedding timeline</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {[
-                    { period: 'Month 1', action: 'Free 3D scan consultation — see ClinCheck preview of your finished smile before committing' },
+                    { period: 'Month 1', action: 'Free 3D scan consultation, see ClinCheck preview of your finished smile before committing' },
                     { period: 'Month 2', action: 'Aligners delivered and fitted. Attachments bonded if required.' },
-                    { period: 'Months 2–14', action: 'Active treatment — aligner changes every 1–2 weeks, check-ups every 6–8 weeks' },
+                    { period: 'Months 2–14', action: 'Active treatment, aligner changes every 1–2 weeks, check-ups every 6–8 weeks' },
                     { period: 'Month 14', action: 'Final aligner. Attachments removed. Teeth polished.' },
-                    { period: 'Month 14–15', action: 'Professional whitening — in-chair or take-home tray.' },
-                    { period: 'Month 15', action: 'Wedding day. Retainers supplied — worn nightly from here.' },
+                    { period: 'Month 14–15', action: 'Professional whitening, in-chair or take-home tray.' },
+                    { period: 'Month 15', action: 'Wedding day. Retainers supplied, worn nightly from here.' },
                   ].map((step, i) => (
                     <div key={i} style={{ display: 'flex', gap: '12px', fontSize: '13px' }}>
                       <span style={{ fontWeight: 600, color: 'var(--sage)', flexShrink: 0, width: '80px' }}>{step.period}</span>
@@ -137,13 +137,13 @@ export default function WeddingTimelineClient() {
               </div>
 
               <p style={pStyle}>
-                Six to nine months before your wedding date is still a very workable starting point — provided your case is appropriate for Invisalign Lite (up to 14 aligners). This covers mild-to-moderate crowding, multiple small gaps, minor overbite, and cases where 2–4mm of tooth movement is needed across the arch. For the majority of adults with predominantly cosmetic concerns — teeth that are reasonably well-positioned but not quite aligned the way they would like them — Lite is the right product.
+                Six to nine months before your wedding date is still a very workable starting point, provided your case is appropriate for Invisalign Lite (up to 14 aligners). This covers mild-to-moderate crowding, multiple small gaps, minor overbite, and cases where 2–4mm of tooth movement is needed across the arch. For the majority of adults with predominantly cosmetic concerns, teeth that are reasonably well-positioned but not quite aligned the way they would like them, Lite is the right product.
               </p>
               <p style={pStyle}>
-                The constraint at this window is the absence of time for significant complications. If a Lite case tracks poorly and requires an additional refinement phase, that can add six to eight weeks — which can become an issue when working backward from a fixed date. The way to mitigate this is to choose an experienced Platinum provider: higher case volumes mean better treatment planning, lower refinement rates, and more realistic timelines communicated upfront.
+                The constraint at this window is the absence of time for significant complications. If a Lite case tracks poorly and requires an additional refinement phase, that can add six to eight weeks, which can become an issue when working backward from a fixed date. The way to mitigate this is to choose an experienced Platinum provider: higher case volumes mean better treatment planning, lower refinement rates, and more realistic timelines communicated upfront.
               </p>
               <p style={pStyle}>
-                At six to nine months, there is still time for a four-week take-home whitening course after treatment, delivered through custom trays made from your aligner moulds. You arrive at the venue with a straightened and whitened smile — the goal of anyone starting in this window.
+                At six to nine months, there is still time for a four-week take-home whitening course after treatment, delivered through custom trays made from your aligner moulds. You arrive at the venue with a straightened and whitened smile, the goal of anyone starting in this window.
               </p>
             </section>
 
@@ -155,13 +155,13 @@ export default function WeddingTimelineClient() {
               </div>
 
               <p style={pStyle}>
-                Three months is not too late — but it requires the right case and realistic expectations. Invisalign Express uses up to seven aligners and is designed for minor cosmetic corrections: a small gap between the upper front teeth, very slight crowding of the lower incisors, or minor relapse after childhood braces. These are the kinds of improvements that make the difference between teeth you are self-conscious about and teeth you are confident smiling with in photographs.
+                Three months is not too late, but it requires the right case and realistic expectations. Invisalign Express uses up to seven aligners and is designed for minor cosmetic corrections: a small gap between the upper front teeth, very slight crowding of the lower incisors, or minor relapse after childhood braces. These are the kinds of improvements that make the difference between teeth you are self-conscious about and teeth you are confident smiling with in photographs.
               </p>
               <p style={pStyle}>
-                The "social six" — the six front teeth visible when you smile — are what Express is specifically optimised for. If your concern is primarily cosmetic and concentrated in the most visible area of your smile, Express is a clinically appropriate and time-appropriate option at three months.
+                The "social six", the six front teeth visible when you smile, are what Express is specifically optimised for. If your concern is primarily cosmetic and concentrated in the most visible area of your smile, Express is a clinically appropriate and time-appropriate option at three months.
               </p>
               <p style={pStyle}>
-                What three months does not leave room for: significant crowding, any bite correction, movement of multiple back teeth, or two rounds of treatment if the first attempt does not achieve the result. Be honest with a provider about your timeline and your expectations. A Platinum provider will tell you clearly whether Express can give you a meaningful improvement in time — or whether it is not the right product for your case. If the latter, they can advise on what is achievable and whether partial treatment before the wedding plus completion afterwards makes sense.
+                What three months does not leave room for: significant crowding, any bite correction, movement of multiple back teeth, or two rounds of treatment if the first attempt does not achieve the result. Be honest with a provider about your timeline and your expectations. A Platinum provider will tell you clearly whether Express can give you a meaningful improvement in time, or whether it is not the right product for your case. If the latter, they can advise on what is achievable and whether partial treatment before the wedding plus completion afterwards makes sense.
               </p>
             </section>
 
@@ -169,13 +169,13 @@ export default function WeddingTimelineClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>What If Your Treatment Isn&apos;t Finished by the Big Day?</h2>
               <p style={pStyle}>
-                This is where Invisalign has an extraordinary advantage over fixed braces that most people do not think about until they are in the situation. If your treatment is not quite complete — perhaps you are mid-way through a refinement phase — you have a simple option that is simply not available to brace patients:
+                This is where Invisalign has an extraordinary advantage over fixed braces that most people do not think about until they are in the situation. If your treatment is not quite complete, perhaps you are mid-way through a refinement phase, you have a simple option that is simply not available to brace patients:
               </p>
               <p style={pStyle}>
                 <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>You can take your aligners out for the wedding and put them back in after the honeymoon.</strong>
               </p>
               <p style={pStyle}>
-                If you are wearing aligners rather than fixed appliances, the attachments are bonded to your teeth but the trays are removable. For the wedding ceremony, the photos, and the reception — however many hours that covers — you simply do not wear the aligners. Your teeth will not move meaningfully in a single day. You put the current set of aligners back in when treatment resumes, continue from exactly where you left off, and finish treatment on schedule.
+                If you are wearing aligners rather than fixed appliances, the attachments are bonded to your teeth but the trays are removable. For the wedding ceremony, the photos, and the reception, however many hours that covers, you simply do not wear the aligners. Your teeth will not move meaningfully in a single day. You put the current set of aligners back in when treatment resumes, continue from exactly where you left off, and finish treatment on schedule.
               </p>
               <p style={pStyle}>
                 Compare this to the situation for a brace patient whose treatment runs long: metal brackets, visible wires, and elastic bands in every wedding photograph. There is no removal option. The brace is there for the ceremony, the first dance, the speeches, and the photos that will hang on walls for decades.
@@ -183,7 +183,7 @@ export default function WeddingTimelineClient() {
               <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '10px', padding: '18px 20px', margin: '24px 0' }}>
                 <p style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)', marginBottom: '6px' }}>Worth planning for</p>
                 <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, margin: 0 }}>
-                  If your attachments are still bonded on the wedding day, ask your provider about having them temporarily removed and re-bonded. This is a clinical decision that depends on where you are in the treatment plan — not all providers will agree to it, and some movements cannot be paused safely at interim stages. Discuss this option explicitly at the time you start treatment so expectations are managed from day one.
+                  If your attachments are still bonded on the wedding day, ask your provider about having them temporarily removed and re-bonded. This is a clinical decision that depends on where you are in the treatment plan, not all providers will agree to it, and some movements cannot be paused safely at interim stages. Discuss this option explicitly at the time you start treatment so expectations are managed from day one.
                 </p>
               </div>
             </section>
@@ -192,7 +192,7 @@ export default function WeddingTimelineClient() {
             <section style={{ marginBottom: '32px' }}>
               <h2 style={h2Style}>Say &lsquo;I Do&rsquo; to a Free Consultation</h2>
               <p style={pStyle}>
-                The single most useful thing you can do right now is book a free 3D scan consultation. The iTero scan takes four minutes, the ClinCheck animation shows you your proposed smile transformation before you commit to anything, and the provider gives you an honest timeline based on your actual case — not a generic estimate.
+                The single most useful thing you can do right now is book a free 3D scan consultation. The iTero scan takes four minutes, the ClinCheck animation shows you your proposed smile transformation before you commit to anything, and the provider gives you an honest timeline based on your actual case, not a generic estimate.
               </p>
               <p style={pStyle}>
                 That timeline tells you exactly what is achievable before your wedding, which product is appropriate, and whether whitening is feasible afterwards. Everything else in this guide becomes concrete and personalised. There is no charge and no obligation.
@@ -202,7 +202,7 @@ export default function WeddingTimelineClient() {
                   Start with a free 3D smile simulation near your Essex venue
                 </p>
                 <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '20px' }}>
-                  Compare top-rated cosmetic dentists in Essex and find a Platinum or Diamond provider near you. Every listed clinic offers a free initial consultation including a ClinCheck preview of your treatment outcome.
+                  Compare top-rated cosmetic dentists in Essex and find a verified Platinum-tier provider near you. Every listed clinic offers a free initial consultation including a ClinCheck preview of your treatment outcome.
                 </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '20px' }}>
                   {townLinks.map(t => (
@@ -229,11 +229,11 @@ export default function WeddingTimelineClient() {
             <div style={{ background: 'var(--sage)', borderRadius: '12px', padding: '20px' }}>
               <p style={{ fontSize: '11px', fontWeight: 600, color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '12px' }}>Your Timeline Summary</p>
               {[
-                { label: '18 months+', value: 'Comprehensive + whitening — full transformation' },
-                { label: '12 months', value: 'Comprehensive — complex corrections complete' },
-                { label: '6–9 months', value: 'Lite — moderate crowding and gaps' },
-                { label: '3 months', value: 'Express — front tooth cosmetic corrections' },
-                { label: 'Any point', value: 'Remove aligners on the wedding day — resume after' },
+                { label: '18 months+', value: 'Comprehensive + whitening, full transformation' },
+                { label: '12 months', value: 'Comprehensive, complex corrections complete' },
+                { label: '6–9 months', value: 'Lite, moderate crowding and gaps' },
+                { label: '3 months', value: 'Express, front tooth cosmetic corrections' },
+                { label: 'Any point', value: 'Remove aligners on the wedding day, resume after' },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', marginBottom: i < 4 ? '12px' : 0, paddingBottom: i < 4 ? '12px' : 0, borderBottom: i < 4 ? '1px solid rgba(255,255,255,0.1)' : 'none' }}>
                   <span style={{ fontSize: '11px', fontWeight: 700, color: 'rgba(255,255,255,0.5)', flexShrink: 0, marginTop: '2px', width: '70px', lineHeight: 1.3 }}>{item.label}</span>

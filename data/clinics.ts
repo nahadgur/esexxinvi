@@ -72,7 +72,7 @@ export const clinics: Clinic[] = [
     priceRangeHigh: 5500,
     aboutParagraphs: [
       'Nuffield Dental Practice has provided NHS and private dental care to patients in Harlow and Newhall for over 20 years. The practice is led by principal dentist Dr Nishma Kotecha and a team of experienced clinicians including restorative dentists Dr Sonam Patel and Dr Zainab Sayani.',
-      'Located at 110–111 The Stow in central Harlow, the practice offers a full range of treatments including Invisalign clear aligners, dental implants, cosmetic dentistry, and emergency care. Invisalign treatment is available for crowded teeth, gaps, overbites, underbites, crossbites, and general adult cases — with a free initial consultation and a digital 3D scan included.',
+      'Located at 110–111 The Stow in central Harlow, the practice offers a full range of treatments including Invisalign clear aligners, dental implants, cosmetic dentistry, and emergency care. Invisalign treatment is available for crowded teeth, gaps, overbites, underbites, crossbites, and general adult cases, with a free initial consultation and a digital 3D scan included.',
       'Finance options are available, with flexible monthly payment plans to spread the cost of treatment. The practice is easily accessible from Harlow town centre with parking nearby.',
     ],
     teamMembers: [
@@ -137,7 +137,7 @@ export const clinics: Clinic[] = [
     priceRangeHigh: 5200,
     aboutParagraphs: [
       'Church Langley Dental is an established NHS and private dental practice serving the communities of Harlow, Church Langley, and Newhall for over 20 years. The practice is located on the first floor of the Florence Nightingale Health Centre in Church Langley, with ample free parking shared with the adjacent Tesco.',
-      'The clinical team is led by Dr Hussain, who is highly regarded by patients for the care and communication he brings to every case. The practice is open six days a week — including Saturdays until 4:30pm — making it one of the most accessible dental practices in the Harlow area for working patients.',
+      'The clinical team is led by Dr Hussain, who is highly regarded by patients for the care and communication he brings to every case. The practice is open six days a week, including Saturdays until 4:30pm, making it one of the most accessible dental practices in the Harlow area for working patients.',
       'Church Langley Dental offers a comprehensive range of treatments including Invisalign orthodontics, dental implants, cosmetic dentistry, veneers, bridges, crowns, and emergency dental care. The practice is committed to excellent care across both NHS and private treatment pathways.',
     ],
     teamMembers: [

@@ -8,8 +8,8 @@ import { LeadFormModal } from '@/components/LeadFormModal';
 
 const exampleCalculations = [
   { treatment: 'Invisalign Express', total: 3500, deposit: 500, months: 24, label: 'Mid-range Lite case' },
-  { treatment: 'Invisalign Lite',    total: 2800, deposit: 350, months: 18, label: 'Lite — 18 months' },
-  { treatment: 'Comprehensive',      total: 4800, deposit: 800, months: 36, label: 'Comprehensive — 3 years' },
+  { treatment: 'Invisalign Lite',    total: 2800, deposit: 350, months: 18, label: 'Lite, 18 months' },
+  { treatment: 'Comprehensive',      total: 4800, deposit: 800, months: 36, label: 'Comprehensive, 3 years' },
 ];
 
 export default function FinancingClient() {
@@ -40,7 +40,7 @@ export default function FinancingClient() {
               <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>A Guide to Invisalign Payment Plans</em>
             </h1>
             <p style={pStyle}>
-              The sticker price of Invisalign — anywhere from £1,500 to £5,800 depending on your case — can make private orthodontic treatment feel out of reach. But in practice, more than 60% of private dental patients in the UK use some form of monthly financing to spread that cost over time. For most working adults, the real question is not "can I afford Invisalign?" but "what does Invisalign actually cost me per month?" This guide gives you the full picture on how dental finance works, what the credit check involves, and how to find the right payment structure for your situation.
+              The sticker price of Invisalign, anywhere from £1,500 to £5,800 depending on your case, can make private orthodontic treatment feel out of reach. But in practice, more than 60% of private dental patients in the UK use some form of monthly financing to spread that cost over time. For most working adults, the real question is not "can I afford Invisalign?" but "what does Invisalign actually cost me per month?" This guide gives you the full picture on how dental finance works, what the credit check involves, and how to find the right payment structure for your situation.
             </p>
           </div>
         </section>
@@ -53,23 +53,23 @@ export default function FinancingClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>How 0% Dental Finance Works in the UK</h2>
               <p style={pStyle}>
-                Zero per cent interest dental finance is exactly what it says: you pay the total cost of your treatment spread across a fixed number of monthly instalments, with no interest added. If your treatment costs £3,000 and you choose a 24-month plan, you pay £125 per month for 24 months. At the end you have paid £3,000 — not a penny more.
+                Zero per cent interest dental finance is exactly what it says: you pay the total cost of your treatment spread across a fixed number of monthly instalments, with no interest added. If your treatment costs £3,000 and you choose a 24-month plan, you pay £125 per month for 24 months. At the end you have paid £3,000, not a penny more.
               </p>
               <p style={pStyle}>
-                The clinic absorbs the cost of the interest-free period, which is why 0% finance is offered selectively — typically on treatments above a minimum threshold (usually £500 to £1,000) and over set repayment periods. Common 0% terms available at Essex Invisalign providers are 12, 18, and 24 months. Some clinics extend 0% to 36 months for larger treatment fees.
+                The clinic absorbs the cost of the interest-free period, which is why 0% finance is offered selectively, typically on treatments above a minimum threshold (usually £500 to £1,000) and over set repayment periods. Common 0% terms available at Essex Invisalign providers are 12, 18, and 24 months. Some clinics extend 0% to 36 months for larger treatment fees.
               </p>
 
               <h3 style={h3Style}>FCA Regulation and Consumer Protection</h3>
               <p style={pStyle}>
-                Dental finance in the UK is regulated by the Financial Conduct Authority (FCA). Any clinic offering credit — including 0% payment plans — must either hold an FCA consumer credit licence or operate through an FCA-authorised credit broker. This regulation exists to protect you: it means the terms of your agreement must be clearly disclosed before you sign, you have a 14-day cooling-off period after signing, and there is a regulatory complaints process if something goes wrong.
+                Dental finance in the UK is regulated by the Financial Conduct Authority (FCA). Any clinic offering credit, including 0% payment plans, must either hold an FCA consumer credit licence or operate through an FCA-authorised credit broker. This regulation exists to protect you: it means the terms of your agreement must be clearly disclosed before you sign, you have a 14-day cooling-off period after signing, and there is a regulatory complaints process if something goes wrong.
               </p>
               <p style={pStyle}>
-                When you sign a finance agreement at a dental clinic, you are entering a regulated consumer credit agreement — not an informal arrangement with the practice. Your rights under the Consumer Credit Act 1974 apply in full.
+                When you sign a finance agreement at a dental clinic, you are entering a regulated consumer credit agreement, not an informal arrangement with the practice. Your rights under the Consumer Credit Act 1974 apply in full.
               </p>
 
               <h3 style={h3Style}>Why Clinics Offer It</h3>
               <p style={pStyle}>
-                Offering 0% finance makes treatment accessible to more patients — which is good for the clinic commercially. The cost of the interest-free period is factored into the clinic's pricing model. This is why clinics that offer 0% finance sometimes appear slightly more expensive on headline price than those that don't. The finance facility is a benefit to you, but it is not free to the practice. Understanding this helps you compare quotes accurately: a clinic charging £3,200 with 0% finance included may represent better value than one charging £2,900 with no finance available.
+                Offering 0% finance makes treatment accessible to more patients, which is good for the clinic commercially. The cost of the interest-free period is factored into the clinic's pricing model. This is why clinics that offer 0% finance sometimes appear slightly more expensive on headline price than those that don't. The finance facility is a benefit to you, but it is not free to the practice. Understanding this helps you compare quotes accurately: a clinic charging £3,200 with 0% finance included may represent better value than one charging £2,900 with no finance available.
               </p>
             </section>
 
@@ -108,7 +108,7 @@ export default function FinancingClient() {
               </div>
 
               <p style={{ ...pStyle, fontSize: '13px', fontStyle: 'italic' }}>
-                Deposits vary by clinic — some require none. Monthly figures shown are illustrative at 0% APR. Your provider will confirm exact terms at consultation.
+                Deposits vary by clinic, some require none. Monthly figures shown are illustrative at 0% APR. Your provider will confirm exact terms at consultation.
               </p>
             </section>
 
@@ -116,18 +116,18 @@ export default function FinancingClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>The Credit Check Process</h2>
               <p style={pStyle}>
-                Applying for dental finance involves a credit check. Understanding what type of check is involved — and what happens if your score is lower — removes most of the anxiety around applying.
+                Applying for dental finance involves a credit check. Understanding what type of check is involved, and what happens if your score is lower, removes most of the anxiety around applying.
               </p>
 
               <h3 style={h3Style}>Soft vs. Hard Checks</h3>
               <p style={pStyle}>
-                Some clinics and credit brokers run a <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>soft credit check</strong> at the initial stage. A soft check gives the lender a view of your credit file but does not leave a visible footprint — meaning other lenders cannot see it and it does not affect your credit score. This is sometimes used for an initial eligibility assessment before you formally apply.
+                Some clinics and credit brokers run a <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>soft credit check</strong> at the initial stage. A soft check gives the lender a view of your credit file but does not leave a visible footprint, meaning other lenders cannot see it and it does not affect your credit score. This is sometimes used for an initial eligibility assessment before you formally apply.
               </p>
               <p style={pStyle}>
                 A <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>hard credit check</strong> is recorded on your credit file and is visible to other lenders for 12 months. This is performed at the formal application stage. Multiple hard checks in a short period can affect your credit score, so avoid applying to several finance options simultaneously.
               </p>
               <p style={pStyle}>
-                The majority of employed adults with a stable credit history — no County Court Judgements (CCJs), no defaults, and manageable existing credit commitments — will be approved for standard 0% dental finance terms.
+                The majority of employed adults with a stable credit history, no County Court Judgements (CCJs), no defaults, and manageable existing credit commitments, will be approved for standard 0% dental finance terms.
               </p>
 
               <h3 style={h3Style}>If Your Credit Score Is Lower</h3>
@@ -135,7 +135,7 @@ export default function FinancingClient() {
                 If you are declined for 0% finance or have a credit history that makes short-term 0% plans unavailable, interest-bearing options over longer terms (36 to 60 months) are usually still accessible. These typically carry APR rates between 9.9% and 14.9%. On a £3,000 treatment over 48 months at 9.9% APR, you would pay approximately £75–£80 per month but a higher total overall. Some patients find this a worthwhile trade-off for keeping monthly payments very low.
               </p>
               <p style={pStyle}>
-                Clinics are not permitted to guarantee finance approval before a credit check is completed. If a clinic tells you "everyone is approved," treat that with scepticism — it is not how FCA-regulated consumer credit works.
+                Clinics are not permitted to guarantee finance approval before a credit check is completed. If a clinic tells you "everyone is approved," treat that with scepticism, it is not how FCA-regulated consumer credit works.
               </p>
             </section>
 
@@ -143,20 +143,20 @@ export default function FinancingClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>In-House Payment Plans vs. Third-Party Credit</h2>
               <p style={pStyle}>
-                When you arrange finance at a dental clinic, there are two distinct structures you may encounter — and understanding the difference helps you ask the right questions.
+                When you arrange finance at a dental clinic, there are two distinct structures you may encounter, and understanding the difference helps you ask the right questions.
               </p>
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', margin: '24px 0' }} className="two-col-sm-grid">
                 <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '10px', padding: '20px' }}>
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '17px', fontWeight: 600, color: 'var(--ink)', marginBottom: '10px' }}>In-House Payment Milestones</h3>
                   <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65 }}>
-                    Some clinics offer their own staged payment structure — you pay a deposit before treatment, a mid-treatment payment when aligners are delivered, and a final payment on completion. This is not credit in the regulated sense; it is a commercial arrangement with the practice. No credit check is required. It is interest-free by default but the terms are entirely at the clinic's discretion. If you miss a payment, the clinic — not a credit company — is the party you deal with.
+                    Some clinics offer their own staged payment structure, you pay a deposit before treatment, a mid-treatment payment when aligners are delivered, and a final payment on completion. This is not credit in the regulated sense; it is a commercial arrangement with the practice. No credit check is required. It is interest-free by default but the terms are entirely at the clinic's discretion. If you miss a payment, the clinic, not a credit company, is the party you deal with.
                   </p>
                 </div>
                 <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '10px', padding: '20px' }}>
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '17px', fontWeight: 600, color: 'var(--ink)', marginBottom: '10px' }}>Third-Party Credit Brokers</h3>
                   <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.65 }}>
-                    Most larger dental practices use FCA-authorised credit brokers — companies like Chrysalis Finance, Medenta, or DivideBuy — to arrange regulated consumer credit on their behalf. This gives you the full consumer protection framework of the Consumer Credit Act, access to longer terms and higher credit limits than most in-house plans, and a formal complaints process if something goes wrong. The downside is the credit check and the formal application process.
+                    Most larger dental practices use FCA-authorised credit brokers, companies like Chrysalis Finance, Medenta, or DivideBuy, to arrange regulated consumer credit on their behalf. This gives you the full consumer protection framework of the Consumer Credit Act, access to longer terms and higher credit limits than most in-house plans, and a formal complaints process if something goes wrong. The downside is the credit check and the formal application process.
                   </p>
                 </div>
               </div>
@@ -170,11 +170,11 @@ export default function FinancingClient() {
             <section style={{ marginBottom: '32px' }}>
               <h2 style={h2Style}>Find a Clinic Offering 0% Finance in Essex</h2>
               <p style={pStyle}>
-                The majority of Platinum and Diamond Invisalign providers in our Essex network offer 0% finance options as a standard part of their treatment offering. Both{' '}
+                The majority of verified Platinum-tier Invisalign providers in our Essex network offer 0% finance options as a standard part of their treatment offering. Both{' '}
                 <Link href="/clinics/nuffield-dental-harlow/" style={{ color: 'var(--sage)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Nuffield Dental</Link>
                 {' '}and{' '}
                 <Link href="/clinics/church-langley-dental-harlow/" style={{ color: 'var(--sage)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Church Langley Dental</Link>
-                {' '}in Harlow offer flexible finance arrangements — the exact terms are confirmed at your free initial consultation, which includes a full 3D scan and written quote.
+                {' '}in Harlow offer flexible finance arrangements, the exact terms are confirmed at your free initial consultation, which includes a full 3D scan and written quote.
               </p>
               <p style={pStyle}>
                 To see which providers near you offer finance and to get a free quote before committing to anything, use our clinic directory or our free matching service below.
@@ -183,7 +183,7 @@ export default function FinancingClient() {
                 <div style={{ flex: 1 }}>
                   <p style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', marginBottom: '6px' }}>Compare Invisalign providers with 0% finance in Essex</p>
                   <p style={{ fontSize: '13px', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '0' }}>
-                    Browse our <Link href="/clinics/" style={{ color: 'var(--sage)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Clinics Directory</Link> or use our free matching service to be connected with up to 3 Platinum and Diamond providers near you — free consultation, free 3D scan, no obligation.
+                    Browse our <Link href="/clinics/" style={{ color: 'var(--sage)', textDecoration: 'underline', textUnderlineOffset: '3px' }}>Clinics Directory</Link> or use our free matching service to be connected with up to 3 verified Platinum-tier providers near you. Free consultation, free 3D scan, no obligation.
                   </p>
                 </div>
                 <button onClick={() => setIsModalOpen(true)} style={{ padding: '12px 24px', background: 'var(--sage)', color: '#fff', fontSize: '14px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer', flexShrink: 0 }}>
@@ -201,7 +201,7 @@ export default function FinancingClient() {
               {[
                 '60%+ of private dental patients use finance',
                 '0% plans: 12, 18 or 24 months typically',
-                'FCA-regulated — you have legal protections',
+                'FCA-regulated, you have legal protections',
                 'Credit check required for formal finance',
                 'No-interest options from ~£50/month',
                 '14-day cooling-off period after signing',

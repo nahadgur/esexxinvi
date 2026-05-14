@@ -36,7 +36,7 @@ const tiers = [
     changes: 'Every 1–2 weeks',
     clinicVisits: '8–12+ total',
     bestFor: 'Complex crowding, overbite, underbite, crossbite, open bite, full arch corrections, cases requiring Precision Wings or Class II/III elastic integration.',
-    notFor: 'Nothing — this covers the full range of cases suitable for clear aligner treatment.',
+    notFor: 'Nothing, this covers the full range of cases suitable for clear aligner treatment.',
     color: 'var(--sage)',
     border: 'var(--sage)',
     dark: true,
@@ -46,7 +46,7 @@ const tiers = [
 const delays = [
   {
     title: 'Insufficient wear time',
-    detail: 'The most common reason treatment runs longer than projected. Each tray is designed for a specific amount of tooth movement assuming 20–22 hours of daily wear. Consistently wearing aligners for 16–18 hours instead of 22 means teeth arrive at each new tray\'s target position late — or not at all. The result is tracking failure and additional refinement aligners. Every extra refinement set adds 4–8 weeks to your total treatment time.',
+    detail: 'The most common reason treatment runs longer than projected. Each tray is designed for a specific amount of tooth movement assuming 20–22 hours of daily wear. Consistently wearing aligners for 16–18 hours instead of 22 means teeth arrive at each new tray\'s target position late, or not at all. The result is tracking failure and additional refinement aligners. Every extra refinement set adds 4–8 weeks to your total treatment time.',
     severity: 'high',
   },
   {
@@ -56,12 +56,12 @@ const delays = [
   },
   {
     title: 'Slower-than-predicted tooth movement',
-    detail: 'ClinCheck creates a mathematically precise projection of tooth movement. Biological reality sometimes diverges from the model — teeth move through bone at rates influenced by age, bone density, gum health, and individual biology. Some teeth simply move more slowly than the software predicted. This is normal, it is not a sign of treatment failure, and it is why Comprehensive treatment includes unlimited aligners. It does, however, extend the timeline.',
+    detail: 'ClinCheck creates a mathematically precise projection of tooth movement. Biological reality sometimes diverges from the model, teeth move through bone at rates influenced by age, bone density, gum health, and individual biology. Some teeth simply move more slowly than the software predicted. This is normal, it is not a sign of treatment failure, and it is why Comprehensive treatment includes unlimited aligners. It does, however, extend the timeline.',
     severity: 'medium',
   },
   {
     title: 'Lost or damaged aligners',
-    detail: 'A lost aligner requires going back to the previous set while a replacement is manufactured — a two to three week delay per incident. Aligners removed at restaurants or wrapped in napkins are the most common casualty. Keep the case with you at all times.',
+    detail: 'A lost aligner requires going back to the previous set while a replacement is manufactured, a two to three week delay per incident. Aligners removed at restaurants or wrapped in napkins are the most common casualty. Keep the case with you at all times.',
     severity: 'low',
   },
   {
@@ -99,10 +99,10 @@ export default function TimelineClient() {
               <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>Real Timelines for 2026</em>
             </h1>
             <p style={pStyle}>
-              The figure most often cited — 12 to 18 months — is accurate for the most common treatment type. But it is a range that covers moderate-complexity adult cases using Invisalign Comprehensive. For simple cases, treatment can be complete in three months. For complex cases involving significant bite correction, it can run to 24 months or beyond. The actual duration depends almost entirely on three things: how much movement your teeth need, which Invisalign product your case calls for, and how consistently you wear your aligners.
+              The figure most often cited, 12 to 18 months, is accurate for the most common treatment type. But it is a range that covers moderate-complexity adult cases using Invisalign Comprehensive. For simple cases, treatment can be complete in three months. For complex cases involving significant bite correction, it can run to 24 months or beyond. The actual duration depends almost entirely on three things: how much movement your teeth need, which Invisalign product your case calls for, and how consistently you wear your aligners.
             </p>
             <p style={pStyle}>
-              This guide gives you realistic, tier-specific timelines — not marketing averages — and explains honestly what makes treatment run longer than planned.
+              This guide gives you realistic, tier-specific timelines, not marketing averages, and explains honestly what makes treatment run longer than planned.
             </p>
           </div>
         </section>
@@ -115,7 +115,7 @@ export default function TimelineClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Timelines by Invisalign Tier</h2>
               <p style={pStyle}>
-                Align Technology produces three main treatment tiers for adult orthodontics. The tier your provider recommends is determined by the clinical complexity of your case — specifically, how many teeth need to move, how far, and in what direction. Here is what each tier involves in terms of time and commitment.
+                Align Technology produces three main treatment tiers for adult orthodontics. The tier your provider recommends is determined by the clinical complexity of your case, specifically, how many teeth need to move, how far, and in what direction. Here is what each tier involves in terms of time and commitment.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', margin: '28px 0' }}>
@@ -153,7 +153,7 @@ export default function TimelineClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Factors That Delay Your Progress</h2>
               <p style={pStyle}>
-                The ClinCheck treatment plan your dentist creates is a projection, not a guarantee. Several factors can extend your treatment beyond the initial estimate — some within your control, some not.
+                The ClinCheck treatment plan your dentist creates is a projection, not a guarantee. Several factors can extend your treatment beyond the initial estimate, some within your control, some not.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', margin: '24px 0' }}>
@@ -175,10 +175,10 @@ export default function TimelineClient() {
             <section style={{ marginBottom: '32px' }}>
               <h2 style={h2Style}>Find Out Your Exact Timeline</h2>
               <p style={pStyle}>
-                Every ClinCheck treatment plan specifies exactly how many aligners your case requires and at what interval — which gives a precise projected treatment duration from the first set to the last. That figure is confirmed at your free consultation after the iTero 3D scan. There is no reliable way to estimate your timeline accurately before that scan.
+                Every ClinCheck treatment plan specifies exactly how many aligners your case requires and at what interval, which gives a precise projected treatment duration from the first set to the last. That figure is confirmed at your free consultation after the iTero 3D scan. There is no reliable way to estimate your timeline accurately before that scan.
               </p>
               <p style={pStyle}>
-                If you already have a sense of what your case involves, the links below connect you directly to location pages for specific treatments — so you can find verified providers near you for the correction type most relevant to your situation.
+                If you already have a sense of what your case involves, the links below connect you directly to location pages for specific treatments, so you can find verified providers near you for the correction type most relevant to your situation.
               </p>
 
               <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '12px', padding: '24px', margin: '28px 0' }}>
@@ -196,7 +196,7 @@ export default function TimelineClient() {
                   ))}
                 </div>
                 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                  <Link href="/locations/" style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>Browse all 111 Essex towns →</Link>
+                  <Link href="/locations/" style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>Browse all 12 Essex catchments →</Link>
                   <button onClick={() => setIsModalOpen(true)} style={{ padding: '10px 22px', background: 'var(--sage)', color: '#fff', fontSize: '13px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer' }}>Get Matched Free</button>
                 </div>
               </div>

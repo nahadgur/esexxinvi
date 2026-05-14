@@ -29,7 +29,7 @@ import { ShieldCheck, AlertCircle, CheckCircle2 } from 'lucide-react';
 // export const metadata: Metadata = { ... }
 
 const clinics = [
-  { slug: 'church-langley-dental-harlow',  name: 'Church Langley Dental — Harlow' },
+  { slug: 'church-langley-dental-harlow',  name: 'Church Langley Dental, Harlow' },
   // Add all listed clinics here
 ];
 
@@ -71,7 +71,7 @@ export default function ShareYourStoryPage() {
         <CheckCircle2 className="w-14 h-14 text-green-500 mx-auto mb-4" />
         <h1 className="text-3xl font-display font-bold text-gray-900 mb-4">Thank you</h1>
         <p className="text-gray-600 leading-relaxed">
-          We have received your story. We will contact your clinic to verify your treatment and then review your submission. We will let you know when it is published — usually within 10 working days. Your story will only be published with your confirmation.
+          We have received your story. We will contact your clinic to verify your treatment and then review your submission. We will let you know when it is published, usually within 10 working days. Your story will only be published with your confirmation.
         </p>
       </main>
     );
@@ -87,12 +87,12 @@ export default function ShareYourStoryPage() {
             Share Your Invisalign Story
           </h1>
           <p className="text-gray-600 leading-relaxed mb-4">
-            Real patient experiences help Essex residents understand what Invisalign treatment actually involves — not just what it looks like at the end. If you completed treatment at one of our listed clinics and want to share your journey, we would like to hear from you.
+            Real patient experiences help Essex residents understand what Invisalign treatment actually involves, not just what it looks like at the end. If you completed treatment at one of our listed clinics and want to share your journey, we would like to hear from you.
           </p>
           <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-3 text-sm text-amber-900">
             <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
             <p>
-              We do not offer any incentive for story submissions. Incentivised testimonials are prohibited by GDC advertising guidance and breach our editorial standards. Your story is published because it is genuinely useful to other patients — not because of any arrangement with us or the clinic that treated you.
+              We do not offer any incentive for story submissions. Incentivised testimonials are prohibited by GDC advertising guidance and breach our editorial standards. Your story is published because it is genuinely useful to other patients, not because of any arrangement with us or the clinic that treated you.
             </p>
           </div>
         </div>
@@ -172,14 +172,14 @@ export default function ShareYourStoryPage() {
           <fieldset className="space-y-6">
             <legend className="text-lg font-display font-bold text-gray-900 mb-1">Your story</legend>
             <p className="text-sm text-gray-600 mb-4">
-              Please write each section in your own words. We do not edit stories beyond light proofreading for grammar and spelling — the voice should be yours.
+              Please write each section in your own words. We do not edit stories beyond light proofreading for grammar and spelling, the voice should be yours.
             </p>
 
             {[
               { name: 'backgroundText', label: 'Why did you seek treatment?', hint: 'What was the issue you wanted to address? How long had you lived with it? What prompted you to act? (60–100 words)' },
               { name: 'choiceText',     label: 'How did you choose your clinic?', hint: 'What criteria mattered to you? How did you find the clinic? What was the initial consultation like? (60–100 words)' },
-              { name: 'journeyText',    label: 'What was the treatment experience like?', hint: 'How did wearing aligners fit into your life? What was harder or easier than expected? Any challenges? (80–120 words — honesty matters here)' },
-              { name: 'resultText',     label: 'What was the result?', hint: 'What specifically changed? Try to be concrete rather than general — specific details are more useful to other patients. (60–100 words)' },
+              { name: 'journeyText',    label: 'What was the treatment experience like?', hint: 'How did wearing aligners fit into your life? What was harder or easier than expected? Any challenges? (80–120 words, honesty matters here)' },
+              { name: 'resultText',     label: 'What was the result?', hint: 'What specifically changed? Try to be concrete rather than general, specific details are more useful to other patients. (60–100 words)' },
             ].map(field => (
               <div key={field.name}>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">

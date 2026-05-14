@@ -113,7 +113,7 @@ orthodontics]."]
 ["[FIRST NAME] has been an Invisalign provider since [YEAR] and currently 
 holds [TIER] status with Align Technology. Over [X] years of clear aligner 
 practice, [he/she/they] has completed more than [CASE VOLUME, e.g. 200] 
-Invisalign cases across the full range of presentations — including 
+Invisalign cases across the full range of presentations, including 
 [CASE TYPES, e.g. complex crowding, overbite correction using Precision 
 Wings, and adult cases involving existing restorations]. [He/She/They] brings 
 particular experience in [SPECIALTY AREA, e.g. treating adult relapse patients 
@@ -136,7 +136,7 @@ Precision Wing technology, and ClinCheck staging) are accurate and current,
 and ensuring all content complies with GDC advertising guidance. [He/She/They] 
 has no financial interest in any clinic listed on this directory and receives 
 a fixed advisory fee from Invisalign Dentists Essex for [his/her/their] review 
-work — which is independent of any individual listing decision."]
+work, which is independent of any individual listing decision."]
 `;
 
 // ─────────────────────────────────────────────────────────────────────────────

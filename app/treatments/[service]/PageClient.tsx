@@ -22,13 +22,13 @@ const serviceContent: Record<string, {
   crowded: {
     intro: [
       "Crowded teeth are the most common orthodontic issue among Essex adults. They occur when there is not enough space in the jaw for all teeth to fit naturally, causing overlap, twisting, or forward displacement.",
-      "Invisalign treats crowding using a sequence of clear aligners that gradually create space and guide each tooth into alignment. Platinum and Diamond providers use interproximal reduction (IPR) and SmartForce attachments to achieve extraction-free results most general dentists would not attempt.",
+      "Invisalign treats crowding using a sequence of clear aligners that gradually create space and guide each tooth into alignment. Verified Platinum-tier providers use interproximal reduction (IPR) and SmartForce attachments to achieve extraction-free results most general dentists would not attempt.",
     ],
     benefits: [
       { title: 'Easier to Clean', desc: 'Straight teeth make brushing and flossing significantly more effective, reducing long-term risk of decay and gum disease.' },
       { title: 'No Extractions Needed', desc: 'Experienced providers use IPR to create space without removing healthy teeth in the majority of crowding cases.' },
       { title: 'Predictable Digital Planning', desc: 'ClinCheck maps every millimetre of movement before treatment begins, so you know exactly how your crowding will resolve.' },
-      { title: 'Comfortable Progress', desc: 'SmartTrack aligners apply gentle pressure across multiple teeth simultaneously — far more comfortable than brace tightening.' },
+      { title: 'Comfortable Progress', desc: 'SmartTrack aligners apply gentle pressure across multiple teeth simultaneously, far more comfortable than brace tightening.' },
     ],
     candidates: ['Teeth that overlap or sit behind each other', 'Difficulty flossing between tightly packed teeth', 'Teeth that have shifted after childhood braces', 'Visible twisting or rotation of front teeth'],
     process: [
@@ -42,12 +42,12 @@ const serviceContent: Record<string, {
   gaps: {
     intro: [
       "Gaps between teeth, known clinically as diastema, can occur anywhere in the mouth but are most common between upper front teeth. Small gaps can often be closed in as little as 3 months with Invisalign Express.",
-      "Platinum providers plan gap closure to maintain proper bite alignment — simply pushing teeth together without considering occlusion can create new problems. Experience makes the difference.",
+      "Platinum providers plan gap closure to maintain proper bite alignment, simply pushing teeth together without considering occlusion can create new problems. Experience makes the difference.",
     ],
     benefits: [
       { title: 'Fast Results for Small Gaps', desc: 'Single gaps between front teeth can often be closed in 3–6 months with Invisalign Express.' },
       { title: 'No Impact on Bite', desc: 'Platinum providers plan gap closure to maintain proper occlusion throughout treatment.' },
-      { title: 'Discreet Treatment', desc: 'Clear aligners are virtually invisible — no one needs to know you are closing gaps.' },
+      { title: 'Discreet Treatment', desc: 'Clear aligners are virtually invisible, no one needs to know you are closing gaps.' },
       { title: 'Permanent Results', desc: 'With proper retention, gap closure with Invisalign is a permanent solution.' },
     ],
     candidates: ['A visible gap between front teeth', 'Multiple small spaces across upper or lower teeth', 'Gaps that trap food and are hard to keep clean', 'Spaces affecting speech or confidence'],
@@ -62,7 +62,7 @@ const serviceContent: Record<string, {
   overbite: {
     intro: [
       "An overbite occurs when the upper front teeth overlap the lower front teeth by more than the normal 2–3mm. A deep overbite can cause wear on front teeth, jaw pain, and difficulty eating.",
-      "Invisalign corrects overbites using Precision Wings — built-in features that encourage the lower jaw to move forward while aligners simultaneously adjust tooth positions. This dual-action approach handles cases previously considered braces-only.",
+      "Invisalign corrects overbites using Precision Wings, built-in features that encourage the lower jaw to move forward while aligners simultaneously adjust tooth positions. This dual-action approach handles cases previously considered braces-only.",
     ],
     benefits: [
       { title: 'No Headgear Required', desc: 'Precision Wings provide mandibular advancement without the discomfort or visibility of headgear.' },
@@ -81,11 +81,11 @@ const serviceContent: Record<string, {
   },
   underbite: {
     intro: [
-      "An underbite occurs when the lower teeth sit in front of the upper teeth. Many mild-to-moderate underbites can be treated with Invisalign using Class III elastics — without surgery.",
-      "Success with underbite treatment depends heavily on provider experience. Our Essex Platinum and Diamond providers have the case volume to distinguish dental underbites (treatable with Invisalign) from skeletal cases requiring a combined approach.",
+      "An underbite occurs when the lower teeth sit in front of the upper teeth. Many mild-to-moderate underbites can be treated with Invisalign using Class III elastics, without surgery.",
+      "Success with underbite treatment depends heavily on provider experience. Our verified Essex Platinum-tier providers have the case volume to distinguish dental underbites (treatable with Invisalign) from skeletal cases requiring a combined approach.",
     ],
     benefits: [
-      { title: 'Surgery Often Avoidable', desc: 'Many dental underbites can be fully corrected with Invisalign alone — no surgical referral required.' },
+      { title: 'Surgery Often Avoidable', desc: 'Many dental underbites can be fully corrected with Invisalign alone, no surgical referral required.' },
       { title: 'Improved Profile', desc: 'Correcting an underbite brings the jaw relationship into balance, improving the facial profile.' },
       { title: 'Reduced Wear', desc: 'Underbites cause accelerated wear on front teeth. Correction stops the damage and protects enamel.' },
       { title: 'Better Function', desc: 'Proper occlusion improves chewing efficiency and reduces strain on jaw joints.' },
@@ -101,7 +101,7 @@ const serviceContent: Record<string, {
   },
   crossbite: {
     intro: [
-      "A crossbite occurs when one or more upper teeth sit inside (lingual to) the lower teeth — anteriorly with incisors, or posteriorly with back teeth. It can cause a mandibular shift and accelerated tooth wear.",
+      "A crossbite occurs when one or more upper teeth sit inside (lingual to) the lower teeth, anteriorly with incisors, or posteriorly with back teeth. It can cause a mandibular shift and accelerated tooth wear.",
       "Invisalign corrects crossbites using optimised SmartForce attachments engineered for buccal and palatal force vectors. This eliminates the crossbite contact and the associated jaw shift without fixed appliances.",
     ],
     benefits: [
@@ -122,18 +122,18 @@ const serviceContent: Record<string, {
   adults: {
     intro: [
       "Adult Invisalign is the most common treatment type in our Essex network. Whether you want to correct mild relapse from teenage braces or address a complex bite you have lived with for decades, clear aligners fit around professional and social commitments.",
-      "There is no upper age limit for Invisalign. Our providers treat patients in their 20s, 40s, and 70s. The key difference from teenage cases is planning around existing restorations — crowns, veneers, bridges — which experienced providers manage routinely.",
+      "There is no upper age limit for Invisalign. Our providers treat patients in their 20s, 40s, and 70s. The key difference from teenage cases is planning around existing restorations, crowns, veneers, bridges, which experienced providers manage routinely.",
     ],
     benefits: [
       { title: 'Virtually Invisible', desc: 'SmartTrack trays are clear, thin, and custom-fitted. Colleagues and clients will not notice them.' },
       { title: 'Remove to Eat', desc: 'No food restrictions. Remove the trays for meals and eat normally throughout treatment.' },
-      { title: 'Fewer Appointments', desc: 'Check-ups every 6–8 weeks — a fraction of the monthly adjustments required with fixed braces.' },
+      { title: 'Fewer Appointments', desc: 'Check-ups every 6–8 weeks, a fraction of the monthly adjustments required with fixed braces.' },
       { title: 'Works Around Restorations', desc: 'Experienced providers plan treatment around existing crowns, veneers, and implants.' },
     ],
     candidates: ['Teeth that have shifted after childhood braces', 'Mild-to-moderate crowding or spacing as an adult', 'Bite issues that have worsened with age', 'Professionals wanting discreet treatment'],
     process: [
       { title: 'Comprehensive Assessment', desc: 'Your provider reviews existing restorations, gum health, and bone density before planning treatment.' },
-      { title: 'Treatment Selection', desc: 'Express, Lite, or Comprehensive is selected based on what needs correcting — you are not sold more than needed.' },
+      { title: 'Treatment Selection', desc: 'Express, Lite, or Comprehensive is selected based on what needs correcting, you are not sold more than needed.' },
       { title: 'Aligner Treatment', desc: 'Wear aligners 20–22 hours per day, removing for meals and oral hygiene throughout.' },
       { title: 'Long-term Retention', desc: 'Adults require indefinite retention. Your provider will supply the appropriate retainer type.' },
     ],
@@ -141,10 +141,10 @@ const serviceContent: Record<string, {
   },
 };
 
-// Sample Essex towns for the locations grid on each treatment page
+// Anchor catchments for the locations grid on each treatment page (12 verified)
 const featuredTowns = [
   'Chelmsford', 'Harlow', 'Southend-on-Sea', 'Colchester',
-  'Basildon', 'Brentwood', 'Braintree', 'Clacton-on-Sea',
+  'Basildon', 'Brentwood', 'Billericay', 'Witham',
 ];
 
 function FaqAccordion({ q, a }: { q: string; a: string }) {
@@ -165,7 +165,7 @@ export default function TreatmentPageClient({ params }: { params: { service: str
   const service = getServiceBySlug(params.service);
   if (!service) notFound();
 
-  const content = serviceContent[params.service] ?? serviceContent.adults;
+  const content = serviceContent[params.service] ?? serviceContent.adults!;
 
   return (
     <>
@@ -184,7 +184,7 @@ export default function TreatmentPageClient({ params }: { params: { service: str
               <span style={{ fontWeight: 400, fontStyle: 'italic', color: '#C0C8BE' }}>across Essex</span>
             </h1>
             <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '360px', marginBottom: '28px' }}>
-              {service.description} Matched with verified Platinum and Diamond providers near you — free consultation, free 3D scan.
+              {service.description} Matched with verified Platinum-tier providers near you. Free consultation, free 3D scan.
             </p>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '24px' }}>
               <button onClick={() => setIsModalOpen(true)} className="btn-primary" style={{ padding: '13px 28px', borderRadius: '40px', fontSize: '13px' }}>
@@ -196,7 +196,7 @@ export default function TreatmentPageClient({ params }: { params: { service: str
             </div>
             {/* Quick stats */}
             <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-              {[{ label: 'Typical Cost', value: content.priceRange }, { label: 'Duration', value: content.duration }, { label: 'Providers', value: 'Platinum & Diamond' }].map(stat => (
+              {[{ label: 'Typical Cost', value: content.priceRange }, { label: 'Duration', value: content.duration }, { label: 'Providers', value: 'Verified Platinum' }].map(stat => (
                 <div key={stat.label}>
                   <div style={{ fontFamily: 'var(--font-display)', fontSize: '15px', fontWeight: 600, color: 'var(--ink)' }}>{stat.value}</div>
                   <div style={{ fontSize: '11px', color: 'var(--muted)' }}>{stat.label}</div>
@@ -213,7 +213,7 @@ export default function TreatmentPageClient({ params }: { params: { service: str
               <div style={{ background: 'rgba(250,250,247,0.92)', border: '1px solid rgba(61,92,66,0.15)', borderRadius: '8px', padding: '14px 16px', backdropFilter: 'blur(4px)' }}>
                 <div style={{ fontSize: '11px', fontWeight: 600, color: 'var(--sage)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>Essex Platinum providers</div>
                 <div style={{ fontSize: '13px', color: 'var(--ink)', fontWeight: 500 }}>Free iTero 3D scan included at every consultation.</div>
-                <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '4px' }}>0% finance available — from £50/month</div>
+                <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '4px' }}>0% finance available, from £50/month</div>
               </div>
             </div>
           </div>
@@ -273,7 +273,7 @@ export default function TreatmentPageClient({ params }: { params: { service: str
                 Are you a good candidate?
               </div>
               <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75, marginBottom: '20px' }}>
-                You may be suitable for {service.title.toLowerCase()} if you experience any of the following. A free consultation confirms your options — no commitment required.
+                You may be suitable for {service.title.toLowerCase()} if you experience any of the following. A free consultation confirms your options, no commitment required.
               </p>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px' }}>
                 {content.candidates.map(c => (
@@ -291,7 +291,7 @@ export default function TreatmentPageClient({ params }: { params: { service: str
                 Get matched with a specialist
               </div>
               <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.75)', lineHeight: 1.7, marginBottom: '24px' }}>
-                Free consultation, free 3D scan, written quote before you commit. We match you with up to 3 Platinum or Diamond providers near you.
+                Free consultation, free 3D scan, written quote before you commit. We match you with up to 3 verified Platinum-tier providers near you.
               </p>
               <button onClick={() => setIsModalOpen(true)} style={{ width: '100%', padding: '13px', background: '#fff', color: 'var(--sage)', fontSize: '14px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer' }}>
                 Find My Provider
@@ -307,18 +307,18 @@ export default function TreatmentPageClient({ params }: { params: { service: str
             Find <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>{service.title.toLowerCase()}</em><br />near you
           </div>
           <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '480px', marginBottom: '28px' }}>
-            Select your town to see which Platinum and Diamond providers offer this treatment locally, along with local pricing data.
+            Select your town to see which verified Platinum-tier providers offer this treatment locally, along with local pricing data.
           </p>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '10px', marginBottom: '16px' }} className="loc-grid">
             {featuredTowns.map(city => (
-              <Link key={city} href={`/locations/${toSlug(city)}/${params.service}/`} style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#fff', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px 14px', textDecoration: 'none', transition: 'border-color 0.15s' }} className="loc-link">
+              <Link key={city} href={`/locations/${toSlug(city)}/`} style={{ display: 'flex', alignItems: 'center', gap: '10px', background: '#fff', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px 14px', textDecoration: 'none', transition: 'border-color 0.15s' }} className="loc-link">
                 <MapPin style={{ width: '14px', height: '14px', color: 'var(--sage)', flexShrink: 0 }} />
                 <span style={{ fontFamily: 'var(--font-display)', fontWeight: 600, color: 'var(--ink)', fontSize: '13px' }}>{city}</span>
               </Link>
             ))}
           </div>
           <Link href="/locations/" style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
-            Browse all 111 Essex towns →
+            Browse all 12 Essex catchments →
           </Link>
         </section>
 
@@ -355,7 +355,7 @@ export default function TreatmentPageClient({ params }: { params: { service: str
             <br /><em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.6)' }}>Start with a free consultation.</em>
           </h2>
           <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', marginBottom: '32px', lineHeight: 1.7 }}>
-            We match you with verified Platinum and Diamond providers in Essex. Free 3D scan included.
+            We match you with verified Platinum-tier providers in Essex. Free 3D scan included.
           </p>
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button onClick={() => setIsModalOpen(true)} style={{ padding: '14px 36px', background: '#fff', color: 'var(--sage)', fontSize: '14px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer' }}>

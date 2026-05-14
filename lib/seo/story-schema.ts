@@ -63,7 +63,7 @@ export function buildStoriesIndexSchema(stories: PatientStory[]): object {
   return {
     '@context': 'https://schema.org',
     '@type':    'ItemList',
-    'name':     'Patient Invisalign Success Stories — Essex',
+    'name':     'Patient Invisalign Success Stories, Essex',
     'url':      `${base}/success-stories/`,
     'numberOfItems': stories.length,
     'itemListElement': stories.map((story, i) => ({

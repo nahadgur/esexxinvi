@@ -6,8 +6,8 @@ import type { Metadata } from 'next';
 import AboutUsClient from './AboutUsClient';
 
 export const metadata: Metadata = {
-  title: 'About Us | Invisalign Dentists Essex — Independent Consumer Directory',
-  description: 'Learn about Invisalign Dentists Essex — an independent consumer directory helping Essex residents find and compare verified Platinum and Diamond Invisalign providers across all 111 Essex towns.',
+  title: 'About Us | Invisalign Dentists Essex, Independent Consumer Directory',
+  description: 'Learn about Invisalign Dentists Essex, an independent consumer directory helping Essex residents find and compare verified Platinum-tier Invisalign providers across 12 Essex catchments.',
   alternates: { canonical: 'https://www.invisaligndentistsessex.uk/about-us/' },
 };
 

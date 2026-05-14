@@ -10,7 +10,7 @@ const movementTypes = [
   { movement: 'Rotation', explanation: 'Spinning a tooth around its long axis. Without a handle to grip, the aligner slides across the smooth tooth surface rather than rotating it. An attachment on the side of the tooth gives the aligner a point to push against.' },
   { movement: 'Extrusion', explanation: 'Pulling a tooth downward (or upward) out of the gumline. Smooth aligners can push teeth; pulling them requires the aligner to hook onto something. Attachments on the gum-facing surface of the tooth create this anchorage.' },
   { movement: 'Torque control', explanation: 'Tipping the root of a tooth while keeping the crown in position. This is among the most mechanically demanding movements in orthodontics. Rectangular or wedge-shaped attachments transmit the precise force vectors required.' },
-  { movement: 'Bodily movement', explanation: 'Moving the entire tooth — crown and root together — along the arch. Without attachments, aligner pressure tilts the crown rather than moving the whole tooth. Attachments distribute force more evenly.' },
+  { movement: 'Bodily movement', explanation: 'Moving the entire tooth, crown and root together, along the arch. Without attachments, aligner pressure tilts the crown rather than moving the whole tooth. Attachments distribute force more evenly.' },
 ];
 
 export default function AttachmentsClient() {
@@ -41,7 +41,7 @@ export default function AttachmentsClient() {
               <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>And Do You Need Them?</em>
             </h1>
             <p style={pStyle}>
-              One of the most common moments of surprise in an Invisalign consultation is when a patient realises that the aligners are not, in fact, completely invisible — because of small raised dots bonded to specific teeth. These are attachments, sometimes called buttons, and they are present on the majority of Invisalign patients. Understanding what they are, why they exist, and what happens to them at the end of treatment removes the surprise and replaces it with a much more accurate picture of what treatment actually looks like.
+              One of the most common moments of surprise in an Invisalign consultation is when a patient realises that the aligners are not, in fact, completely invisible, because of small raised dots bonded to specific teeth. These are attachments, sometimes called buttons, and they are present on the majority of Invisalign patients. Understanding what they are, why they exist, and what happens to them at the end of treatment removes the surprise and replaces it with a much more accurate picture of what treatment actually looks like.
             </p>
           </div>
         </section>
@@ -54,10 +54,10 @@ export default function AttachmentsClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>What Are Attachments Made Of?</h2>
               <p style={pStyle}>
-                Invisalign attachments are small geometrically precise shapes — circles, rectangles, wedges, or bevelled squares, depending on the tooth movement they are designed to facilitate — made from dental composite resin. This is exactly the same material used to make white (tooth-coloured) fillings. It is safe, durable, and matched to your tooth shade at the time of bonding.
+                Invisalign attachments are small geometrically precise shapes, circles, rectangles, wedges, or bevelled squares, depending on the tooth movement they are designed to facilitate, made from dental composite resin. This is exactly the same material used to make white (tooth-coloured) fillings. It is safe, durable, and matched to your tooth shade at the time of bonding.
               </p>
               <p style={pStyle}>
-                They are typically 1 to 2mm in size — small enough that most people will not notice them in normal conversation, but visible on close inspection, particularly on the front teeth. Under direct lighting or photography, they catch the light slightly differently from the surrounding enamel. For most patients, this is a reasonable trade-off for the clinical effectiveness they provide. For patients doing Invisalign Express with no attachments, there is no compromise — but Express cases are limited to the simplest presentations.
+                They are typically 1 to 2mm in size, small enough that most people will not notice them in normal conversation, but visible on close inspection, particularly on the front teeth. Under direct lighting or photography, they catch the light slightly differently from the surrounding enamel. For most patients, this is a reasonable trade-off for the clinical effectiveness they provide. For patients doing Invisalign Express with no attachments, there is no compromise, but Express cases are limited to the simplest presentations.
               </p>
             </section>
 
@@ -65,13 +65,13 @@ export default function AttachmentsClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Why Are Attachments Necessary?</h2>
               <p style={pStyle}>
-                The simplest way to understand attachments is through an analogy. Imagine trying to open a door that has no handle — just a flat, smooth surface. You can push it, but you cannot pull it with any precision or force. Now add a handle: suddenly you can apply force in a controlled direction. Attachments are handles for the aligner.
+                The simplest way to understand attachments is through an analogy. Imagine trying to open a door that has no handle, just a flat, smooth surface. You can push it, but you cannot pull it with any precision or force. Now add a handle: suddenly you can apply force in a controlled direction. Attachments are handles for the aligner.
               </p>
               <p style={pStyle}>
-                An Invisalign aligner is a smooth, close-fitting plastic tray. Against the smooth curved surface of a tooth, it can apply a reasonable amount of pushing force — tipping or translating a tooth in one direction. But many clinical movements require more than a push. They require a precise directional grip. Without a handle, the aligner slides across the tooth surface instead of controlling it.
+                An Invisalign aligner is a smooth, close-fitting plastic tray. Against the smooth curved surface of a tooth, it can apply a reasonable amount of pushing force, tipping or translating a tooth in one direction. But many clinical movements require more than a push. They require a precise directional grip. Without a handle, the aligner slides across the tooth surface instead of controlling it.
               </p>
               <p style={pStyle}>
-                ClinCheck specifies the exact shape, position, and orientation of each attachment based on the biomechanics of the planned movement. The aligner is then manufactured with corresponding indentations — hollows that click over each attachment precisely, converting the attachment into a controlled anchorage point. Here is how this applies to specific clinical situations:
+                ClinCheck specifies the exact shape, position, and orientation of each attachment based on the biomechanics of the planned movement. The aligner is then manufactured with corresponding indentations, hollows that click over each attachment precisely, converting the attachment into a controlled anchorage point. Here is how this applies to specific clinical situations:
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', margin: '24px 0' }}>
@@ -84,7 +84,7 @@ export default function AttachmentsClient() {
               </div>
 
               <p style={pStyle}>
-                Diamond and Platinum providers have the most experience specifying and placing attachments accurately. Because attachment placement is determined during the ClinCheck planning stage, an experienced provider will prescribe the minimum number of attachments needed to achieve the planned movements — rather than the maximum number that software might suggest by default. Fewer attachments means less visible hardware and less attachment rubbing discomfort.
+                Verified Platinum-tier providers have the most experience specifying and placing attachments accurately. Because attachment placement is determined during the ClinCheck planning stage, an experienced provider will prescribe the minimum number of attachments needed to achieve the planned movements, rather than the maximum number that software might suggest by default. Fewer attachments means less visible hardware and less attachment rubbing discomfort.
               </p>
             </section>
 
@@ -92,10 +92,10 @@ export default function AttachmentsClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Can You Have Invisalign Without Attachments?</h2>
               <p style={pStyle}>
-                Yes — but only for the simplest cases. Invisalign Express, which covers minor cosmetic corrections requiring movement of less than approximately 2mm with no rotation or significant torque, can sometimes be completed without any attachments. Cases involving very minor relapse of the front teeth — for example, slight crowding that has developed after childhood braces — may be treatable with aligner-only force.
+                Yes, but only for the simplest cases. Invisalign Express, which covers minor cosmetic corrections requiring movement of less than approximately 2mm with no rotation or significant torque, can sometimes be completed without any attachments. Cases involving very minor relapse of the front teeth, for example, slight crowding that has developed after childhood braces, may be treatable with aligner-only force.
               </p>
               <p style={pStyle}>
-                The majority of patients, however, will need at least some attachments. Invisalign Lite cases — moderate crowding, multiple gaps, minor bite discrepancies — typically require attachments on several teeth. Comprehensive cases almost invariably require them on multiple teeth across both arches.
+                The majority of patients, however, will need at least some attachments. Invisalign Lite cases, moderate crowding, multiple gaps, minor bite discrepancies, typically require attachments on several teeth. Comprehensive cases almost invariably require them on multiple teeth across both arches.
               </p>
               <p style={pStyle}>
                 Whether your case requires attachments is determined at the ClinCheck planning stage, not by preference. A provider who tells you they can treat a complex case without attachments to make the aligners look clearer is a provider who is compromising clinical outcomes for cosmetic appeal. The movements simply cannot be performed as planned without the anchorage attachments provide.
@@ -104,7 +104,7 @@ export default function AttachmentsClient() {
               <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '10px', padding: '18px 20px' }}>
                 <p style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)', marginBottom: '6px' }}>The right question to ask</p>
                 <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, margin: 0 }}>
-                  At consultation, ask your provider how many attachments your ClinCheck plan specifies and why each one is needed. An experienced Platinum or Diamond provider should be able to explain each attachment in terms of the tooth movement it facilitates. If they cannot, or if they suggest removing attachments the plan requires in order to make treatment look cleaner, seek a second opinion.
+                  At consultation, ask your provider how many attachments your ClinCheck plan specifies and why each one is needed. An experienced verified Platinum-tier provider should be able to explain each attachment in terms of the tooth movement it facilitates. If they cannot, or if they suggest removing attachments the plan requires in order to make treatment look cleaner, seek a second opinion.
                 </p>
               </div>
             </section>
@@ -113,13 +113,13 @@ export default function AttachmentsClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Removing the Attachments</h2>
               <p style={pStyle}>
-                Attachments are bonded to the surface of the enamel — they do not penetrate the tooth. Removal at the end of treatment is a simple, painless, and safe procedure that typically takes 15 to 30 minutes in total. Your dentist uses a low-speed polishing handpiece to buff the composite off the enamel surface. No drilling, no anaesthetic, no enamel removal.
+                Attachments are bonded to the surface of the enamel, they do not penetrate the tooth. Removal at the end of treatment is a simple, painless, and safe procedure that typically takes 15 to 30 minutes in total. Your dentist uses a low-speed polishing handpiece to buff the composite off the enamel surface. No drilling, no anaesthetic, no enamel removal.
               </p>
               <p style={pStyle}>
                 The composite sits on top of the enamel, not within it. The polishing procedure removes only the composite layer, leaving the underlying enamel completely intact. Patients who are concerned about enamel damage from attachment removal can be reassured: the same technique used to remove composite bonding from teeth does not touch the tooth structure itself.
               </p>
               <p style={pStyle}>
-                After removal, the tooth surfaces are polished to a smooth finish. Many patients also choose teeth whitening at this stage — whitening is most effective on freshly polished enamel, and the timing after Invisalign treatment is ideal.
+                After removal, the tooth surfaces are polished to a smooth finish. Many patients also choose teeth whitening at this stage, whitening is most effective on freshly polished enamel, and the timing after Invisalign treatment is ideal.
               </p>
             </section>
 
@@ -127,15 +127,15 @@ export default function AttachmentsClient() {
             <section style={{ marginBottom: '32px' }}>
               <h2 style={h2Style}>Book a Consultation with an Essex Invisalign Expert</h2>
               <p style={pStyle}>
-                The most accurate way to know whether your case requires attachments — and how many — is a ClinCheck plan generated from your own 3D scan. That plan specifies every attachment precisely: its shape, position, and the tooth movement it enables.
+                The most accurate way to know whether your case requires attachments, and how many, is a ClinCheck plan generated from your own 3D scan. That plan specifies every attachment precisely: its shape, position, and the tooth movement it enables.
               </p>
               <p style={pStyle}>
-                Diamond and Platinum providers have the highest case volumes and the most experience planning complex tooth movements using attachments efficiently. Browse our Essex clinic directory to find a top-tier provider near you and book your free 3D scan.
+                Verified Platinum-tier providers have the highest case volumes in our network and the most experience planning complex tooth movements using attachments efficiently. Browse our Essex clinic directory to find a verified provider near you and book your free 3D scan.
               </p>
               <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '12px', padding: '24px', margin: '28px 0' }}>
                 <p style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', marginBottom: '8px' }}>Browse top-tier Essex Invisalign clinics</p>
                 <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '20px' }}>
-                  Every clinic in our directory holds Platinum or Diamond tier status — meaning 80 to 300+ Invisalign cases completed per year. That experience directly affects how accurately attachments are planned and placed.
+                  Every clinic in our directory holds verified Platinum-tier status (or higher) with Align Technology, meaning 150+ Invisalign cases completed per year. That experience directly affects how accurately attachments are planned and placed.
                 </p>
                 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                   <Link href="/clinics/" style={{ padding: '11px 22px', background: 'var(--sage)', color: '#fff', fontSize: '14px', fontWeight: 600, borderRadius: '40px', textDecoration: 'none' }}>

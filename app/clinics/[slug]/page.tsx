@@ -1,39 +1,24 @@
-// app/clinics/[slug]/page.tsx
-// Server component — generates metadata, schema, and renders PageClient.
-
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { siteConfig } from '@/data/site';
 import { getClinicBySlug, getAllClinicSlugs } from '@/data/clinics';
-import { getTownContent } from '@/data/content';
-import { buildClinicProfileSchema } from './schema';
+import { buildClinicSchemaGraph } from '@/lib/schema';
 import ClinicProfilePageClient from './PageClient';
 
-interface PageParams {
-  params: { slug: string };
-}
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getAllClinicSlugs().map(slug => ({ slug }));
 }
 
-export function generateMetadata({ params }: PageParams): Metadata {
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const clinic = getClinicBySlug(params.slug);
   if (!clinic) return {};
 
-  const title =
-    `${clinic.name} | Invisalign ${clinic.tier} Provider, ${clinic.addressLocality}, Essex`;
-
-  const ratingSnippet =
-    clinic.googleRating && clinic.reviewCount
-      ? ` Rated ${clinic.googleRating}/5 from ${clinic.reviewCount} patient reviews.`
-      : '';
-
+  const title = `${clinic.name} | Verified Invisalign ${clinic.tier} provider, ${clinic.addressLocality}`;
   const description =
-    `${clinic.name} is a verified Invisalign ${clinic.tier} provider in ` +
-    `${clinic.addressLocality}, Essex.${ratingSnippet} ` +
-    `Book a free consultation on the Invisalign Dentists Essex directory.`;
-
+    `${clinic.name} is a verified Invisalign ${clinic.tier}-tier provider in ${clinic.addressLocality}, ${clinic.addressRegion}. ` +
+    `Book a free initial consultation through the Invisalign Dentists Essex matching service.`;
   const canonical = `${siteConfig.url}/clinics/${params.slug}/`;
 
   return {
@@ -46,49 +31,27 @@ export function generateMetadata({ params }: PageParams): Metadata {
       url: canonical,
       siteName: siteConfig.name,
       type: 'website',
+      locale: 'en_GB',
     },
   };
 }
 
-export default function ClinicProfilePage({ params }: PageParams) {
+export default function ClinicProfilePage({ params }: { params: { slug: string } }) {
   const clinic = getClinicBySlug(params.slug);
   if (!clinic) notFound();
 
-  const townSlug = clinic.addressLocality.toLowerCase().replace(/\s+/g, '-');
-  const townData = getTownContent(townSlug);
-  const waitDays = townData?.waitTimeDays ?? 7;
-
-  // buildClinicProfileSchema produces:
-  //   BreadcrumbList (with @id)
-  //   ProfilePage    (mainEntity → Dentist @id)
-  //   Dentist + MedicalClinic (with aggregateRating, geo, openingHours, hasOfferCatalog)
-  // — all wrapped in a single @graph
-  const clinicSchema = buildClinicProfileSchema({
-    clinicName:       clinic.name,
-    clinicSlug:       params.slug,
-    tier:             clinic.tier,
-    streetAddress:    clinic.address,
-    addressLocality:  clinic.addressLocality,
-    addressRegion:    clinic.addressRegion,
-    postalCode:       clinic.postalCode,
-    geoLat:           clinic.geoLat,
-    geoLong:          clinic.geoLong,
-    telephone:        clinic.telephone,
-    googleRating:     clinic.googleRating,
-    reviewCount:      clinic.reviewCount,
-    caseVolume:       clinic.caseVolume,
-    openingHours:     clinic.openingHours,
-    priceRangeLow:    clinic.priceRangeLow,
-    priceRangeHigh:   clinic.priceRangeHigh,
-    treatmentSlugs:   clinic.treatmentSlugs,
-  });
+  const schemas = buildClinicSchemaGraph(clinic);
+  const waitDays = 7;
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(clinicSchema) }}
-      />
+      {schemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
       <ClinicProfilePageClient
         clinic={clinic}
         priceRangeLow={clinic.priceRangeLow}

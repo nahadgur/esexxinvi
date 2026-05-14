@@ -1,49 +1,57 @@
-// app/treatments/[service]/page.tsx
-// Replaces the previous thin wrapper. Now a full server component with
-// metadata + MedicallyReviewedBy + the full warm-sage PageClient below.
-
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getAllServiceSlugs, getServiceBySlug } from '@/data/services';
-import { siteConfig } from '@/data/site';
+import { getAllServiceSlugs, getServiceBySlug, services } from '@/data/services';
+import { siteConfig, FAQS_SERVICES } from '@/data/site';
 import { getReviewerForTreatment } from '@/data/advisory/board-members';
 import { MedicallyReviewedBy } from '@/components/trust/MedicallyReviewedBy';
+import { buildServiceSchemaGraph } from '@/lib/schema';
 import TreatmentPageClient from './PageClient';
 
-interface PageParams { params: { service: string } }
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return getAllServiceSlugs().map(service => ({ service }));
 }
 
-export function generateMetadata({ params }: PageParams): Metadata {
+export function generateMetadata({ params }: { params: { service: string } }): Metadata {
   const service = getServiceBySlug(params.service);
   if (!service) return {};
   const canonical = `${siteConfig.url}/treatments/${params.service}/`;
   return {
-    title: `${service.title} in Essex | Platinum & Diamond Invisalign Providers`,
-    description: `Find verified Platinum and Diamond Invisalign providers for ${service.title.toLowerCase()} across all 111 Essex towns. Free consultation, free 3D scan, fixed pricing.`,
+    title: `${service.title} in Essex | Verified Platinum providers`,
+    description: `Find verified Platinum-tier Invisalign providers for ${service.title.toLowerCase()} across Essex. Free consultation, free 3D scan, fixed pricing.`,
     alternates: { canonical },
-    openGraph: { title: `${service.title} in Essex`, url: canonical, siteName: siteConfig.name },
+    openGraph: {
+      title: `${service.title} in Essex`,
+      description: service.description,
+      url: canonical,
+      siteName: siteConfig.name,
+      type: 'website',
+      locale: 'en_GB',
+    },
   };
 }
 
-export default function TreatmentPage({ params }: PageParams) {
-  const service  = getServiceBySlug(params.service);
+export default function TreatmentPage({ params }: { params: { service: string } }) {
+  const service = getServiceBySlug(params.service);
   if (!service) notFound();
 
   const reviewer = getReviewerForTreatment(params.service);
-  const reviewDates: Record<string, { reviewed: string }> = {
-    crowded: { reviewed: '2025-01-15' }, gaps:     { reviewed: '2025-01-15' },
-    overbite: { reviewed: '2025-01-15' }, underbite: { reviewed: '2025-01-15' },
-    crossbite: { reviewed: '2025-01-15' }, adults:   { reviewed: '2025-01-15' },
-  };
-  const dates = reviewDates[params.service];
+  const reviewedAt = siteConfig.editorial.lastReviewedAt;
+
+  const schemas = buildServiceSchemaGraph(service, [...service.faqs, ...FAQS_SERVICES]);
 
   return (
     <>
-      {reviewer && dates && (
-        <MedicallyReviewedBy reviewer={reviewer} reviewedDate={dates.reviewed} />
+      {schemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+      {reviewer && (
+        <MedicallyReviewedBy reviewer={reviewer} reviewedDate={reviewedAt} />
       )}
       <TreatmentPageClient params={params} />
     </>

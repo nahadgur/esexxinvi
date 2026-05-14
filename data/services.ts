@@ -25,7 +25,7 @@ export const services: Service[] = [
     color: 'sky',
     faqs: [
       { question: "How long does Invisalign take for crowded teeth?", answer: "Treatment for crowded teeth typically takes 12-18 months depending on severity. Mild crowding can be treated with Invisalign Lite in as few as 6 months." },
-      { question: "Can Invisalign fix severe crowding?", answer: "Yes — Platinum and Diamond providers have the expertise to handle severe crowding using advanced techniques like IPR (interproximal reduction) and strategic staging of tooth movements." },
+      { question: "Can Invisalign fix severe crowding?", answer: "Yes. Verified Platinum-tier providers have the expertise to handle severe crowding using advanced techniques like IPR (interproximal reduction) and strategic staging of tooth movements." },
       { question: "Is crowding treatment more expensive?", answer: "Crowding cases typically fall under Full Invisalign treatment, ranging from £3,000 to £5,500. Complex cases may be at the higher end due to additional aligner sets needed." },
     ],
   },
@@ -40,7 +40,7 @@ export const services: Service[] = [
     faqs: [
       { question: "How quickly can Invisalign close gaps?", answer: "Small gaps can often be closed in 3-6 months with Invisalign Lite or Express. Larger spaces may require 9-12 months of Full Invisalign treatment." },
       { question: "Will gaps come back after treatment?", answer: "With proper retainer use after treatment, your results should be permanent. Your provider will supply Vivera retainers to maintain your new smile." },
-      { question: "Can Invisalign close large gaps?", answer: "Invisalign can close gaps up to approximately 6mm. Very large gaps may require a combination approach — your Platinum provider will advise on the best strategy." },
+      { question: "Can Invisalign close large gaps?", answer: "Invisalign can close gaps up to approximately 6mm. Very large gaps may require a combination approach, your Platinum provider will advise on the best strategy." },
     ],
   },
   {
@@ -67,7 +67,7 @@ export const services: Service[] = [
     color: 'amber',
     faqs: [
       { question: "Can Invisalign fix an underbite without surgery?", answer: "Many mild to moderate underbites can be treated with Invisalign alone. Severe skeletal underbites may require surgery, but a Platinum provider can determine your options." },
-      { question: "How effective is Invisalign for underbites?", answer: "Invisalign is highly effective for dental underbites (caused by tooth position). Success rates are excellent when treated by experienced Platinum or Diamond providers." },
+      { question: "How effective is Invisalign for underbites?", answer: "Invisalign is highly effective for dental underbites (caused by tooth position). Success rates are excellent when treated by experienced verified Platinum-tier providers." },
       { question: "What age is best for underbite treatment?", answer: "Underbite treatment can be effective at any age, though earlier intervention (teens) can take advantage of jaw growth. Adult treatment is equally successful for dental underbites." },
     ],
   },
@@ -81,7 +81,7 @@ export const services: Service[] = [
     color: 'rose',
     faqs: [
       { question: "How does Invisalign fix a crossbite?", answer: "Invisalign uses programmed arch expansion and individual tooth movements to correct crossbites. SmartForce attachments provide the precision needed for these complex movements." },
-      { question: "Is crossbite treatment more complex?", answer: "Crossbites are among the more complex cases, which is why we only recommend Platinum and Diamond providers — they have the case volume and expertise to achieve reliable results." },
+      { question: "Is crossbite treatment more complex?", answer: "Crossbites are among the more complex cases, which is why we only recommend verified Platinum-tier providers. They have the case volume and expertise to achieve reliable results." },
       { question: "Can crossbite treatment improve jaw pain?", answer: "Yes. Correcting a crossbite often alleviates TMJ symptoms and jaw pain by bringing the bite into proper alignment and reducing strain on the jaw joints." },
     ],
   },

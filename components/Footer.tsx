@@ -58,7 +58,7 @@ export function Footer() {
               </span>
             </div>
             <p style={{ fontSize: '13px', lineHeight: 1.65, color: 'rgba(255,255,255,0.4)', marginBottom: '14px' }}>
-              Independent directory connecting patients with verified Platinum and Diamond Invisalign providers across all 111 Essex towns.
+              Independent directory connecting patients with verified Platinum-tier Invisalign providers across 12 Essex catchments.
             </p>
             <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.25)', lineHeight: 1.6, borderLeft: '2px solid rgba(255,255,255,0.1)', paddingLeft: '10px', fontStyle: 'italic' }}>
               We are not a dental practice. We connect you with independent GDC-registered providers.

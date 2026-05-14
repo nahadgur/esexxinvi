@@ -34,7 +34,7 @@ export default function ContactPage() {
               Contact<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>Invisalign Essex</em>
             </h1>
             <p style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '480px' }}>
-              Questions about our directory, a listed clinic, or our vetting process — we respond within 2 working days.
+              Questions about our directory, a listed clinic, or our vetting process, we respond within 2 working days.
             </p>
           </div>
         </section>
@@ -175,7 +175,7 @@ export default function ContactPage() {
             Looking for an Invisalign provider, not just contact?
           </div>
           <p style={{ fontSize: '14px', color: 'rgba(255,255,255,0.7)', marginBottom: '24px' }}>
-            Use our free matching service instead — we connect you with verified Platinum and Diamond providers near you in under 2 hours.
+            Use our free matching service instead. We connect you with verified Platinum-tier providers near you in under 2 hours.
           </p>
           <button onClick={() => setIsModalOpen(true)} style={{ padding: '13px 32px', background: '#fff', color: 'var(--sage)', fontSize: '14px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer' }}>
             Get Matched Free

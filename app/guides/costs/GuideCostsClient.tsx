@@ -10,13 +10,13 @@ const articles = [
   {
     title: 'The True Cost of Invisalign in the UK: 2026 Pricing Guide',
     href: '/guides/costs/true-cost-invisalign-uk/',
-    description: 'Exact price breakdown by tier — Express from £1,500, Lite from £2,800, Comprehensive up to £5,800. What affects your quote and hidden costs to watch.',
+    description: 'Exact price breakdown by tier, Express from £1,500, Lite from £2,800, Comprehensive up to £5,800. What affects your quote and hidden costs to watch.',
     mins: 8,
   },
   {
     title: 'Can You Get Invisalign on the NHS? (2026 Guide)',
     href: '/guides/costs/invisalign-nhs-essex/',
-    description: 'Almost never — but understanding exactly why, and what affordable private options exist, saves you time and sets realistic expectations.',
+    description: 'Almost never, but understanding exactly why, and what affordable private options exist, saves you time and sets realistic expectations.',
     mins: 7,
   },
   {
@@ -28,7 +28,7 @@ const articles = [
   {
     title: 'Does UK Private Health Insurance Cover Invisalign?',
     href: '/guides/costs/private-health-insurance-cover/',
-    description: 'Standard policies exclude it. Premium dental add-ons offer limited benefits. Here is what Bupa, AXA, Aviva and Denplan actually provide — and what works instead.',
+    description: 'Standard policies exclude it. Premium dental add-ons offer limited benefits. Here is what Bupa, AXA, Aviva and Denplan actually provide, and what works instead.',
     mins: 5,
   },
 ];
@@ -56,7 +56,7 @@ export default function CostsIndexPage() {
               Invisalign Costs &amp; Financing
             </h1>
             <p style={{ fontSize: '16px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '600px' }}>
-              Four guides covering everything Essex adults need to know about the cost of Invisalign — from tier-by-tier pricing to payment plans, insurance, and NHS funding.
+              Four guides covering everything Essex adults need to know about the cost of Invisalign, from tier-by-tier pricing to payment plans, insurance, and NHS funding.
             </p>
           </div>
         </section>

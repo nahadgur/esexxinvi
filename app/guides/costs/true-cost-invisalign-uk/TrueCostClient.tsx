@@ -33,7 +33,7 @@ const tiers = [
     aligners: 'Unlimited aligners',
     duration: '12 – 20 months',
     bestFor: 'Complex crowding, overbite, underbite, crossbite, full arch corrections',
-    notFor: 'Nothing — this covers the full clinical range',
+    notFor: 'Nothing, this covers the full clinical range',
     color: 'var(--sage)',
     border: 'var(--sage)',
     dark: true,
@@ -44,7 +44,7 @@ const hiddenCosts = [
   {
     item: 'Vivera Retainers',
     typical: '£300 – £500',
-    detail: 'The most overlooked post-treatment cost. Retainers are not optional — without them, your teeth will move back. Some clinics include a single removable retainer in the treatment price; Vivera retainers (Align\'s own brand, sold in sets of four) are usually quoted separately. Clarify this at the consultation stage.',
+    detail: 'The most overlooked post-treatment cost. Retainers are not optional, without them, your teeth will move back. Some clinics include a single removable retainer in the treatment price; Vivera retainers (Align\'s own brand, sold in sets of four) are usually quoted separately. Clarify this at the consultation stage.',
   },
   {
     item: 'Refinement Aligners',
@@ -64,7 +64,7 @@ const hiddenCosts = [
   {
     item: 'Teeth Whitening',
     typical: '£300 – £500 add-on',
-    detail: 'Many patients choose to whiten at the end of treatment. Not included in Invisalign pricing. Some clinics offer combined packages — worth asking about at consultation.',
+    detail: 'Many patients choose to whiten at the end of treatment. Not included in Invisalign pricing. Some clinics offer combined packages, worth asking about at consultation.',
   },
 ];
 
@@ -96,10 +96,10 @@ export default function TrueCostClient() {
               <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>2026 Pricing Guide</em>
             </h1>
             <p style={pStyle}>
-              "It depends" is the most honest answer to the question of Invisalign costs — and also the most frustrating one. It depends on your case complexity, the treatment tier your provider recommends, whether you are in a city centre or a smaller Essex town, and the tier of provider you choose. But "it depends" is not useful when you are trying to decide whether Invisalign is financially realistic for you.
+              "It depends" is the most honest answer to the question of Invisalign costs, and also the most frustrating one. It depends on your case complexity, the treatment tier your provider recommends, whether you are in a city centre or a smaller Essex town, and the tier of provider you choose. But "it depends" is not useful when you are trying to decide whether Invisalign is financially realistic for you.
             </p>
             <p style={pStyle}>
-              This guide breaks down the actual price ranges by treatment tier, explains what moves the number up or down, flags the costs that often catch patients off guard, and tells you exactly how to get an accurate quote for your specific case — without committing to anything.
+              This guide breaks down the actual price ranges by treatment tier, explains what moves the number up or down, flags the costs that often catch patients off guard, and tells you exactly how to get an accurate quote for your specific case, without committing to anything.
             </p>
           </div>
         </section>
@@ -112,7 +112,7 @@ export default function TrueCostClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Average Invisalign Prices in Essex: Breakdown by Tier</h2>
               <p style={pStyle}>
-                Align Technology — the manufacturer of Invisalign — produces several distinct products targeting different levels of case complexity. Understanding which tier applies to your situation is the single most useful thing you can do before getting a quote, because it tells you the realistic price bracket before you walk into a consultation.
+                Align Technology, the manufacturer of Invisalign, produces several distinct products targeting different levels of case complexity. Understanding which tier applies to your situation is the single most useful thing you can do before getting a quote, because it tells you the realistic price bracket before you walk into a consultation.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', margin: '28px 0' }}>
@@ -141,7 +141,7 @@ export default function TrueCostClient() {
               </div>
 
               <p style={{ ...pStyle, fontSize: '13px', fontStyle: 'italic' }}>
-                Price ranges reflect Platinum and Diamond provider fees across Essex as of January 2026. Individual quotes may vary. A free consultation and iTero 3D scan will confirm your tier and exact cost before you commit.
+                Price ranges reflect verified Platinum-tier provider fees across Essex as of January 2026. Individual quotes may vary. A free consultation and iTero 3D scan will confirm your tier and exact cost before you commit.
               </p>
             </section>
 
@@ -149,25 +149,25 @@ export default function TrueCostClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>What Factors Influence Your Final Quote?</h2>
               <p style={pStyle}>
-                Two people with similar-looking teeth can receive quotes that differ by £1,000 or more. The variation is not arbitrary — it reflects genuine differences in case complexity, clinical time, and the market in which the provider operates.
+                Two people with similar-looking teeth can receive quotes that differ by £1,000 or more. The variation is not arbitrary, it reflects genuine differences in case complexity, clinical time, and the market in which the provider operates.
               </p>
 
               <h3 style={h3Style}>Clinic Location: City Centre vs. Suburban Essex</h3>
               <p style={pStyle}>
-                A Chelmsford city centre clinic carries higher overheads than a Church Langley or Braintree practice — higher rent, higher staffing costs, more competition on convenience rather than price. That overhead is reflected in fees. Suburban and smaller-town Essex providers frequently offer equivalent clinical quality at a noticeably lower price point. Our directory covers all 111 Essex towns precisely because the most cost-effective option for your case may not be the most obvious one.
+                A Chelmsford city centre clinic carries higher overheads than a Church Langley or Braintree practice: higher rent, higher staffing costs, more competition on convenience rather than price. That overhead is reflected in fees. Suburban and smaller-town Essex providers frequently offer equivalent clinical quality at a noticeably lower price point. Our directory covers 12 Essex catchments precisely because the most cost-effective option for your case may not be the most obvious one.
               </p>
 
-              <h3 style={h3Style}>Provider Tier: Diamond vs. Platinum vs. Lower Tiers</h3>
+              <h3 style={h3Style}>Provider Tier: Platinum vs. Lower Tiers</h3>
               <p style={pStyle}>
-                Counter-intuitively, choosing a higher-tier provider does not always mean paying more — and in some cases it means paying less overall. A Diamond provider completing 300+ Invisalign cases per year is faster and more accurate at treatment planning than a Gold provider doing 20. Fewer errors mean fewer refinement rounds, fewer additional aligner sets, and a treatment that finishes on schedule. The slightly higher consultation fee is often recovered within the first refinement avoided.
+                Counter-intuitively, choosing a higher-tier provider does not always mean paying more, and in some cases it means paying less overall. A Platinum provider completing 150+ Invisalign cases per year is faster and more accurate at treatment planning than a Gold provider doing 20. Fewer errors mean fewer refinement rounds, fewer additional aligner sets, and a treatment that finishes on schedule. The slightly higher consultation fee is often recovered within the first refinement avoided.
               </p>
               <p style={pStyle}>
-                We list only Platinum and Diamond providers — not because Gold and lower providers cannot do good work, but because the evidence consistently shows better outcomes and lower refinement rates at higher case volumes.
+                We list only verified Platinum-tier providers, not because Gold and lower providers cannot do good work, but because the evidence consistently shows better outcomes and lower refinement rates at higher case volumes.
               </p>
 
               <h3 style={h3Style}>Case Complexity: What Your Teeth Actually Need</h3>
               <p style={pStyle}>
-                The most significant price driver is the clinical complexity of your case. A 2mm relapse gap between two front teeth after childhood braces is a fundamentally different treatment challenge from severe crowding across both arches combined with a deep overbite. The former is Invisalign Express territory; the latter requires Comprehensive with Precision Wing technology. No honest provider can give you an accurate price without a 3D scan of your teeth — which is why the free iTero consultation exists.
+                The most significant price driver is the clinical complexity of your case. A 2mm relapse gap between two front teeth after childhood braces is a fundamentally different treatment challenge from severe crowding across both arches combined with a deep overbite. The former is Invisalign Express territory; the latter requires Comprehensive with Precision Wing technology. No honest provider can give you an accurate price without a 3D scan of your teeth, which is why the free iTero consultation exists.
               </p>
             </section>
 
@@ -175,7 +175,7 @@ export default function TrueCostClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Hidden Costs to Watch Out For</h2>
               <p style={pStyle}>
-                The headline quote you receive at consultation should cover all aligners, attachments, IPR where needed, and standard check-up appointments. But several costs sit outside the standard quote at many clinics. Knowing about them in advance means you can ask the right questions — and compare quotes on a like-for-like basis.
+                The headline quote you receive at consultation should cover all aligners, attachments, IPR where needed, and standard check-up appointments. But several costs sit outside the standard quote at many clinics. Knowing about them in advance means you can ask the right questions, and compare quotes on a like-for-like basis.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2px', margin: '24px 0' }}>
@@ -202,10 +202,10 @@ export default function TrueCostClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Are Cheaper "Mail-Order" Aligners Worth It?</h2>
               <p style={pStyle}>
-                Direct-to-consumer aligner companies — brands that ask you to take your own impressions at home and mail them in, without a dentist examining your teeth — are significantly cheaper than Invisalign. Some quote as little as £800 to £1,500 for a full treatment. For many patients the appeal is understandable.
+                Direct-to-consumer aligner companies, brands that ask you to take your own impressions at home and mail them in, without a dentist examining your teeth, are significantly cheaper than Invisalign. Some quote as little as £800 to £1,500 for a full treatment. For many patients the appeal is understandable.
               </p>
               <p style={pStyle}>
-                The British Dental Association, the General Dental Council, and the British Orthodontic Society have all published guidance warning against mail-order aligners for the same reason: orthodontic treatment without clinical examination cannot account for root health, bone density, gum condition, or the three-dimensional position of teeth below the gumline. Moving teeth without this information carries real risks — root resorption, gum recession, bite damage, and in serious cases permanent tooth loss.
+                The British Dental Association, the General Dental Council, and the British Orthodontic Society have all published guidance warning against mail-order aligners for the same reason: orthodontic treatment without clinical examination cannot account for root health, bone density, gum condition, or the three-dimensional position of teeth below the gumline. Moving teeth without this information carries real risks, root resorption, gum recession, bite damage, and in serious cases permanent tooth loss.
               </p>
               <p style={pStyle}>
                 Several direct-to-consumer aligner companies have ceased trading in the UK, leaving patients mid-treatment with no recourse, no clinical oversight, and teeth in an intermediate position that required corrective treatment to fix. The cases have been documented in the dental press. The GDC has been explicit: orthodontic treatment must involve a registered dental professional who has examined the patient in person.
@@ -222,20 +222,20 @@ export default function TrueCostClient() {
             <section style={{ marginBottom: '32px' }}>
               <h2 style={h2Style}>Compare Quotes in Your Local Area</h2>
               <p style={pStyle}>
-                The most accurate price for your treatment is the one a provider gives you after examining your teeth in person. No online guide, including this one, can substitute for a clinical assessment — because the tier you need depends on measurements that only a 3D scan can provide.
+                The most accurate price for your treatment is the one a provider gives you after examining your teeth in person. No online guide, including this one, can substitute for a clinical assessment, because the tier you need depends on measurements that only a 3D scan can provide.
               </p>
               <p style={pStyle}>
                 The good news is that the assessment is free. Every provider in our Essex network offers a free initial consultation with a full iTero 3D scan and a ClinCheck digital simulation of your proposed treatment. You receive a written, itemised quote at that appointment. There is no obligation to proceed.
               </p>
               <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '12px', padding: '24px', margin: '28px 0' }}>
                 <p style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)', marginBottom: '16px' }}>
-                  Find a Platinum or Diamond Invisalign provider near you:
+                  Find a verified Platinum-tier Invisalign provider near you:
                 </p>
                 <Link href="/locations/" style={{ display: 'inline-block', marginBottom: '16px', fontSize: '14px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
-                  Browse all 111 Essex towns →
+                  Browse all 12 Essex catchments →
                 </Link>
                 <p style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '16px', lineHeight: 1.6 }}>
-                  Or use our free matching service — tell us your location and treatment interest, and we'll send your details to the 2–3 best-matched Platinum or Diamond providers near you. They contact you within hours to arrange your free consultation.
+                  Or use our free matching service. Tell us your location and treatment interest, and we'll send your details to the 2–3 best-matched verified Platinum-tier providers near you. They contact you within hours to arrange your free consultation.
                 </p>
                 <button onClick={() => setIsModalOpen(true)} style={{ padding: '12px 28px', background: 'var(--sage)', color: '#fff', fontSize: '14px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer' }}>
                   Get Matched Free

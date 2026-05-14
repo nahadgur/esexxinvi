@@ -16,18 +16,18 @@ import {
 } from 'lucide-react';
 
 const regionalHubs = [
-  { name: 'Chelmsford',        slug: 'chelmsford',      towns: 14, note: 'County city — Diamond provider access' },
-  { name: 'Colchester',        slug: 'colchester',      towns: 18, note: "Britain's oldest town — large patient base" },
+  { name: 'Chelmsford',        slug: 'chelmsford',      towns: 14, note: 'County city, verified Platinum provider access' },
+  { name: 'Colchester',        slug: 'colchester',      towns: 18, note: "Britain's oldest town, large patient base" },
   { name: 'Southend-on-Sea',   slug: 'southend-on-sea', towns: 16, note: 'South Essex coastal hub' },
   { name: 'Basildon',          slug: 'basildon',        towns: 22, note: 'South Essex new town corridor' },
-  { name: 'Harlow',            slug: 'harlow',          towns: 12, note: 'West Essex — Platinum provider' },
-  { name: 'Brentwood',         slug: 'brentwood',       towns: 8,  note: 'M25 corridor — commuter premium market' },
+  { name: 'Harlow',            slug: 'harlow',          towns: 12, note: 'West Essex, Platinum provider' },
+  { name: 'Brentwood',         slug: 'brentwood',       towns: 8,  note: 'M25 corridor, commuter premium market' },
 ];
 
 const stats = [
-  { value: '111', label: 'Essex towns covered',    sub: 'From Canvey Island to Castle Hedingham' },
-  { value: '666', label: 'Treatment pages',         sub: '6 treatments × 111 towns' },
-  { value: '2',   label: 'Featured clinic tiers',   sub: 'Platinum and Diamond only' },
+  { value: '12',  label: 'Essex catchments covered', sub: 'Across the county footprint' },
+  { value: '6',   label: 'Treatment categories',     sub: 'Lite to Comprehensive' },
+  { value: 'Platinum', label: 'Provider tier',       sub: 'Verified Align Technology status' },
   { value: '5',   label: 'Vetting criteria',         sub: 'Every provider must pass all five' },
 ];
 
@@ -51,7 +51,7 @@ export default function AboutUsClient() {
             About Invisalign Dentists Essex
           </h1>
           <p className="text-xl text-gray-300 leading-relaxed">
-            Our mission is to demystify the cost and process of clear aligner treatment for Essex residents — helping people find genuinely qualified, local Invisalign providers without having to wade through sponsored search results, inflated manufacturer directories, or comparison sites ranked by advertising spend.
+            Our mission is to demystify the cost and process of clear aligner treatment for Essex residents, helping people find genuinely qualified, local Invisalign providers without having to wade through sponsored search results, inflated manufacturer directories, or comparison sites ranked by advertising spend.
           </p>
         </div>
       </section>
@@ -80,15 +80,15 @@ export default function AboutUsClient() {
           <div className="grid md:grid-cols-2 gap-8 text-gray-700 leading-relaxed">
             <div className="space-y-4">
               <p>
-                Invisalign Dentists Essex was founded to solve a problem that affects thousands of Essex residents every year: finding a genuinely qualified Invisalign provider is far harder than it should be. The first page of search results for most Essex town + Invisalign queries is dominated by clinic websites with professional photography and persuasive copy — but very little verifiable information about the clinical experience of the team behind them.
+                Invisalign Dentists Essex was founded to solve a problem that affects thousands of Essex residents every year: finding a genuinely qualified Invisalign provider is far harder than it should be. The first page of search results for most Essex town + Invisalign queries is dominated by clinic websites with professional photography and persuasive copy, but very little verifiable information about the clinical experience of the team behind them.
               </p>
               <p>
-                Align Technology, the manufacturer of Invisalign, awards provider tiers based on independently verified case volume. A Diamond provider completing 400 cases per year has encountered and resolved a categorically different range of clinical challenges than a general dentist completing 15 cases. This information is almost never surfaced clearly in clinic marketing. We built this directory to surface it.
+                Align Technology, the manufacturer of Invisalign, awards provider tiers based on independently verified case volume. A verified Platinum provider completing 150+ cases per year has encountered and resolved a categorically different range of clinical challenges than a general dentist completing 15 cases. This information is almost never surfaced clearly in clinic marketing. We built this directory to surface it.
               </p>
             </div>
             <div className="space-y-4">
               <p>
-                We are not a dental practice. We do not provide treatment. We have no clinical staff. We are a consumer advocacy platform — funded by referral fees from listed providers, but editorially independent of all of them. Our listing decisions are made on the basis of five verifiable criteria. Providers who do not meet every criterion are not listed, regardless of willingness to pay.
+                We are not a dental practice. We do not provide treatment. We have no clinical staff. We are a consumer advocacy platform, funded by referral fees from listed providers, but editorially independent of all of them. Our listing decisions are made on the basis of five verifiable criteria. Providers who do not meet every criterion are not listed, regardless of willingness to pay.
               </p>
               <p>
                 Our full commercial disclosure, vetting methodology, and conflict of interest policy are published openly on this site. We believe that a directory asking patients to trust its recommendations must itself be fully transparent about how those recommendations are made.
@@ -104,7 +104,7 @@ export default function AboutUsClient() {
             <h2 className="text-3xl font-display font-bold text-gray-900">Our Geographic Focus</h2>
           </div>
           <p className="text-gray-700 leading-relaxed mb-8">
-            We cover all 111 towns in the county of Essex — from the Thames Estuary coast in the south to the Suffolk border in the north, and from the London fringe in the west to the Tendring peninsula in the east. Our 111-town database means that whether you live in central Chelmsford or in a remote parish like Point Clear or Bulphan, we have researched the nearest verified providers and the local price ranges that apply to your area.
+            We cover Essex via 12 anchor catchments, from the Thames Estuary coast in the south to the Suffolk border in the north, and from the London fringe in the west to the Tendring peninsula in the east. Our network routes patients in any Essex postcode to the nearest verified Platinum provider, even when their exact town is not one of the 12 anchors.
           </p>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
             {regionalHubs.map((hub, i) => (
@@ -120,7 +120,7 @@ export default function AboutUsClient() {
             ))}
           </div>
           <p className="text-sm text-gray-600 bg-gray-50 border border-gray-200 rounded-xl p-4">
-            Our coverage does not end at the major towns. We maintain treatment pages and local pricing data for every town in the county — including small market towns, coastal villages, and rural parishes where finding a nearby provider requires knowing which hub clinic to travel to and how far that journey is.
+            Our coverage does not end at the major towns. We maintain treatment pages and local pricing data for every town in the county, including small market towns, coastal villages, and rural parishes where finding a nearby provider requires knowing which hub clinic to travel to and how far that journey is.
           </p>
         </section>
 
@@ -134,7 +134,7 @@ export default function AboutUsClient() {
             <div>
               <h3 className="font-semibold text-gray-900 mb-3">Local Price Ranges</h3>
               <p className="text-gray-700 leading-relaxed mb-4">
-                Every town and treatment combination carries a local price range — not a national average. We research local Invisalign pricing for each Essex market by treatment type and position each town&apos;s range relative to its nearest hub city. Price data is updated annually.
+                Every town and treatment combination carries a local price range, not a national average. We research local Invisalign pricing for each Essex market by treatment type and position each town&apos;s range relative to its nearest hub city. Price data is updated annually.
               </p>
             </div>
             <div>
@@ -242,7 +242,7 @@ export default function AboutUsClient() {
         <section className="border-2 border-dashed border-amber-300 rounded-xl p-6 bg-amber-50">
           <div className="flex items-center gap-2 mb-4">
             <FileText className="w-5 h-5 text-amber-600" />
-            <h3 className="font-bold text-amber-900">LAUNCH CHECKLIST — remove this block before go-live</h3>
+            <h3 className="font-bold text-amber-900">LAUNCH CHECKLIST, remove this block before go-live</h3>
           </div>
           <div className="space-y-2 text-sm text-amber-800">
             {[
@@ -252,7 +252,7 @@ export default function AboutUsClient() {
               'Contact email address is live and monitored',
               'Contact telephone number is live and answered during stated hours',
               'VAT number added (or row removed if not VAT registered)',
-              'ICO registration number confirmed — required for lead capture forms',
+              'ICO registration number confirmed, required for lead capture forms',
               'Privacy Policy live and linked',
               'Terms of Use live and linked',
               'Cookie Policy live and linked',

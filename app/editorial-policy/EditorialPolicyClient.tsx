@@ -26,7 +26,7 @@ export default function EditorialPolicyClient() {
           </div>
           <h1 className="text-4xl font-display font-bold mb-4 tracking-tight">Editorial Policy</h1>
           <p className="text-xl text-gray-300 leading-relaxed">
-            How we produce, review, and maintain the clinical information on this site — and who is responsible for its accuracy.
+            How we produce, review, and maintain the clinical information on this site, and who is responsible for its accuracy.
           </p>
         </div>
       </section>
@@ -39,7 +39,7 @@ export default function EditorialPolicyClient() {
             <h2 className="text-2xl font-display font-bold text-gray-900">1. Scope of This Policy</h2>
           </div>
           <p className="mb-4">
-            This policy applies to all content on <strong>treatment information pages</strong> — specifically every page at{' '}
+            This policy applies to all content on <strong>treatment information pages</strong>, specifically every page at{' '}
             <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm">/treatments/[service]/</code> and the condition description sections of location pages at{' '}
             <code className="bg-gray-100 px-1.5 py-0.5 rounded text-sm">/locations/[town]/[service]/</code>.
           </p>
@@ -61,7 +61,7 @@ export default function EditorialPolicyClient() {
 
           <h3 className="font-semibold text-gray-900 mb-2">2.2 Author Qualifications</h3>
           <p className="mb-6">
-            Clinical content is written by writers with verifiable dental education backgrounds — either a BDS or postgraduate dental qualification, or a dental sciences degree with demonstrated clinical writing experience.
+            Clinical content is written by writers with verifiable dental education backgrounds, either a BDS or postgraduate dental qualification, or a dental sciences degree with demonstrated clinical writing experience.
           </p>
 
           <h3 className="font-semibold text-gray-900 mb-2">2.3 Medical Review Stage</h3>
@@ -85,8 +85,8 @@ export default function EditorialPolicyClient() {
           </div>
           <div className="grid md:grid-cols-2 gap-6">
             {[
-              { title: 'Routine Review — Every 12 Months', body: 'All treatment information pages are scheduled for full review annually. The reviewing dentist re-reads the complete page and either approves the content as current or flags sections for revision.' },
-              { title: 'Triggered Review — Immediately', body: 'A triggered review is initiated when Align Technology publishes a new product, a relevant systematic review is published, or a patient or practitioner contacts us to dispute a clinical claim.' },
+              { title: 'Routine Review, Every 12 Months', body: 'All treatment information pages are scheduled for full review annually. The reviewing dentist re-reads the complete page and either approves the content as current or flags sections for revision.' },
+              { title: 'Triggered Review, Immediately', body: 'A triggered review is initiated when Align Technology publishes a new product, a relevant systematic review is published, or a patient or practitioner contacts us to dispute a clinical claim.' },
               { title: 'Last Reviewed Date', body: 'Every treatment page displays a "Medically reviewed" date stamp showing the most recent review date and the GDC number of the reviewing dentist.' },
               { title: 'Version Control', body: 'All treatment content is stored in a version-controlled system. Every edit is timestamped and attributed. Previous versions are retained for audit purposes.' },
             ].map((item, i) => (

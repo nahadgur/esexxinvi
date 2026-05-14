@@ -21,8 +21,8 @@ export function PricingSection({ cityName, serviceId, serviceName }: PricingSect
     : 'Invisalign Pricing Guide';
 
   const intro = cityName
-    ? `Invisalign prices in ${cityName} vary depending on the complexity of your case and the provider tier. Below are typical costs from Platinum and Diamond providers in the ${cityName} area.`
-    : `Invisalign prices across Essex vary depending on case complexity, treatment type, and your provider's tier. Below are typical costs from Platinum and Diamond providers.`;
+    ? `Invisalign prices in ${cityName} vary depending on the complexity of your case and the provider tier. Below are typical costs from verified Platinum-tier providers in the ${cityName} area.`
+    : `Invisalign prices across Essex vary depending on case complexity, treatment type, and your provider's tier. Below are typical costs from verified Platinum-tier providers.`;
 
   return (
     <section style={{ marginBottom: '56px' }}>
@@ -128,7 +128,7 @@ export function PricingSection({ cityName, serviceId, serviceName }: PricingSect
       {cityName && (
         <div style={{ marginTop: '24px', fontSize: '13px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '720px' }}>
           <p>
-            The cost of Invisalign in {cityName} depends on several factors: the severity of your misalignment, which Invisalign product is recommended, and the experience level of your orthodontist. Platinum and Diamond tier providers in {cityName} may charge slightly more than general dentists, but this reflects their significantly higher case volume and access to advanced Invisalign features. Most {cityName} clinics in our network offer free initial consultations including a 3D iTero scan, so you can get an accurate quote before committing to treatment.
+            The cost of Invisalign in {cityName} depends on several factors: the severity of your misalignment, which Invisalign product is recommended, and the experience level of your orthodontist. Verified Platinum-tier providers serving {cityName} may charge slightly more than general dentists, but this reflects their significantly higher case volume and access to advanced Invisalign features. Most {cityName} clinics in our network offer free initial consultations including a 3D iTero scan, so you can get an accurate quote before committing to treatment.
           </p>
         </div>
       )}

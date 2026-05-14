@@ -15,11 +15,11 @@ const sections = [
   },
   {
     title: '2. What data we collect',
-    body: `We collect personal data you provide when you submit our enquiry form: your name, email address, phone number (if provided), Essex location, and treatment interest. We also collect standard analytics data (page views, session duration, device type) via cookies — see our Cookie Policy for details. We do not collect sensitive personal data such as health records.`,
+    body: `We collect personal data you provide when you submit our enquiry form: your name, email address, phone number (if provided), Essex location, and treatment interest. We also collect standard analytics data (page views, session duration, device type) via cookies, see our Cookie Policy for details. We do not collect sensitive personal data such as health records.`,
   },
   {
     title: '3. Why we collect it',
-    body: `We collect your contact details to match you with verified Platinum and Diamond Invisalign providers near you (our core service). Your data is shared only with the matched clinics so they can contact you to arrange a free consultation. We collect analytics data to improve the site and understand how patients use it.`,
+    body: `We collect your contact details to match you with verified Platinum-tier Invisalign providers near you (our core service). Your data is shared only with the matched clinics so they can contact you to arrange a free consultation. We collect analytics data to improve the site and understand how patients use it.`,
   },
   {
     title: '4. Legal basis for processing',

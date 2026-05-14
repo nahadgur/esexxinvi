@@ -272,7 +272,7 @@ export function Header({ onOpenModal }: HeaderProps) {
                   className="btn-primary"
                   style={{ width: '100%', textAlign: 'center', fontSize: '14px', padding: '13px' }}
                 >
-                  Find a Provider — Free
+                  Find a Provider, Free
                 </button>
                 <p style={{ fontSize: '11px', color: 'var(--muted)', textAlign: 'center', marginTop: '8px' }}>
                   Free consultation · No obligation

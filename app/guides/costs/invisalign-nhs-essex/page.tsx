@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: 'https://www.invisaligndentistsessex.uk/guides/costs/invisalign-nhs-essex/' },
   openGraph: {
     title: 'Can You Get Invisalign on the NHS? (2026 Essex Guide)',
-    description: 'The honest answer — and how to access affordable private Invisalign across Essex.',
+    description: 'The honest answer, and how to access affordable private Invisalign across Essex.',
     url: 'https://www.invisaligndentistsessex.uk/guides/costs/invisalign-nhs-essex/',
   },
 };

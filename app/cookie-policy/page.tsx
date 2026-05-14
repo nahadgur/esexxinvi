@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 };
 
 const cookies = [
-  { name: '_ga, _ga_*', purpose: 'Google Analytics — tracks pages visited, session duration, and device type.', duration: '2 years', essential: false },
-  { name: '__session', purpose: 'Session management — remembers your preferences during a single visit.', duration: 'Session', essential: true },
+  { name: '_ga, _ga_*', purpose: 'Google Analytics, tracks pages visited, session duration, and device type.', duration: '2 years', essential: false },
+  { name: '__session', purpose: 'Session management, remembers your preferences during a single visit.', duration: 'Session', essential: true },
   { name: 'NEXT_LOCALE', purpose: 'Stores your language preference.', duration: '1 year', essential: true },
 ];
 
@@ -26,7 +26,7 @@ export default function CookiePolicyPage() {
           { title: 'What are cookies?', body: 'Cookies are small text files stored on your device when you visit a website. They help us understand how the site is used and remember your preferences.' },
           { title: 'What cookies we use', body: '' },
           { title: 'Essential cookies', body: 'Essential cookies are necessary for the site to function correctly. They cannot be disabled. They include session management and basic functionality cookies.' },
-          { title: 'Analytics cookies', body: 'We use Google Analytics to understand how visitors use the site — which pages are most popular, how long sessions last, and what devices are used. This data is aggregated and anonymous. You can opt out by visiting https://tools.google.com/dlpage/gaoptout.' },
+          { title: 'Analytics cookies', body: 'We use Google Analytics to understand how visitors use the site, which pages are most popular, how long sessions last, and what devices are used. This data is aggregated and anonymous. You can opt out by visiting https://tools.google.com/dlpage/gaoptout.' },
           { title: 'How to control cookies', body: 'You can control cookies through your browser settings. Most browsers allow you to refuse new cookies, delete existing cookies, or be notified when cookies are set. Note that disabling cookies may affect site functionality.' },
           { title: 'Changes to this policy', body: 'We may update this policy periodically. The current version is always available at /cookie-policy/.' },
         ].map((s, i) => (

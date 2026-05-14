@@ -285,11 +285,11 @@ export default function ClinicProfilePageClient({
                     <div className="h-2 bg-brand-500 rounded-full w-3/5" />
                   </div>
                   <p className="text-sm text-gray-600 mb-4">
-                    {clinic.name} provides a written, itemised quote at the free initial consultation — no commitment required.
+                    {clinic.name} provides a written, itemised quote at the free initial consultation, no commitment required.
                   </p>
                   <div className="flex items-center gap-2 text-sm font-medium text-brand-700 bg-brand-50 border border-brand-100 rounded-lg px-4 py-2.5">
                     <CheckCircle2 className="w-4 h-4 flex-shrink-0" />
-                    0% finance available — payments from £{Math.round(priceRangeLow / 60).toLocaleString()}/month
+                    0% finance available, payments from £{Math.round(priceRangeLow / 60).toLocaleString()}/month
                   </div>
                 </div>
               </section>
@@ -360,7 +360,7 @@ export default function ClinicProfilePageClient({
                   Invisalign Dentists Essex is an independent consumer directory. We are not a dental practice and we do not provide dental treatment. We are not owned by, financially connected to, or editorially controlled by {clinic.name} or any other clinic featured on this platform.
                 </p>
                 <p>
-                  {clinic.name} is an independently owned and operated dental practice regulated by the General Dental Council (GDC). When you book a consultation through this directory, you are booking directly with {clinic.name} — not with us. Your treatment agreement, clinical care, and any financial arrangement for treatment are entirely between you and {clinic.name}.
+                  {clinic.name} is an independently owned and operated dental practice regulated by the General Dental Council (GDC). When you book a consultation through this directory, you are booking directly with {clinic.name}, not with us. Your treatment agreement, clinical care, and any financial arrangement for treatment are entirely between you and {clinic.name}.
                 </p>
                 <p>
                   We receive a referral fee from listed practices when a patient we refer books a consultation. This arrangement is the same for every listed clinic and does not influence listing decisions, displayed ratings, or editorial content. You can read our full vetting criteria at{' '}

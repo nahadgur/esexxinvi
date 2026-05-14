@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { ShieldCheck, Star, Award, BadgeCheck, MapPin, ExternalLink } from 'lucide-react';
+import { ShieldCheck, Star, BadgeCheck, MapPin, ExternalLink } from 'lucide-react';
 import { getActiveClinics } from '@/data/clinics';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -12,7 +12,6 @@ export default function ClinicsIndexPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const clinics = getActiveClinics();
 
-  const diamond  = clinics.filter(c => c.tier === 'Diamond');
   const platinum = clinics.filter(c => c.tier === 'Platinum');
 
   const TierBadge = ({ tier }: { tier: 'Diamond' | 'Platinum' }) => (
@@ -20,10 +19,10 @@ export default function ClinicsIndexPage() {
       display: 'inline-flex', alignItems: 'center', gap: '4px',
       fontSize: '10px', fontWeight: 700, padding: '3px 9px', borderRadius: '20px',
       letterSpacing: '0.05em',
-      background: tier === 'Diamond' ? '#EDE9F8' : 'var(--sage-pale)',
-      color:      tier === 'Diamond' ? '#5B42A8' : 'var(--sage)',
+      background: 'var(--sage-pale)',
+      color:      'var(--sage)',
     }}>
-      {tier === 'Diamond' ? <Award style={{ width: '10px', height: '10px' }} /> : <BadgeCheck style={{ width: '10px', height: '10px' }} />}
+      <BadgeCheck style={{ width: '10px', height: '10px' }} />
       {tier}
     </span>
   );
@@ -98,7 +97,7 @@ export default function ClinicsIndexPage() {
             Invisalign Clinics<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>in Essex</em>
           </h1>
           <p style={{ fontSize: '15px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '560px', marginBottom: '28px' }}>
-            Every clinic listed here has been independently verified against our five-point criteria — GDC registration, Platinum or Diamond tier status, minimum 4.5-star rating, transparent pricing, and evidenced CPD.
+            Every clinic listed here has been independently verified against our five-point criteria: GDC registration, Platinum tier status with Align Technology, minimum 4.5-star rating, transparent pricing, and evidenced CPD.
           </p>
           <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '36px' }}>
             <button onClick={() => setIsModalOpen(true)} className="btn-primary" style={{ padding: '13px 28px', borderRadius: '40px', fontSize: '13px' }}>
@@ -112,9 +111,9 @@ export default function ClinicsIndexPage() {
           {/* Summary badges */}
           <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
             {[
-              { label: `${diamond.length} Diamond providers`, bg: '#EDE9F8', color: '#5B42A8' },
-              { label: `${platinum.length} Platinum providers`, bg: 'var(--sage-pale)', color: 'var(--sage)' },
+              { label: `${platinum.length} Verified Platinum providers`, bg: 'var(--sage-pale)', color: 'var(--sage)' },
               { label: 'GDC verified', bg: 'var(--sage-light)', color: 'var(--sage)' },
+              { label: 'Tier re-checked annually', bg: 'var(--sage-light)', color: 'var(--sage)' },
             ].map(badge => (
               <span key={badge.label} style={{ background: badge.bg, color: badge.color, fontSize: '12px', fontWeight: 600, padding: '6px 14px', borderRadius: '20px' }}>
                 {badge.label}
@@ -122,20 +121,6 @@ export default function ClinicsIndexPage() {
             ))}
           </div>
         </section>
-
-        {/* Diamond providers */}
-        {diamond.length > 0 && (
-          <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', background: '#F8F7FC', borderBottom: '1px solid var(--border)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '24px' }}>
-              <Award style={{ width: '20px', height: '20px', color: '#5B42A8' }} />
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: '22px', fontWeight: 600, color: 'var(--ink)' }}>Diamond Providers</span>
-              <span style={{ fontSize: '11px', color: '#5B42A8', background: '#EDE9F8', padding: '3px 10px', borderRadius: '20px', fontWeight: 600 }}>300+ cases/year</span>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '16px' }} className="two-col-sm-grid">
-              {diamond.map(c => <ClinicCard key={c.slug} clinic={c} />)}
-            </div>
-          </section>
-        )}
 
         {/* Platinum providers */}
         {platinum.length > 0 && (
@@ -158,7 +143,7 @@ export default function ClinicsIndexPage() {
             <span style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontWeight: 600, color: 'var(--ink)' }}>How listings are verified</span>
           </div>
           <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '600px', marginBottom: '16px' }}>
-            Every clinic in this directory is checked against our five-point criteria before listing and re-verified annually. GDC registration, Invisalign tier, Google rating, pricing transparency, and CPD compliance are all independently confirmed — not self-reported.
+            Every clinic in this directory is checked against our five-point criteria before listing and re-verified annually. GDC registration, Invisalign tier, Google rating, pricing transparency, and CPD compliance are all independently confirmed, not self-reported.
           </p>
           <Link href="/how-we-vet-providers/" style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
             Read our full vetting methodology →

@@ -38,7 +38,7 @@ export function buildGlobalSchema(): object {
         },
         'description':
           'Independent third-party directory connecting Essex patients with ' +
-          'verified Platinum and Diamond Invisalign providers. ' +
+          'verified Platinum-tier Invisalign providers. ' +
           'We are not a dental practice and do not provide clinical treatment.',
         'areaServed': {
           '@type': 'AdministrativeArea',

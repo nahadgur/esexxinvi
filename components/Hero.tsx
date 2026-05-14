@@ -3,7 +3,7 @@ import Link from 'next/link';
 interface HeroProps {
   title: string;
   subtitle: string;
-  image: string;
+  image?: string;
   showCta?: boolean;
   showTrust?: boolean;
   onOpenModal?: () => void;
@@ -18,7 +18,7 @@ export function Hero({ title, subtitle, image, showCta = true, showTrust = true,
         {/* Eyebrow */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '22px' }}>
           <div style={{ background: 'var(--sage-pale)', borderRadius: '20px', padding: '4px 14px', fontSize: '11px', color: 'var(--sage)', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
-            Diamond &amp; Platinum Only
+            Verified Platinum Only
           </div>
         </div>
 
@@ -56,12 +56,9 @@ export function Hero({ title, subtitle, image, showCta = true, showTrust = true,
         {/* Social proof strip */}
         {showTrust && (
           <div style={{ display: 'flex', alignItems: 'center', gap: '14px', flexWrap: 'wrap' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <span style={{ color: 'var(--gold)', fontSize: '13px', letterSpacing: '2px' }}>★★★★★</span>
-              <span style={{ fontSize: '12px', color: 'var(--muted)' }}>4.95 avg</span>
-            </div>
+            <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Verified Platinum providers</span>
             <div style={{ width: '1px', height: '14px', background: 'var(--border)' }} />
-            <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Platinum &amp; Diamond only</span>
+            <span style={{ fontSize: '12px', color: 'var(--muted)' }}>GDC-registered clinicians</span>
             <div style={{ width: '1px', height: '14px', background: 'var(--border)' }} />
             <span style={{ background: 'var(--sage-pale)', borderRadius: '20px', padding: '3px 11px', fontSize: '11px', color: 'var(--sage)', fontWeight: 500 }}>
               Free 3D scan

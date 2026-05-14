@@ -41,8 +41,8 @@ const BASE = siteConfig.url;
 // 1. HOMEPAGE
 // ─────────────────────────────────────────────────────────────────────────────
 export function homepageMetadata(): Metadata {
-  const title       = 'Invisalign Essex | Find Platinum & Diamond Providers Near You';
-  const description = 'Compare verified Platinum and Diamond Invisalign providers across all 111 Essex towns. Free consultation, free 3D scan. No referral needed. Find your nearest clinic today.';
+  const title       = 'Invisalign Essex | Find Verified Platinum Providers Near You';
+  const description = 'Compare verified Platinum-tier Invisalign providers across 12 Essex catchments. Free consultation, free 3D scan. No referral needed. Find your nearest clinic today.';
   const canonical   = `${BASE}/`;
   return {
     title,
@@ -57,8 +57,8 @@ export function homepageMetadata(): Metadata {
 // 2. LOCATIONS INDEX (/locations/)
 // ─────────────────────────────────────────────────────────────────────────────
 export function locationsIndexMetadata(): Metadata {
-  const title       = 'Invisalign Providers Across Essex | All 111 Towns';
-  const description = 'Browse verified Platinum and Diamond Invisalign providers across all 111 Essex towns — from Chelmsford and Colchester to Harlow, Southend, and the Tendring coast.';
+  const title       = 'Invisalign Providers Across Essex | 12 Catchments';
+  const description = 'Browse verified Platinum-tier Invisalign providers across 12 Essex catchments, from Chelmsford and Colchester to Harlow, Southend, and the Tendring coast.';
   const canonical   = `${BASE}/locations/`;
   return {
     title,
@@ -72,7 +72,7 @@ export function locationsIndexMetadata(): Metadata {
 // ─────────────────────────────────────────────────────────────────────────────
 // 3. TOWN HUB (/locations/[town]/)
 //
-// Title formula:  "Invisalign in [Town] | Platinum & Diamond Providers, Essex"
+// Title formula:  "Invisalign in [Town] | Verified Platinum Providers, Essex"
 // Description:    Lead with town, mention tier, mention 6 treatments, CTA
 // Char targets:   Title ≤ 60 | Description 145–160
 // ─────────────────────────────────────────────────────────────────────────────
@@ -82,11 +82,11 @@ export function townHubMetadata(
   waitDays: number,    // [wait_time_days]
 ): Metadata {
   const title =
-    `Invisalign in ${townName} | Platinum & Diamond Providers, Essex`;
+    `Invisalign in ${townName} | Verified Platinum Providers, Essex`;
 
   // Description: 145–160 chars, hits local + tier + treatment intent
   const description =
-    `Find verified Platinum and Diamond Invisalign providers in ${townName}, Essex. ` +
+    `Find verified Platinum-tier Invisalign providers in ${townName}, Essex. ` +
     `Crowded teeth, gaps, overbite, underbite, crossbite and adult Invisalign. ` +
     `Free consultation within ${waitDays} days.`;
 
@@ -129,7 +129,7 @@ export function matrixPageMetadata(
     `${townName} ${treatmentLabel} | Invisalign from £${priceRangeLow.toLocaleString()}`;
 
   const description =
-    `${serviceTitle} in ${townName}, Essex — Platinum and Diamond verified providers. ` +
+    `${serviceTitle} in ${townName}, Essex, verified Platinum-tier providers. ` +
     `Prices from £${priceRangeLow.toLocaleString()}–£${priceRangeHigh.toLocaleString()}, ` +
     `0% finance available. Free consultation within ${waitDays} days, no referral needed.`;
 
@@ -149,7 +149,7 @@ export function matrixPageMetadata(
 // ─────────────────────────────────────────────────────────────────────────────
 export function treatmentsIndexMetadata(): Metadata {
   const title       = 'Invisalign Treatments in Essex | 6 Conditions Treated';
-  const description = 'Explore all Invisalign treatment types available across Essex — crowded teeth, gaps, overbite, underbite, crossbite, and adult Invisalign. Compare providers and prices.';
+  const description = 'Explore all Invisalign treatment types available across Essex, crowded teeth, gaps, overbite, underbite, crossbite, and adult Invisalign. Compare providers and prices.';
   const canonical   = `${BASE}/treatments/`;
   return {
     title,
@@ -170,12 +170,12 @@ export function treatmentHubMetadata(
   serviceSlug: string,   // [service_slug]
 ): Metadata {
   const title =
-    `${serviceTitle} in Essex | Platinum & Diamond Invisalign Providers`;
+    `${serviceTitle} in Essex | Verified Platinum Invisalign Providers`;
 
   const description =
-    `Find verified Platinum and Diamond Invisalign providers for ` +
+    `Find verified Platinum-tier Invisalign providers for ` +
     `${serviceTitle.toLowerCase()} across all Essex towns. ` +
-    `Free consultation, fixed pricing — compare clinics and book online.`;
+    `Free consultation, fixed pricing, compare clinics and book online.`;
 
   const canonical = `${BASE}/treatments/${serviceSlug}/`;
 
@@ -259,8 +259,8 @@ export function blogPostMetadata(
 // 9. CLINICS INDEX (/clinics/)
 // ─────────────────────────────────────────────────────────────────────────────
 export function clinicsIndexMetadata(): Metadata {
-  const title       = 'Invisalign Clinics in Essex | Platinum & Diamond Directory';
-  const description = 'Browse all verified Platinum and Diamond Invisalign clinics across Essex. Every provider independently verified by Align Technology. Compare ratings, tiers, and treatments.';
+  const title       = 'Invisalign Clinics in Essex | Verified Platinum Directory';
+  const description = 'Browse all verified Platinum-tier Invisalign clinics across Essex. Every provider independently verified by Align Technology. Compare ratings, tiers, and treatments.';
   const canonical   = `${BASE}/clinics/`;
   return {
     title,
@@ -360,15 +360,15 @@ function twitterBase(title: string, description: string) {
 //
 // Page type            | Title formula                                      | noindex?
 // ---------------------|---------------------------------------------------|--------
-// Homepage             | Invisalign Essex | Find Platinum & Diamond...      | NO
-// Locations index      | Invisalign Providers Across Essex | All 111 Towns  | NO
-// Town hub             | Invisalign in [Town] | Platinum & Diamond...       | NO
+// Homepage             | Invisalign Essex | Find Verified Platinum...       | NO
+// Locations index      | Invisalign Providers Across Essex | 12 Catchments  | NO
+// Town hub             | Invisalign in [Town] | Verified Platinum...        | NO
 // Matrix page          | [Town] [Treatment] | Invisalign from £[price_low]  | NO
 // Treatments index     | Invisalign Treatments in Essex | 6 Conditions...   | NO
-// Treatment hub        | [Service Title] in Essex | Platinum...             | NO
+// Treatment hub        | [Service Title] in Essex | Verified Platinum...    | NO
 // Clinic profile       | [Clinic Name] | Invisalign [Tier] Provider...      | NO
 // Blog post            | [Blog Title] | Invisalign Essex Guide              | NO
-// Clinics index        | Invisalign Clinics in Essex | Platinum & Diamond.. | NO
+// Clinics index        | Invisalign Clinics in Essex | Verified Platinum..  | NO
 // Thank you page       | (any)                                             | YES
 // Privacy/Terms        | (any)                                             | YES
 // Paginated duplicates | (any)                                             | YES

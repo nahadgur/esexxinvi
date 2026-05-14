@@ -32,7 +32,7 @@ const clusters = [
   {
     slug: 'treatment-process',
     label: 'Treatment & Results',
-    description: 'What actually happens during Invisalign treatment — from first scan to final retainer.',
+    description: 'What actually happens during Invisalign treatment, from first scan to final retainer.',
     articles: [
       { title: 'How Long Does Invisalign Actually Take? (Real Timelines for 2026)', href: '/guides/treatment-process/how-long-does-invisalign-take/', mins: 6 },
       { title: 'The Invisalign Journey: Step-by-Step from Scan to Smile', href: '/guides/treatment-process/invisalign-journey-step-by-step/', mins: 7 },
@@ -44,7 +44,7 @@ const clusters = [
   {
     slug: 'local',
     label: 'Essex Patient Guides',
-    description: 'Guides written specifically for Essex patients — from busy commuters to parents of teens planning their consultation.',
+    description: 'Guides written specifically for Essex patients, from busy commuters to parents of teens planning their consultation.',
     articles: [
       { title: 'The Top 7 Questions to Ask During Your Essex Invisalign Consultation', href: '/guides/local/top-questions-invisalign-consultation/', mins: 5 },
       { title: "The Essex Parent's Guide to Invisalign Teen vs. NHS Braces", href: '/guides/local/parents-guide-invisalign-teen/', mins: 6 },
@@ -72,7 +72,7 @@ export default function GuidesIndexPage() {
               Invisalign Guides for Essex Patients
             </h1>
             <p style={{ fontSize: '16px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '600px' }}>
-              Medically accurate, jargon-free guides to every aspect of Invisalign — costs, choosing a provider, what treatment involves, and the conditions it treats. Written for Essex patients by a team with direct clinical experience of the local market.
+              Medically accurate, jargon-free guides to every aspect of Invisalign, costs, choosing a provider, what treatment involves, and the conditions it treats. Written for Essex patients by a team with direct clinical experience of the local market.
             </p>
           </div>
         </section>
@@ -115,7 +115,7 @@ export default function GuidesIndexPage() {
             Ready to find a provider?
           </h2>
           <p style={{ fontSize: '15px', color: 'rgba(255,255,255,0.75)', marginBottom: '28px', lineHeight: 1.7 }}>
-            Free consultations, free 3D scans, written quotes — no obligation.
+            Free consultations, free 3D scans, written quotes, no obligation.
           </p>
           <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <button onClick={() => setIsModalOpen(true)} style={{ padding: '13px 32px', background: '#fff', color: 'var(--sage)', fontSize: '14px', fontWeight: 600, border: 'none', borderRadius: '40px', fontFamily: 'var(--font-sans)', cursor: 'pointer' }}>

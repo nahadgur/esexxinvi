@@ -1,13 +1,14 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import { getAllCitySlugs, getCityBySlug } from '@/data/locations';
-import { getTownContent } from '@/data/content';
-import { services } from '@/data/services';
-import { buildTownHubSchema } from './schema';
+import { LOCATIONS, getCityBySlug } from '@/data/locations';
+import { siteConfig } from '@/data/site';
+import { buildLocationSchemaGraph } from '@/lib/schema';
 import TownPageClient from './PageClient';
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
-  return getAllCitySlugs().map(town => ({ town }));
+  return LOCATIONS.map(l => ({ town: l.slug }));
 }
 
 export function generateMetadata({
@@ -15,43 +16,48 @@ export function generateMetadata({
 }: {
   params: { town: string };
 }): Metadata {
-  const cityName = getCityBySlug(params.town);
-  if (!cityName) return {};
+  const loc = getCityBySlug(params.town);
+  if (!loc) return {};
 
-  const canonical = `https://www.invisaligndentistsessex.uk/locations/${params.town}/`;
+  const canonical = `${siteConfig.url}/locations/${loc.slug}/`;
+  const title = `Invisalign in ${loc.name}, Essex | Verified ${loc.region} providers`;
+  const description = `Match with verified Invisalign providers covering ${loc.name} (${loc.postcodeAreas.join(', ')}). Free initial consultation, transparent pricing, no inbound calls.`;
 
   return {
-    title: `Invisalign Providers in ${cityName}, Essex | Invisalign Dentists Essex`,
-    description: `Find verified Platinum and Diamond Invisalign providers in ${cityName}, Essex. Compare clinics, view ratings, and book a free consultation — no referral needed.`,
+    title,
+    description,
     alternates: { canonical },
     openGraph: {
-      title: `Invisalign in ${cityName}, Essex`,
-      description: `Verified Invisalign providers near ${cityName}. Compare costs, read reviews, book a free consultation.`,
+      title,
+      description,
       url: canonical,
+      type: 'website',
+      locale: 'en_GB',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
     },
   };
 }
 
 export default function TownPage({ params }: { params: { town: string } }) {
-  const cityName = getCityBySlug(params.town);
-  if (!cityName) notFound();
+  const loc = getCityBySlug(params.town);
+  if (!loc) notFound();
 
-  const townData = getTownContent(params.town);
-
-  const townHubSchema = buildTownHubSchema({
-    townName: cityName,
-    townSlug: params.town,
-    townData,
-    services: services.map(s => ({ slug: s.slug, title: s.title })),
-  });
+  const schemas = buildLocationSchemaGraph(loc);
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(townHubSchema) }}
-      />
-      <TownPageClient params={params} />
+      {schemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+      <TownPageClient slug={loc.slug} />
     </>
   );
 }

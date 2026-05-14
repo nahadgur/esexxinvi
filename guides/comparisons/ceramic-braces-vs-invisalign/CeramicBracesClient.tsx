@@ -7,17 +7,17 @@ import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 
 const comparisonRows = [
-  { feature: 'Bracket material',        ceramic: 'Tooth-coloured or clear ceramic',          invisalign: 'No brackets — smooth clear plastic tray' },
-  { feature: 'Wire visibility',         ceramic: 'Frosted or tooth-coloured wire available', invisalign: 'No wire — tray replaces wire function' },
-  { feature: 'Elastic bands',           ceramic: 'Required — stain yellow between visits',   invisalign: 'Not required — tray changed every 1–2 weeks' },
+  { feature: 'Bracket material',        ceramic: 'Tooth-coloured or clear ceramic',          invisalign: 'No brackets, smooth clear plastic tray' },
+  { feature: 'Wire visibility',         ceramic: 'Frosted or tooth-coloured wire available', invisalign: 'No wire, tray replaces wire function' },
+  { feature: 'Elastic bands',           ceramic: 'Required, stain yellow between visits',   invisalign: 'Not required, tray changed every 1–2 weeks' },
   { feature: 'Overall visibility',      ceramic: 'Less than metal, more than Invisalign',    invisalign: 'Least visible orthodontic option (except lingual)' },
-  { feature: 'Removability',            ceramic: 'Fixed — cannot remove',                   invisalign: 'Removable — for eating, cleaning, occasions' },
-  { feature: 'Diet restrictions',       ceramic: 'Same as metal braces',                    invisalign: 'None — remove to eat anything' },
-  { feature: 'Oral hygiene',            ceramic: 'Difficult — brackets trap plaque',        invisalign: 'Easy — remove tray and brush normally' },
-  { feature: 'Complex rotations',       ceramic: 'Slightly better control than Invisalign', invisalign: 'Very good with attachments — not quite equal' },
-  { feature: 'Patient compliance',      ceramic: 'Not required — fixed in place',           invisalign: '22-hour daily wear required' },
-  { feature: 'Bracket durability',      ceramic: 'More fragile than metal',                 invisalign: 'Tray replaced regularly — durability not an issue' },
-  { feature: 'Bracket comfort',         ceramic: 'Bulkier than metal — more lip contact',   invisalign: 'Smooth rounded edges — minimal irritation' },
+  { feature: 'Removability',            ceramic: 'Fixed, cannot remove',                   invisalign: 'Removable, for eating, cleaning, occasions' },
+  { feature: 'Diet restrictions',       ceramic: 'Same as metal braces',                    invisalign: 'None, remove to eat anything' },
+  { feature: 'Oral hygiene',            ceramic: 'Difficult, brackets trap plaque',        invisalign: 'Easy, remove tray and brush normally' },
+  { feature: 'Complex rotations',       ceramic: 'Slightly better control than Invisalign', invisalign: 'Very good with attachments, not quite equal' },
+  { feature: 'Patient compliance',      ceramic: 'Not required, fixed in place',           invisalign: '22-hour daily wear required' },
+  { feature: 'Bracket durability',      ceramic: 'More fragile than metal',                 invisalign: 'Tray replaced regularly, durability not an issue' },
+  { feature: 'Bracket comfort',         ceramic: 'Bulkier than metal, more lip contact',   invisalign: 'Smooth rounded edges, minimal irritation' },
   { feature: 'Typical cost (private)', ceramic: '£3,000 – £5,000',                         invisalign: '£2,800 – £5,500 depending on tier' },
 ];
 
@@ -62,10 +62,10 @@ export default function CeramicBracesClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>What Are Ceramic Braces?</h2>
               <p style={pStyle}>
-                Ceramic braces are functionally identical to traditional metal braces. They work through the same mechanism: brackets bonded to the front surface of each tooth, connected by an archwire that is periodically tightened to apply progressively greater force as teeth move toward the target position. The clinical principles — force application, monthly tightening, fixed arch mechanics — are unchanged.
+                Ceramic braces are functionally identical to traditional metal braces. They work through the same mechanism: brackets bonded to the front surface of each tooth, connected by an archwire that is periodically tightened to apply progressively greater force as teeth move toward the target position. The clinical principles, force application, monthly tightening, fixed arch mechanics, are unchanged.
               </p>
               <p style={pStyle}>
-                What differs is the material. Standard ceramic brackets are made from aluminium oxide or zirconia — a tooth-coloured or clear ceramic compound. This significantly reduces their visual impact against the tooth surface compared to silver metal. The archwire running through the brackets can also be tooth-coloured or frosted to reduce visibility further, though the wire remains visible to anyone looking closely at the teeth.
+                What differs is the material. Standard ceramic brackets are made from aluminium oxide or zirconia, a tooth-coloured or clear ceramic compound. This significantly reduces their visual impact against the tooth surface compared to silver metal. The archwire running through the brackets can also be tooth-coloured or frosted to reduce visibility further, though the wire remains visible to anyone looking closely at the teeth.
               </p>
               <p style={pStyle}>
                 Ceramic braces are available in two main variants: standard polycrystalline ceramic (opaque but tooth-coloured) and monocrystalline sapphire (nearly clear but more brittle). Both are considerably more visible than Invisalign trays in normal lighting but substantially less visible than metal braces.
@@ -79,10 +79,10 @@ export default function CeramicBracesClient() {
                 At first appointment, ceramic braces look significantly better than metal. The brackets blend with the tooth shade and the frosted wire is barely noticeable in photographs or at conversational distances. Many patients choose ceramic braces specifically for client-facing roles or social occasions during treatment.
               </p>
               <p style={pStyle}>
-                The aesthetic advantage deteriorates over time for two reasons. First, ceramic brackets and the elastic ligatures holding the wire in place absorb staining pigments from food and drink — particularly coffee, tea, red wine, curry, and tomato-based sauces. The elastic ligatures, which are typically changed at each monthly appointment, visibly yellow between visits. The brackets themselves can develop a permanent tint over a 12 to 18-month treatment course. Patients who drink significant amounts of coffee or eat curries regularly will find that ceramic braces look meaningfully less clean by month three or four than they did on day one.
+                The aesthetic advantage deteriorates over time for two reasons. First, ceramic brackets and the elastic ligatures holding the wire in place absorb staining pigments from food and drink, particularly coffee, tea, red wine, curry, and tomato-based sauces. The elastic ligatures, which are typically changed at each monthly appointment, visibly yellow between visits. The brackets themselves can develop a permanent tint over a 12 to 18-month treatment course. Patients who drink significant amounts of coffee or eat curries regularly will find that ceramic braces look meaningfully less clean by month three or four than they did on day one.
               </p>
               <p style={pStyle}>
-                Invisalign trays do not have this problem. Each aligner set is worn for one to two weeks and then discarded. There is no cumulative staining across the treatment — each set starts clear. The dietary habits that discolour ceramic brackets have no equivalent effect on Invisalign trays because the trays are replaced before staining becomes visible. For patients who prioritise sustained aesthetic quality throughout treatment, Invisalign maintains its appearance more consistently.
+                Invisalign trays do not have this problem. Each aligner set is worn for one to two weeks and then discarded. There is no cumulative staining across the treatment, each set starts clear. The dietary habits that discolour ceramic brackets have no equivalent effect on Invisalign trays because the trays are replaced before staining becomes visible. For patients who prioritise sustained aesthetic quality throughout treatment, Invisalign maintains its appearance more consistently.
               </p>
             </section>
 
@@ -90,13 +90,13 @@ export default function CeramicBracesClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Comparing the Clinical Effectiveness</h2>
               <p style={pStyle}>
-                For the majority of adult orthodontic presentations, ceramic braces and Invisalign (in the hands of a Platinum or Diamond provider) produce equivalent clinical outcomes. The choice between them for mild-to-moderate crowding, spacing, and bite correction is largely a lifestyle question rather than a clinical one.
+                For the majority of adult orthodontic presentations, ceramic braces and Invisalign (in the hands of a verified Platinum-tier provider) produce equivalent clinical outcomes. The choice between them for mild-to-moderate crowding, spacing, and bite correction is largely a lifestyle question rather than a clinical one.
               </p>
               <p style={pStyle}>
-                There is one area where ceramic braces retain a clinical edge: <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>severely rotated teeth.</strong> Rotation — spinning a tooth around its long axis — is mechanically demanding regardless of the system used. Fixed braces can apply rotational force through bracket placement and wire bending in ways that provide continuous, precisely directed torque throughout the treatment cycle. Invisalign achieves excellent rotational control using optimised attachments, but for extreme rotations (greater than 20 to 30 degrees) in some tooth geometries, fixed mechanics can be marginally more reliable.
+                There is one area where ceramic braces retain a clinical edge: <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>severely rotated teeth.</strong> Rotation, spinning a tooth around its long axis, is mechanically demanding regardless of the system used. Fixed braces can apply rotational force through bracket placement and wire bending in ways that provide continuous, precisely directed torque throughout the treatment cycle. Invisalign achieves excellent rotational control using optimised attachments, but for extreme rotations (greater than 20 to 30 degrees) in some tooth geometries, fixed mechanics can be marginally more reliable.
               </p>
               <p style={pStyle}>
-                Ceramic braces share one disadvantage with all fixed appliances: bracket fracture. Ceramic is more brittle than metal. Biting on hard objects — ice, boiled sweets, crusty bread — can fracture ceramic brackets. A fractured bracket requires an urgent repair appointment to prevent the wire from causing injury and the tooth from losing its anchorage. Metal braces are less susceptible to this; Invisalign trays, which are replaced regularly, have no equivalent failure mode.
+                Ceramic braces share one disadvantage with all fixed appliances: bracket fracture. Ceramic is more brittle than metal. Biting on hard objects, ice, boiled sweets, crusty bread, can fracture ceramic brackets. A fractured bracket requires an urgent repair appointment to prevent the wire from causing injury and the tooth from losing its anchorage. Metal braces are less susceptible to this; Invisalign trays, which are replaced regularly, have no equivalent failure mode.
               </p>
             </section>
 
@@ -104,13 +104,13 @@ export default function CeramicBracesClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Cost and Comfort</h2>
               <p style={pStyle}>
-                <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>Cost:</strong> Ceramic braces typically cost £3,000 to £5,000 privately in Essex, compared to £2,800 to £5,500 for Invisalign depending on the treatment tier. For equivalent case complexity, the price difference is marginal — often £200 to £500 either way depending on the practice and the specific case. Both are available on 0% finance at most private practices.
+                <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>Cost:</strong> Ceramic braces typically cost £3,000 to £5,000 privately in Essex, compared to £2,800 to £5,500 for Invisalign depending on the treatment tier. For equivalent case complexity, the price difference is marginal, often £200 to £500 either way depending on the practice and the specific case. Both are available on 0% finance at most private practices.
               </p>
               <p style={pStyle}>
-                <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>Comfort:</strong> Ceramic brackets are physically larger than their metal equivalents — the manufacturing process for ceramic requires slightly more material to achieve the same bracket strength. This additional bulk means ceramic brackets create more contact with the inside surface of the lips and cheeks. Patients with ceramic braces consistently report more soft tissue irritation — rubbing, ulcers, and general soreness against the lip — than patients with standard metal braces, and considerably more than Invisalign patients.
+                <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>Comfort:</strong> Ceramic brackets are physically larger than their metal equivalents, the manufacturing process for ceramic requires slightly more material to achieve the same bracket strength. This additional bulk means ceramic brackets create more contact with the inside surface of the lips and cheeks. Patients with ceramic braces consistently report more soft tissue irritation, rubbing, ulcers, and general soreness against the lip, than patients with standard metal braces, and considerably more than Invisalign patients.
               </p>
               <p style={pStyle}>
-                Invisalign trays have smooth, rounded edges with no protruding elements. The discomfort they cause is pressure-based — tightness and tenderness in the first 48 hours of each new tray — rather than friction-based. Most patients report that friction discomfort from ceramic brackets reduces as soft tissue adapts over the first few weeks, but the adaptation period can be uncomfortable.
+                Invisalign trays have smooth, rounded edges with no protruding elements. The discomfort they cause is pressure-based, tightness and tenderness in the first 48 hours of each new tray, rather than friction-based. Most patients report that friction discomfort from ceramic brackets reduces as soft tissue adapts over the first few weeks, but the adaptation period can be uncomfortable.
               </p>
 
               <div style={{ overflowX: 'auto', margin: '28px 0' }}>
@@ -142,7 +142,7 @@ export default function CeramicBracesClient() {
                 The choice between ceramic braces and Invisalign is genuinely case-dependent. For patients with primarily cosmetic concerns and mild-to-moderate alignment issues, Invisalign typically offers better aesthetic consistency throughout treatment and a more comfortable daily experience. For patients with severe rotations or compliance concerns, ceramic braces may be the more reliable clinical route.
               </p>
               <p style={pStyle}>
-                Many of the top-rated clinics in our Essex directory offer both Invisalign and ceramic brace options — and will give you an honest recommendation at consultation based on your specific case, not on which product carries the higher fee.
+                Many of the top-rated clinics in our Essex directory offer both Invisalign and ceramic brace options, and will give you an honest recommendation at consultation based on your specific case, not on which product carries the higher fee.
               </p>
               <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '12px', padding: '24px', margin: '28px 0' }}>
                 <p style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', marginBottom: '12px' }}>Find a specialist near you to explore your options</p>

@@ -24,8 +24,9 @@ export default function SuccessStoriesClient() {
 
   const byTreatment: Record<string, typeof stories> = {};
   stories.forEach(s => {
-    if (!byTreatment[s.treatmentSlug]) byTreatment[s.treatmentSlug] = [];
-    byTreatment[s.treatmentSlug].push(s);
+    const bucket = byTreatment[s.treatmentSlug] ?? [];
+    bucket.push(s);
+    byTreatment[s.treatmentSlug] = bucket;
   });
 
   return (
@@ -56,7 +57,7 @@ export default function SuccessStoriesClient() {
               {[
                 { title: 'Treatment verified', body: 'We confirm with the clinic that each patient completed treatment there before publishing their story.' },
                 { title: 'Written consent', body: 'Every story is published with the explicit written consent of the patient. No incentive is offered.' },
-                { title: 'Treatment complete', body: 'We only publish stories from patients who have completed treatment — not in-progress accounts.' },
+                { title: 'Treatment complete', body: 'We only publish stories from patients who have completed treatment, not in-progress accounts.' },
               ].map(item => (
                 <div key={item.title} className="flex gap-3">
                   <ShieldCheck className="w-5 h-5 text-brand-600 flex-shrink-0 mt-0.5" />

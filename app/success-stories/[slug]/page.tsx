@@ -21,7 +21,7 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: PageParams): Metadata {
   const story = getStoryBySlug(params.slug);
   if (!story) return {};
-  const title       = `${story.headline} — ${story.treatmentLabel} in ${story.patientTown}`;
+  const title       = `${story.headline}, ${story.treatmentLabel} in ${story.patientTown}`;
   const description =
     `${story.patientFirstName} from ${story.patientTown} shares their ${story.treatmentDuration} ` +
     `${story.treatmentLabel} journey at ${story.clinicName}. Verified patient experience.`;
@@ -123,7 +123,7 @@ export default function StoryPage({ params }: PageParams) {
               This story was collected by Invisalign Dentists Essex via{' '}
               {story.collectionMethod === 'FORM_SUBMISSION' && 'our patient story submission form'}
               {story.collectionMethod === 'GOOGLE_ATTRIBUTION' && 'a Google review, republished with the patient\'s written consent'}
-              {story.collectionMethod === 'CLINIC_REFERRED' && 'a clinic referral — the story was written independently by the patient'}.{' '}
+              {story.collectionMethod === 'CLINIC_REFERRED' && 'a clinic referral, the story was written independently by the patient'}.{' '}
               Treatment completion at {story.clinicName} was verified directly with the clinic.
               Patient identity is known to us; first name and town only are displayed with the patient's explicit consent.{' '}
               <Link href="/editorial-policy/" className="text-brand-700 hover:underline">

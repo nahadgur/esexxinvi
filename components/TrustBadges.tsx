@@ -1,9 +1,9 @@
 export function TrustBadges() {
   const stats = [
-    { number: '4.95★', label: 'Average provider rating' },
-    { number: '150+', label: 'Cases/year — Diamond tier' },
-    { number: '14M+', label: 'Patients treated globally' },
-    { number: '£0', label: 'Cost to use our service' },
+    { number: 'Verified', label: 'Platinum-tier providers' },
+    { number: 'Free', label: 'For patients' },
+    { number: 'Annually', label: 'Tier re-checked' },
+    { number: 'GDC', label: 'Registered clinicians only' },
   ];
 
   return (

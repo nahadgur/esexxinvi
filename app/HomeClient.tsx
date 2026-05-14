@@ -7,35 +7,26 @@ import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 import { services } from '@/data/services';
 import { pricingTiers, financeInfo, treatmentIncludes } from '@/data/pricing';
+import { TOP_CITIES, siteConfig } from '@/data/site';
 import { toSlug } from '@/data/locations';
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Data
-// ─────────────────────────────────────────────────────────────────────────────
-
-const testimonials = [
-  { initials: 'CW', quote: 'My teeth look incredible after just 8 months. The Diamond provider in Chelmsford they matched me with was exceptional.', name: 'Charlotte W.', loc: 'Chelmsford · Full Invisalign' },
-  { initials: 'JR', quote: 'Finding a Platinum provider in Brentwood made all the difference. They\'d handled thousands of cases and knew exactly how to manage my bite.', name: 'James R.', loc: 'Brentwood · Full Invisalign' },
-  { initials: 'DK', quote: 'Done in 5 months and the results speak for themselves. Great to find a verified top-tier provider in Colchester without all the research.', name: 'Daniel K.', loc: 'Colchester · Invisalign Lite' },
-  { initials: 'PM', quote: 'I combined Invisalign with whitening at the end. The transformation is genuinely unreal. Provider had over 1,500 cases under their belt.', name: 'Priya M.', loc: 'Basildon · Invisalign + Whitening' },
-];
+import { getActiveClinics } from '@/data/clinics';
 
 const featureCards = [
-  { title: 'Diamond & Platinum Only', body: 'We list only the top-tier Invisalign providers in Essex by annual case volume — verified independently before joining our network.' },
-  { title: 'Free 3D Smile Preview', body: 'Every matched provider includes a free iTero scan and ClinCheck preview — you see your finished smile before agreeing to a single thing.' },
-  { title: 'Independently Verified', body: "Every provider's Invisalign tier is checked against Align Technology's records before we list them. No self-reported claims." },
-  { title: '0% Finance Available', body: 'Most providers in our Essex network offer interest-free payment plans from £50 a month. Treatment does not have to be a single upfront cost.' },
+  { title: 'Verified Platinum providers', body: 'We list only Align-verified Platinum-tier dentists. Tier confirmation is re-checked annually because Invisalign provider status moves with rolling case volume.' },
+  { title: 'Free 3D smile preview', body: 'Every matched provider includes a free iTero scan and ClinCheck preview, so you see the projected outcome before agreeing to anything.' },
+  { title: 'Independent verification', body: "We verify each provider's Align Technology tier, GDC registration, indemnity and CQC standing before listing. No self-reported claims." },
+  { title: '0% finance available', body: 'Most network providers offer interest-free payment plans from around £50 per month. Treatment does not have to be a single upfront cost.' },
 ];
 
 const objections = [
-  { q: 'Is Invisalign actually as effective as metal braces?', a: 'For the vast majority of adult cases — including complex crowding, bites, and gaps — yes. The narrow exception is severe skeletal jaw discrepancy requiring surgery, which affects a small minority. Diamond-tier providers routinely handle cases that were braces-only territory five years ago.' },
-  { q: 'Why does the provider tier matter so much?', a: 'A dentist who completes 150+ cases a year has far more hands-on experience with difficult movements, access to advanced Invisalign features, and a lower refinement rate than one doing 10 cases. The end result you walk away with reflects that gap directly.' },
-  { q: "How is this service free — what's the catch?", a: 'We earn a referral fee from the clinic only if you choose to go ahead with treatment. If you do not proceed, nobody pays anything. Our incentive is to match you with a provider good enough that you actually go ahead.' },
+  { q: 'Is Invisalign actually as effective as fixed braces?', a: 'For the vast majority of adult cases, including complex crowding, bites and gaps, yes. The narrow exception is severe skeletal jaw discrepancy requiring orthognathic surgery. Modern Invisalign with SmartForce attachments and Precision Wings handles cases that were fixed-brace-only five years ago.' },
+  { q: 'Why does the provider tier matter?', a: 'A dentist completing 150+ Invisalign cases a year has far more hands-on experience with difficult movements, faster access to Align technical support, and a lower refinement rate than one fitting 10 cases a year. The result you walk away with reflects that gap directly.' },
+  { q: 'How is this service free for patients?', a: 'Listed practices pay a fixed monthly listing fee to be in the directory. We are not paid per lead, per referral or as a percentage of treatment, which keeps the matching honest. Patients pay nothing for matching, the introduction, or the consultation.' },
 ];
 
 const comparisonRows = [
   { label: 'Visibility',          inv: 'Nearly invisible',           braces: 'Visible brackets & wire' },
-  { label: 'Eating restrictions', inv: 'None — remove to eat',       braces: 'Long banned-food list' },
+  { label: 'Eating restrictions', inv: 'None, remove to eat',       braces: 'Long banned-food list' },
   { label: 'Preview your result', inv: '3D animation before you start', braces: 'No preview available' },
   { label: 'Typical duration',    inv: '6 – 18 months',              braces: '18 – 36 months' },
   { label: 'Check-up frequency',  inv: 'Every 6 – 8 weeks',          braces: 'Monthly adjustments' },
@@ -44,12 +35,12 @@ const comparisonRows = [
 const faqs = [
   { q: 'What does Invisalign cost across Essex?', a: 'Most Essex clinics in our network price Invisalign between £1,500 and £5,500. Where you land depends on case complexity, which product your dentist recommends, and provider tier. Nearly every provider we work with offers interest-free monthly payments from around £50, so the upfront number is rarely what you actually pay each month.' },
   { q: 'How quickly will I see results?', a: 'Minor cosmetic corrections with Invisalign Express can show results in as few as 10–12 weeks. Moderate cases typically show clear improvement within 3–4 months. Full comprehensive treatment takes 12–18 months, with most patients noticing significant change by month 3.' },
-  { q: 'How does your free matching service actually work?', a: 'You fill in a 60-second form with your Essex location and what you want to fix. We filter our network by case type, distance, availability, and patient ratings, then send your details only to the 2–3 best matches. Those providers contact you within hours to arrange a free consultation — no pressure, no obligation.' },
+  { q: 'How does your free matching service actually work?', a: 'You fill in a 60-second form with your Essex location and what you want to fix. We filter our network by case type, distance, availability, and patient ratings, then send your details only to the 2–3 best matches. Those providers contact you within hours to arrange a free consultation, no pressure, no obligation.' },
   { q: 'Can I get Invisalign on the NHS in Essex?', a: 'NHS orthodontic treatment is available for children and teenagers in certain qualifying circumstances, but adult Invisalign is not available on the NHS. All treatment through our network is private, and we help patients access interest-free finance to make it manageable.' },
-  { q: 'Is treatment painful?', a: 'SmartTrack material applies calibrated, gentle force. Most patients describe mild pressure for the first day or two of each new tray — nothing like the soreness of traditional brace tightening. There are no metal edges, no wires, and no emergency appointments for broken brackets.' },
+  { q: 'Is treatment painful?', a: 'SmartTrack material applies calibrated, gentle force. Most patients describe mild pressure for the first day or two of each new tray, nothing like the soreness of traditional brace tightening. There are no metal edges, no wires, and no emergency appointments for broken brackets.' },
 ];
 
-const topCities = ['Chelmsford', 'Southend-on-Sea', 'Colchester', 'Basildon', 'Brentwood', 'Harlow', 'Braintree', 'Clacton-on-Sea', 'Grays', 'Rayleigh', 'Billericay', 'Loughton'];
+const topCities = TOP_CITIES;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Sub-components
@@ -126,7 +117,7 @@ export default function HomePage() {
             {/* 2 — Subtitle */}
             <div style={{ marginBottom: '28px' }}>
               <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.75, maxWidth: '320px' }}>
-                We vet every provider so you do not have to. Get matched with Platinum and Diamond Invisalign specialists near you — free consultation, free 3D scan, zero cost.
+                We vet every provider so you do not have to. Get matched with verified Platinum-tier Invisalign providers near you. Free initial consultation, free 3D scan, no inbound calls.
               </p>
             </div>
 
@@ -145,12 +136,9 @@ export default function HomePage() {
             {/* 4 — Social proof */}
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                  <span style={{ color: '#C9A96E', fontSize: '13px', letterSpacing: '1px' }}>★★★★★</span>
-                  <span style={{ fontSize: '12px', color: 'var(--muted)' }}>4.95 avg</span>
-                </div>
+                <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Verified Platinum providers</span>
                 <div style={{ width: '1px', height: '14px', background: 'var(--border)' }} />
-                <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Platinum &amp; Diamond only</span>
+                <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Tier re-checked annually</span>
                 <div style={{ width: '1px', height: '14px', background: 'var(--border)' }} />
                 <span style={{ background: 'var(--sage-pale)', borderRadius: '20px', padding: '3px 10px', fontSize: '11px', color: 'var(--sage)', fontWeight: 500 }}>
                   Free 3D scan
@@ -201,9 +189,9 @@ export default function HomePage() {
             2×2 feature cards + objections row + comparison table
             ══════════════════════════════════════════════════════════════ */}
         <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', borderBottom: '1px solid var(--border)', background: 'var(--cream)' }}>
-          <SectionH>Why tier matters.<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>And why we only list the top 5%.</em></SectionH>
+          <SectionH>Why provider tier matters,<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>and how we verify it</em></SectionH>
           <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '500px', marginBottom: '36px' }}>
-            Any dentist can call themselves an Invisalign provider after a weekend course. The difference between someone doing 10 cases a year and 150 is enormous in skill, troubleshooting, and your final result.
+            Any dentist can list themselves as an Invisalign provider after the basic certification course. The difference between a clinic running 10 cases a year and 150 is significant in case outcome, refinement rate and bite-management depth.
           </p>
 
           {/* 2×2 feature cards */}
@@ -265,31 +253,36 @@ export default function HomePage() {
         </section>
 
         {/* ══════════════════════════════════════════════════════════════
-            7 — SOCIAL PROOF / TESTIMONIALS
-            Sage-pale background, serif italic quote style
+            7 — LISTED PROVIDERS
+            Real clinics with sourced data only — no fabricated testimonials
             ══════════════════════════════════════════════════════════════ */}
         <section style={{ padding: 'clamp(48px,6vw,72px) clamp(24px,5vw,56px)', background: 'var(--sage-pale)', borderBottom: '1px solid var(--border)' }}>
-          <SectionH>What Essex patients say<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>after using our service</em></SectionH>
+          <SectionH>Currently listed<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>partner practices</em></SectionH>
+          <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, maxWidth: '520px', marginBottom: '28px' }}>
+            Our directory currently lists {getActiveClinics().length} verified Platinum-tier partner practices in Essex. The matching service can additionally route to verified non-listed providers via our wider Align-confirmed referral network.
+          </p>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginTop: '32px' }} className="two-col-sm-grid">
-            {testimonials.map(t => (
-              <div key={t.initials} style={{ background: 'var(--cream)', borderRadius: '10px', border: '1px solid var(--border)', padding: '22px 24px' }}>
-                <div style={{ color: '#C9A96E', fontSize: '12px', letterSpacing: '1px', marginBottom: '12px' }}>★★★★★</div>
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: '17px', fontStyle: 'italic', color: 'var(--ink)', lineHeight: 1.5, marginBottom: '16px' }}>
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'var(--sage-pale)', border: '1.5px solid var(--sage-mid)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 600, color: 'var(--sage)', flexShrink: 0 }}>
-                    {t.initials}
-                  </div>
-                  <div>
-                    <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)' }}>{t.name}</div>
-                    <div style={{ fontSize: '11px', color: 'var(--muted)' }}>{t.loc}</div>
-                  </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px', marginTop: '20px' }} className="two-col-sm-grid">
+            {getActiveClinics().map(c => (
+              <Link key={c.slug} href={`/clinics/${c.slug}/`} style={{ background: 'var(--cream)', borderRadius: '10px', border: '1px solid var(--border)', padding: '22px 24px', textDecoration: 'none', display: 'block' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '10px' }}>
+                  <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 8px', borderRadius: '4px', letterSpacing: '0.05em', background: 'var(--sage)', color: '#fff' }}>{c.tier}</span>
+                  <span style={{ fontSize: '12px', color: 'var(--muted)' }}>{c.addressLocality}</span>
                 </div>
-              </div>
+                <div style={{ fontFamily: 'var(--font-display)', fontSize: '18px', fontWeight: 600, color: 'var(--ink)', marginBottom: '6px' }}>{c.name}</div>
+                <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '12px', lineHeight: 1.55 }}>
+                  {c.address}, {c.postalCode}
+                </div>
+                <div style={{ display: 'flex', gap: '14px', fontSize: '12px', color: 'var(--muted)' }}>
+                  <span>Lead clinician: {c.leadPractitionerName}</span>
+                </div>
+              </Link>
             ))}
           </div>
+
+          <p style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '24px', maxWidth: '520px' }}>
+            We do not publish patient testimonials. Per UK Digital Markets, Competition and Consumers Act 2024 (DMCCA) and CMA fake-review guidance, we only show verifiable practice data: tier, address, lead clinician, opening hours and treatment range.
+          </p>
         </section>
 
         {/* ══════════════════════════════════════════════════════════════
@@ -316,7 +309,7 @@ export default function HomePage() {
             ))}
           </div>
           <Link href="/locations/" style={{ fontSize: '13px', color: 'var(--sage)', fontWeight: 500, textDecoration: 'underline', textUnderlineOffset: '3px' }}>
-            Browse all 111 Essex towns →
+            Browse all 12 Essex catchments →
           </Link>
         </section>
 
@@ -359,8 +352,8 @@ export default function HomePage() {
           </div>
 
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', fontSize: '12px', color: 'rgba(255,255,255,0.5)', flexWrap: 'wrap' }}>
-            {['Always 100% free', 'Platinum and Diamond only', 'Free 3D scan included'].map(item => (
-              <span key={item}>— {item}</span>
+            {['Always 100% free for patients', 'Verified Platinum providers', 'Free 3D scan included'].map(item => (
+              <span key={item}>,  {item}</span>
             ))}
           </div>
         </section>
@@ -378,7 +371,7 @@ export default function HomePage() {
               </span>
             </div>
             <p style={{ fontFamily: 'var(--font-display)', fontSize: '20px', fontStyle: 'italic', color: 'var(--ink)', lineHeight: 1.65, marginBottom: '24px' }}>
-              &ldquo;Any high-street dentist can call themselves an Invisalign provider after a weekend course. When I looked into treatment for myself, I spent three hours trying to understand what &lsquo;Platinum&rsquo; actually meant and whether my local clinic was genuinely experienced — or just listed on Align&apos;s website. That research gap is what this service closes. We&apos;ve done the work so you don&apos;t have to.&rdquo;
+              &ldquo;Any high-street dentist can call themselves an Invisalign provider after a weekend course. When I looked into treatment for myself, I spent three hours trying to understand what &lsquo;Platinum&rsquo; actually meant and whether my local clinic was genuinely experienced, or just listed on Align&apos;s website. That research gap is what this service closes. We&apos;ve done the work so you don&apos;t have to.&rdquo;
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--sage-pale)', border: '1.5px solid var(--sage-mid)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: 600, color: 'var(--sage)', flexShrink: 0 }}>

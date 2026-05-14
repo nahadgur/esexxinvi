@@ -1,31 +1,67 @@
 import type { Metadata } from 'next';
+import { notFound } from 'next/navigation';
+import { siteConfig } from '@/data/site';
+import { getAllBlogSlugs, getBlogPostBySlug } from '@/data/blog';
+import { buildArticleSchema, buildBreadcrumbList, buildOrganization } from '@/lib/schema';
 import BlogPostClient from './BlogPostClient';
 
-// Individual blog post pages loaded client-side from CSV.
-// We generate a canonical from the slug param so each article URL has
-// a correct self-referencing canonical, preventing GSC "Duplicate without
-// user-selected canonical" for the entire /blog/[slug]/ route.
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
-  const canonical = `https://www.invisaligndentistsessex.uk/blog/${params.slug}/`;
+export const dynamicParams = false;
 
+export function generateStaticParams() {
+  return getAllBlogSlugs().map(slug => ({ slug }));
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const post = getBlogPostBySlug(params.slug);
+  if (!post) return {};
+  const canonical = `${siteConfig.url}/blog/${params.slug}/`;
   return {
-    // Title/description will be overridden client-side via document.title if needed,
-    // but the canonical tag is server-rendered and what Google uses for indexing.
-    title: 'Invisalign Blog | Invisalign Dentists Essex',
-    description: 'Expert Invisalign advice, cost guides, and patient stories for Essex patients.',
+    title: post.metaTitle,
+    description: post.metaDescription,
     alternates: { canonical },
     openGraph: {
+      title: post.metaTitle,
+      description: post.metaDescription,
       url: canonical,
+      type: 'article',
+      locale: 'en_GB',
+      publishedTime: post.publishedAt,
+      modifiedTime: post.lastReviewedAt,
     },
-    // Allow indexing of individual blog posts
-    robots: { index: true, follow: true },
   };
 }
 
-export default function Page() {
-  return <BlogPostClient />;
+export default function Page({ params }: { params: { slug: string } }) {
+  const post = getBlogPostBySlug(params.slug);
+  if (!post) notFound();
+
+  const canonical = `${siteConfig.url}/blog/${params.slug}/`;
+  const schemas = [
+    buildOrganization(),
+    buildBreadcrumbList([
+      { label: 'Home', href: '/' },
+      { label: 'Blog', href: '/blog/' },
+      { label: post.title },
+    ]),
+    buildArticleSchema({
+      url: canonical,
+      headline: post.title,
+      description: post.excerpt,
+      datePublished: post.publishedAt,
+      dateModified: post.lastReviewedAt,
+    }),
+  ];
+
+  return (
+    <>
+      {schemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+      <BlogPostClient post={post} />
+    </>
+  );
 }

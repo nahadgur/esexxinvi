@@ -13,10 +13,10 @@ const brands = [
     material: 'SmartTrack thermoplastic',
     founded: '1997',
     patients: '17 million+',
-    providerNetwork: 'Largest in the world — 100,000+ certified providers',
+    providerNetwork: 'Largest in the world, 100,000+ certified providers',
     strengths: [
       '25+ years of clinical data and case libraries',
-      'SmartForce attachments — widest biomechanical range',
+      'SmartForce attachments, widest biomechanical range',
       'ClinCheck AI-assisted treatment planning',
       'Platinum/Diamond tier system drives quality',
       'iTero scanner integration for precise digital workflow',
@@ -36,7 +36,7 @@ const brands = [
     material: 'TruGEN and TruGEN XR thermoplastic',
     founded: '2019 (Spark brand)',
     patients: 'Not publicly disclosed',
-    providerNetwork: 'Growing — primarily orthodontist-led practices in the UK',
+    providerNetwork: 'Growing, primarily orthodontist-led practices in the UK',
     strengths: [
       'TruGEN material reported to be marginally clearer and more stain-resistant than SmartTrack',
       'Proprietary scalloped edge trim for improved gingival fit',
@@ -45,7 +45,7 @@ const brands = [
     ],
     weaknesses: [
       'Significantly fewer certified providers than Invisalign in Essex',
-      'Shorter clinical data history — less long-term outcome evidence',
+      'Shorter clinical data history, less long-term outcome evidence',
       'Fewer attachment options for complex movements',
       'Less established post-treatment retainer ecosystem',
     ],
@@ -59,15 +59,15 @@ const brands = [
     material: 'Zendura FLX polyurethane-based plastic',
     founded: '2006 (acquired by Straumann 2017)',
     patients: 'Not publicly disclosed',
-    providerNetwork: 'Moderate — available at Straumann partner practices',
+    providerNetwork: 'Moderate, available at Straumann partner practices',
     strengths: [
-      'Backed by Straumann Group — a respected implant and dental company',
+      'Backed by Straumann Group, a respected implant and dental company',
       'Zendura FLX offers good clarity and some flexibility',
       'Often positioned at a lower price point than Invisalign',
       'Good for mild to moderate adult cases',
     ],
     weaknesses: [
-      'Thinner material than SmartTrack or TruGEN — less force precision',
+      'Thinner material than SmartTrack or TruGEN, less force precision',
       'Fewer advanced biomechanical tools for complex cases',
       'Smaller provider network in Essex specifically',
       'Less comprehensive attachment system than Invisalign',
@@ -117,10 +117,10 @@ export default function BrandComparisonClient() {
               <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>Which Aligner Brand Is Best?</em>
             </h1>
             <p style={pStyle}>
-              "Invisalign" has become something of a generic term for clear aligners — used in the same way "Hoover" is used for vacuum cleaners, regardless of who made it. But Invisalign is a brand name owned by Align Technology, and while they pioneered the clinical application of clear aligner orthodontics in 1997, they are no longer the only player in the market. Ormco's Spark aligners and Straumann's ClearCorrect are now used by dentists and orthodontists across the UK, and each has genuine strengths worth understanding.
+              "Invisalign" has become something of a generic term for clear aligners, used in the same way "Hoover" is used for vacuum cleaners, regardless of who made it. But Invisalign is a brand name owned by Align Technology, and while they pioneered the clinical application of clear aligner orthodontics in 1997, they are no longer the only player in the market. Ormco's Spark aligners and Straumann's ClearCorrect are now used by dentists and orthodontists across the UK, and each has genuine strengths worth understanding.
             </p>
             <p style={pStyle}>
-              This guide compares the three main dentist-led clear aligner systems available in the UK — and explains why the choice of brand, while meaningful, matters considerably less than the experience of the provider using it.
+              This guide compares the three main dentist-led clear aligner systems available in the UK, and explains why the choice of brand, while meaningful, matters considerably less than the experience of the provider using it.
             </p>
           </div>
         </section>
@@ -207,10 +207,10 @@ export default function BrandComparisonClient() {
                 Here is the most important truth in clear aligner orthodontics, and it applies regardless of which brand you or your provider choose: <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>the plastic tray is just a tool. The clinical outcome is determined almost entirely by the quality of the treatment plan, not the thermoplastic it is printed from.</strong>
               </p>
               <p style={pStyle}>
-                A master orthodontist with 20 years of experience and 3,000 Invisalign cases will consistently achieve better outcomes than a general dentist with 50 cases — using exactly the same brand and exactly the same software. The software generates a mathematical projection of tooth movement; it is the clinician who evaluates whether that projection is biologically realistic, whether the planned attachment positions are optimal, and whether the staging of movements is sequenced correctly. These are clinical judgements that the software cannot make.
+                A master orthodontist with 20 years of experience and 3,000 Invisalign cases will consistently achieve better outcomes than a general dentist with 50 cases, using exactly the same brand and exactly the same software. The software generates a mathematical projection of tooth movement; it is the clinician who evaluates whether that projection is biologically realistic, whether the planned attachment positions are optimal, and whether the staging of movements is sequenced correctly. These are clinical judgements that the software cannot make.
               </p>
               <p style={pStyle}>
-                This is why provider tier matters so much in the Invisalign system — and why analogous quality signals exist for Spark and ClearCorrect. A Spark Elite provider or a ClearCorrect experienced provider with a high case volume will outperform an Invisalign Gold provider every time, regardless of the brand advantage.
+                This is why provider tier matters so much in the Invisalign system, and why analogous quality signals exist for Spark and ClearCorrect. A Spark Elite provider or a ClearCorrect experienced provider with a high case volume will outperform an Invisalign Gold provider every time, regardless of the brand advantage.
               </p>
               <p style={pStyle}>
                 The practical implication for patients is straightforward: prioritise finding the most experienced provider accessible to you, and let them advise on which brand they use and why. If they use Invisalign, Spark, or ClearCorrect with equivalent case volumes and comparable clinical outcomes, the material difference between TruGEN and SmartTrack is unlikely to be clinically meaningful for your case.
@@ -219,7 +219,7 @@ export default function BrandComparisonClient() {
               <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '10px', padding: '18px 20px' }}>
                 <p style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)', marginBottom: '6px' }}>Our editorial position</p>
                 <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, margin: 0 }}>
-                  This directory lists Invisalign Platinum and Diamond providers — not because other brands produce inferior results, but because the Invisalign tier system is the most transparent, independently verifiable quality signal available to patients in the UK market. If a Spark or ClearCorrect provider in Essex meets equivalent criteria, we will consider listing them. The standard is the tier, not the brand.
+                  This directory lists verified Invisalign Platinum-tier providers, not because other brands produce inferior results, but because the Invisalign tier system is the most transparent, independently verifiable quality signal available to patients in the UK market. If a Spark or ClearCorrect provider in Essex meets equivalent criteria, we will consider listing them. The standard is the tier, not the brand.
                 </p>
               </div>
             </section>
@@ -228,7 +228,7 @@ export default function BrandComparisonClient() {
             <section style={{ marginBottom: '32px' }}>
               <h2 style={h2Style}>Find Top-Rated Aligner Dentists Near You</h2>
               <p style={pStyle}>
-                Whether you decide on Invisalign, are curious about Spark, or simply want the most experienced clear aligner provider available to you in Essex — the starting point is the same: a free consultation and 3D scan with a high-volume provider.
+                Whether you decide on Invisalign, are curious about Spark, or simply want the most experienced clear aligner provider available to you in Essex, the starting point is the same: a free consultation and 3D scan with a high-volume provider.
               </p>
               <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '12px', padding: '24px', margin: '28px 0' }}>
                 <p style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', marginBottom: '12px' }}>Browse verified providers in Essex</p>

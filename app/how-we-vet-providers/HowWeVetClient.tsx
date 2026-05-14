@@ -15,7 +15,7 @@ const criteria = [
     number: '01',
     icon: <FileText className="w-7 h-7" />,
     title: 'Active GDC Registration',
-    requirement: 'Every principal dentist at a listed practice must hold a current, active registration with the General Dental Council (GDC) — the UK statutory regulator for dental professionals.',
+    requirement: 'Every principal dentist at a listed practice must hold a current, active registration with the General Dental Council (GDC), the UK statutory regulator for dental professionals.',
     howWeCheck: 'We verify GDC registration numbers directly against the GDC public register at gdcuk.org before listing and re-verify annually. Any practice whose principal dentist lapses registration is removed within 48 hours of our next scheduled check.',
     whyItMatters: 'GDC registration is the legal baseline for practising dentistry in the UK. It requires criminal background disclosure, professional indemnity insurance, and compliance with the Standards for the Dental Team. A practice without current GDC registration cannot legally treat patients.',
     passLabel: 'Active GDC registration confirmed',
@@ -24,12 +24,12 @@ const criteria = [
   {
     number: '02',
     icon: <BadgeCheck className="w-7 h-7" />,
-    title: 'Platinum or Diamond Invisalign Provider Tier',
-    requirement: 'Every listed practice must hold current Platinum or Diamond status from Align Technology — the manufacturer of Invisalign — as independently verified by Align\'s annual certification process.',
+    title: 'Platinum (or higher) Invisalign Provider Tier',
+    requirement: 'Every listed practice must hold current Platinum status (or above) from Align Technology, the manufacturer of Invisalign, as independently verified by Align\'s annual certification process.',
     howWeCheck: 'We confirm tier status directly through Align Technology\'s provider database and require practices to submit their current tier certification. Tier status is re-verified each calendar year.',
-    whyItMatters: 'Platinum status requires a practice to complete a minimum of 150 Invisalign cases per year. Diamond status requires 300+ cases per year. These thresholds are independently verified by Align Technology — not self-reported. The volume of cases directly determines the depth of clinical judgement developed.',
-    passLabel: 'Current Platinum or Diamond tier confirmed by Align Technology',
-    failLabel: 'Gold, Silver, or unverified tier — regardless of self-reported experience',
+    whyItMatters: 'Platinum status requires a practice to complete a minimum of 150 Invisalign cases per year. Higher tiers (Platinum Elite, Diamond, Diamond Apex) sit above this threshold. All thresholds are independently verified by Align Technology, not self-reported. The volume of cases directly determines the depth of clinical judgement developed.',
+    passLabel: 'Current Platinum-tier (or higher) status confirmed by Align Technology',
+    failLabel: 'Gold, Silver, or unverified tier, regardless of self-reported experience',
   },
   {
     number: '03',
@@ -37,7 +37,7 @@ const criteria = [
     title: 'Minimum 4.5-Star Google Rating (50+ Reviews)',
     requirement: 'Every listed practice must hold a verified Google Business Profile rating of 4.5 stars or above, based on a minimum of 50 patient reviews.',
     howWeCheck: 'We check Google Business Profile ratings at the point of initial listing and monitor them on a quarterly basis. Practices that fall below 4.5 stars are placed on a 90-day watchlist before suspension.',
-    whyItMatters: 'A 4.5-star threshold with 50+ reviews is statistically meaningful — it requires consistent positive outcomes across a large enough sample to rule out selection bias. We specifically require Google reviews because they are tied to verified Google accounts with location data.',
+    whyItMatters: 'A 4.5-star threshold with 50+ reviews is statistically meaningful, it requires consistent positive outcomes across a large enough sample to rule out selection bias. We specifically require Google reviews because they are tied to verified Google accounts with location data.',
     passLabel: '4.5 stars or above on 50+ verified Google reviews',
     failLabel: 'Below 4.5 stars, fewer than 50 reviews, or unverified profile',
   },
@@ -45,7 +45,7 @@ const criteria = [
     number: '04',
     icon: <ShieldCheck className="w-7 h-7" />,
     title: 'Transparent and Itemised Pricing',
-    requirement: 'Every listed practice must commit to providing patients with a written, itemised treatment quote — covering aligners, attachments, refinements, and retainers — before any treatment agreement is signed.',
+    requirement: 'Every listed practice must commit to providing patients with a written, itemised treatment quote, covering aligners, attachments, refinements, and retainers, before any treatment agreement is signed.',
     howWeCheck: 'We require practices to confirm in writing that they follow a transparent pricing protocol. We conduct periodic mystery consultations at a sample of listed practices to verify commitments are being honoured.',
     whyItMatters: 'Hidden costs are the most common patient complaint in private dentistry. Our pricing transparency requirement ensures patients can make genuinely informed financial decisions before committing to treatment.',
     passLabel: 'Free initial consultation and written itemised quote confirmed',
@@ -94,7 +94,7 @@ export default function HowWeVetProvidersClient() {
               How We Vet Every Invisalign Provider in Essex
             </h1>
             <p className="text-xl text-gray-300 leading-relaxed">
-              We are an independent patient advocacy directory. We are not owned by, financially connected to, or editorially influenced by any dental group, clinic chain, or orthodontic manufacturer. Every provider listed on this site has passed our five-point vetting criteria — and we remove listings that fall below our standards.
+              We are an independent patient advocacy directory. We are not owned by, financially connected to, or editorially influenced by any dental group, clinic chain, or orthodontic manufacturer. Every provider listed on this site has passed our five-point vetting criteria, and we remove listings that fall below our standards.
             </p>
           </div>
         </div>
@@ -110,7 +110,7 @@ export default function HowWeVetProvidersClient() {
                   Invisalign Dentists Essex was built because finding a genuinely qualified Invisalign provider in Essex was harder than it should be. Search results return sponsored clinic websites, manufacturer directories that list any paying subscriber, and comparison sites that rank providers by advertising spend rather than clinical quality.
                 </p>
                 <p>
-                  We exist to fix that. Our directory is funded by a referral arrangement with listed providers — we receive a fee when a patient we refer books a consultation. This is disclosed fully. What it does not mean is that providers can buy their way onto the list.
+                  We exist to fix that. Our directory is funded by a referral arrangement with listed providers, we receive a fee when a patient we refer books a consultation. This is disclosed fully. What it does not mean is that providers can buy their way onto the list.
                 </p>
               </div>
               <div>
@@ -182,7 +182,7 @@ export default function HowWeVetProvidersClient() {
             <div>
               <h2 className="text-2xl font-display font-bold text-gray-900 mb-2">Automatic Disqualifiers</h2>
               <p className="text-gray-600">
-                The following conditions result in immediate removal — or rejection at the point of application — with no appeal or probationary period.
+                The following conditions result in immediate removal, or rejection at the point of application, with no appeal or probationary period.
               </p>
             </div>
           </div>
@@ -201,7 +201,7 @@ export default function HowWeVetProvidersClient() {
         <div className="container-width max-w-4xl">
           <div className="flex items-start gap-4 mb-6">
             <RefreshCw className="w-7 h-7 text-brand-600 flex-shrink-0 mt-1" />
-            <h2 className="text-2xl font-display font-bold text-gray-900">Ongoing Monitoring — Not Just at Listing</h2>
+            <h2 className="text-2xl font-display font-bold text-gray-900">Ongoing Monitoring, Not Just at Listing</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-8 text-gray-600 leading-relaxed">
             {[
@@ -225,7 +225,7 @@ export default function HowWeVetProvidersClient() {
             Every provider you find here has passed all five criteria.
           </h2>
           <p className="text-brand-100 mb-8 text-lg">
-            Browse by town or treatment — every listing you see has been independently verified.
+            Browse by town or treatment, every listing you see has been independently verified.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link href="/locations/" className="bg-white text-brand-700 font-bold px-8 py-3 rounded-xl hover:bg-brand-50 transition-colors">

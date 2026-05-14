@@ -9,7 +9,7 @@ import { LeadFormModal } from '@/components/LeadFormModal';
 const insurers = [
   {
     name: 'Bupa Health Insurance',
-    standard: 'Excluded — classified as cosmetic orthodontics',
+    standard: 'Excluded, classified as cosmetic orthodontics',
     premium: 'Bupa Dental Premium add-on: up to £500 cash benefit per year towards private orthodontics, subject to a 6-month qualifying period',
     verdict: 'Limited',
   },
@@ -21,7 +21,7 @@ const insurers = [
   },
   {
     name: 'Aviva',
-    standard: 'Excluded — cosmetic orthodontics not covered under health policies',
+    standard: 'Excluded, cosmetic orthodontics not covered under health policies',
     premium: 'Premium dental add-on available; check current schedule of benefits as terms vary by policy year',
     verdict: 'Limited',
   },
@@ -33,8 +33,8 @@ const insurers = [
   },
   {
     name: 'WPA',
-    standard: 'Excluded — cosmetic dental treatment not included in standard health plans',
-    premium: 'Flexible dental module available; caps and exclusions apply — check individual policy wording',
+    standard: 'Excluded, cosmetic dental treatment not included in standard health plans',
+    premium: 'Flexible dental module available; caps and exclusions apply, check individual policy wording',
     verdict: 'Limited',
   },
 ];
@@ -67,10 +67,10 @@ export default function InsuranceClient() {
               <em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>Cover Invisalign?</em>
             </h1>
             <p style={pStyle}>
-              If you have private health or dental insurance, it is completely natural to wonder whether it covers Invisalign before committing to paying for it yourself. The confusion is understandable — particularly for people familiar with how dental insurance works in the United States, where orthodontic coverage through an employer plan is common. The UK system works very differently, and understanding the distinction clearly will save you time spent on the phone to insurers and set realistic expectations about what your policy can and cannot do.
+              If you have private health or dental insurance, it is completely natural to wonder whether it covers Invisalign before committing to paying for it yourself. The confusion is understandable, particularly for people familiar with how dental insurance works in the United States, where orthodontic coverage through an employer plan is common. The UK system works very differently, and understanding the distinction clearly will save you time spent on the phone to insurers and set realistic expectations about what your policy can and cannot do.
             </p>
             <p style={pStyle}>
-              The short version: standard UK private health and dental policies almost universally exclude Invisalign. There are limited exceptions through premium dental add-ons, but the benefits are typically small — rarely enough to make a material difference to your total cost. Here is what you need to know.
+              The short version: standard UK private health and dental policies almost universally exclude Invisalign. There are limited exceptions through premium dental add-ons, but the benefits are typically small, rarely enough to make a material difference to your total cost. Here is what you need to know.
             </p>
           </div>
         </section>
@@ -83,10 +83,10 @@ export default function InsuranceClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>The Short Answer: Cosmetic vs. Medical</h2>
               <p style={pStyle}>
-                UK private health insurers — Bupa, AXA Health, Aviva, Vitality, WPA, and others — categorise treatments based on whether they are medically necessary or cosmetic in nature. Orthodontic treatment with clear aligners, including Invisalign, is classified as cosmetic by all major UK insurers under their standard policy terms. As a cosmetic procedure, it is explicitly excluded from coverage.
+                UK private health insurers, Bupa, AXA Health, Aviva, Vitality, WPA, and others, categorise treatments based on whether they are medically necessary or cosmetic in nature. Orthodontic treatment with clear aligners, including Invisalign, is classified as cosmetic by all major UK insurers under their standard policy terms. As a cosmetic procedure, it is explicitly excluded from coverage.
               </p>
               <p style={pStyle}>
-                This is not a loophole or an oversight — it is a deliberate policy position that reflects the same logic applied by the NHS. Both institutions define "medically necessary" orthodontics as treatment required to address a functional health problem: severe malocclusion that affects eating or speech, skeletal discrepancies requiring surgical intervention, or trauma-related dental damage. Straightening teeth for aesthetic reasons — even when that results in genuine health benefits like easier cleaning — does not meet that threshold under standard policy terms.
+                This is not a loophole or an oversight, it is a deliberate policy position that reflects the same logic applied by the NHS. Both institutions define "medically necessary" orthodontics as treatment required to address a functional health problem: severe malocclusion that affects eating or speech, skeletal discrepancies requiring surgical intervention, or trauma-related dental damage. Straightening teeth for aesthetic reasons, even when that results in genuine health benefits like easier cleaning, does not meet that threshold under standard policy terms.
               </p>
               <p style={pStyle}>
                 The result is unambiguous: if you call Bupa, AXA, or Aviva and ask whether your standard health or dental policy covers Invisalign, the answer will be no.
@@ -95,7 +95,7 @@ export default function InsuranceClient() {
               <div style={{ background: '#FEF3F2', border: '1px solid #FECDCA', borderRadius: '10px', padding: '18px 20px', margin: '24px 0' }}>
                 <p style={{ fontSize: '14px', fontWeight: 600, color: '#B42318', marginBottom: '6px' }}>Common misconception</p>
                 <p style={{ fontSize: '14px', color: '#7A271A', lineHeight: 1.7, margin: 0 }}>
-                  US dental insurance routinely includes orthodontic benefits — sometimes covering 50% of treatment up to a lifetime maximum. UK private health insurance does not work this way. The two systems are structurally different. If you have moved to the UK from the US and assumed your British health policy would offer similar orthodontic cover, it almost certainly will not.
+                  US dental insurance routinely includes orthodontic benefits, sometimes covering 50% of treatment up to a lifetime maximum. UK private health insurance does not work this way. The two systems are structurally different. If you have moved to the UK from the US and assumed your British health policy would offer similar orthodontic cover, it almost certainly will not.
                 </p>
               </div>
             </section>
@@ -104,7 +104,7 @@ export default function InsuranceClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>Exceptions: When Might Insurance Pay Towards It?</h2>
               <p style={pStyle}>
-                Some insurers offer premium dental add-ons to their standard health policies that include a fixed cash benefit or percentage contribution towards private orthodontic treatment. These are opt-in additions — not part of any standard health plan — and they come with conditions that significantly limit their practical value.
+                Some insurers offer premium dental add-ons to their standard health policies that include a fixed cash benefit or percentage contribution towards private orthodontic treatment. These are opt-in additions, not part of any standard health plan, and they come with conditions that significantly limit their practical value.
               </p>
 
               <div style={{ overflowX: 'auto', margin: '24px 0' }}>
@@ -134,10 +134,10 @@ export default function InsuranceClient() {
 
               <h3 style={h3Style}>The Practical Reality of Premium Dental Benefits</h3>
               <p style={pStyle}>
-                Even where premium dental add-ons include an orthodontic benefit, the cap — typically £300 to £500 per year — rarely covers more than a fraction of Invisalign treatment. A £500 insurance benefit towards a £3,500 treatment still leaves you funding £3,000 yourself. The premium add-on will also cost you additional monthly premiums, and most include a qualifying period (typically 6 months) before orthodontic benefits become available. Run the maths carefully: in many cases, the additional premium cost over the qualifying period reduces the net benefit significantly.
+                Even where premium dental add-ons include an orthodontic benefit, the cap, typically £300 to £500 per year, rarely covers more than a fraction of Invisalign treatment. A £500 insurance benefit towards a £3,500 treatment still leaves you funding £3,000 yourself. The premium add-on will also cost you additional monthly premiums, and most include a qualifying period (typically 6 months) before orthodontic benefits become available. Run the maths carefully: in many cases, the additional premium cost over the qualifying period reduces the net benefit significantly.
               </p>
               <p style={pStyle}>
-                That said, if you already have a premium dental policy with an orthodontic benefit, claiming it is always worthwhile. Even £400 towards your total cost is £400 you do not have to finance. Check your policy schedule, confirm the qualifying period has been met, and submit a claim after treatment — most insurers require the treatment to be completed before they pay out.
+                That said, if you already have a premium dental policy with an orthodontic benefit, claiming it is always worthwhile. Even £400 towards your total cost is £400 you do not have to finance. Check your policy schedule, confirm the qualifying period has been met, and submit a claim after treatment, most insurers require the treatment to be completed before they pay out.
               </p>
             </section>
 
@@ -145,10 +145,10 @@ export default function InsuranceClient() {
             <section style={{ marginBottom: '48px' }}>
               <h2 style={h2Style}>What About Denplan and Practice Membership Plans?</h2>
               <p style={pStyle}>
-                Denplan is the UK's most widely used dental payment plan — over 6,500 dental practices use it, and many patients assume it functions like dental insurance. It does not. Denplan is a capitation scheme: you pay a fixed monthly fee to your dentist in exchange for a defined set of routine dental services (examinations, X-rays, hygiene appointments, and sometimes basic restorative work). It is a budgeting tool for routine dentistry, not an insurance policy.
+                Denplan is the UK's most widely used dental payment plan, over 6,500 dental practices use it, and many patients assume it functions like dental insurance. It does not. Denplan is a capitation scheme: you pay a fixed monthly fee to your dentist in exchange for a defined set of routine dental services (examinations, X-rays, hygiene appointments, and sometimes basic restorative work). It is a budgeting tool for routine dentistry, not an insurance policy.
               </p>
               <p style={pStyle}>
-                Cosmetic and specialist treatments — including Invisalign — are not covered under any standard Denplan arrangement. Some Denplan-registered practices offer their registered patients a percentage discount on cosmetic treatments as a courtesy benefit. This is typically 10% off the listed treatment fee, not a contribution from Denplan itself. On a £3,500 treatment, that is a £350 saving — meaningful, but not coverage.
+                Cosmetic and specialist treatments, including Invisalign, are not covered under any standard Denplan arrangement. Some Denplan-registered practices offer their registered patients a percentage discount on cosmetic treatments as a courtesy benefit. This is typically 10% off the listed treatment fee, not a contribution from Denplan itself. On a £3,500 treatment, that is a £350 saving, meaningful, but not coverage.
               </p>
               <p style={pStyle}>
                 Other practice-level membership schemes work similarly: fixed monthly fees covering routine care, with discounts rather than coverage for elective treatments. If your dentist offers a membership scheme, ask specifically whether it includes any orthodontic discount and what the percentage is. It may reduce your Invisalign quote slightly, but you should plan to fund the remainder through other means.
@@ -166,10 +166,10 @@ export default function InsuranceClient() {
             <section style={{ marginBottom: '32px' }}>
               <h2 style={h2Style}>The Most Cost-Effective Alternative to Insurance</h2>
               <p style={pStyle}>
-                For the overwhelming majority of Essex adults, the most practical and cost-effective way to access Invisalign is not through insurance — it is through 0% interest finance provided directly by the treating clinic or through an FCA-authorised credit broker.
+                For the overwhelming majority of Essex adults, the most practical and cost-effective way to access Invisalign is not through insurance, it is through 0% interest finance provided directly by the treating clinic or through an FCA-authorised credit broker.
               </p>
               <p style={pStyle}>
-                0% finance means you pay the total cost of your treatment spread across monthly instalments — typically 12, 18, or 24 months — with no interest added. A £3,000 treatment over 24 months at 0% APR costs £125 per month. There is no insurer involved, no qualifying period, no claims process, and no ambiguity about what is covered. The full cost of your treatment is defined at the outset, and the finance agreement is regulated by the Financial Conduct Authority, giving you clear consumer protections.
+                0% finance means you pay the total cost of your treatment spread across monthly instalments, typically 12, 18, or 24 months, with no interest added. A £3,000 treatment over 24 months at 0% APR costs £125 per month. There is no insurer involved, no qualifying period, no claims process, and no ambiguity about what is covered. The full cost of your treatment is defined at the outset, and the finance agreement is regulated by the Financial Conduct Authority, giving you clear consumer protections.
               </p>
               <p style={pStyle}>
                 For most people, the monthly cost of 0% Invisalign finance compares favourably to the combined cost of insurance premiums plus the gap between insurance benefits and actual treatment cost. It is also simpler: no policy to manage, no claim to submit, and no risk of the benefit being reduced or removed at renewal.
@@ -179,16 +179,16 @@ export default function InsuranceClient() {
                 <Link href="/guides/costs/financing-payment-plans/" style={{ color: 'var(--sage)', textDecoration: 'underline', textUnderlineOffset: '3px', fontWeight: 500 }}>
                   Invisalign payment plans and dental finance
                 </Link>{' '}
-                covers the full mechanics — how credit checks work, the difference between in-house milestone payments and third-party FCA-regulated credit, and worked monthly cost examples across the three Invisalign treatment tiers.
+                covers the full mechanics, how credit checks work, the difference between in-house milestone payments and third-party FCA-regulated credit, and worked monthly cost examples across the three Invisalign treatment tiers.
               </p>
 
               {/* CTA block */}
               <div style={{ background: 'var(--sage-pale)', border: '1px solid #c8d9c9', borderRadius: '12px', padding: '24px', margin: '28px 0' }}>
                 <p style={{ fontSize: '15px', fontWeight: 600, color: 'var(--ink)', marginBottom: '12px' }}>
-                  Find Essex providers offering 0% finance — no insurance needed
+                  Find Essex providers offering 0% finance, no insurance needed
                 </p>
                 <p style={{ fontSize: '14px', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '20px' }}>
-                  Every Platinum and Diamond provider in our directory offers a free initial consultation and a written, itemised quote. Most offer 0% finance options. Use our directory to find providers near you, or our matching service to be connected with the best-matched clinics in your area.
+                  Every verified Platinum-tier provider in our directory offers a free initial consultation and a written, itemised quote. Most offer 0% finance options. Use our directory to find providers near you, or our matching service to be connected with the best-matched clinics in your area.
                 </p>
                 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                   <button
@@ -208,7 +208,7 @@ export default function InsuranceClient() {
 
               {/* Internal links */}
               <div style={{ borderTop: '2px solid var(--sage-pale)', paddingTop: '24px', marginTop: '8px' }}>
-                <p style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)', marginBottom: '12px' }}>Continue reading: Cluster 1 — Costs &amp; Financing</p>
+                <p style={{ fontSize: '13px', fontWeight: 600, color: 'var(--ink)', marginBottom: '12px' }}>Continue reading: Cluster 1, Costs &amp; Financing</p>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {[
                     { label: 'The True Cost of Invisalign in the UK (2026)', href: '/guides/costs/true-cost-invisalign-uk/' },
