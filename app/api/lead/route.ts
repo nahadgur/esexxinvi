@@ -65,18 +65,15 @@ function isValid(payload: LeadPayload): { ok: boolean; error?: string } {
   return { ok: true };
 }
 
+const LEAD_WEBHOOK_URL =
+  'https://script.google.com/macros/s/AKfycbw0QaLFaG-XujztIC0ZyJ_DXbvlP9BHc7F2wbwOq0D9bRYijhYq8Dje_l4enKWfoUVvfg/exec';
+
 async function relayToWebhook(payload: LeadPayload, ip: string): Promise<void> {
-  const url = process.env.LEAD_WEBHOOK_URL;
-  if (!url) {
-    console.warn('[lead] LEAD_WEBHOOK_URL not configured, payload only logged');
-    console.log('[lead]', JSON.stringify({ ...payload, ip }));
-    return;
-  }
   try {
-    const res = await fetch(url, {
+    const res = await fetch(LEAD_WEBHOOK_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ ...payload, ip, receivedAt: new Date().toISOString() }),
+      redirect: 'follow',
     });
     if (!res.ok) {
       console.error('[lead] webhook returned non-2xx', res.status);
