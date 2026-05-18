@@ -42,7 +42,15 @@ function rateLimit(ip: string): boolean {
   return true;
 }
 
+// 2026-05-18 - Fleet-wide kill switch. The honeypot + time-gate + content
+// heuristics were silently dropping legitimate submissions (return ok:true
+// with no Sheet write). Flip GUARD_ENABLED to true once thresholds are
+// calibrated against real audit data.
+const GUARD_ENABLED: boolean = false;
+
 function isLikelyBot(payload: LeadPayload): { isBot: boolean; reason?: string } {
+  if (!GUARD_ENABLED) return { isBot: false };
+
   if (payload.honeypot && payload.honeypot.length > 0) {
     return { isBot: true, reason: 'honeypot' };
   }
