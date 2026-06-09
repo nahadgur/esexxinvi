@@ -47,12 +47,8 @@ export function Footer() {
           {/* Brand */}
           <div style={{ gridColumn: 'span 1' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-              <div style={{
-                width: '30px', height: '30px', borderRadius: '50%',
-                border: '1.5px solid rgba(107,143,113,0.6)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '10px', color: 'rgba(107,143,113,0.9)', fontWeight: 600,
-              }}>IE</div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.svg" alt="Invisalign Dentists Essex" width={30} height={30} style={{ display: 'block' }} />
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontStyle: 'italic', color: 'rgba(255,255,255,0.7)' }}>
                 Invisalign Essex
               </span>

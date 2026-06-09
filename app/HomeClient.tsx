@@ -371,9 +371,8 @@ export default function HomePage() {
               &ldquo;Any high-street dentist can call themselves an Invisalign provider after a weekend course. When I looked into treatment for myself, I spent three hours trying to understand what &lsquo;Platinum&rsquo; actually meant and whether my local clinic was genuinely experienced, or just listed on Align&apos;s website. That research gap is what this service closes. We&apos;ve done the work so you don&apos;t have to.&rdquo;
             </p>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-              <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'var(--sage-pale)', border: '1.5px solid var(--sage-mid)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '13px', fontWeight: 600, color: 'var(--sage)', flexShrink: 0 }}>
-                IE
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.svg" alt="Invisalign Dentists Essex" width={44} height={44} style={{ display: 'block', flexShrink: 0 }} />
               <div>
                 <div style={{ fontSize: '14px', fontWeight: 600, color: 'var(--ink)' }}>Invisalign Essex</div>
                 <div style={{ fontSize: '12px', color: 'var(--muted)' }}>Independent referral facilitator · Est. Essex</div>

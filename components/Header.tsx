@@ -93,12 +93,8 @@ export function Header({ onOpenModal }: HeaderProps) {
 
             {/* Logo */}
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-              <div style={{
-                width: '30px', height: '30px', borderRadius: '50%',
-                border: '1.5px solid var(--sage)', display: 'flex', alignItems: 'center',
-                justifyContent: 'center', fontSize: '10px', color: 'var(--sage)',
-                fontWeight: 600, flexShrink: 0,
-              }}>IE</div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo.svg" alt="Invisalign Dentists Essex" width={30} height={30} style={{ display: 'block', flexShrink: 0 }} />
               <div style={{ lineHeight: 1.1 }}>
                 <div style={{ fontFamily: 'var(--font-display)', fontSize: '16px', fontWeight: 600, color: 'var(--ink)' }}>Invisalign</div>
                 <div style={{ fontSize: '9px', color: 'var(--sage)', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase' }}>Essex</div>
@@ -205,11 +201,8 @@ export function Header({ onOpenModal }: HeaderProps) {
               }}>
                 <Link href="/" onClick={() => setMobileOpen(false)}
                   style={{ display: 'flex', alignItems: 'center', gap: '9px', textDecoration: 'none' }}>
-                  <div style={{
-                    width: '26px', height: '26px', borderRadius: '50%',
-                    border: '1.5px solid var(--sage)', display: 'flex', alignItems: 'center',
-                    justifyContent: 'center', fontSize: '9px', color: 'var(--sage)', fontWeight: 600,
-                  }}>IE</div>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/logo.svg" alt="" width={26} height={26} style={{ display: 'block', flexShrink: 0 }} />
                   <span style={{ fontFamily: 'var(--font-display)', fontSize: '15px', fontWeight: 600, color: 'var(--ink)' }}>
                     Invisalign Essex
                   </span>

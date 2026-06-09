@@ -32,9 +32,9 @@ export function buildGlobalSchema(): object {
         'url': `${base}/`,
         'logo': {
           '@type': 'ImageObject',
-          'url': `${base}/logo.png`,
-          'width': 200,
-          'height': 60,
+          'url': `${base}/logo.svg`,
+          'width': 512,
+          'height': 512,
         },
         'description':
           'Independent third-party directory connecting Essex patients with ' +
