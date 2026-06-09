@@ -5,6 +5,23 @@ import type { Clinic } from '@/data/clinics';
 
 const ORG_ID = `${siteConfig.url}/#organization`;
 const SITE_ID = `${siteConfig.url}/#website`;
+const AUTHOR_ID = `${siteConfig.url}/about-us/#author`;
+
+// Editorial author entity. Brand byline (IDE), not an invented person. Emitted
+// on the About page and referenced by @id from articles and guide hubs.
+export function buildEditorialAuthor() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': AUTHOR_ID,
+    name: siteConfig.editorial.authorName,
+    alternateName: `${siteConfig.name} editorial team`,
+    url: `${siteConfig.url}${siteConfig.editorial.authorUrl}`,
+    parentOrganization: { '@id': ORG_ID },
+    description:
+      'Editorial team for Invisalign Dentists Essex. Clinical claims are checked against Align Technology UK guidance, GDC standards, and NHS sources.',
+  };
+}
 
 export function buildOrganization() {
   return {
@@ -201,17 +218,43 @@ export function buildArticleSchema(opts: {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
+    '@id': `${opts.url}#article`,
     headline: opts.headline,
     description: opts.description,
     datePublished: opts.datePublished,
     dateModified: opts.dateModified,
     url: opts.url,
-    author: {
-      '@type': 'Organization',
-      name: `${siteConfig.name} editorial team`,
-      url: `${siteConfig.url}/editorial-policy/`,
-    },
+    author: { '@id': AUTHOR_ID },
     publisher: { '@id': ORG_ID },
     mainEntityOfPage: opts.url,
+    inLanguage: siteConfig.locale,
+  };
+}
+
+// MedicalWebPage carries the YMYL signal: author/reviewer entity, dates, and the
+// medical topic. Emitted alongside Article on health-content pages (spokes + hubs).
+export function buildMedicalWebPage(opts: {
+  url: string;
+  name: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'MedicalWebPage',
+    '@id': `${opts.url}#medicalwebpage`,
+    url: opts.url,
+    name: opts.name,
+    description: opts.description,
+    datePublished: opts.datePublished,
+    dateModified: opts.dateModified,
+    lastReviewed: opts.dateModified,
+    isPartOf: { '@id': SITE_ID },
+    author: { '@id': AUTHOR_ID },
+    reviewedBy: { '@id': AUTHOR_ID },
+    publisher: { '@id': ORG_ID },
+    inLanguage: siteConfig.locale,
+    about: { '@type': 'MedicalProcedure', name: 'Invisalign clear aligner treatment' },
   };
 }

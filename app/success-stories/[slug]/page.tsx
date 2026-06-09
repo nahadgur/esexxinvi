@@ -9,8 +9,6 @@ import { siteConfig } from '@/data/site';
 import { getActiveStories, getStoryBySlug, getRelatedStories } from '@/data/stories/patient-stories';
 import { PatientStoryCard } from '@/components/trust/PatientStoryCard';
 import { ShieldCheck, ArrowLeft } from 'lucide-react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 
 interface PageParams { params: { slug: string } }
 
@@ -82,7 +80,6 @@ export default function StoryPage({ params }: PageParams) {
 
   return (
     <>
-      <Header />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema, null, 2) }}
@@ -150,7 +147,6 @@ export default function StoryPage({ params }: PageParams) {
         )}
 
       </main>
-      <Footer />
     </>
   );
 }

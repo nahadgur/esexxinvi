@@ -4,8 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { services } from '@/data/services';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { Hero } from '@/components/Hero';
 import { LeadFormModal } from '@/components/LeadFormModal';
 
@@ -15,7 +13,6 @@ export default function TreatmentsIndexPage() {
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
       <main className="flex-grow">
         <Hero
           title="Elite Invisalign Treatments in Essex"
@@ -46,7 +43,6 @@ export default function TreatmentsIndexPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

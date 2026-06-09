@@ -19,6 +19,10 @@ export const siteConfig = {
   },
   editorial: {
     lastReviewedAt: '2026-05-14',
+    // Brand byline acronym (Invisalign Dentists Essex), used as the author on
+    // articles and in schema. No invented individual, no credentials.
+    authorName: 'IDE',
+    authorUrl: '/about-us/',
     reviewerLine:
       'Reviewed by the Invisalign Dentists Essex editorial team. Sources: Align Technology UK clinical guidance, GDC published standards, NHS BSA orthodontic policy.',
   },

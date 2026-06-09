@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import { Mail, MapPin, Clock, CheckCircle2, ShieldCheck } from 'lucide-react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 
 export default function ContactPage() {
@@ -20,7 +18,6 @@ export default function ContactPage() {
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
 
       <main style={{ flex: 1 }}>
 
@@ -183,7 +180,6 @@ export default function ContactPage() {
         </section>
 
       </main>
-      <Footer />
 
       <style>{`
         @media (max-width: 768px) { .two-col-sm-grid { grid-template-columns: 1fr !important; } }

@@ -3,6 +3,7 @@
 // Metadata cannot be exported from 'use client' files in Next.js 14.
 
 import type { Metadata } from 'next';
+import { buildEditorialAuthor } from '@/lib/schema';
 import AboutUsClient from './AboutUsClient';
 
 export const metadata: Metadata = {
@@ -12,5 +13,13 @@ export const metadata: Metadata = {
 };
 
 export default function AboutUsPage() {
-  return <AboutUsClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildEditorialAuthor()) }}
+      />
+      <AboutUsClient />
+    </>
+  );
 }

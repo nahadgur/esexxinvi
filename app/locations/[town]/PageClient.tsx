@@ -6,8 +6,6 @@ import { notFound } from 'next/navigation';
 import { MapPin, Train, Clock, Shield, ArrowRight, CheckCircle, PoundSterling } from 'lucide-react';
 import { services } from '@/data/services';
 import { LOCATIONS, getCityBySlug } from '@/data/locations';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { FAQ } from '@/components/FAQ';
 import { HeroLeadForm } from '@/components/HeroLeadForm';
@@ -24,7 +22,6 @@ export default function TownPageClient({ slug }: { slug: string }) {
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
       <main id="main" className="flex-grow">
 
         {/* Hero */}
@@ -216,7 +213,6 @@ export default function TownPageClient({ slug }: { slug: string }) {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

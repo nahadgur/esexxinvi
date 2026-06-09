@@ -4,8 +4,6 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ShieldCheck, Star, BadgeCheck, MapPin, ExternalLink } from 'lucide-react';
 import { getActiveClinics } from '@/data/clinics';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 
 export default function ClinicsIndexPage() {
@@ -86,7 +84,6 @@ export default function ClinicsIndexPage() {
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
 
       <main style={{ flex: 1 }}>
 
@@ -152,7 +149,6 @@ export default function ClinicsIndexPage() {
 
       </main>
 
-      <Footer />
 
       <style>{`
         @media (max-width: 768px) {

@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { MapPin, Search } from 'lucide-react';
 import { LOCATIONS } from '@/data/locations';
 import { FAQS_LOCATION } from '@/data/site';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { Hero } from '@/components/Hero';
 import { FAQ } from '@/components/FAQ';
 import { LeadFormModal } from '@/components/LeadFormModal';
@@ -33,7 +31,6 @@ export default function LocationsIndexPage() {
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
       <main id="main" className="flex-grow">
         <Hero
           title="Find verified Invisalign providers in your part of Essex"
@@ -97,7 +94,6 @@ export default function LocationsIndexPage() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

@@ -68,6 +68,32 @@ const nextConfig = {
   async redirects() {
     const out = [];
 
+    // ── Guides reorganisation (2026-06-09): nested /guides/<category>/<article>
+    //    migrated to the data-driven /guides/[hub] + /blog/[spoke] silo. ──
+    const GUIDE_REDIRECTS = [
+      ['/guides/costs/true-cost-invisalign-uk', '/guides/invisalign-cost-essex/'],
+      ['/guides/costs/financing-payment-plans', '/blog/financing-payment-plans/'],
+      ['/guides/costs/invisalign-nhs-essex', '/blog/invisalign-nhs-essex/'],
+      ['/guides/costs/private-health-insurance-cover', '/blog/private-health-insurance-cover/'],
+      ['/guides/costs', '/guides/invisalign-cost-essex/'],
+      ['/guides/treatment-process/invisalign-journey-step-by-step', '/guides/invisalign-treatment-process/'],
+      ['/guides/treatment-process/how-long-does-invisalign-take', '/blog/how-long-does-invisalign-take/'],
+      ['/guides/treatment-process/invisalign-attachments-buttons', '/blog/invisalign-attachments-buttons/'],
+      ['/guides/treatment-process/invisalign-diet-food-rules', '/blog/invisalign-diet-food-rules/'],
+      ['/guides/treatment-process/does-invisalign-hurt', '/blog/does-invisalign-hurt/'],
+      ['/guides/comparisons/invisalign-vs-traditional-braces', '/guides/invisalign-vs-braces/'],
+      ['/guides/comparisons/ceramic-braces-vs-invisalign', '/blog/ceramic-braces-vs-invisalign/'],
+      ['/guides/comparisons/invisalign-vs-spark-vs-clearcorrect', '/blog/invisalign-vs-spark-vs-clearcorrect/'],
+      ['/guides/comparisons/dangers-of-at-home-mail-order-aligners', '/blog/dangers-of-at-home-mail-order-aligners/'],
+      ['/guides/local/parents-guide-invisalign-teen', '/blog/parents-guide-invisalign-teen/'],
+      ['/guides/local/essex-commuter-guide-invisalign', '/blog/essex-commuter-guide-invisalign/'],
+      ['/guides/local/wedding-invisalign-timeline-essex', '/blog/wedding-invisalign-timeline-essex/'],
+      ['/guides/local/top-questions-invisalign-consultation', '/blog/top-questions-invisalign-consultation/'],
+    ];
+    for (const [source, destination] of GUIDE_REDIRECTS) {
+      out.push({ source, destination, permanent: true });
+    }
+
     // ── Legacy URL families ──
     out.push({ source: '/location/:town', destination: '/locations/:town', permanent: true });
     out.push({ source: '/services/:service', destination: '/treatments/:service', permanent: true });

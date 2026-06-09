@@ -24,11 +24,11 @@ const policyLinks: InternalLink[] = [
 ];
 
 const guideLinks: InternalLink[] = [
-  { href: '/guides/costs/true-cost-invisalign-uk/', label: 'True cost of Invisalign in the UK' },
-  { href: '/guides/costs/invisalign-nhs-essex/', label: 'Invisalign on the NHS in Essex' },
-  { href: '/guides/costs/financing-payment-plans/', label: 'Financing and payment plans' },
-  { href: '/guides/comparisons/invisalign-vs-traditional-braces/', label: 'Invisalign vs fixed braces' },
-  { href: '/guides/comparisons/dangers-of-at-home-mail-order-aligners/', label: 'Why mail-order aligners are risky' },
+  { href: '/guides/invisalign-cost-essex/', label: 'Invisalign cost in Essex' },
+  { href: '/blog/invisalign-nhs-essex/', label: 'Invisalign on the NHS in Essex' },
+  { href: '/blog/financing-payment-plans/', label: 'Finance and payment plans' },
+  { href: '/guides/invisalign-vs-braces/', label: 'Invisalign vs braces' },
+  { href: '/blog/dangers-of-at-home-mail-order-aligners/', label: 'Why mail-order aligners are risky' },
 ];
 
 export const internalLinkMap = {

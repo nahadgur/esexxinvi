@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 
 // app/editorial-policy/EditorialPolicyClient.tsx
@@ -14,7 +12,6 @@ export default function EditorialPolicyClient() {
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
       <main className="bg-white">
 
       <section className="bg-gray-900 text-white py-16 relative overflow-hidden">
@@ -151,7 +148,6 @@ export default function EditorialPolicyClient() {
 
       </div>
     </main>
-      <Footer />
     </>
   );
 }

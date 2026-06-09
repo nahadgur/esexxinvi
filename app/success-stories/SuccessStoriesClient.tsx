@@ -5,8 +5,6 @@ import Link from 'next/link';
 import { ShieldCheck } from 'lucide-react';
 import { getActiveStories } from '@/data/stories/patient-stories';
 import { PatientStoryCard } from '@/components/trust/PatientStoryCard';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 
 const treatmentLabels: Record<string, string> = {
@@ -32,7 +30,6 @@ export default function SuccessStoriesClient() {
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
       <main>
 
         <section className="bg-gray-900 text-white py-16 relative overflow-hidden">
@@ -106,7 +103,6 @@ export default function SuccessStoriesClient() {
         </section>
 
       </main>
-      <Footer />
     </>
   );
 }

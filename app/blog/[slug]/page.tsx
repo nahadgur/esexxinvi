@@ -2,7 +2,15 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { siteConfig } from '@/data/site';
 import { getAllBlogSlugs, getBlogPostBySlug } from '@/data/blog';
-import { buildArticleSchema, buildBreadcrumbList, buildOrganization } from '@/lib/schema';
+import { GUIDE_HUBS_BY_SLUG } from '@/data/guides';
+import {
+  buildArticleSchema,
+  buildBreadcrumbList,
+  buildOrganization,
+  buildEditorialAuthor,
+  buildMedicalWebPage,
+  buildFAQPage,
+} from '@/lib/schema';
 import BlogPostClient from './BlogPostClient';
 
 export const dynamicParams = false;
@@ -33,11 +41,15 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 
 export default function Page({ params }: { params: { slug: string } }) {
   const post = getBlogPostBySlug(params.slug);
-  if (!post) notFound();
+  if (!post || post.draft) notFound();
 
   const canonical = `${siteConfig.url}/blog/${params.slug}/`;
+  const hubGuide = GUIDE_HUBS_BY_SLUG[post.hub];
+  const hub = hubGuide ? { slug: hubGuide.slug, title: hubGuide.title } : null;
+
   const schemas = [
     buildOrganization(),
+    buildEditorialAuthor(),
     buildBreadcrumbList([
       { label: 'Home', href: '/' },
       { label: 'Blog', href: '/blog/' },
@@ -50,6 +62,14 @@ export default function Page({ params }: { params: { slug: string } }) {
       datePublished: post.publishedAt,
       dateModified: post.lastReviewedAt,
     }),
+    buildMedicalWebPage({
+      url: canonical,
+      name: post.title,
+      description: post.excerpt,
+      datePublished: post.publishedAt,
+      dateModified: post.lastReviewedAt,
+    }),
+    ...(post.faqs && post.faqs.length > 0 ? [buildFAQPage(post.faqs)] : []),
   ];
 
   return (
@@ -61,7 +81,7 @@ export default function Page({ params }: { params: { slug: string } }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       ))}
-      <BlogPostClient post={post} />
+      <BlogPostClient post={post} hub={hub} />
     </>
   );
 }

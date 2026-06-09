@@ -5,6 +5,7 @@ import './globals.css';
 import { siteConfig } from '@/data/site';
 import { buildOrganization, buildWebSite } from '@/lib/schema';
 import { ConsentBanner } from '@/components/ConsentBanner';
+import { SiteChrome } from '@/components/SiteChrome';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -109,7 +110,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', '${siteConfig.ga4Id}', { 'anonymize_ip': true });`}
         </Script>
 
-        {children}
+        <SiteChrome>{children}</SiteChrome>
 
         <ConsentBanner />
       </body>

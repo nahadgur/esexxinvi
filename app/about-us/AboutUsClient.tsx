@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 
 // app/about-us/AboutUsClient.tsx
@@ -36,7 +34,6 @@ export default function AboutUsClient() {
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
       <main className="bg-white">
 
       {/* ── Hero ──────────────────────────────────────────────────────────── */}
@@ -269,7 +266,6 @@ export default function AboutUsClient() {
 
       </div>
     </main>
-      <Footer />
     </>
   );
 }

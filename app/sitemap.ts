@@ -3,6 +3,8 @@ import { services } from '@/data/services';
 import { LOCATIONS } from '@/data/locations';
 import { siteConfig } from '@/data/site';
 import { getActiveClinics } from '@/data/clinics';
+import { GUIDE_HUBS } from '@/data/guides';
+import { getPublishedBlogPosts } from '@/data/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url;
@@ -48,5 +50,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticPages, ...treatmentPages, ...locationPages, ...clinicPages];
+  const guideHubPages: MetadataRoute.Sitemap = GUIDE_HUBS.map(h => ({
+    url: `${base}/guides/${h.slug}/`,
+    lastModified: new Date(h.lastReviewedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.8,
+  }));
+
+  // Draft spokes are excluded from the sitemap until the publisher flips them live.
+  const blogPages: MetadataRoute.Sitemap = getPublishedBlogPosts().map(p => ({
+    url: `${base}/blog/${p.slug}/`,
+    lastModified: new Date(p.lastReviewedAt),
+    changeFrequency: 'monthly' as const,
+    priority: 0.6,
+  }));
+
+  return [...staticPages, ...treatmentPages, ...locationPages, ...clinicPages, ...guideHubPages, ...blogPages];
 }

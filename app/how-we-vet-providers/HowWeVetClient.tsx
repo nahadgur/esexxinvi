@@ -6,8 +6,6 @@ import {
   ShieldCheck, Star, GraduationCap, FileText,
   BadgeCheck, RefreshCw, AlertCircle, CheckCircle2, XCircle,
 } from 'lucide-react';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 
 const criteria = [
@@ -79,7 +77,6 @@ export default function HowWeVetProvidersClient() {
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
     <main className="bg-white">
 
       <section className="bg-gray-900 text-white py-20 relative overflow-hidden">
@@ -240,7 +237,6 @@ export default function HowWeVetProvidersClient() {
 
     </main>
   
-      <Footer />
     </>
   );
 }

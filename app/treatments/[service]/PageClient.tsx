@@ -6,8 +6,6 @@ import Link from 'next/link';
 import { MapPin, CheckCircle2, ArrowRight, ChevronDown } from 'lucide-react';
 import { getServiceBySlug, services } from '@/data/services';
 import { getAllCitySlugs, getCityBySlug, toSlug } from '@/data/locations';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 
 // Rich content per service (mirrors what was in the old PageClient)
@@ -170,7 +168,6 @@ export default function TreatmentPageClient({ params }: { params: { service: str
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
 
       <main style={{ flex: 1 }}>
 
@@ -368,7 +365,6 @@ export default function TreatmentPageClient({ params }: { params: { service: str
         </section>
 
       </main>
-      <Footer />
 
       <style>{`
         @media (max-width: 900px) {

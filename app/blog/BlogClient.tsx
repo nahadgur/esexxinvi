@@ -2,20 +2,18 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { Hero } from '@/components/Hero';
 import { LeadFormModal } from '@/components/LeadFormModal';
-import { BLOG_POSTS } from '@/data/blog';
+import { getPublishedBlogPosts } from '@/data/blog';
 import { internalLinkMap } from '@/data/seo';
 
 export default function BlogIndex() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const posts = getPublishedBlogPosts();
 
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
       <main id="main" className="flex-grow">
         <Hero
           title="Editorial blog"
@@ -26,7 +24,7 @@ export default function BlogIndex() {
 
         <section className="section-padding">
           <div className="container-width max-w-3xl">
-            {BLOG_POSTS.length === 0 ? (
+            {posts.length === 0 ? (
               <div className="text-center py-16">
                 <h2 className="text-2xl font-display font-bold text-gray-900 mb-4">
                   New posts coming soon
@@ -49,7 +47,7 @@ export default function BlogIndex() {
               </div>
             ) : (
               <div className="space-y-10">
-                {BLOG_POSTS.map(post => (
+                {posts.map(post => (
                   <article key={post.slug} className="border-b border-gray-100 pb-10">
                     <Link href={`/blog/${post.slug}/`} className="group block">
                       <div className="text-xs uppercase tracking-wide text-brand-600 font-semibold mb-2">
@@ -73,7 +71,6 @@ export default function BlogIndex() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

@@ -2,23 +2,21 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import type { BlogPost } from '@/data/blog';
 
 interface Props {
   post: BlogPost;
+  hub: { slug: string; title: string } | null;
 }
 
-export default function BlogPostClient({ post }: Props) {
+export default function BlogPostClient({ post, hub }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
       <main id="main" className="flex-grow">
         <article className="container-width max-w-3xl py-16">
           <Breadcrumbs items={[{ label: 'Blog', href: '/blog/' }, { label: post.title }]} />
@@ -44,17 +42,42 @@ export default function BlogPostClient({ post }: Props) {
                 </time>
               </span>
               <span>
-                <Link href="/editorial-policy/" className="text-brand-600 hover:underline">
-                  Editorial team
+                By{' '}
+                <Link href="/about-us/" className="text-brand-600 hover:underline">
+                  IDE
                 </Link>
               </span>
             </div>
           </header>
 
+          {hub && (
+            <p className="mb-8 text-sm text-gray-600 bg-gray-50 border border-gray-100 rounded-xl px-5 py-4">
+              Part of our guide to{' '}
+              <Link href={`/guides/${hub.slug}/`} className="font-semibold text-brand-600 hover:underline">
+                {hub.title.toLowerCase()}
+              </Link>
+              .
+            </p>
+          )}
+
           <div
             className="prose prose-lg max-w-none"
             dangerouslySetInnerHTML={{ __html: post.body }}
           />
+
+          {post.faqs && post.faqs.length > 0 && (
+            <section className="mt-12">
+              <h2 className="text-2xl font-display font-bold text-gray-900 mb-5">Frequently asked questions</h2>
+              <div className="space-y-5">
+                {post.faqs.map((f, i) => (
+                  <div key={i}>
+                    <h3 className="font-semibold text-gray-900 mb-1">{f.question}</h3>
+                    <p className="text-gray-700 leading-relaxed">{f.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
           <footer className="mt-12 pt-8 border-t border-gray-100">
             <p className="text-gray-600 mb-4">
@@ -66,7 +89,6 @@ export default function BlogPostClient({ post }: Props) {
           </footer>
         </article>
       </main>
-      <Footer />
     </>
   );
 }

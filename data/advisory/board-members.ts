@@ -147,34 +147,11 @@ work, which is independent of any individual listing decision."]
 // with the MedicallyReviewedBy component.
 
 export const advisoryBoardMembers: AdvisoryBoardMember[] = [
-
-  // ── PLACEHOLDER — replace with real member data ───────────────────────────
-  // Delete this placeholder entry once a real board member is onboarded.
-  {
-    slug:                    'placeholder-reviewer',
-    name:                    'Dr. [Full Name]',
-    gdcNumber:               '[GDC Number]',
-    qualifications:          'BDS, [Additional Qualifications]',
-    practiceName:            '[Practice Name]',
-    practiceLocality:        '[Town]',
-    practiceRegion:          'Essex',
-    invisalignTier:          'Platinum',
-    yearsInvisalignExperience: 5,
-    bioShort:
-      'A GDC-registered general dental practitioner with [X] years of Invisalign ' +
-      'experience and current Platinum provider status. Based in [Town], Essex.',
-    bioFull:
-      'Replace this with the full bio using the advisoryBioTemplate above. ' +
-      'Minimum 3 paragraphs covering qualifications, Invisalign experience, ' +
-      'CPD engagement, and their specific role as an advisory board member.',
-    avatarUrl:               undefined,
-    linkedInUrl:             undefined,
-    practiceWebsiteUrl:      undefined,
-    reviewedTreatments:      ['crowded', 'gaps', 'overbite', 'underbite', 'crossbite', 'adults'],
-    conflictDeclarationYear: new Date().getFullYear(),
-    active:                  false, // Set to true once a real member is onboarded
-  },
-
+  // No advisory board members are published yet. Add a real GDC-registered
+  // reviewer here (with active: true) when one is onboarded, using the
+  // advisoryBioTemplate above. Until then the /advisory-board listing shows its
+  // empty state and treatment pages render no reviewer banner. The previous
+  // 'Dr. [Full Name]' placeholder was removed so it can never render live.
 ];
 
 // ── Lookup helpers ─────────────────────────────────────────────────────────

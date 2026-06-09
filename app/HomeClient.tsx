@@ -2,8 +2,6 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
 import { LeadFormModal } from '@/components/LeadFormModal';
 import { services } from '@/data/services';
 import { pricingTiers, financeInfo, treatmentIncludes } from '@/data/pricing';
@@ -90,7 +88,6 @@ export default function HomePage() {
   return (
     <>
       <LeadFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Header onOpenModal={() => setIsModalOpen(true)} />
 
       <main style={{ flex: 1 }}>
 
@@ -387,7 +384,6 @@ export default function HomePage() {
 
       </main>
 
-      <Footer />
 
       <style>{`
         @media (max-width: 900px) {
