@@ -1,0 +1,98 @@
+# esexxinvi handoff queue
+
+Dated run-blocks from the automated writer/publisher. Newest at the bottom.
+
+---
+
+## 2026-06-09 — writer run (esexxinvi-invisalign-writer)
+
+- **Site:** esexxinvi (invisaligndentistsessex.uk)
+- **Spoke written:** `invisalign-over-40s-essex` — "Invisalign for Over-40s and Over-50s in Essex"
+- **Hub:** H7 `invisalign-for-adults` (was 0 spokes, now 1; first content in this hub)
+- **draft:** true
+- **Links:** up-link to /guides/invisalign-for-adults/, pillar link to /treatments/adults/, /clinics/ directory, plus the built-in Get matched CTA. No same-hub siblings published yet, so no sibling links. External authorities (NHS, Align Technology) cited in prose, not linked.
+- **YMYL:** no fabricated testimonials/stats/credentials; gum-health gate emphasised; matching framing kept (we connect, we do not treat); no treatment guarantees; UK English; no em dashes.
+- **tsc:** NOT VERIFIED this run — see blocker below.
+- **git:** NOT COMMITTED this run — see blocker below.
+
+### BLOCKER (needs a Claude Code session on the real machine)
+
+The bash sandbox in this Cowork run mounted a **stale/inconsistent snapshot** of the
+repo: `data/blog.ts` appeared in the shell as the old 748-byte pre-migration stub
+(no posts), and `app/HomeClient.tsx` had trailing NUL-byte corruption plus CRLF
+endings, while the file tools (Read/Edit) correctly saw and wrote the live,
+fully-populated tree. Because the shell and the live filesystem were out of sync,
+`npx tsc --noEmit` and `git` could not be trusted, and committing from the shell
+would have pushed a broken stale state to `main`.
+
+The article edit itself landed correctly on the live `data/blog.ts` (verified via
+the file tools) and on `docs/SILO-PLAN.md` (section 8 H7 count 0 -> 1).
+
+**To finish on the real machine:**
+1. `npx tsc --noEmit` (expect clean; rename round-trip if tsbuildinfo is stale).
+2. Confirm `app/HomeClient.tsx` is intact (HEAD is clean; only the sandbox copy was corrupt).
+3. `git add data/blog.ts docs/SILO-PLAN.md docs/HANDOFF-QUEUE.md` then commit:
+   `feat(esexxinvi): add H7 adults spoke invisalign-over-40s-essex (draft)` and push to `main`.
+
+### Status
+
+- Buffer (parked drafts) after this run: count from `data/blog.ts` where `draft:true` (this is the 1st).
+- Total toward 100 spokes: ~14 written (13 published seed + 1 new draft).
+- **Next run:** H8 `what-invisalign-can-fix` (suitability) is still at 0 spokes — write a condition-framed Essex spoke there next (each links its exact /treatments/<condition>/ page).
+
+---
+
+## 2026-06-10 — writer run (esexxinvi-invisalign-writer)
+
+- **Site:** esexxinvi (invisaligndentistsessex.uk)
+- **Spoke written:** `can-invisalign-fix-crowded-teeth` — "Can Invisalign Fix Crowded Teeth?"
+- **Hub:** H8 `what-invisalign-can-fix` (was 0 spokes, now 1; first content in this hub, clears the priority gap flagged last run)
+- **draft:** true
+- **Body:** 843 words, answer-first ~50-word opening, 6 sections, 5 distinct FAQs.
+- **Links:** up-link to /guides/what-invisalign-can-fix/ (anchor "what Invisalign can treat"), exact condition pillar /treatments/crowded/, /guides/invisalign-cost-essex/ for the NHS-vs-private band reference, /clinics/ directory, plus the built-in Get matched CTA. No same-hub siblings published yet, so no sibling links. External authorities (NHS, Align Technology, IOTN) cited in prose, not linked.
+- **Essex substance:** mid/south Essex NHS orthodontic footprint and IOTN eligibility, CM/SS/CO postcode districts, named towns (Chelmsford, Basildon, Southend, Colchester, Brentwood, Rayleigh, Clacton, Shenfield, Billericay), commuter appointment spacing.
+- **YMYL:** no fabricated testimonials/stats/credentials; matching framing kept (we connect, we do not treat); explicit "no reputable dentist guarantees an outcome"; UK English; no em dashes. Did not target the reserved head term (treatments page owns "crowded teeth Invisalign"); framed as a suitability question.
+- **tsc:** NOT VERIFIED in-sandbox — same blocker as 2026-06-09 (see below). New entry validated in isolation with `node` (parses clean, 0 em dashes, all links present).
+- **git:** NOT COMMITTED in-sandbox — see blocker below.
+
+### BLOCKER (recurring — needs a Claude Code session on the real machine)
+
+Same root cause as the 2026-06-09 run. The Cowork bash sandbox mounted a **stale,
+partially-synced snapshot** of the repo: `data/blog.ts` showed in the shell as a
+truncated 41,890-byte copy (mtime frozen at the pre-edit time, cut off mid-way
+through the new entry), and the shell could create files but `rm`/unlink returned
+"Operation not permitted". The file tools (Read/Edit) correctly saw and wrote the
+live, fully-populated tree. Because the shell and the live filesystem are out of
+sync, `npx tsc --noEmit` and `git` cannot be trusted, and committing from the shell
+would push the broken stale state to `main`.
+
+The article edit itself landed correctly on the live `data/blog.ts` and
+`docs/SILO-PLAN.md` (section 8, H8 count 0 -> 1), verified via the file tools.
+
+**To finish on the real machine:**
+1. `npx tsc --noEmit` (expect clean; rename round-trip if tsbuildinfo is stale).
+2. `git add data/blog.ts docs/SILO-PLAN.md docs/HANDOFF-QUEUE.md` then commit:
+   `feat(esexxinvi): add H8 suitability spoke can-invisalign-fix-crowded-teeth (draft)` and push to `main`.
+
+### Status
+
+- Buffer (parked drafts) after this run: 2 (`invisalign-over-40s-essex` H7, `can-invisalign-fix-crowded-teeth` H8), both awaiting the publisher and a Claude Code commit.
+- Total toward 100 spokes: ~15 written (13 published seed + 2 new drafts).
+- **Next run:** H8 still thin (1/10) and H7 thin (1/10). Suggested next: another H8 condition spoke linking its treatment page (gaps -> /treatments/gaps/, or overbite -> /treatments/overbite/), or an H9 Essex town spoke. Avoid reserved head terms; keep the suitability/question framing.
+
+
+## 2026-06-10 — writer run (esexxinvi): H7 adults spoke `discreet-invisalign-professionals` (draft)
+
+- **Site:** esexxinvi (invisaligndentistsessex.uk). **Hub:** H7 invisalign-for-adults. **Slug:** discreet-invisalign-professionals. **draft:** true. **Words:** ~820 body.
+- **Angle:** Invisalign for busy working professionals in Essex — discretion at work, first-week speech/lisp before presentations, removing trays for meetings/client lunches, fitting short appointments around a London commute. Distinct from the existing H7 over-40s spoke (which owns gum health / crowns / relapse), no paraphrase of the national invisaligndentists.uk.
+- **Links:** up-link to /guides/invisalign-for-adults/ (anchor "guide to Invisalign for adults"), pillar /treatments/adults/, /clinics/ matching CTA. No same-hub siblings published (over-40s still draft), so no sibling links. Align Technology / SmartTrack cited in prose, not linked. 0 external hyperlinks.
+- **Essex substance:** Liverpool Street commuter line from Chelmsford, Shenfield, Billericay; client-facing roles in Southend, Brentwood, Colchester; CM/SS/CO postcode districts; early-morning/evening clinic slots; at-home weekly aligner change before the train.
+- **YMYL:** no fabricated testimonials/stats/credentials; matching framing kept (we connect, we do not treat); editorial-team byline; advisory board + success stories untouched; UK English; no em dashes; did not target reserved head terms.
+- **tsc:** `npx tsc --noEmit` clean (verified in-sandbox; sandbox FS in sync this run, unlike 2026-06-09/earlier-06-10 blocked runs).
+- **Note:** the file-tool Edit truncated data/blog.ts mid-run (same stale-snapshot class of issue as prior runs); recovered by rebuilding from `git show HEAD:data/blog.ts` and inserting the new post via an in-place python write in the bash/git world. git diff confirms a clean +31 insertion, no deletions.
+- **git:** committed and pushed to main (see hash in run summary). If the push failed it is noted there.
+
+### Status (after this run)
+- Buffer (parked drafts): 3 (`invisalign-over-40s-essex` H7, `discreet-invisalign-professionals` H7, `can-invisalign-fix-crowded-teeth` H8) awaiting the publisher.
+- Total toward 100 spokes: ~16 written (13 published seed + 3 new drafts).
+- **Next run:** H8 still thin (1/10) and H7 now 2/10. Suggested next: an H8 condition spoke linking its exact treatment page (gaps -> /treatments/gaps/, overbite -> /treatments/overbite/), or an H9 Essex town spoke. Avoid reserved head terms; keep suitability/question framing.
