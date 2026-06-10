@@ -364,6 +364,72 @@ export const BLOG_POSTS: BlogPost[] = [
     metaTitle: 'The Risks of At-Home Mail-Order Aligners | Why Supervision Matters',
     metaDescription: 'Why dentist-supervised Invisalign matters: at-home aligner kits skip the exam, X-rays and supervision, with limited recourse if things go wrong.',
   },
+
+  // ── H7 adults (invisalign-for-adults) ────────────────────────────────────
+  {
+    slug: 'invisalign-over-40s-essex',
+    title: 'Invisalign for Over-40s and Over-50s in Essex',
+    category: 'editorial',
+    hub: 'invisalign-for-adults',
+    draft: true,
+    excerpt: 'Mature teeth still move. What over-40s and over-50s in Essex should check first, from gum health to existing crowns and bridges, before starting Invisalign.',
+    body: `<p>There is no upper age limit for Invisalign. Teeth move at any age as long as the gums and supporting bone are healthy, so plenty of patients in their forties, fifties and beyond straighten their teeth successfully. For older adults the planning is more careful: gum health, existing dental work and realistic timing all matter more than they do at twenty-five.</p>
+<h2>Why more Essex over-40s are straightening their teeth</h2>
+<p>A generation of adults who either never had braces or saw their teeth drift in the decades since are now choosing discreet treatment. Among the professionals commuting from Chelmsford, Brentwood and Shenfield, the appeal is obvious: aligners are close to invisible and come out for client meetings, presentations and photographs. Others in Southend, Colchester or Leigh-on-Sea simply want to address a problem that has bothered them for years before it gets worse. The discretion of clear aligners removes the old objection that braces look out of place on an adult.</p>
+<h2>How mature teeth respond</h2>
+<p>The biology of tooth movement does not switch off with age, but it can be slower and the margins are tighter. In older adults there is often some natural gum recession, slightly reduced bone height, and a longer history of wear, all of which a dentist factors into the plan. Align Technology, the maker of Invisalign, designs its SmartTrack material to apply gentle continuous force, which suits the more measured movements mature cases usually need. A good provider will set realistic expectations on what is achievable rather than promise a textbook result, and no honest clinic guarantees an outcome.</p>
+<h2>Gum health comes first</h2>
+<p>This is the single most important check for any older adult. Moving teeth that sit in gums affected by active periodontal (gum) disease can do real harm, including loosening teeth. The NHS notes that gum disease is very common in adults and is often painless in its early stages, so you may have it without knowing. A responsible Essex provider will examine your gums, may take X-rays, and will insist any active disease is treated and stable before aligners begin. If a clinic skips that step, treat it as a warning sign.</p>
+<h2>Working around crowns, bridges, implants and fillings</h2>
+<p>By your forties or fifties you may have crowns, veneers, bridges, implants or large fillings, and these need planning around. Two points matter most. First, the small composite attachments Invisalign uses to grip teeth do not always bond as reliably to porcelain or heavily restored surfaces, so your dentist plans their placement accordingly. Second, a dental implant is fused to the bone and will not move, so the treatment has to work the natural teeth around it. None of this rules out Invisalign, but it is exactly the kind of detail to raise at your consultation.</p>
+<h2>Relapse after childhood braces</h2>
+<p>A very common reason over-40s come back to treatment is relapse: teeth that were straightened as a teenager have crowded again over the years, usually because retainers were stopped long ago. These cases are often minor and may suit a shorter Invisalign Lite plan rather than a full course. The lasting lesson is that retainers are for life, so whatever you choose, plan to wear a retainer afterwards to hold the result.</p>
+<h2>Choosing a provider and fitting it around Essex life</h2>
+<p>Look for an experienced provider who examines your gums properly, shows you the 3D ClinCheck plan before you commit, and is clear about total cost including retainers. Appointments are infrequent and short once treatment starts, which fits around work in Essex or a London commute. For the wider picture read our <a href="/guides/invisalign-for-adults/">guide to Invisalign for adults</a>, and for the condition-by-condition detail see <a href="/treatments/adults/">adult Invisalign treatment</a>. We are an independent matching service: we connect you with verified Platinum providers across Essex and do not provide treatment ourselves, so you can compare clinics on the points that matter for an older smile. Browse profiles in the <a href="/clinics/">clinics directory</a> when you are ready.</p>`,
+    faqs: [
+      { question: 'Is there an age limit for Invisalign?', answer: 'No. Teeth move at any age provided the gums and supporting bone are healthy. Many patients in their forties, fifties and older are treated successfully, with more careful planning than younger cases need.' },
+      { question: 'Can I have Invisalign if I have gum disease?', answer: 'Not while it is active. Moving teeth in gums affected by untreated periodontal disease can cause harm. A provider will treat and stabilise any gum disease first, then reassess whether aligners are safe to start.' },
+      { question: 'Does Invisalign work around crowns, bridges and implants?', answer: 'Usually yes, with planning. Attachments do not always bond well to porcelain so placement is adjusted, and an implant is fixed in bone so it will not move. Raise all existing dental work at your consultation.' },
+      { question: 'Will Invisalign fix teeth that shifted after childhood braces?', answer: 'Often, yes. Relapse after teenage braces is a common reason adults return, and the cases are frequently minor enough for a shorter Invisalign Lite plan. Plan to wear a retainer afterwards to hold the result.' },
+      { question: 'Is Invisalign harder for older adults?', answer: 'The movements can be slower and gum and bone health need closer attention, but age itself is not a barrier. The main difference is more thorough planning, not a different treatment.' },
+    ],
+    publishedAt: '2026-06-09',
+    lastReviewedAt: reviewed,
+    metaTitle: 'Invisalign for Over-40s in Essex | Mature Smiles',
+    metaDescription: 'Invisalign for over-40s and over-50s in Essex: how mature teeth respond, why gum health comes first, working around crowns and bridges, and choosing a provider.',
+  },
+
+  // ── H8 suitability (what-invisalign-can-fix) ─ first spoke ───────────────
+  {
+    slug: 'can-invisalign-fix-crowded-teeth',
+    title: 'Can Invisalign Fix Crowded Teeth?',
+    category: 'editorial',
+    hub: 'what-invisalign-can-fix',
+    draft: true,
+    excerpt: 'Crowding is one of the problems Invisalign handles best. How mild, moderate and severe crowding differ, when aligners are enough, and how to get assessed in Essex.',
+    body: `<p>Yes. Invisalign treats most crowded teeth, from mild overlap to moderate crowding, and it is one of the problems clear aligners handle best. Severe crowding can still need fixed braces or tooth removal first. Only an in-person assessment, at a clinic in Essex or elsewhere, settles which applies to you.</p>
+<h2>Why teeth crowd, and the three levels</h2>
+<p>Crowding happens when there is more tooth than there is room along the jaw, so teeth overlap, twist or sit out of line. It is the most common reason people ask about straightening, and it tends to get slightly worse with age rather than better. Dentists loosely group it into three levels. Mild crowding is a little overlap, often just the lower front teeth. Moderate crowding involves several rotated or displaced teeth. Severe crowding is significant overlap where teeth are noticeably out of the arch, sometimes with one tooth blocked out entirely. The lower front teeth are the classic site, because the jaw is narrowest there, which is also why so many adults first notice crowding creeping back years after childhood braces. The level matters because it largely decides whether aligners alone can do the job.</p>
+<h2>What Invisalign actually does to fix crowding</h2>
+<p>To straighten crowded teeth you need to create space and then guide each tooth into it. Invisalign does this with a few tools working together. The first is interproximal reduction, or IPR, where the dentist polishes away tiny amounts of enamel between teeth to free up fractions of a millimetre. The second is gentle arch expansion, widening the curve of the teeth slightly where the bite allows. Small tooth-coloured attachments are then bonded to some teeth to give the aligners grip for trickier rotations. Align Technology, the maker of Invisalign, uses a material it calls SmartTrack that applies light continuous pressure, which is well suited to the steady, controlled movements crowding cases need. Across a course of aligners changed roughly weekly, the teeth move a fraction at a time until they line up. Your dentist plans all of this in advance from an iTero scan, and the ClinCheck software shows you a frame-by-frame preview of how the crowding unwinds before any aligners are even made.</p>
+<h2>When crowding is too much for aligners alone</h2>
+<p>There is a limit. Where crowding is severe and there simply is not enough room to create with IPR and expansion, treatment may need tooth extraction to make space, or fixed braces that can apply stronger forces for big movements. Some complex cases use a short phase of fixed braces and finish with aligners. None of this means Invisalign is off the table, but it does mean an honest provider will tell you when a case sits at the edge of what aligners do well. Be wary of any clinic that promises a result before seeing your scans, and remember that no reputable dentist guarantees an outcome. A confident provider will show you the 3D ClinCheck plan of your projected result before you commit to anything.</p>
+<h2>NHS or private for crowding in mid and south Essex</h2>
+<p>For adults, crowding treatment in Essex is almost always private. The NHS funds orthodontics mainly for under-18s whose need scores highly enough on the national IOTN assessment, and even then it provides fixed metal braces rather than clear aligners. Adult NHS orthodontics is rare and limited to cases with a clear health need. In practice that means an adult in Chelmsford, Basildon, Southend or Colchester wanting Invisalign for crowded teeth will be looking at private treatment, usually spread over a finance plan. Mid and south Essex NHS waiting lists for the eligible age groups can be long, which is part of why many families look privately. You can see how the bands work on our <a href="/guides/invisalign-cost-essex/">Essex cost guide</a>.</p>
+<h2>Getting assessed in Essex</h2>
+<p>Because the right answer depends entirely on your own teeth, the first real step is a consultation and scan with an experienced provider. They will check your gums and supporting bone are healthy, measure how much space the crowding needs, and decide whether IPR and expansion are enough or whether extractions come into it. Provider tier is a useful signal here: Platinum or above points to high case volume and experience with trickier crowding. We are an independent matching service, so we connect you with verified Platinum providers across Essex towns from Brentwood to Clacton and do not provide treatment ourselves. That lets you compare a couple of clinics on plan, tier and total cost before you choose. Once treatment starts the appointments are short and spaced six to eight weeks apart, which suits people working in Chelmsford or commuting into London from Shenfield and Billericay. Whether you are in the CM postcodes around Chelmsford and Brentwood, the SS districts covering Southend, Basildon and Rayleigh, or the CO area around Colchester and Clacton, there are Platinum-tier providers within a short drive. When you are ready, browse profiles in the <a href="/clinics/">Essex clinics directory</a>, read the wider picture on <a href="/guides/what-invisalign-can-fix/">what Invisalign can treat</a>, and see the condition detail on our <a href="/treatments/crowded/">crowded teeth treatment page</a>.</p>`,
+    faqs: [
+      { question: 'Can Invisalign fix severe crowding?', answer: 'Sometimes, but not always on its own. Severe crowding may need tooth extraction to create space, or a phase of fixed braces, before or instead of aligners. A scan and in-person assessment decide whether Invisalign alone is enough.' },
+      { question: 'Will I need teeth removed for Invisalign?', answer: 'Often no. Many crowding cases are solved with interproximal reduction and slight arch expansion. Extractions are usually reserved for severe crowding where there is no other way to create enough room. Your dentist confirms this from your scans.' },
+      { question: 'What is IPR in Invisalign treatment?', answer: 'Interproximal reduction is the gentle polishing away of tiny amounts of enamel between teeth to free up space for crowded teeth to align. It is painless, removes only fractions of a millimetre, and is a routine part of many aligner plans.' },
+      { question: 'Is Invisalign for crowded teeth available on the NHS in Essex?', answer: 'For adults, almost never. NHS orthodontics mainly covers under-18s with a high IOTN score and provides fixed braces, not clear aligners. Adults in Chelmsford, Southend, Colchester and across Essex are generally looking at private treatment.' },
+      { question: 'How long does Invisalign take for crowded teeth?', answer: 'It depends on severity. Mild crowding can finish in a few months on a shorter plan, while moderate to more complex crowding typically runs six to eighteen months. Your provider gives a realistic timeline once they have seen your scan.' },
+    ],
+    publishedAt: '2026-06-10',
+    lastReviewedAt: reviewed,
+    metaTitle: 'Can Invisalign Fix Crowded Teeth? | Essex Guide',
+    metaDescription: 'Can Invisalign fix crowded teeth? Yes for most mild and moderate cases. How crowding levels differ, when aligners fall short, and NHS vs private in Essex.',
+  },
 ];
 
 export function getAllBlogSlugs(): string[] {
