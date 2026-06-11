@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { LeadFormModal } from '@/components/LeadFormModal';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { SpokeHero } from '@/components/SpokeHero';
 import type { GuideHub } from '@/data/guides';
 
 interface SpokeLink { slug: string; title: string; excerpt: string }
@@ -19,6 +20,13 @@ interface Props {
 
 export default function GuideHubClient({ hub, spokes, treatments, adjacentHubs }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const words = hub.sections
+    .flatMap(s => s.paragraphs)
+    .join(' ')
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean).length;
+  const readMins = Math.max(3, Math.round(words / 200));
 
   return (
     <>
@@ -28,8 +36,16 @@ export default function GuideHubClient({ hub, spokes, treatments, adjacentHubs }
           <Breadcrumbs items={[{ label: 'Guides', href: '/guides/' }, { label: hub.title }]} />
 
           <header className="mt-6 mb-10">
-            <div className="text-xs uppercase tracking-wide text-brand-600 font-semibold mb-3">{hub.heroBadge}</div>
-            <h1 className="text-3xl md:text-5xl font-display font-bold text-gray-900 leading-tight mb-4">{hub.title}</h1>
+            <div className="mt-4">
+              <SpokeHero
+                title={hub.title}
+                hubName="Guide"
+                hubSlug={hub.slug}
+                readMins={readMins}
+              />
+            </div>
+            <div className="text-xs uppercase tracking-wide text-brand-600 font-semibold mb-3 mt-8">{hub.heroBadge}</div>
+            <h1 className="sr-only">{hub.title}</h1>
             <p className="text-xl text-gray-600 leading-relaxed">{hub.heroDirectAnswer}</p>
             <div className="text-sm text-gray-500 mt-4 flex flex-wrap gap-4">
               <span>By <Link href="/about-us/" className="text-brand-600 hover:underline">IDE</Link></span>

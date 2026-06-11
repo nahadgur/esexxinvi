@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { LeadFormModal } from '@/components/LeadFormModal';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { SpokeHero } from '@/components/SpokeHero';
 import type { BlogPost } from '@/data/blog';
 
 interface Props {
@@ -13,6 +14,8 @@ interface Props {
 
 export default function BlogPostClient({ post, hub }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const words = post.body.replace(/<[^>]+>/g, ' ').trim().split(/\s+/).filter(Boolean).length;
+  const readMins = Math.max(3, Math.round(words / 200));
 
   return (
     <>
@@ -21,10 +24,18 @@ export default function BlogPostClient({ post, hub }: Props) {
         <article className="container-width max-w-3xl py-16">
           <Breadcrumbs items={[{ label: 'Blog', href: '/blog/' }, { label: post.title }]} />
           <header className="mt-6 mb-10">
-            <div className="text-xs uppercase tracking-wide text-brand-600 font-semibold mb-3">
+            <div className="mt-4">
+              <SpokeHero
+                title={post.title}
+                hubName={hub ? hub.title : null}
+                hubSlug={hub ? hub.slug : post.hub}
+                readMins={readMins}
+              />
+            </div>
+            <div className="text-xs uppercase tracking-wide text-brand-600 font-semibold mb-3 mt-8">
               {post.category}
             </div>
-            <h1 className="text-3xl md:text-5xl font-display font-bold text-gray-900 leading-tight mb-4">
+            <h1 className="sr-only">
               {post.title}
             </h1>
             <p className="text-xl text-gray-600 leading-relaxed">{post.excerpt}</p>
