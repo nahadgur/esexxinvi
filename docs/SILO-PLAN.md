@@ -128,7 +128,7 @@ Until 1-3 exist, the writer stays disabled (pre-flight guard logs a handoff).
 | H5 Comfort/pain | 1 | 10 | does-it-hurt |
 | H6 Teens | 1 | 10 | parents guide |
 | H7 Adults | 2 | 10 | over-40s + professionals/discretion spokes (draft) |
-| H8 Suitability | 1 | 10 | can-invisalign-fix-crowded-teeth (draft) |
+| H8 Suitability | 2 | 10 | crowded + close-gaps spokes (draft) |
 | H9 Essex local | 3 | 10 | local category + town pages |
 | H10 Provider/at-home | 1 | 10 | mail-order danger article |
 

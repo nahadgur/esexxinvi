@@ -90,9 +90,26 @@ The article edit itself landed correctly on the live `data/blog.ts` and
 - **YMYL:** no fabricated testimonials/stats/credentials; matching framing kept (we connect, we do not treat); editorial-team byline; advisory board + success stories untouched; UK English; no em dashes; did not target reserved head terms.
 - **tsc:** `npx tsc --noEmit` clean (verified in-sandbox; sandbox FS in sync this run, unlike 2026-06-09/earlier-06-10 blocked runs).
 - **Note:** the file-tool Edit truncated data/blog.ts mid-run (same stale-snapshot class of issue as prior runs); recovered by rebuilding from `git show HEAD:data/blog.ts` and inserting the new post via an in-place python write in the bash/git world. git diff confirms a clean +31 insertion, no deletions.
-- **git:** committed and pushed to main (see hash in run summary). If the push failed it is noted there.
+- **git:** committed to main locally as `1f69545`. **Push FAILED** (sandbox has no GitHub credentials: `could not read Username for https://github.com`). Local main is one commit ahead of origin (origin at d9959a5). Needs a `git push origin main` from the real machine.
 
 ### Status (after this run)
 - Buffer (parked drafts): 3 (`invisalign-over-40s-essex` H7, `discreet-invisalign-professionals` H7, `can-invisalign-fix-crowded-teeth` H8) awaiting the publisher.
 - Total toward 100 spokes: ~16 written (13 published seed + 3 new drafts).
 - **Next run:** H8 still thin (1/10) and H7 now 2/10. Suggested next: an H8 condition spoke linking its exact treatment page (gaps -> /treatments/gaps/, overbite -> /treatments/overbite/), or an H9 Essex town spoke. Avoid reserved head terms; keep suitability/question framing.
+
+
+## 2026-06-11 — writer run (esexxinvi): H8 suitability spoke `close-gaps-between-teeth` (draft)
+
+- **Site:** esexxinvi (invisaligndentistsessex.uk). **Hub:** H8 what-invisalign-can-fix. **Slug:** close-gaps-between-teeth. **draft:** true. **Words:** ~1080 body, 5 FAQs.
+- **Angle:** Can Invisalign close gaps / spacing — distinct from the existing H8 crowded-teeth spoke. Owns the spacing/diastema sub-intent: causes of gaps (tooth-jaw size mismatch, labial frenum, missing teeth, tongue thrust, gum disease), how aligners close space, when restorative/frenectomy/gum work is needed first, and why retainers matter most for relapse-prone gap cases. No paraphrase of the national invisaligndentists.uk.
+- **Links:** up-link to /guides/what-invisalign-can-fix/ (anchor "the problems Invisalign can treat"), exact treatment-page pillar /treatments/gaps/ (H8 rule), /guides/invisalign-cost-essex/ contextual, /clinics/ directory, plus the auto-rendered matching CTA. No same-hub siblings published (crowded still draft), so no sibling links. Align Technology / SmartTrack cited in prose, not linked. 0 external hyperlinks.
+- **Essex substance:** mid & south Essex NHS / IOTN access; Chelmsford, Basildon, Southend, Colchester, Rayleigh, Brentwood, Clacton, Billericay, Shenfield; CM/SS/CO postcode districts; London commuter framing; 6-8 week appointment spacing.
+- **YMYL:** no fabricated testimonials/stats/credentials; matching framing kept (we connect, we do not treat); editorial-team byline; advisory board + success stories untouched; UK English; no em dashes; did not target reserved head terms (no "gaps Invisalign" / "Invisalign [town]").
+- **tsc:** `npx tsc --noEmit` clean (tsbuildinfo rm blocked by sandbox perms; ran full check, exit 0).
+- **Note:** same file-tool Edit truncation as prior runs (stale-snapshot mount class). Recovered the established way: rebuilt from `git show HEAD:data/blog.ts` and spliced the new post via an in-place python write in the bash/git world. `git diff` confirms a clean +32 insertion, no deletions.
+- **git:** see run summary for hash. Sandbox has no GitHub credentials, so push is expected to fail and is noted there; needs `git push origin main` from the real machine (prior unpushed local commit 1f69545 is also still ahead of origin).
+
+### Status (after this run)
+- Buffer (parked drafts): 4 (`invisalign-over-40s-essex` H7, `discreet-invisalign-professionals` H7, `can-invisalign-fix-crowded-teeth` H8, `close-gaps-between-teeth` H8) awaiting the publisher.
+- Total toward 100 spokes: ~17 written (13 published seed + 4 new drafts).
+- **Next run:** H8 now 2/10, H7 2/10 — both still thin. Suggested next: another H8 condition spoke linking its exact treatment page (overbite -> /treatments/overbite/, underbite -> /treatments/underbite/, or crossbite -> /treatments/crossbite/), or begin H9 Essex town spokes. Avoid reserved head terms; keep the suitability/question framing.
