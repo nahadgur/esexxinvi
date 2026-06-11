@@ -113,3 +113,15 @@ The article edit itself landed correctly on the live `data/blog.ts` and
 - Buffer (parked drafts): 4 (`invisalign-over-40s-essex` H7, `discreet-invisalign-professionals` H7, `can-invisalign-fix-crowded-teeth` H8, `close-gaps-between-teeth` H8) awaiting the publisher.
 - Total toward 100 spokes: ~17 written (13 published seed + 4 new drafts).
 - **Next run:** H8 now 2/10, H7 2/10 — both still thin. Suggested next: another H8 condition spoke linking its exact treatment page (overbite -> /treatments/overbite/, underbite -> /treatments/underbite/, or crossbite -> /treatments/crossbite/), or begin H9 Essex town spokes. Avoid reserved head terms; keep the suitability/question framing.
+
+## 2026-06-11 — esexxinvi writer run (teeth-shifted-after-braces)
+
+- **Site:** esexxinvi (invisaligndentistsessex.uk)
+- **Spoke written:** `teeth-shifted-after-braces` — "Invisalign for Teeth That Shifted After Braces in Essex"
+- **Hub:** H7 invisalign-for-adults (was thin at 2 spokes, now 3). draft:true.
+- **Why:** next gap on priority order (thin hubs first); distinct adult intent (orthodontic relapse) not yet a standalone spoke, only a subsection in invisalign-over-40s-essex.
+- **Length:** ~970 words, answer-first opening, 6 sections, 5 FAQs.
+- **Linking:** up-link to /guides/invisalign-for-adults/; sideways /guides/invisalign-cost-essex/; pillar /treatments/crowded/; matching CTA + /clinics/. No sibling links (both H7 siblings still draft). External: 1 (NHS orthodontics), Align Technology named.
+- **tsc:** `npx tsc --noEmit` clean (exit 0).
+- **Link gate:** check-links.mjs — 29 slugs, 0 broken.
+- **Note:** same file-tool Edit truncation as prior runs (stale-snapshot mount class). Recovered the established way: restored data/blog.ts + the two collaterally-truncated client files (BlogPostClient.tsx, GuideHubClient.tsx) from `git show HEAD:` via redirect, then spliced the new post in the bash/git world with python. git diff confirms a clean single +post insertion to data/blog.ts plus the section-8 count bump.
