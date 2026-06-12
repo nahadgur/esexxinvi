@@ -145,3 +145,11 @@ The article edit itself landed correctly on the live `data/blog.ts` and
 - Buffer (parked drafts): 6 (`invisalign-over-40s-essex` H7, `discreet-invisalign-professionals` H7, `teeth-shifted-after-braces` H7, `can-invisalign-fix-crowded-teeth` H8, `close-gaps-between-teeth` H8, `can-invisalign-fix-overbite` H8) awaiting the publisher.
 - Total toward 100 spokes: ~20 written (14 published seed + 6 parked drafts).
 - **Next run:** H8 now 3/10, H7 3/10 — both still thin. Suggested next: another H8 condition spoke linking its exact treatment page (underbite -> /treatments/underbite/, or crossbite -> /treatments/crossbite/), or begin H9 Essex town spokes (12 town pages exist). Avoid reserved head terms; keep the suitability/question framing.
+
+## 2026-06-12 08:40 — esexxinvi-invisalign-writer (esexxinvi)
+- Sites: esexxinvi: wrote ONE new H8 spoke "Can Invisalign Fix an Underbite?" (slug can-invisalign-fix-underbite, draft:true, hub what-invisalign-can-fix); SILO-PLAN section 8 H8 count 3->4
+- Staged files: data/blog.ts, docs/SILO-PLAN.md (both committed)
+- Live flips this run: none (writer task; draft only)
+- tsc: pass
+- Commit prompt / git state: committed eb2ed01 on main (amended once to drop an accidentally-included pre-staged HANDOFF-QUEUE.md deletion left by a crashed git process; stale .git/index.lock and .git/HEAD.lock removed). Push failed: sandbox has no GitHub credentials. Prior unpushed commits also still ahead of origin; needs `git push origin main` from the real machine.
+- Status: PENDING PUSH
