@@ -125,3 +125,23 @@ The article edit itself landed correctly on the live `data/blog.ts` and
 - **tsc:** `npx tsc --noEmit` clean (exit 0).
 - **Link gate:** check-links.mjs — 29 slugs, 0 broken.
 - **Note:** same file-tool Edit truncation as prior runs (stale-snapshot mount class). Recovered the established way: restored data/blog.ts + the two collaterally-truncated client files (BlogPostClient.tsx, GuideHubClient.tsx) from `git show HEAD:` via redirect, then spliced the new post in the bash/git world with python. git diff confirms a clean single +post insertion to data/blog.ts plus the section-8 count bump.
+- **git:** committed locally as `4b74fa5`. Push failed (no GitHub credentials in sandbox: "could not read Username for https://github.com"). Push pending from a credentialed environment / next Claude Code session.
+
+## 2026-06-12 — esexxinvi writer run (can-invisalign-fix-overbite)
+
+- **Site:** esexxinvi (invisaligndentistsessex.uk)
+- **Spoke written:** `can-invisalign-fix-overbite` — "Can Invisalign Fix an Overbite?"
+- **Hub:** H8 what-invisalign-can-fix (was thin at 2 spokes, now 3). draft:true.
+- **Why:** priority order = thin hubs first; H8 was the thinnest named-priority hub. Next condition after crowded + gaps, links its exact treatment page per the H8 rule.
+- **Essex substance:** mid/south Essex NHS access + IOTN, CM/SS/CO postcodes, Chelmsford/Basildon/Southend/Colchester/Brentwood/Clacton/Rayleigh/Billericay/Shenfield commuter framing, private-cost reality. Not a national-site paraphrase; overbite/deep-bite/overjet distinction is the differentiating angle.
+- **Length:** ~1130 words, answer-first ~60-word opening, 5 sections, 5 distinct FAQs.
+- **Linking:** up-link to /guides/what-invisalign-can-fix/; pillar /treatments/overbite/ (exact condition page); sideways /guides/invisalign-cost-essex/; matching CTA + /clinics/. No sibling links (both H8 siblings still draft). External authorities named inline (Align Technology, NHS, IOTN), no outbound hyperlinks.
+- **tsc:** `npx tsc --noEmit` clean (exit 0).
+- **Link gate:** check-links.mjs — 30 slugs, 0 broken.
+- **Note:** same file-tool Edit truncation as prior runs (stale-snapshot mount class; bash mount also blocks all deletes this run, and a stale .git/index.lock from the 2026-06-11 run was present). Recovered the established way: rebuilt data/blog.ts from `git show HEAD:` and spliced the new post via in-place python in the bash/git world. Committed using a temp GIT_INDEX_FILE to bypass the undeletable index.lock. git diff confirms a clean single +post insertion plus the section-8 count bump.
+- **git:** see run summary for hash. Sandbox has no GitHub credentials, so push is expected to fail and is noted there; needs `git push origin main` from the real machine (prior unpushed local commits 4b74fa5 and 1f69545 are also still ahead of origin).
+
+### Status (after this run)
+- Buffer (parked drafts): 6 (`invisalign-over-40s-essex` H7, `discreet-invisalign-professionals` H7, `teeth-shifted-after-braces` H7, `can-invisalign-fix-crowded-teeth` H8, `close-gaps-between-teeth` H8, `can-invisalign-fix-overbite` H8) awaiting the publisher.
+- Total toward 100 spokes: ~20 written (14 published seed + 6 parked drafts).
+- **Next run:** H8 now 3/10, H7 3/10 — both still thin. Suggested next: another H8 condition spoke linking its exact treatment page (underbite -> /treatments/underbite/, or crossbite -> /treatments/crossbite/), or begin H9 Essex town spokes (12 town pages exist). Avoid reserved head terms; keep the suitability/question framing.
