@@ -128,7 +128,7 @@ Until 1-3 exist, the writer stays disabled (pre-flight guard logs a handoff).
 | H5 Comfort/pain | 1 | 10 | does-it-hurt |
 | H6 Teens | 1 | 10 | parents guide |
 | H7 Adults | 3 | 10 | over-40s, professionals, relapse-after-braces spokes (draft) |
-| H8 Suitability | 4 | 10 | crowded, close-gaps, overbite, underbite spokes (draft) |
+| H8 Suitability | 5 | 10 | crowded, close-gaps, overbite, underbite, crossbite spokes (draft) |
 | H9 Essex local | 3 | 10 | local category + town pages |
 | H10 Provider/at-home | 1 | 10 | mail-order danger article |
 
