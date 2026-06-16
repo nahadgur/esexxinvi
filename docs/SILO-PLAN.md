@@ -127,8 +127,8 @@ Until 1-3 exist, the writer stays disabled (pre-flight guard logs a handoff).
 | H4 Living with | 1 | 10 | diet article |
 | H5 Comfort/pain | 1 | 10 | does-it-hurt |
 | H6 Teens | 1 | 10 | parents guide |
-| H7 Adults | 3 | 10 | over-40s, professionals, relapse-after-braces spokes (draft) |
-| H8 Suitability | 5 | 10 | crowded, close-gaps, overbite, underbite, crossbite spokes (draft) |
+| H7 Adults | 6 | 10 | over-40s, professionals, relapse, grinding, whitening, retainers spokes (draft) |
+| H8 Suitability | 7 | 10 | crowded, close-gaps, overbite, underbite, crossbite, open-bite, crowns-veneers-fillings spokes (draft) |
 | H9 Essex local | 3 | 10 | local category + town pages |
 | H10 Provider/at-home | 1 | 10 | mail-order danger article |
 
@@ -138,4 +138,4 @@ Totals: 10 hubs, 100 spokes; ~17 articles seed the silo, ~83 to write (Essex-fra
 Kebab-case: lowercase, hyphens only, ASCII only, 3-6 words, under ~60 chars.
 Do NOT: include a year/date; reuse or near-duplicate an existing slug; use a
 reserved head term or the parent hub's head term; keyword-stuff or repeat a word;
-use stop words (a/the/to/for). Never rename or reuse a published slug.
+use stop words (a/the/to/for). Never rename or
