@@ -371,7 +371,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: 'Invisalign for Over-40s and Over-50s in Essex',
     category: 'editorial',
     hub: 'invisalign-for-adults',
-    draft: true,
+    draft: false,
     excerpt: 'Mature teeth still move. What over-40s and over-50s in Essex should check first, from gum health to existing crowns and bridges, before starting Invisalign.',
     body: `<p>There is no upper age limit for Invisalign. Teeth move at any age as long as the gums and supporting bone are healthy, so plenty of patients in their forties, fifties and beyond straighten their teeth successfully. For older adults the planning is more careful: gum health, existing dental work and realistic timing all matter more than they do at twenty-five.</p>
 <h2>Why more Essex over-40s are straightening their teeth</h2>
