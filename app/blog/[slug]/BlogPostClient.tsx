@@ -62,7 +62,7 @@ export default function BlogPostClient({ post, hub }: Props) {
           </header>
 
           <div
-            className="prose prose-lg max-w-none"
+            className="blog-prose max-w-none"
             dangerouslySetInnerHTML={{ __html: post.body }}
           />
 
