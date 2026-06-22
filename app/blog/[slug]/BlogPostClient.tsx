@@ -61,16 +61,6 @@ export default function BlogPostClient({ post, hub }: Props) {
             </div>
           </header>
 
-          {hub && (
-            <p className="mb-8 text-sm text-gray-600 bg-gray-50 border border-gray-100 rounded-xl px-5 py-4">
-              Part of our guide to{' '}
-              <Link href={`/guides/${hub.slug}/`} className="font-semibold text-brand-600 hover:underline">
-                {hub.title.toLowerCase()}
-              </Link>
-              .
-            </p>
-          )}
-
           <div
             className="prose prose-lg max-w-none"
             dangerouslySetInnerHTML={{ __html: post.body }}
