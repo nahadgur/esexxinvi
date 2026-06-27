@@ -777,6 +777,44 @@ export const BLOG_POSTS: BlogPost[] = [
     metaTitle: 'Invisalign with Crowns, Veneers and Fillings | Essex',
     metaDescription: 'Can you have Invisalign with crowns, veneers or fillings? How clear aligners work around existing dental work and implants, and getting assessed across Essex.',
   },
+
+  {
+    slug: 'what-to-do-if-you-lose-an-invisalign-aligner-essex',
+    title: 'What to Do If You Lose an Invisalign Aligner in Essex',
+    category: 'process',
+    hub: 'invisalign-treatment-process',
+    draft: false,
+    excerpt: 'Lost or cracked an Invisalign aligner? The calm, step-by-step plan: which tray to wear next, when to call your Essex provider, why you should not leave the teeth bare, and how to avoid it happening again.',
+    body: `<p>Losing or breaking an Invisalign aligner is one of the most common little panics during treatment, and it is almost never a disaster. The single most important thing is not to leave your teeth without any aligner in for long, because teeth start drifting back toward their old positions surprisingly quickly. The right move depends on where you are in the current set, so the first job is to work that out and then speak to your provider. This guide walks through the practical steps for patients across Essex, from Chelmsford and Brentwood to Southend and Colchester.</p>
+<h2>First, do not panic and do not leave your teeth bare</h2>
+<p>The instinct to simply go without until a replacement arrives is the one thing to avoid. Aligners hold your teeth in their current planned position, and that position is only partway to the finish line. The same biology that causes <a href="/blog/retainers-after-invisalign/">teeth to drift after treatment without a retainer</a> is at work mid-course too: leave the teeth unsupported for a few days and the next aligner may no longer fit, which can mean stepping back a stage or ordering a fresh tray. So before anything else, put a tray back in. The question is simply which one.</p>
+<h2>Which aligner to wear next</h2>
+<p>There are two sensible options, and your provider should confirm which applies to you rather than you guessing:</p>
+<ul>
+<li><strong>Go back to your previous set.</strong> If you kept the last aligner you wore (a good reason never to bin old trays until treatment ends), put it back in. It will fit because your teeth were recently in that position, and it holds them steady until you can speak to the clinic.</li>
+<li><strong>Move forward to the next set.</strong> If you were near the end of the current aligner, almost ready to switch anyway, and you have the next tray to hand, your dentist may tell you to move up early. Do this only on their advice, because jumping ahead before the teeth have finished the current movement can make the new tray painfully tight or stop it seating properly.</li>
+</ul>
+<p>Either way, keep something in. The previous set is the safer default if you are unsure and cannot reach the clinic immediately.</p>
+<h2>Contact your Essex provider promptly</h2>
+<p>Ring or message the clinic that is treating you as soon as you reasonably can, not in a fortnight. They hold your <a href="/guides/invisalign-treatment-process/">ClinCheck treatment plan</a> and know exactly which stage you are on, so they can tell you whether to drop back, push forward, or reorder a single replacement aligner. They will also factor a lost tray into your <a href="/blog/how-long-does-invisalign-take/">overall treatment timeline</a>, since a gap or a reorder can add a little time. A reputable provider will not leave you stranded between appointments, and prompt contact usually means the smallest possible disruption.</p>
+<h2>Replacement aligners, refinements and cost</h2>
+<p>How a replacement is handled varies by clinic and by what went wrong. If you simply lost one tray of many, some providers can reorder that single aligner; in other cases, especially if several are lost or damaged, the dentist may decide it is cleaner to rescan and refine the remaining movements. Replacement trays can carry a small fee, and policies differ, so this is worth asking about before you start treatment rather than after. Invisalign Teen plans are designed with a number of replacement aligners built in precisely because younger patients lose them, but standard adult plans do not always include free replacements. Treat any figure a clinic quotes as specific to them, and get it in writing.</p>
+<h2>Preventing the next lost tray</h2>
+<p>Most lost aligners go the same way: wrapped in a paper napkin at a restaurant and thrown out, or left on a tray at work. A few habits prevent nearly all of it. Always store the aligners in their proper case the moment they come out, never a tissue or pocket, and keep your immediately previous set as a backup until treatment finishes. When you travel, pack the current set, the previous set and the next set, plus the case, in your hand luggage rather than a checked bag. The Oral Health Foundation has helpful general guidance on caring for orthodontic appliances and keeping the teeth and gums healthy throughout treatment in its <a href="https://www.dentalhealth.org/" target="_blank" rel="noopener noreferrer">patient advice</a>, and the manufacturer covers tray handling and wear on the <a href="https://www.invisalign.co.uk/" target="_blank" rel="noopener noreferrer">official Invisalign site</a>. Build the case-and-backup habit early and a lost aligner becomes a minor hiccup rather than a setback.</p>
+<h2>Getting help in Essex</h2>
+<p>We are an independent matching service: we connect you with verified Platinum-tier providers across Essex and do not provide treatment ourselves, so if you are mid-course the clinic treating you is the right first call. If you are still choosing where to be treated, it is worth asking each clinic up front how they handle lost or broken aligners and what a replacement costs, so the answer is settled before you ever need it.</p>`,
+    faqs: [
+      { question: 'What should I do if I lose an Invisalign aligner?', answer: 'Put a tray back in straight away rather than leaving your teeth bare, then contact your provider. If you kept your previous set, wear that; if you were almost ready to switch and have the next set, your dentist may tell you to move up early. The clinic decides whether to reorder a single replacement or rescan.' },
+      { question: 'Can I just leave my teeth without an aligner until the replacement arrives?', answer: 'No. Teeth begin drifting back toward their old positions within days, which can mean your next aligner no longer fits and you have to step back a stage or reorder. Always keep an aligner in, ideally your previous set, until you can speak to your provider.' },
+      { question: 'Do I have to pay for a replacement Invisalign aligner?', answer: 'It depends on the clinic and what went wrong. Some providers reorder a single lost tray for a small fee, while several lost or damaged aligners may mean a rescan and refinement. Invisalign Teen plans build in replacements; standard adult plans do not always. Ask your provider for their policy in writing.' },
+      { question: 'Will a lost aligner make my Invisalign take longer?', answer: 'It can add a little time, especially if you went without a tray and the teeth drifted, or if a replacement has to be reordered. Contacting your clinic promptly keeps the disruption to a minimum, which is why a quick call beats waiting until your next appointment.' },
+      { question: 'How do I stop losing my aligners?', answer: 'Store them in their case the moment they come out rather than a napkin or pocket, keep your previous set as a backup until treatment ends, and when travelling carry the current, previous and next sets in your hand luggage. Most lost trays are simply thrown out with a tissue at a meal.' },
+    ],
+    publishedAt: '2026-06-18',
+    lastReviewedAt: reviewed,
+    metaTitle: 'Lost an Invisalign Aligner? What to Do | Essex Guide',
+    metaDescription: 'Lost or broke an Invisalign aligner in Essex? Which tray to wear next, when to call your provider, why not to leave teeth bare, replacement costs, and prevention.',
+  },
 ];
 
 export function getAllBlogSlugs(): string[] {
