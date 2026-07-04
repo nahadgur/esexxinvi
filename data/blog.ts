@@ -104,7 +104,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: 'Invisalign Lite vs Full Treatment',
     category: 'pricing',
     hub: 'invisalign-cost-essex',
-    draft: true,
+    draft: false,
     excerpt: 'Invisalign Lite is a shorter, cheaper option for minor cases, while Comprehensive handles the full range. How the two differ on aligners, time, cost and what they can treat.',
     body: `<p>When an Essex clinic quotes for Invisalign, the figure depends heavily on which version of the treatment you need. The two you will hear about most are Invisalign Lite and Invisalign Comprehensive, usually just called Full. They use the same clear aligners and the same iTero scan and ClinCheck planning, but they are built for very different amounts of tooth movement, and that is what drives both the price and the time you will spend in treatment. Understanding the split before your consultation makes the quote far easier to read, because a good chunk of the price gap between two clinics can simply be that one has scoped your teeth as a Lite case and the other as a Full one.</p>
 <h2>What actually separates Lite from Full</h2>
