@@ -24,7 +24,7 @@ const inputStyle: React.CSSProperties = {
   border: '1px solid var(--border)',
   background: 'var(--cream)',
   color: 'var(--ink)',
-  fontSize: '13px',
+  fontSize: '16px',
   fontFamily: 'var(--font-sans)',
   outline: 'none',
   transition: 'border-color 0.15s, box-shadow 0.15s',
