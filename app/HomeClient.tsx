@@ -104,7 +104,7 @@ export default function HomePage() {
             {/* 1 — Headline */}
             <div style={{ marginBottom: '20px' }}>
               <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem,5vw,3rem)', fontWeight: 600, color: 'var(--ink)', lineHeight: 1.1 }}>
-                Essex&apos;s Finest<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>Invisalign</em>
+                Invisalign specialists<br /><em style={{ fontStyle: 'italic', color: 'var(--sage)' }}>in Essex.</em>
               </h1>
               <div style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.2rem,5vw,3rem)', fontWeight: 400, fontStyle: 'italic', color: '#C0C8BE', lineHeight: 1.1 }}>
                 Specialists, Matched Free
