@@ -55,6 +55,7 @@ export function buildWebSite() {
     '@id': SITE_ID,
     url: siteConfig.url,
     name: siteConfig.name,
+    alternateName: ['InvisalignDentistsEssex'],
     inLanguage: siteConfig.locale,
     publisher: { '@id': ORG_ID },
     potentialAction: {

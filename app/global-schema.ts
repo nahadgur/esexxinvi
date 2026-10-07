@@ -73,6 +73,7 @@ export function buildGlobalSchema(): object {
         '@type': 'WebSite',
         '@id': siteId,
         'name': 'Invisalign Dentists Essex',
+        'alternateName': ['InvisalignDentistsEssex'],
         'url': `${base}/`,
         'inLanguage': 'en-GB',
         'publisher': { '@id': orgId },

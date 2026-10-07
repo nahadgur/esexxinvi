@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   description: 'Find the top-rated Invisalign providers across Essex. Compare verified Platinum-tier dentists serving Chelmsford, Southend, Colchester, Basildon, Brentwood and more.',
   alternates: { canonical: 'https://www.invisaligndentistsessex.uk/' },
   openGraph: {
+    siteName: 'Invisalign Dentists Essex',
     title: 'Invisalign Essex | Find Top Invisalign Providers Across Essex',
     description: 'Find the top-rated Invisalign providers across Essex. Compare verified Platinum-tier dentists serving Chelmsford, Southend, Colchester, Basildon, Brentwood and more.',
     url: 'https://www.invisaligndentistsessex.uk/',
