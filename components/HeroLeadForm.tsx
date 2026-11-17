@@ -90,7 +90,7 @@ export function HeroLeadForm({ city, service }: HeroLeadFormProps) {
       }
       setIsSuccess(true);
     } catch (err) {
-      setFormError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+      setFormError('We could not send your request. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
